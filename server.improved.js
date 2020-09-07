@@ -65,7 +65,8 @@ const handlePost = function (request, response) {
       object.color = color;
     }
 
-    object.ip = request.connection.remoteAddress;
+    object.ip =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
 
     return fetch(DATABASE + (object.id ? "/" + object.id : ""), {
       method: object.id ? (object.delete ? "DELETE" : "PUT") : "POST",
