@@ -54,6 +54,7 @@
               <th>Task</th>
               <th>Priorty</th>
               <th>Due Date</th>
+              <th>IP</th>
               <th>Operations</th>
             </tr>
           </thead>
@@ -102,6 +103,7 @@
             }>Low</option>
           </select></td>
           <td style="opacity:0.8">${dueDate.diff(now, "days")} days</td>
+          <td style="opacity:0.8">${item.ip}</td>
           <td><button class="saveButton" id="${
             item._id
           }-save">Save</button><div class="spacerMini"></div><button class="deleteButton" id="${

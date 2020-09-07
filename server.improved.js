@@ -45,23 +45,27 @@ const handlePost = function (request, response) {
     const object = JSON.parse(dataString);
 
     let color = "transparent";
-    if (object.task.length > 10) {
-      color = "#3498db";
-    }
-    if (object.task.length > 20) {
-      color = "#d35400";
-    }
-    if (object.task.length > 30) {
-      color = "#27ae60";
-    }
-    if (object.task.length > 40) {
-      color = "#8e44ad";
-    }
-    if (object.task.length > 50) {
-      color = "#c0392b";
+    if (object.task) {
+      if (object.task.length > 10) {
+        color = "#3498db";
+      }
+      if (object.task.length > 20) {
+        color = "#d35400";
+      }
+      if (object.task.length > 30) {
+        color = "#27ae60";
+      }
+      if (object.task.length > 40) {
+        color = "#8e44ad";
+      }
+      if (object.task.length > 50) {
+        color = "#c0392b";
+      }
+
+      object.color = color;
     }
 
-    object.color = color;
+    object.ip = request.connection.remoteAddress;
 
     return fetch(DATABASE + (object.id ? "/" + object.id : ""), {
       method: object.id ? (object.delete ? "DELETE" : "PUT") : "POST",
