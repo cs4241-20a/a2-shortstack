@@ -7,6 +7,8 @@
   <body>
     <form action="">
       <input type='text' id='yourname' value="your name here">
+      <input type='text' id='yourage' value="your age here">
+      <input type='text' id='yourschool' value="your school here">
       <button>submit</button>
     </form>
   </body>
@@ -16,8 +18,10 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const nameinput = document.querySelector( '#yourname' ),
+          ageinput = document.querySelector( '#yourage' ),
+          schoolinput = document.querySelector( '#yourschool' ),
+          json = { yourname: nameinput.value , yourage: ageinput.value , yourschool: schoolinput.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -25,7 +29,7 @@
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
+      // do something with the reponse (if status ok then add data to ds and display, else show error signal)
       console.log( response )
     })
 

@@ -38,7 +38,7 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    console.log( JSON.parse( dataString ) ) // dataString is JSON of submission and contains the input data
 
     // ... do something with the data here!!!
 
