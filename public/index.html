@@ -1,47 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-  </head>
-  <body>
-    <h1>Grocery List</h1>
-    <form name="inputForm">
-      <input type='number' id='quantity' placeholder="Quantity" min="1" max="999">
-      <input type='text' id='food' placeholder="Food">
-      <button id="submit">Submit</button>
-    </form>
-    <table id="groceryTable">
-      <thead>
-        <tr>
-          <th colspan=4>Grocery List</th>
-        </tr>
-        <tr>
-          <th>Quantity</th>
-          <th>Item</th>
-          <th>Calories</th>
-          <th>Purchased?</th>
-        </tr>
-      </thead>
-      <tbody id="groceryBody">
-        <!-- tr>
-          <td>2</td>
-          <td>Apple</td>
-          <td>100 cal</td>
-          <td><button class="checkButton">✓</button></td>
-        </tr -->
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan=4>
-            <button id="delete">Delete all purchased?</button>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-    <button id="sync">Sync</button>
+
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+</head>
+
+<body>
+  <div class="box">
+    <div class="child">
+      <h1>Grocery List Website</h1>
+    </div>
+    <div class="child">
+      <div class="inputBox">
+        <div>
+          <h3>Add an item</h3>
+        </div>
+        <div>
+          <form name="inputForm">
+            <input type='number' id='quantity' placeholder="Quantity" min="1" max="999">
+            <input type='text' id='food' placeholder="Food">
+            <button id="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="child">
+      <table id="groceryTable">
+        <thead>
+          <tr>
+            <th colspan=4>Grocery List</th>
+          </tr>
+          <tr>
+            <th>Quantity</th>
+            <th>Item</th>
+            <th>Calories</th>
+            <th>Purchased?</th>
+          </tr>
+        </thead>
+        <tbody id="groceryBody">
+          <tr>
+            <td>2</td>
+            <td>Apple</td>
+            <td>100</td>
+            <td><button class="checkButton">✓</button></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan=4>
+              <button id="delete">Delete all purchased?</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
   <script src="js/scripts.js"></script>
-  </body>
+</body>
+
 </html>

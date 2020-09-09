@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "grocerylist",
+  "version": "1.0",
+  "description": "An interactive grocery list website and server",
+  "author": "Jordan Gold",
   "scripts": {
     "start": "node server.improved.js"
   },

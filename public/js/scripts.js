@@ -41,11 +41,6 @@ function deleteRows(e) {
     }
 }
 
-//Function to get all the items from the server
-function getAll(e) {
-    console.log("Get all");
-}
-
 //Handles the click action
 const handleButton = function(e) {
     //Ignores if you click on anything but a button
@@ -57,10 +52,45 @@ const handleButton = function(e) {
             gotItem(e);
         } else if (e.target.id === "delete") {
             deleteRows(e);
-        } else if (e.target.id === "sync") {
-            getAll(e);
         }
     }
+}
+
+//Takes a json object and adds it to the table as a row
+function addRows(jsonEntry) {
+    //Find the table
+    const tableBody = document.getElementById("groceryBody");
+    //Insert a new row and then new cells
+    let row = tableBody.insertRow(-1);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+
+    //Fill those cells with the data gotten back from the server, this includes the new fields
+    cell1.innerHTML = jsonEntry.quantity;
+    cell2.innerHTML = jsonEntry.food;
+    //TODO: Change this to cal * quantity?
+    cell3.innerHTML = jsonEntry.cal;
+    cell4.innerHTML = "<button class=\"checkButton\">✓</button>";
+}
+
+//Validates the input
+function validateInput() {
+    const inputQ = document.getElementById("quantity").value;
+    console.log(inputQ);
+    if (inputQ < 1 || inputQ > 999) {
+        alert("Quantity must be between 1 and 999");
+        return false;
+    }
+    const inputF = document.getElementById("food").value;
+    console.log(inputF);
+    const regex = /^[A-Za-z ]+$/;
+    if (!inputF.match(regex)) {
+        alert("Item must not contain numbers of symbols");
+        return false;
+    }
+    return true;
 }
 
 //Submit the form data to the servers
@@ -68,6 +98,10 @@ const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
+    //check that the input is valid before sending the data off
+    if (!validateInput()) {
+        return false;
+    }
 
     let json = {};
     const input = document.forms["inputForm"].getElementsByTagName("input");
@@ -85,27 +119,13 @@ const submit = function( e ) {
     })
     .then(response => response.json())
     .then( function( response ) {
-      //Find the table
-      const tableBody = document.getElementById("groceryBody");
-      //Insert a new row and then new cells
-      let row = tableBody.insertRow(-1);
-      let cell1 = row.insertCell(0);
-      let cell2 = row.insertCell(1);
-      let cell3 = row.insertCell(2);
-      let cell4 = row.insertCell(3);
-
-      //Fill those cells with the data gotten back from the server, this includes the new fields
-      cell1.innerHTML = response.quantity;
-      cell2.innerHTML = response.food;
-      //TODO: Change this to cal * quantity?
-      cell3.innerHTML = response.cal;
-      cell4.innerHTML = "<button class=\"checkButton\">✓</button>";
+        addRows(response);
     })
 
-    return false
+    return false;
   }
 
-//When the page loads stick the click listener on there to handle all the buttons
+//When the page loads stick the click listener on there to handle all the buttons/clicks
 window.onload = function() {
     document.addEventListener("click", handleButton, false);
 }
