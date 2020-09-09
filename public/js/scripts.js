@@ -1,11 +1,4 @@
-// Add some Javascript code here, to run on the front end.
-
-console.log("Welcome to assignment 2!")
-
 function handle_add(){
-    console.log("add!");
-    // prevent default form action from being carried out
-    //e.preventDefault();
     //The following source showed me how to extract values from a
     //form: https://www.w3schools.com/jsref/coll_form_elements.asp
     const input = document.getElementById("add"),
@@ -20,8 +13,9 @@ function handle_add(){
         method:'POST',
         body
     }).then( function( response ) {
-        // do something with the response
-        console.log( response );
+        if(response.status === 200){
+            getLatestTable();
+        }
         return true;
     })
 
@@ -29,27 +23,22 @@ function handle_add(){
 }
 
 function handle_modify(){
-    console.log("modify!");
-    console.log("add!");
-    // prevent default form action from being carried out
-    //e.preventDefault();
-    //The following source showed me how to extract values from a
-    //form: https://www.w3schools.com/jsref/coll_form_elements.asp
     const input = document.getElementById("modify"),
-        json = {
-            id_num: input.elements[0].value,
-            kills: input.elements[1].value,
-            assists: input.elements[2].value,
-            deaths: input.elements[3].value,
-        },
-        body = JSON.stringify(json);
+          json = {
+              id: input.elements[0].value,
+              kills: input.elements[1].value,
+              assists: input.elements[2].value,
+              deaths: input.elements[3].value,
+          },
+          body = JSON.stringify(json);
 
     fetch( '/modify', {
         method:'POST',
         body
     }).then( function( response ) {
-        // do something with the response
-        console.log( response );
+        if(response.status === 200){
+            getLatestTable();
+        }
         return true;
     })
 
@@ -57,25 +46,61 @@ function handle_modify(){
 }
 
 function handle_delete(){
-    console.log("delete!");
-    // prevent default form action from being carried out
-    //e.preventDefault();
-    //The following source showed me how to extract values from a
-    //form: https://www.w3schools.com/jsref/coll_form_elements.asp
     const input = document.getElementById("delete"),
-        json = {
-            id_num: input.elements[0].value
-        },
-        body = JSON.stringify(json);
+          json = {
+              id: input.elements[0].value
+          },
+          body = JSON.stringify(json);
 
     fetch( '/delete', {
         method:'POST',
         body
     }).then( function( response ) {
-        // do something with the response
-        console.log( response );
+        if(response.status === 200){
+            getLatestTable();
+        }
         return true;
     })
 
     return false;
+}
+
+function getLatestTable(){
+    fetch( '/table', {
+        method:'GET'
+    }).then( function( response ) {
+        if(response.status === 200){
+            updateTable(response);
+        }
+        return true;
+    })
+
+}
+
+function updateTable(response){
+    //Delete existing table and add a new, empty one. The following
+    //source have me the idea of swapping the tbody element of the
+    //table, and showed me how to do it:
+    //https://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
+    let table = document.getElementById("results");
+    let newBody = document.createElement('tbody');
+    table.replaceChild(newBody, table.lastChild);
+
+    //The following source showed me how to extract json from the HTTP
+    //response: https://developer.mozilla.org/en-US/docs/Web/API/Body/json
+    response.json().then(data => {
+        //The following source was used to learn how to insert a row into
+        //a table in JS: https://www.w3schools.com/jsref/met_table_insertrow.asp
+        let numRows = data.numRows;
+        let rows = data.rows;
+        for(let i = 0; i < numRows; i++){
+            let newRow = newBody.insertRow(i);
+            newRow.insertCell(0).innerHTML = `${rows[i].id}`;
+            newRow.insertCell(1).innerHTML = `${rows[i].kills}`;
+            newRow.insertCell(2).innerHTML = `${rows[i].assists}`;
+            newRow.insertCell(3).innerHTML = `${rows[i].deaths}`;
+            newRow.insertCell(4).innerHTML = `${rows[i].kd_ratio}`;
+            newRow.insertCell(5).innerHTML = `${rows[i].ad_ratio}`;
+        }
+    });
 }

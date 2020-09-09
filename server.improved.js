@@ -9,94 +9,130 @@ const http = require( 'http' ),
 //Format: { "id": 0, "kills": 0, "assists": 0, "deaths": 0, "kd_ratio": 0, "ad_ratio": 0 },
 const appdata = [];
 
-let id = 1;
+let id = 1;//Unique IDs to indicate rows to modify or delete
+let numEntries = 0;//Length of appdata
 
 const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
-  }
+    if(request.method === "GET") {
+        handleGet(request, response);
+    }else if(request.method === "POST"){
+        handlePost(request, response);
+    }
 })
 
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 )
+    const filename = dir + request.url.slice( 1 )
 
-  if(request.url === '/') {
-    sendFile( response, 'public/index.html' )
-  }else{
-    sendFile( response, filename )
-  }
+    if(request.url === "/") {
+        sendFile(response, "public/index.html");
+    }else if(request.url === "/table"){
+        sendTable(response);
+    }else{
+        sendFile(response, filename);
+    }
 }
 
 const handlePost = function( request, response ) {
-  let dataString = ''
+    let dataString = '';
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+    request.on( 'data', function( data ) {
+        dataString += data;
+    })
 
-  request.on( 'end', function() {
-    let data = JSON.parse(dataString);
-    console.log(data);
+    request.on( 'end', function() {
+        let data = JSON.parse(dataString);
+        console.log(data);
 
-    if(request.url === "/add") {
-        addItem(data);
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    }else if(request.url === "/modify"){
-        modifyItem(data);
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    }else if(request.url === "/delete"){
-        deleteItem(data);
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    }else{
-        response.writeHead(400, "Invalid request type", {'Content-Type': 'text/plain'});
-    }
+        if(request.url === "/add") {
+            addItem(data);
+            response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+        }else if(request.url === "/modify"){
+            modifyItem(data);
+            response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+        }else if(request.url === "/delete"){
+            deleteItem(data);
+            response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+        }else{
+            response.writeHead(400, "Invalid request type", {'Content-Type': 'text/plain'});
+        }
 
-    response.end()
-  })
+        response.end();
+    })
 }
 
 const addItem = function(data){
-  console.log("adding");
-  appdata.push({
-    "id": id,
-    "kills": data.kills,
-    "assists": data.assists,
-    "deaths": data.kills,
-    "kd_ratio": data.kills / data.deaths,
-    "ad_ratio": data.assists / data.deaths
-  })
-  id++;
+    appdata.push({
+        "id": id,
+        "kills": data.kills,
+        "assists": data.assists,
+        "deaths": data.kills,
+        "kd_ratio": data.kills / data.deaths,
+        "ad_ratio": data.assists / data.deaths
+    })
+    id++;
+    numEntries++;
 }
 
 const modifyItem = function(data){
-  console.log("modifying");
+    let targetID = data.id;
+    for(let i = 0; i < numEntries; i++){
+        if(appdata[i]["id_num"] === targetID){
+            appdata[i]["kills"] = data.kills;
+            appdata[i]["assists"] = data.assists;
+            appdata[i]["deaths"] = data.deaths;
+            return true;
+        }
+    }
+    //Entry if given ID not found.
+    return false;
 }
 
 const deleteItem = function(data){
-  console.log("deleting");
+    let targetID = Number(data.id);
+    console.log("targetID is: " +targetID);
+    for(let i = 0; i < numEntries; i++){
+        console.log(appdata[i]);
+        if(appdata[i]["id"] === targetID){
+            appdata.splice(i, 1);
+            numEntries--;
+            return true;
+        }
+    }
+    //Entry if given ID not found.
+    return false;
+}
+
+const sendTable = function(response){
+    let json = {
+        "numRows": numEntries,
+        "rows": []
+    }
+    for(let i = 0; i < numEntries; i++){
+        json["rows"].push(appdata[i]);
+    }
+    let body = JSON.stringify(json);
+    response.writeHead(200, "OK", {"Content-Type": "text/plain"});
+    response.end(body);
 }
 
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+    const type = mime.getType( filename )
 
-   fs.readFile( filename, function( err, content ) {
+    fs.readFile( filename, function( err, content ) {
 
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
+        // if the error = null, then we've loaded the file successfully
+        if( err === null ) {
 
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+            // status code: https://httpstatuses.com
+            response.writeHead( 200, "OK", { "Content-Type": type });
+            response.end( content )
 
-     }else{
+        }else{
 
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
-
-     }
+            // file not found, error code 404
+            response.writeHead( 404, "File Not Found");
+            response.end("404 Error: File Not Found");
+        }
    })
 }
 
