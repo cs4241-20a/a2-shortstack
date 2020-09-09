@@ -3,39 +3,45 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <h1>Grocery List</h1>
+    <form name="inputForm">
+      <input type='number' id='quantity' placeholder="Quantity" min="1" max="999">
+      <input type='text' id='food' placeholder="Food">
+      <button id="submit">Submit</button>
     </form>
+    <table id="groceryTable">
+      <thead>
+        <tr>
+          <th colspan=4>Grocery List</th>
+        </tr>
+        <tr>
+          <th>Quantity</th>
+          <th>Item</th>
+          <th>Calories</th>
+          <th>Purchased?</th>
+        </tr>
+      </thead>
+      <tbody id="groceryBody">
+        <!-- tr>
+          <td>2</td>
+          <td>Apple</td>
+          <td>100 cal</td>
+          <td><button class="checkButton">✓</button></td>
+        </tr -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan=4>
+            <button id="delete">Delete all purchased?</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <button id="sync">Sync</button>
+  <script src="js/scripts.js"></script>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>

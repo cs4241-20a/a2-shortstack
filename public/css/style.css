@@ -1,1 +1,12 @@
-/*Style your own assignment! This is fun! */
+body {
+    color: royalblue;
+    font-family: Quicksand;
+}
+
+table, td {
+    border: 1px solid #333;
+}
+
+tr.purchased {
+    background-color: grey;
+}
