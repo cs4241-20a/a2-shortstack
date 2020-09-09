@@ -1,41 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito"
+    />
+    <link rel="stylesheet" href="/css/style.css"/>
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
+    <h1 class="title">Personal Info Submitter</h1>
+    <form id="main-form" action="">
+      <input type="text" id="firstname" value="First Name" />
+      <input type="text" id="lastname" value="Last Name" />
+      <input type="text" id="birthyear" value="Birth Year" />
       <button>submit</button>
     </form>
+    <section class="list"></section>
   </body>
   <script>
+    const submit = function (e) {
+      // prevent default form action from being carried out
+      e.preventDefault();
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+      const input = document.querySelector("#firstname"),
+        input2 = document.querySelector("#lastname"),
+        input3 = document.querySelector("#birthyear"),
+        list = document.querySelector(".list"),
+        json = {
+          firstname: input.value,
+          lastname: input2.value,
+          birthyear: input3.value,
+          age: "",
+        },
+        body = JSON.stringify(json);
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+      if (!input.value || !input2.value || !input3.value) {
+        console.warn("Empty field");
+        return;
+      }
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+      if (
+        input3.value.length !== 4 ||
+        isNaN(+input3.value) ||
+        +input3.value > new Date().getFullYear()
+      ) {
+        console.warn("invalid year");
+        return;
+      }
 
-    return false
-  }
+      fetch("/submit", {
+        method: "POST",
+        body,
+      })
+        .then((x) => x.json())
+        .then((x) => {
+          updatelist(list, x);
+        });
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+      return false;
+    };
 
+    const updatelist = (list, items) => {
+      list.innerHTML = "";
+
+      items.map((i) => {
+        const text = document.createTextNode(
+            `First Name: ${i.firstname} | Last Name: ${i.lastname} | Birth Year: ${i.birthyear} | ~Age: ${i.age}`
+          ),
+          header = document.createElement("h2");
+
+        header.appendChild(text);
+        list.appendChild(header);
+      });
+    };
+
+    window.onload = function () {
+      const button = document.querySelector("button"),
+        list = document.querySelector(".list");
+      button.onclick = submit;
+
+      fetch("/data")
+        .then((x) => x.json())
+        .then((x) => {
+          updatelist(list, x);
+        });
+    };
   </script>
 </html>
