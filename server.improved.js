@@ -6,11 +6,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+//Format: { "id": 0, "kills": 0, "assists": 0, "deaths": 0, "kd_ratio": 0, "ad_ratio": 0 },
+const appdata = [];
+
+let id = 1;
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -21,9 +20,9 @@ const server = http.createServer( function( request,response ) {
 })
 
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+  const filename = dir + request.url.slice( 1 )
 
-  if( request.url === '/' ) {
+  if(request.url === '/') {
     sendFile( response, 'public/index.html' )
   }else{
     sendFile( response, filename )
@@ -38,13 +37,45 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    let data = JSON.parse(dataString);
+    console.log(data);
 
-    // ... do something with the data here!!!
+    if(request.url === "/add") {
+        addItem(data);
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    }else if(request.url === "/modify"){
+        modifyItem(data);
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    }else if(request.url === "/delete"){
+        deleteItem(data);
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    }else{
+        response.writeHead(400, "Invalid request type", {'Content-Type': 'text/plain'});
+    }
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
+}
+
+const addItem = function(data){
+  console.log("adding");
+  appdata.push({
+    "id": id,
+    "kills": data.kills,
+    "assists": data.assists,
+    "deaths": data.kills,
+    "kd_ratio": data.kills / data.deaths,
+    "ad_ratio": data.assists / data.deaths
+  })
+  id++;
+}
+
+const modifyItem = function(data){
+  console.log("modifying");
+}
+
+const deleteItem = function(data){
+  console.log("deleting");
 }
 
 const sendFile = function( response, filename ) {

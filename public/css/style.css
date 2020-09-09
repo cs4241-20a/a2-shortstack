@@ -1,1 +1,25 @@
 /*Style your own assignment! This is fun! */
+
+h1 {
+    text-align: center;
+}
+
+.appgrid{
+    position: relative;
+    border: 1px solid red;
+    width: 800px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    display: grid;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-template: 1fr 1fr 1fr / 1fr 3fr;
+}
+
+.app-item{
+    border: 1px solid black;
+}
+
+form {
+    width: 230px;
+}
