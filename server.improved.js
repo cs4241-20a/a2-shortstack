@@ -74,12 +74,14 @@ const addItem = function(data){
 }
 
 const modifyItem = function(data){
-    let targetID = data.id;
+    let targetID = Number(data.id);
     for(let i = 0; i < numEntries; i++){
-        if(appdata[i]["id_num"] === targetID){
+        if(appdata[i]["id"] === targetID){
             appdata[i]["kills"] = data.kills;
             appdata[i]["assists"] = data.assists;
             appdata[i]["deaths"] = data.deaths;
+            appdata[i]["kd_ratio"] = data.kills / data.deaths;
+            appdata[i]["ad_ratio"] = data.assists / data.deaths;
             return true;
         }
     }
