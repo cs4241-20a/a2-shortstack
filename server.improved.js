@@ -27,6 +27,8 @@ const handleGet = function( request, response ) {
         sendFile(response, "public/index.html");
     }else if(request.url === "/table"){
         sendTable(response);
+    }else if(request.url === "/csv"){
+        sendCSV(response);
     }else{
         sendFile(response, filename);
     }
@@ -115,6 +117,38 @@ const sendTable = function(response){
     let body = JSON.stringify(json);
     response.writeHead(200, "OK", {"Content-Type": "text/plain"});
     response.end(body);
+}
+
+const sendCSV = function(response){
+    let file = fs.createWriteStream("stats.csv");
+
+    file.write("id,kills,assists,deaths,K/D Ratio, A/D Ratio\n");
+    for(let i = 0; i < numEntries; i++){
+        file.write(`${appdata[i]["id"]}, ${appdata[i]["kills"]}, ${appdata[i]["assists"]}, ${appdata[i]["deaths"]}, ${appdata[i]["kd_ratio"]}, ${appdata[i]["ad_ratio"]}\n`);
+    }
+    file.end();
+
+    //sendFile(response, "stats.csv");
+    const type = mime.getType( "stats.csv" );
+
+    fs.readFile( "stats.csv", function( err, content ) {
+
+        // if the error = null, then we've loaded the file successfully
+        if( err === null ) {
+
+            // status code: https://httpstatuses.com
+            response.writeHead( 200, "OK", { "Content-Type": type, "Content-Disposition": "attachment; filename=stats.csv" });
+            response.end( content );
+
+        }else{
+
+            // file not found, error code 404
+            response.writeHead( 404, "File Not Found");
+            response.end("404 Error: File Not Found");
+        }
+    })
+    //response.writeHead(200, "OK", {"Content-disposition": "attachment; filename=newstats.csv"});
+    //console.log(response);
 }
 
 const sendFile = function( response, filename ) {
