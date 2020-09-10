@@ -1,0 +1,95 @@
+#header {
+    font-size: 50pt;
+    font-family: 'Zilla Slab';
+    font-weight: 700;
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.header-font {
+    font-family: 'Zilla Slab';
+    font-weight: 700;
+}
+
+#login-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    top: 0;
+
+}
+
+#login-overlay-controls, #login-overlay-controls > form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+#login-overlay-controls > form > * {
+    margin: 10px auto;
+}
+
+#login-overlay-controls > .mdc-text-field-helper-line {
+    margin: 0 auto;
+}
+
+#content-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(7px) brightness(0.8);
+    z-index: -1;
+}
+
+#message-root {
+    width: min(80%, 600px);
+    margin: 10px auto 100px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#new-message-box {
+    margin-top: 30px;
+}
+
+.chat-message {
+    margin: 30px 0;
+}
+
+.card-contents {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    height: 100%;
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.error-notice {
+    color: red;
+}
+
+[hidden] {
+    display: none;
+}
