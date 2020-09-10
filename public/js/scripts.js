@@ -67,6 +67,7 @@ function stillRunning(gs){
     if (gs.ticks > 1000){
         gs.isRunning = false;
     }
+    // TODO stop the game based on a time limit as opposed to tick limit
     return gs.isRunning;
 }
 
@@ -78,11 +79,11 @@ function stepGame(gs){
     for (i=0; i<gs.entities.length; i++){
         let e = gs.entities[i];
         if (e.x + e.dx >= gs.metaData.width - 50 || e.x + e.dx <= 0) { // check X collisions
-            e.dx = -e.dx;
+            e.dx = -increaseSpeed(e.dx, 2);
             e.life--;
         }
-        if (e.y + e.dy >= gs.metaData.height - 50 || e.y + e.dy <= 0) { // check Y collisions
-            e.dy = -e.dy;
+        else if (e.y + e.dy >= gs.metaData.height - 50 || e.y + e.dy <= 0) { // check Y collisions
+            e.dy = -increaseSpeed(e.dy, 2);
             e.life--;
         }
 
@@ -91,9 +92,16 @@ function stepGame(gs){
         e.y += e.dy;
     }
 
-
+    // TODO functionality of adding circles
 
     return gs;
+}
+
+function increaseSpeed(velocity, mag){
+    if (velocity <= 0) {
+        return velocity-mag;
+    }
+    else return velocity+mag;
 }
 
 function updateDisplay(gs){
@@ -110,9 +118,7 @@ function updateDisplay(gs){
                 gs.entities[j].updated = true;
                 currElements[i].style.left = gs.entities[j].x + "px";
                 currElements[i].style.top = gs.entities[j].y + "px";
-               switch(gs.entities[j].life){
-
-                    
+                switch(gs.entities[j].life){ 
                     case 1:
                         currElements[i].style.background = "red";
                         break;
@@ -124,18 +130,19 @@ function updateDisplay(gs){
                         break;
                     default:
                         remove(currElements[i])
+                        i--;
+                        j--;
                         break;
-                
-                }
+                 }
                 
             }
         }
     }
-   
     for (i=0; i<gs.entities.length; i++){
        
         if (gs.entities[i].updated === false){
            
+           console.log(gs.entities[i]);
             let newDiv = document.createElement("div");
             newDiv.className = "entity";
            
@@ -151,15 +158,17 @@ function updateDisplay(gs){
 }
 
 function remove(el) {
-    console.log("removeing element " + el.id)
-    for(i=0; i<gameState.entities.length; i++){
-        if (gameState.entities[i].id = el.id){
-            
-            gameState.metaData.score += gameState.entities[i].life;
-            gameState.entities.splice(i, 1);
+    if (stillRunning(gameState)){
+        console.log("removeing element " + el.id)
+        for(i=0; i<gameState.entities.length; i++){
+            if (gameState.entities[i].id = el.id){
+                console.log("removeing entity " + el.id)
+                gameState.metaData.score += gameState.entities[i].life;
+                gameState.entities.splice(i, 1);
+            }
         }
+        el.remove();
     }
-    el.remove();
 }
 
 
