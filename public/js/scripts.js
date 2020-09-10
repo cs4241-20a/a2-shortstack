@@ -2,7 +2,27 @@
 
 console.log("Welcome to assignment 2!")
 
-let score = 0;
+let gw = document.getElementById("gameWindow"),
+        gwStyle = window.getComputedStyle(gw);
+    
+    let w = parseInt(gwStyle.width.replace("px", ""));
+    let h = parseInt(gwStyle.height.replace("px", ""));
+
+let gameState = {
+    metaData : {
+        width : w,
+        height : h,
+        score : 0,
+        maxID : 2, 
+    },
+    isRunning : true,
+    entities : [
+        { id : "0", x : 50, y : 50, dx : 1, dy : -1, life : 3 , updated : true},
+        { id : "1", x : 100, y : 100, dx : -1, dy : 1, life : 3 , updated : true},
+    ],
+    ticks : 0,
+
+}
 
 
 const submit = function( e ) {
@@ -31,24 +51,8 @@ function sleep(ms) {
 }
 
 const playGame = async function ( ) {
-    let gw = document.getElementById("gameWindow"),
-        gwStyle = window.getComputedStyle(gw);
     
-    let w = parseInt(gwStyle.width.replace("px", ""));
-    let h = parseInt(gwStyle.height.replace("px", ""));
-    let gameState = {
-        metaData : {
-            width : w,
-            height : h,
-        },
-        isRunning : true,
-        entities : [
-            { id : "0", x : 50, y : 50, dx : 1, dy : -1, updated : true},
-            { id : "1", x : 100, y : 100, dx : -1, dy : 1, updated : true},
-        ],
-        ticks : 0,
-
-    }
+  
     console.log(gameState);
     while (stillRunning(gameState)){
         gameState = stepGame(gameState);
@@ -74,10 +78,12 @@ function stepGame(gs){
     for (i=0; i<gs.entities.length; i++){
         let e = gs.entities[i];
         if (e.x + e.dx >= gs.metaData.width - 50 || e.x + e.dx <= 0) { // check X collisions
-            e.dx = -e.dx
+            e.dx = -e.dx;
+            e.life--;
         }
         if (e.y + e.dy >= gs.metaData.height - 50 || e.y + e.dy <= 0) { // check Y collisions
-            e.dy = -e.dy
+            e.dy = -e.dy;
+            e.life--;
         }
 
         // move the shapes
@@ -85,7 +91,7 @@ function stepGame(gs){
         e.y += e.dy;
     }
 
-    
+
 
     return gs;
 }
@@ -100,10 +106,28 @@ function updateDisplay(gs){
 
     for( i=0; i<currElements.length; i++) { 
         for (j=0; j<gs.entities.length; j++) { 
-            if (gs.entities[i].id === currElements[j].id){
-                currElements[j].style.left = gs.entities[i].x + "px";
-                currElements[j].style.top = gs.entities[i].y + "px";
-                gs.entities[i].updated = true;
+            if (gs.entities[j].id === currElements[i].id){
+                gs.entities[j].updated = true;
+                currElements[i].style.left = gs.entities[j].x + "px";
+                currElements[i].style.top = gs.entities[j].y + "px";
+               switch(gs.entities[j].life){
+
+                    
+                    case 1:
+                        currElements[i].style.background = "red";
+                        break;
+                    case 2:
+                        currElements[i].style.background = "yellow";
+                        break;
+                    case 3:
+                        currElements[i].style.background = "green";
+                        break;
+                    default:
+                        remove(currElements[i])
+                        break;
+                
+                }
+                
             }
         }
     }
@@ -118,13 +142,25 @@ function updateDisplay(gs){
             newDiv.id = gs.entities[i].id;
             gs.entities[i].updated = true;
             gw.appendChild(newDiv);
+            newDiv.onclick = function (){remove(newDiv)};
             newDiv.style.left = gs.entities[i].x + "px";
             newDiv.style.top = gs.entities[i].y + "px";
         }
     }
+    document.getElementById("score").innerHTML = "Score = "+ gameState.metaData.score;
 }
 
-
+function remove(el) {
+    console.log("removeing element " + el.id)
+    for(i=0; i<gameState.entities.length; i++){
+        if (gameState.entities[i].id = el.id){
+            
+            gameState.metaData.score += gameState.entities[i].life;
+            gameState.entities.splice(i, 1);
+        }
+    }
+    el.remove();
+}
 
 
   window.onload = function() {
