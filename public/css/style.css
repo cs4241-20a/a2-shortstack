@@ -6,20 +6,65 @@ h1 {
 
 .appgrid{
     position: relative;
-    border: 1px solid red;
     width: 800px;
+    height: 500px;
     left: 50%;
     transform: translate(-50%, 0%);
-    display: grid;
-    grid-row-start: 1;
-    grid-column-start: 1;
-    grid-template: 1fr 1fr 1fr / 1fr 3fr;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .app-item{
-    border: 1px solid black;
+    padding-left: 10px;
+}
+
+#add {
+    border-top: 1px solid black;
+    height: 165px;
+}
+
+#modify {
+    height: 190px;
+}
+
+#delete {
+    height: 125px;
+    border-bottom: 1px solid black;
+}
+
+#add, #modify {
+    border-bottom: 1px solid black;
 }
 
 form {
-    width: 230px;
+    width: 250px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+button {
+    margin-top: 5px;
+}
+
+table {
+    /*
+     * This source taught me about border collapsing so I could draw a
+     * grid around the table rows: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr
+     */
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-left: 5%;
+    width: 550px;
+}
+
+td, th {
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+th {
+    background-color: lightskyblue;
 }

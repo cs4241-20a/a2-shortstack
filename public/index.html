@@ -27,21 +27,6 @@
                 <button type="button" onclick="handle_add()">Add</button>
             </form>
 
-            <!-- Table for displaying all stats-->
-            <table class="app-item" id="results">
-                <thead>
-                    <tr>
-                        <th>ID #</th>
-                        <th>Kills</th>
-                        <th>Assists</th>
-                        <th>Deaths</th>
-                        <th>K/D Ratio</th>
-                        <th>A/D Ratio</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-
             <!-- Form for modify a row in the table -->
             <form class="app-item" id="modify" action="">
                 <h3>Modify row of stats</h3>
@@ -68,6 +53,21 @@
                 <input type="text" id="delete_id_num">
                 <button type="button" onclick="handle_delete()">Delete</button>
             </form>
+
+            <!-- Table for displaying all stats-->
+            <table class="app-item" id="results">
+                <thead>
+                    <tr>
+                        <th>ID #</th>
+                        <th>Kills</th>
+                        <th>Assists</th>
+                        <th>Deaths</th>
+                        <th>K/D Ratio</th>
+                        <th>A/D Ratio</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </body>
 </html>
