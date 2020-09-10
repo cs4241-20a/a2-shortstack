@@ -6,10 +6,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'number': '#', 'firstName': 'First Name', 'lastName': 'Last Name' }
-]
-
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -28,20 +24,19 @@ const handleGet = function( request, response ) {
   }
 }
 
+let dataStorage = []
 const handlePost = function( request, response ) {
-  let dataString = ''
-
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataStorage.push( data ) 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    // console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end( JSON.stringify( dataStorage ) )
   })
 }
 

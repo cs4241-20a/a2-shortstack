@@ -10,16 +10,13 @@
     
     <div id="userInput">
       <form action="">
-        <input type='text' id='number' value="Number">
+        <input type='number' id='number' value=0>
         <input type='text' id='firstName' value="First Name">
         <input type='text' id='lastName' value="Last Name">
-
         <button>Add Player</button>
       </form>
     </div>
     
-    <!-- roster builder - add, remove players to roster (team name, number, first and last name)
-      search bar for player name, player card, add team with stats, delete stats -->
   </body>
   <script>
 
@@ -27,16 +24,15 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const number = document.querySelector( '#number' ).value,
-    const firstName = document.querySelector( '#firstName' ).value,
-    const lastName = document.querySelector( '#lastName' ).value,
-    const input = { 'number': number, 'firstName': firstName, 'lastName': lastName }
-    console.log(firstName)
-    body = JSON.stringify( input )
+    const number = document.querySelector( '#number' ),
+    const firstName = document.querySelector( '#firstName' ),
+    const lastName = document.querySelector( '#lastName' ),
+    const input = { 'number': number, 'firstName': firstName, 'lastName': lastName },
+    const json = { number: number.value, firstName: firstName.value, lastName: lastName.value }
+    const body = JSON.stringify( json )
 
     fetch( '/addPlayer', {
       method:'POST',
-
       body 
     })
     .then( function( response ) {
@@ -50,7 +46,6 @@
   window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = addPlayer
-    localStorage.clear();
   }
 
   </script>
