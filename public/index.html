@@ -69,7 +69,16 @@
                 <tbody></tbody>
             </table>
 
-            <button type="button" onclick="handle_csv()">CSV</button>
+            <div class="app-item total_results_panel">
+                <div class="total_results_label">Total Kills: </div>
+                <div class="total_results_item" id="total_kills">0</div>
+                <div class="total_results_label"> | Total Assists: </div>
+                <div class="total_results_item" id="total_assists">0</div>
+                <div class="total_results_label"> | Total Deaths: </div>
+                <div class="total_results_item" id="total_deaths">0</div>
+            </div>
+
+            <button id="download_button" type="button" onclick="handle_csv()">Download as CSV</button>
 
         </div>
     </body>

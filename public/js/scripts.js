@@ -120,7 +120,7 @@ function updateTable(response){
 
     //The following source showed me how to extract json from the HTTP
     //response: https://developer.mozilla.org/en-US/docs/Web/API/Body/json
-    response.json().then(data => {
+    response.json().then(function(data) {
         //The following source was used to learn how to insert a row into
         //a table in JS: https://www.w3schools.com/jsref/met_table_insertrow.asp
         let numRows = data.numRows;

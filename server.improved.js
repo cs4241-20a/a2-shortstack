@@ -11,6 +11,9 @@ const appdata = [];
 
 let id = 1;//Unique IDs to indicate rows to modify or delete
 let numEntries = 0;//Length of appdata
+let totalKills = 0;
+let totalAssists = 0;
+let totalDeaths = 0;
 
 const server = http.createServer( function( request,response ) {
     if(request.method === "GET") {
@@ -73,17 +76,29 @@ const addItem = function(data){
     })
     id++;
     numEntries++;
+    totalKills += data.kills;
+    totalAssists += data.assists;
+    totalDeaths += data.deaths;
 }
 
 const modifyItem = function(data){
     let targetID = Number(data.id);
     for(let i = 0; i < numEntries; i++){
         if(appdata[i]["id"] === targetID){
+            //Remove old values from running total
+            totalKills -= appdata[i]["kills"];
+            totalAssists -= appdata[i]["deaths"];
+            totalDeaths -= appdata[i]["assists"];
+
             appdata[i]["kills"] = data.kills;
             appdata[i]["assists"] = data.assists;
             appdata[i]["deaths"] = data.deaths;
             appdata[i]["kd_ratio"] = data.kills / data.deaths;
             appdata[i]["ad_ratio"] = data.assists / data.deaths;
+
+            totalKills += data.kills;
+            totalAssists += data.assists;
+            totalDeaths += data.deaths;
             return true;
         }
     }
@@ -97,6 +112,10 @@ const deleteItem = function(data){
     for(let i = 0; i < numEntries; i++){
         console.log(appdata[i]);
         if(appdata[i]["id"] === targetID){
+            totalKills -= appdata[i]["kills"];
+            totalAssists -= appdata[i]["deaths"];
+            totalDeaths -= appdata[i]["assists"];
+
             appdata.splice(i, 1);
             numEntries--;
             return true;
@@ -109,10 +128,16 @@ const deleteItem = function(data){
 const sendTable = function(response){
     let json = {
         "numRows": numEntries,
-        "rows": []
+        "rows": [],
+        "totals": {},
     }
     for(let i = 0; i < numEntries; i++){
         json["rows"].push(appdata[i]);
+    }
+    json.totals = {
+        "total_kills": totalKills,
+        "total_assists": totalAssists,
+        "total_deaths": totalDeaths,
     }
     let body = JSON.stringify(json);
     response.writeHead(200, "OK", {"Content-Type": "text/plain"});
