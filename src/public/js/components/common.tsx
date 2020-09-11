@@ -1,3 +1,8 @@
+export const CLASS_BIGNAME = "mdc-typography--headline6";
+export const CLASS_SMALLNAME = "mdc-typography--subtitle2";
+export const CLASS_SMALLINFO = "mdc-typography--caption";
+export const CLASS_PARA = "mdc-typography--body1";
+
 export async function TextField(attributes: VanillaJsxFactory.Attributes, children: VanillaJsxFactory.JSXElement[]) {
     const input = await (<input class="mdc-text-field__input" type="text" {...attributes}/>) as HTMLInputElement;
     const elt = await (<label class="mdc-text-field mdc-text-field--filled">

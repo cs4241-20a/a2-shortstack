@@ -1,12 +1,8 @@
 import { Message, ReplyMessage, RootMessage } from "../../../common/message.js";
 import { User } from "../../../common/user.js";
 import { authHeaders, getDisplayName, getUser, refreshMessageCards } from "../main.js";
-import { TextArea, Button, Spacer, Nothing, Glyph} from "./common.js";
-
-const CLASS_BIGNAME = "mdc-typography--headline6";
-const CLASS_SMALLNAME = "mdc-typography--subtitle2";
-const CLASS_SMALLINFO = "mdc-typography--caption";
-const CLASS_PARA = "mdc-typography--body1";
+import { TextArea, Button, Spacer, Nothing, Glyph, CLASS_PARA, CLASS_SMALLINFO, CLASS_SMALLNAME, CLASS_BIGNAME} from "./common.js";
+import { Modal } from "./modal.js";
 
 function getSentOnMessage(timestamp: number) {
     const sentDate = new Date(timestamp * 1000);
@@ -14,14 +10,58 @@ function getSentOnMessage(timestamp: number) {
 }
 
 async function MessageControls(attributes: VanillaJsxFactory.Attributes<{message: Message}>) {
+    const msg = attributes?.message!;
+
     const deleteMessage = () => {
-        fetch(`/messages/${attributes?.message.id}`, {
+        fetch(`/messages/${msg.id}`, {
             method: "DELETE",
             headers: authHeaders()
         });
     };
 
-    return <a class={CLASS_SMALLINFO} click={deleteMessage}>Delete</a>;
+    const openEditMessageModal = async () => {
+        const textArea = await (<TextArea/>) as HTMLElement & {value: string};
+        textArea.value = msg.content;
+
+        const editMessage = () => {
+            fetch(`/messages/${msg.id}`, {
+                method: "PATCH",
+                headers: authHeaders(),
+                body: JSON.stringify({
+                    content: textArea.value
+                })
+            });
+            modal.remove();
+        };
+
+        const modal = await (<Modal unwrapped>
+            <div class="card-contents">
+                <div class="horizontal-spread">
+                    <span class="mdc-typography--subtitle2">
+                        {getSentOnMessage(msg.timestamp)}
+                    </span>
+                </div>
+                <UserInfo user={{username: msg.author, displayName: await getDisplayName(msg.author)}}/>
+                <p class={CLASS_PARA}>{msg.content}</p>
+            </div>
+            <form class="card-contents" onsubmit="return false">
+                <span class={CLASS_SMALLNAME}>Edit Message:</span>
+                {textArea}
+                <div class="horizontal-spread">
+                    <Button click={editMessage}>Save Edit</Button>
+                    <Button btnStyle="outline" click={() => modal.remove()}>Cancel</Button>
+                </div>
+            </form>
+        </Modal>) as HTMLElement;
+
+        document.body.append(modal);
+    };
+
+    return <span class="horizontal-spread">
+        <a class={CLASS_SMALLINFO} click={openEditMessageModal}>Edit</a>
+        &nbsp;&nbsp;
+        <a class={CLASS_SMALLINFO} click={deleteMessage}>Delete</a>
+    </span>;
 }
 
 async function UserInfo(attributes: {user: User | undefined}) {

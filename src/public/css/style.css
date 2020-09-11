@@ -12,7 +12,7 @@
     font-weight: 700;
 }
 
-#login-overlay {
+.modal-container {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -21,22 +21,22 @@
 
 }
 
-#login-overlay-controls, #login-overlay-controls > form {
+.modal-controls, .modal-controls > form {
     margin: auto;
     display: flex;
     flex-direction: column;
     width: fit-content;
 }
 
-#login-overlay-controls > form > * {
+.modal-controls > form > * {
     margin: 10px auto;
 }
 
-#login-overlay-controls > .mdc-text-field-helper-line {
+.modal-controls > .mdc-text-field-helper-line {
     margin: 0 auto;
 }
 
-#content-cover {
+.content-cover {
     position: fixed;
     top: 0;
     left: 0;
@@ -76,6 +76,10 @@
 }
 .reply.card-contents:last-child {
     padding-bottom: 16px;
+}
+
+.card-contents:not(:first-child) {
+    border-top: 1px solid #e0e0e0;;
 }
 
 .card-footer {
@@ -136,6 +140,17 @@ a:hover {
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.horizontal-spread > * {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.horizontal-spread > *:first-child {
+    margin-left: 0;
+}
+.horizontal-spread > *:last-child {
+    margin-right: 0;
 }
 
 .error-notice {

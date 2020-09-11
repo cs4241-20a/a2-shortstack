@@ -1,7 +1,7 @@
 import { RootMessage } from "../../common/message.js";
 import type { User } from "../../common/user.js";
 import { Button, Spacer } from "./components/common.js";
-import { LoginOverlay } from "./components/login.js";
+import { LoginModal } from "./components/loginModal.js";
 import { MessageCard, SendMessageCard } from "./components/messages.js";
 
 let user = undefined as User | undefined;
@@ -20,7 +20,7 @@ export function authHeaders() {
 }
 
 export async function clearLogin() {
-    document.getElementById('login-overlay')?.remove();
+    (await loginModal).clear();
     refreshMessageCards();
     if (user !== undefined) {
         document.body.classList.add('logged-in');
@@ -48,9 +48,11 @@ export async function refreshMessageCards() {
     );
 }
 
+const loginModal = <LoginModal/> as Promise<HTMLElement & {clear(): void}>;
+
 window.addEventListener('DOMContentLoaded', async () => {
     document.body.append(...await (<>
-        <LoginOverlay />
+        {loginModal}
         <div id="message-root">
             <Button btnStyle="none" click={() => refreshMessageCards()}>Refresh Messages</Button>
             <Spacer height="16px"/>

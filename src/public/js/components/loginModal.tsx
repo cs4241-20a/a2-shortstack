@@ -1,35 +1,29 @@
 import { clearLogin, setUserAndHash } from "../main.js";
 import { TextField, Button} from "./common.js";
+import { Modal } from "./modal.js";
 
-export async function LoginOverlay() {
+export async function LoginModal() {
     let mode = 'login' as 'login' | 'register';
 
     const usernameField = await (<TextField pattern="[a-z_][a-z0-9_]*" required>Username</TextField>);
     const passwordField = await (<TextField type="password" minlength="8" required>Password</TextField>);
 
     const renderElt = async () => {
-        return await (<div id="login-overlay">
-            <div id="content-cover"/>
-            <div class="vertical-center">
-                <div id="login-overlay-controls" class="mdc-card">
-                    <form class="card-contents" onsubmit="return false">
-                        <h1 class="header-font mdc-typography--headline4">RAMChat</h1>
-                        {usernameField}
+        return <Modal>
+            <h1 class="header-font mdc-typography--headline4">RAMChat</h1>
+            {usernameField}
 
-                        {passwordField}
-                        {mode === 'register' ? <div class="mdc-text-field-helper-line">
-                            <div class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" aria-hidden="true">
-                                Do not reuse sensitive passwords on this site
-                            </div>
-                        </div> : undefined}
-                        
-                        {mode === 'login' ? loginControls : registerControls}
-                        <a click={() => clearLogin()}>Browse as Guest</a>
-                        <span class="error-notice" hidden />
-                    </form>
+            {passwordField}
+            {mode === 'register' ? <div class="mdc-text-field-helper-line">
+                <div class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" aria-hidden="true">
+                    Do not reuse sensitive passwords on this site
                 </div>
-            </div>
-        </div>) as HTMLElement;
+            </div> : undefined}
+            
+            {mode === 'login' ? loginControls : registerControls}
+            <a click={() => clearLogin()}>Browse as Guest</a>
+            <span class="error-notice" hidden />
+        </Modal>;
     };
 
     const setMode = async (newMode: typeof mode) => {
