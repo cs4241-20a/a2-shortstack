@@ -7,7 +7,7 @@ h1 {
 .appgrid{
     position: relative;
     width: 800px;
-    height: 500px;
+    height: 630px;
     left: 50%;
     transform: translate(-50%, 0%);
     display: flex;
@@ -38,9 +38,13 @@ h1 {
 }
 
 form {
-    width: 250px;
+    width: 235px;
     border-right: 1px solid black;
     border-left: 1px solid black;
+}
+
+#total_avg_results {
+    width: 248px;
 }
 
 button {
@@ -49,7 +53,7 @@ button {
 }
 
 #download_button {
-    margin-left: 30%;
+    margin-left: 7%;
 }
 
 table {
@@ -59,8 +63,11 @@ table {
      */
     border-collapse: collapse;
     border: 1px solid black;
-    margin-left: 5%;
+}
+
+#results_list {
     width: 550px;
+    margin-left: 5%;
 }
 
 td, th {

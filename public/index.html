@@ -6,7 +6,7 @@
         <link type="text/css" rel="stylesheet" href="css/style.css">
         <script src="js/scripts.js"></script>
     </head>
-    <body onload="getLatestTable()">
+    <body onload="getLatestResults()">
         <h1>FPS Stat Calculator</h1>
         <div class="appgrid">
             <!-- Form for adding an item -->
@@ -46,7 +46,7 @@
 
             <div></div>
 
-            <!-- Form for modify a row in the table -->
+            <!-- Form for deleting a row in the table -->
             <form class="app-item" id="delete" action="">
                 <h3>Delete row of stats</h3>
                 <label for="delete_id_num">ID #</label>
@@ -54,8 +54,37 @@
                 <button type="button" onclick="handle_delete()">Delete</button>
             </form>
 
+            <table class="app-item" id="total_avg_results">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Total</th>
+                        <th>Average</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kills</td>
+                        <td id="total_kills">0</td>
+                        <td id="avg_kills">0</td>
+                    </tr>
+                    <tr>
+                        <td>Assists</td>
+                        <td id="total_assists">0</td>
+                        <td id="avg_assists">0</td>
+                    </tr>
+                    <tr>
+                        <td>Deaths</td>
+                        <td id="total_deaths">0</td>
+                        <td id="avg_deaths">0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="download_button" type="button" onclick="handle_csv()">Download as CSV</button>
+
             <!-- Table for displaying all stats-->
-            <table class="app-item" id="results">
+            <table class="app-item" id="results_list">
                 <thead>
                     <tr>
                         <th>ID #</th>
@@ -68,7 +97,7 @@
                 </thead>
                 <tbody></tbody>
             </table>
-
+            <!--
             <div class="app-item total_results_panel">
                 <div class="total_results_label">Total Kills: </div>
                 <div class="total_results_item" id="total_kills">0</div>
@@ -77,8 +106,7 @@
                 <div class="total_results_label"> | Total Deaths: </div>
                 <div class="total_results_item" id="total_deaths">0</div>
             </div>
-
-            <button id="download_button" type="button" onclick="handle_csv()">Download as CSV</button>
+            -->
 
         </div>
     </body>

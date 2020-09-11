@@ -14,6 +14,9 @@ let numEntries = 0;//Length of appdata
 let totalKills = 0;
 let totalAssists = 0;
 let totalDeaths = 0;
+let avgKills = 0;
+let avgAssists = 0;
+let avgDeaths = 0;
 
 const server = http.createServer( function( request,response ) {
     if(request.method === "GET") {
@@ -28,7 +31,7 @@ const handleGet = function( request, response ) {
 
     if(request.url === "/") {
         sendFile(response, "public/index.html");
-    }else if(request.url === "/table"){
+    }else if(request.url === "/results"){
         sendTable(response);
     }else if(request.url === "/csv"){
         sendCSV(response);
@@ -76,9 +79,7 @@ const addItem = function(data){
     })
     id++;
     numEntries++;
-    totalKills += data.kills;
-    totalAssists += data.assists;
-    totalDeaths += data.deaths;
+    calculateTotalsAvgs(data);
 }
 
 const modifyItem = function(data){
@@ -86,9 +87,9 @@ const modifyItem = function(data){
     for(let i = 0; i < numEntries; i++){
         if(appdata[i]["id"] === targetID){
             //Remove old values from running total
-            totalKills -= appdata[i]["kills"];
-            totalAssists -= appdata[i]["deaths"];
-            totalDeaths -= appdata[i]["assists"];
+            totalKills -= Number(appdata[i]["kills"]);
+            totalAssists -= Number(appdata[i]["deaths"]);
+            totalDeaths -= Number(appdata[i]["assists"]);
 
             appdata[i]["kills"] = data.kills;
             appdata[i]["assists"] = data.assists;
@@ -96,9 +97,7 @@ const modifyItem = function(data){
             appdata[i]["kd_ratio"] = data.kills / data.deaths;
             appdata[i]["ad_ratio"] = data.assists / data.deaths;
 
-            totalKills += data.kills;
-            totalAssists += data.assists;
-            totalDeaths += data.deaths;
+            calculateTotalsAvgs(data);
             return true;
         }
     }
@@ -112,12 +111,16 @@ const deleteItem = function(data){
     for(let i = 0; i < numEntries; i++){
         console.log(appdata[i]);
         if(appdata[i]["id"] === targetID){
-            totalKills -= appdata[i]["kills"];
-            totalAssists -= appdata[i]["deaths"];
-            totalDeaths -= appdata[i]["assists"];
+            numEntries--;
+
+            totalKills -= Number(appdata[i]["kills"]);
+            avgKills = totalKills / numEntries;
+            totalAssists -= Number(appdata[i]["deaths"]);
+            avgAssists = totalAssists / numEntries;
+            totalDeaths -= Number(appdata[i]["assists"]);
+            avgDeaths = totalDeaths / numEntries;
 
             appdata.splice(i, 1);
-            numEntries--;
             return true;
         }
     }
@@ -125,19 +128,31 @@ const deleteItem = function(data){
     return false;
 }
 
+const calculateTotalsAvgs = function(data){
+    totalKills += Number(data.kills);
+    avgKills = totalKills / numEntries;
+    totalAssists += Number(data.assists);
+    avgAssists = totalAssists / numEntries;
+    totalDeaths += Number(data.deaths);
+    avgDeaths = totalDeaths / numEntries;
+}
+
 const sendTable = function(response){
     let json = {
         "numRows": numEntries,
         "rows": [],
-        "totals": {},
+        "totals_avgs": {},
     }
     for(let i = 0; i < numEntries; i++){
         json["rows"].push(appdata[i]);
     }
-    json.totals = {
+    json["totals_avgs"] = {
         "total_kills": totalKills,
+        "avg_kills": avgKills,
         "total_assists": totalAssists,
+        "avg_assists": avgAssists,
         "total_deaths": totalDeaths,
+        "avg_deaths": avgDeaths
     }
     let body = JSON.stringify(json);
     response.writeHead(200, "OK", {"Content-Type": "text/plain"});
@@ -145,35 +160,25 @@ const sendTable = function(response){
 }
 
 const sendCSV = function(response){
+    /*
+     * The following link from node.js documentation taught how to
+     * close and flush write streams: https://nodejs.org/api/stream.html
+     */
     let file = fs.createWriteStream("stats.csv");
+    file.write(",Total,Average\n");
+    file.write(`Kills,${totalKills},${avgKills}\n`);
+    file.write(`Assists,${totalAssists},${avgAssists}\n`);
+    file.write(`Deaths,${totalDeaths},${avgDeaths}\n\n`);
 
-    file.write("id,kills,assists,deaths,K/D Ratio, A/D Ratio\n");
+    file.write("ID #,Kills,Assists,Deaths,K/D Ratio,A/D Ratio\n");
     for(let i = 0; i < numEntries; i++){
         file.write(`${appdata[i]["id"]}, ${appdata[i]["kills"]}, ${appdata[i]["assists"]}, ${appdata[i]["deaths"]}, ${appdata[i]["kd_ratio"]}, ${appdata[i]["ad_ratio"]}\n`);
     }
+    file.on("finish", function(){
+        //Whole file has now been written, so send.
+        sendFile(response, "stats.csv");
+    });
     file.end();
-
-    //sendFile(response, "stats.csv");
-    const type = mime.getType( "stats.csv" );
-
-    fs.readFile( "stats.csv", function( err, content ) {
-
-        // if the error = null, then we've loaded the file successfully
-        if( err === null ) {
-
-            // status code: https://httpstatuses.com
-            response.writeHead( 200, "OK", { "Content-Type": type, "Content-Disposition": "attachment; filename=stats.csv" });
-            response.end( content );
-
-        }else{
-
-            // file not found, error code 404
-            response.writeHead( 404, "File Not Found");
-            response.end("404 Error: File Not Found");
-        }
-    })
-    //response.writeHead(200, "OK", {"Content-disposition": "attachment; filename=newstats.csv"});
-    //console.log(response);
 }
 
 const sendFile = function( response, filename ) {

@@ -12,12 +12,12 @@ function handle_add(){
     fetch( '/add', {
         method:'POST',
         body
-    }).then( function( response ) {
+    }).then(function( response ) {
         if(response.status === 200){
-            getLatestTable();
+            getLatestResults();
         }
         return true;
-    })
+    });
 
     return false;
 }
@@ -35,12 +35,12 @@ function handle_modify(){
     fetch( '/modify', {
         method:'POST',
         body
-    }).then( function( response ) {
+    }).then(function( response ) {
         if(response.status === 200){
-            getLatestTable();
+            getLatestResults();
         }
         return true;
-    })
+    });
 
     return false;
 }
@@ -55,25 +55,25 @@ function handle_delete(){
     fetch( '/delete', {
         method:'POST',
         body
-    }).then( function( response ) {
+    }).then(function( response ) {
         if(response.status === 200){
-            getLatestTable();
+            getLatestResults();
         }
         return true;
-    })
+    });
 
     return false;
 }
 
-function getLatestTable(){
-    fetch( '/table', {
+function getLatestResults(){
+    fetch( '/results', {
         method:'GET'
-    }).then( function( response ) {
+    }).then(function( response ) {
         if(response.status === 200){
-            updateTable(response);
+            updateResults(response);
         }
         return true;
-    })
+    });
 }
 
 function handle_csv(){
@@ -109,12 +109,12 @@ function handle_csv(){
     return false;
 }
 
-function updateTable(response){
+function updateResults(response){
     //Delete existing table and add a new, empty one. The following
-    //source have me the idea of swapping the tbody element of the
+    //source gave me the idea of swapping the tbody element of the
     //table, and showed me how to do it:
     //https://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
-    let table = document.getElementById("results");
+    let table = document.getElementById("results_list");
     let newBody = document.createElement('tbody');
     table.replaceChild(newBody, table.lastChild);
 
@@ -134,5 +134,13 @@ function updateTable(response){
             newRow.insertCell(4).innerHTML = `${rows[i].kd_ratio}`;
             newRow.insertCell(5).innerHTML = `${rows[i].ad_ratio}`;
         }
+
+        //Now updates the boxes holding the totals and averages
+        document.getElementById("total_kills").innerHTML = `${data.totals_avgs["total_kills"]}`
+        document.getElementById("avg_kills").innerHTML = `${data.totals_avgs["avg_kills"]}`
+        document.getElementById("total_assists").innerHTML = `${data.totals_avgs["total_assists"]}`
+        document.getElementById("avg_assists").innerHTML = `${data.totals_avgs["avg_assists"]}`
+        document.getElementById("total_deaths").innerHTML = `${data.totals_avgs["total_deaths"]}`
+        document.getElementById("avg_deaths").innerHTML = `${data.totals_avgs["avg_deaths"]}`
     });
 }
