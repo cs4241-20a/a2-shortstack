@@ -7,5 +7,6 @@ declare global {
         interface IntrinsicElements {
             [tag: string]: VanillaJsxFactory.Attributes;
         }
+        type Element = Promise<any>;
     }
 }

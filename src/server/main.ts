@@ -85,6 +85,11 @@ createEndpoint("POST", "/messages", async (req, res) => {
 
     const data = await getFormDataJson(req);
     if ('content' in data) {
+        if (typeof data['content'] !== 'string' || data['content'] === "") {
+            // Uh no, no content
+            return sendError(400, "Bad Request", "No content was provided to create the message", res);
+        }
+        
         // Finally, we can do something!
         let addedMsg: Message | undefined;
         if ('replyTo' in data) {

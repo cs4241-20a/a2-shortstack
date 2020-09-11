@@ -1,16 +1,18 @@
 namespace VanillaJsxFactory {
-    export type JSXElement = Element | string | JSXFragment;
+    type JSXElementWithoutPromise = JSXFragment | Element | string | undefined;
+    type JSXElementWithoutFragmentOrPromise = Element | string | undefined;
+    export type JSXElement = Promise<JSXElementWithoutPromise> | JSXFragment | Element | string | undefined;
     export type JSXFragment = JSXElement[];
-    export type Attributes = {[attr: string]: string | Function | boolean | object} | undefined;
-    export type CustomElement = (attrs: Attributes, children: JSXElement[]) => Element | JSXFragment;
+    export type Attributes<T = {}> = ({[attr: string]: string | Function | boolean | object | undefined} & T) | undefined;
+    export type CustomElement = (attrs: Attributes, children: JSXElement[]) => Element | JSXFragment | Promise<Element | JSXFragment>;
 
     export const Fragment = null;
 
-    export function createElement(tag: string | CustomElement, attrs: Attributes, ...children: JSXElement[]): Element;
-    export function createElement(tag: null, attrs: {} | undefined, ...children: JSXElement[]): JSXFragment;
-    export function createElement(tag: string | CustomElement | null, attrs: Attributes, ...children: JSXElement[]): Element | JSXFragment {
+    export async function createElement(tag: string | CustomElement, attrs: Attributes, ...children: JSXElement[]): Promise<Element>;
+    export async function createElement(tag: null, attrs: {} | undefined, ...children: JSXElement[]): Promise<JSXFragment>;
+    export async function createElement(tag: string | CustomElement | null, attrs: Attributes, ...children: JSXElement[]): Promise<Element | JSXFragment> {
         if (tag === null) {
-            return [...children];
+            return Promise.all(children);
         }
         if (typeof tag === 'function') {
             return tag(attrs, children.filter(x => x !== undefined));
@@ -19,7 +21,10 @@ namespace VanillaJsxFactory {
         const elt = document.createElement(tag);
         for (const attr in attrs) {
             const attributeValue = attrs[attr];
-            if (typeof attributeValue === 'function') {
+            if (attributeValue === undefined) {
+                // Do nothing
+            }
+            else if (typeof attributeValue === 'function') {
                 elt.addEventListener(attr, attributeValue as EventListener);
             }
             else if (typeof attributeValue === 'boolean') {
@@ -32,10 +37,23 @@ namespace VanillaJsxFactory {
                 elt.setAttribute(attr, attributeValue);
             }
         }
-        for (const child of children.filter(x => x !== undefined)) {
-            if (child) {
+        for (const childPromise of children.filter(x => x !== undefined)) {
+            const child = await childPromise;
+            if (child !== undefined) {
                 if (child instanceof Array) {
-                    elt.append(...child.flat(Infinity) as (Element | string)[]);
+                    const flatten = async (frag: JSXElement): Promise<any[]> => {
+                        if (frag instanceof Array) {
+                            return await frag.reduce(
+                                async (result: Promise<JSXElementWithoutFragmentOrPromise[]>, current) =>
+                                    (await result).concat(await flatten(current)),
+                                Promise.resolve([]));
+                        }
+                        else if (frag instanceof Promise) {
+                            return await flatten(await frag);
+                        }
+                        return [frag];
+                    };
+                    elt.append(...await flatten(child));
                 }
                 else {
                     elt.append(child);

@@ -48,23 +48,58 @@
 
 #message-root {
     width: min(80%, 600px);
-    margin: 10px auto 100px auto;
+    margin: 24px auto 100px auto;
     display: flex;
     flex-direction: column;
 }
 
 #new-message-box {
-    margin-top: 30px;
+    margin-bottom: 24px;
+}
+
+#messages > :first-child {
+    margin-top: 0;
 }
 
 .chat-message {
-    margin: 30px 0;
+    margin: 24px 0;
 }
 
 .card-contents {
-    padding: 16px;
+    padding: 16px 16px 16px 16px;
     display: flex;
     flex-direction: column;
+}
+
+.reply.card-contents {
+    padding-bottom: 6px;
+}
+.reply.card-contents:last-child {
+    padding-bottom: 16px;
+}
+
+.card-footer {
+    border-top: 1px solid #e0e0e0;
+    padding: 6px 16px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* A lot of work to fix a very minor styling annoyance */
+body:not(.logged-in) .card-contents > p {
+    margin-bottom: 0;
+}
+body:not(.logged-in) .card-contents > p + * {
+    margin-top: 1em;
+}
+
+.replies {
+    display: flex;
+    flex-direction: column;
+}
+
+.replies > :not(:last-child) {
+    margin-bottom: 8px;
 }
 
 .vertical-center {
@@ -74,8 +109,18 @@
     height: 100%;
 }
 
+.spacer {
+    display: block;
+    height: 8px;
+}
+
+.material-icons {
+    font-size: 1.5em;
+    vertical-align: text-bottom;
+}
+
 body {
-    background-color: #eeeeee;
+    background-color: #dddddd;
 }
 
 a {
@@ -84,6 +129,13 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.horizontal-spread {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .error-notice {
