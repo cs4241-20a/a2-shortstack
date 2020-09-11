@@ -6,6 +6,14 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+const appData = [
+  { 'number': 0, 'firstName': "A", 'lastName': "Baker", 'goals':  0, 'assists': 0, 'points': 0 },
+  { 'number': 3, 'firstName': "C", 'lastName': "Davis", 'goals':  0, 'assists': 0, 'points': 0 },
+  { 'number': 64, 'firstName': "E", 'lastName': "Fontaine", 'goals':  0, 'assists': 0, 'points': 0 },
+  { 'number': 38, 'firstName': "G", 'lastName': "Hart", 'goals':  0, 'assists': 0, 'points': 0 },
+  { 'number': 7, 'firstName': "I", 'lastName': "Johnson", 'goals':  0, 'assists': 0, 'points': 0 }
+]
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -19,24 +27,36 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if(request.url === '/appData'){
+    response.writeHeader( 200, {'Content-Type': 'text/plain' })
+    response.end( JSON.stringify( appData ) )
+    response.end()
+  } else{
     sendFile( response, filename )
   }
 }
 
-let dataStorage = []
 const handlePost = function( request, response ) {
+  let dataString = ''
+
   request.on( 'data', function( data ) {
-      dataStorage.push( data ) 
+      dataString += data 
   })
 
   request.on( 'end', function() {
     // console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
-
+    const data = JSON.parse(dataString)
+    let date = new Date(Date.now())
+    console.log(getCurrentDayAndTime())
+    let time = getCurrentDayAndTime()
+    appdata.push({ 'title': data['title'], 'author': data['author'], 'comment': data['comment'], 'time': time })
+    console.log(data['title'])
+    console.log("App Data: " + JSON.stringify(appdata))
+    console.log("Data: " + dataString)
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( JSON.stringify( dataStorage ) )
+    response.end( JSON.stringify( dataString ) )
   })
 }
 

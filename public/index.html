@@ -1,19 +1,32 @@
 <!doctype html>
 <html lang="en">
+  <div class="topnav">
+    <a  href="https://a2-kirstenhart.glitch.me/">Add Player Stats</a>
+    <a  href="https://a2-kirstenhart.glitch.me/roster.html">Team Stats</a>
+  </div>  
   <head>
-    <title>Roster Builder</title>
+    <title>Add Player Stats</title>
     <link rel="stylesheet" href="css/style.css">
     <meta charset="utf-8">
   </head>
   <body>
-    <h1 id="header"> Roster Builder </h1>
-    
+
     <div id="userInput">
       <form action="">
-        <input type='number' id='number' value=0>
-        <input type='text' id='firstName' value="First Name">
-        <input type='text' id='lastName' value="Last Name">
-        <button>Add Player</button>
+        Choose a Player: <br>
+        <label for='number'> Number: </label>
+          <select id='number'>
+            <option value=select.number></option>
+          </select>
+        <label for='firstName'> First Name: </label>
+        <input type='text' id='firstName'>
+        <label for='lastName'> Last Name: </label>
+        <input type='text' id='lastName'><br>
+        <label for='goals'> Goals: </label>
+        <input type='number' id='firstName'>
+        <label for='assists'> Assists: </label>
+        <input type='number' id='assists'><br>
+        <button>Add Player's Stats</button>
       </form>
     </div>
     
@@ -27,8 +40,10 @@
     const number = document.querySelector( '#number' ),
     const firstName = document.querySelector( '#firstName' ),
     const lastName = document.querySelector( '#lastName' ),
-    const input = { 'number': number, 'firstName': firstName, 'lastName': lastName },
-    const json = { number: number.value, firstName: firstName.value, lastName: lastName.value }
+    const goals = document.querySelector( '#goals' ),
+    const assists = document.querySelector( '#assists' ),
+    const input = { 'number': number, 'firstName': firstName, 'lastName': lastName, 'goals': goals, 'assists': assists },
+    const json = { number: number.value, firstName: firstName.value, lastName: lastName.value, goals: goals.value, assists: assists.value }
     const body = JSON.stringify( json )
 
     fetch( '/addPlayer', {
@@ -38,6 +53,18 @@
     .then( function( response ) {
       // do something with the reponse 
       console.log( response )
+    })
+
+    fetch( '/addPlayer', {
+      method:'GET',
+      body: JSON.parse( appData )
+    })
+    .then( response => response.json() )
+    .then( appData => {
+       console.log('Success: ', data);
+    })
+    .catch( ( error ) => {
+      console.error('Error: ', error )
     })
 
     return false
