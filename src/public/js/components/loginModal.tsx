@@ -9,7 +9,7 @@ export async function LoginModal() {
     const passwordField = await (<TextField type="password" minlength="8" required>Password</TextField>);
 
     const renderElt = async () => {
-        return <Modal>
+        return <Modal id="login-modal">
             <h1 class="header-font mdc-typography--headline4">RAMChat</h1>
             {usernameField}
 

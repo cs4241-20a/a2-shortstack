@@ -27,7 +27,8 @@ export async function TextField(attributes: VanillaJsxFactory.Attributes, childr
 
 export async function TextArea(attributes: VanillaJsxFactory.Attributes, children: VanillaJsxFactory.JSXElement[]) {
     const input = await (<textarea class="mdc-text-field__input" rows="4" cols="40" aria-label={children[0]} {...attributes}></textarea>) as HTMLTextAreaElement;
-    const elt = await (<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
+    // The docs say not to use outlined and fullwidth together... oh well! It looks okay and it does what I want!
+    const elt = await (<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--fullwidth mdc-text-field--textarea mdc-text-field--no-label">
         <span class="mdc-text-field__resizer">
             {input}
         </span>

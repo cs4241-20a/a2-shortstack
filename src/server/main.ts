@@ -115,6 +115,64 @@ createEndpoint("POST", "/messages", async (req, res) => {
     }
 });
 
+createEndpoint("PATCH", "/messages/{}", async (req, res, args) => {
+    const auth = readBasicAuth(req);
+    if (auth === undefined) {
+        // No auth
+        return sendError(401, "Unauthorized", `No Basic credentials were provided in the Authorization header`, res);
+    }
+    if (!model.authorize(...auth)) {
+        // Bad auth
+        return sendError(401, "Unauthorized", `The credentials provided were not recognized`, res);
+    }
+    const msgId = +args[0];
+    const msg = model.getMessage(+msgId);
+    if (msg === undefined) {
+        return sendError(400, "Bad Request", `${args[0]} is not the ID of any message`, res);
+    }
+    if (msg.author !== auth[0]) {
+        // Not authorized
+        return sendError(401, "Unauthorized", `You are not authorized to perform that action`, res);
+    }
+    const data = await getFormDataJson(req);
+    if ('content' in data) {
+        const newMessage = model.replaceMessageContent(msgId, data['content']);
+        if (newMessage === undefined) {
+            return sendError(500, "Internal Server Error", `For some reason the message could not be edited`, res);
+        }
+        return sendJson(newMessage, res);
+    }
+    else {
+        return sendError(400, "Bad Request", `Provided message is missing the "content" property`, res);
+    }
+});
+
+createEndpoint("DELETE", "/messages/{}", async (req, res, args) => {
+    const auth = readBasicAuth(req);
+    if (auth === undefined) {
+        // No auth
+        return sendError(401, "Unauthorized", `No Basic credentials were provided in the Authorization header`, res);
+    }
+    if (!model.authorize(...auth)) {
+        // Bad auth
+        return sendError(401, "Unauthorized", `The credentials provided were not recognized`, res);
+    }
+    const msgId = +args[0];
+    const msg = model.getMessage(+msgId);
+    if (msg === undefined) {
+        return sendError(400, "Bad Request", `${args[0]} is not the ID of any message`, res);
+    }
+    if (msg.author !== auth[0]) {
+        // Not authorized
+        return sendError(401, "Unauthorized", `You are not authorized to perform that action`, res);
+    }
+
+    if (!model.deleteMessage(msgId)) {
+        return sendError(500, "Internal Server Error", `For some reason the message could not be edited`, res);
+    }
+    return res.writeHead(200).end();
+});
+
 
 // Makes main count as a module.
 export default undefined;

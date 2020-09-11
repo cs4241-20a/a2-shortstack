@@ -11,10 +11,13 @@ const PORT = process.env.PORT || 3000;
 
 export const server = createServer((request, response) => {
     try {
-        if (request.method === 'GET') {
+        if (request.method === undefined) {
+
+        }
+        else if (request.method === 'GET') {
             handleGet(request, response);
-        } else if (request.method === 'POST') {
-            handlePost(request, response);
+        } else if (request.method in requestHandlers) {
+            handlePostLike(request.method as keyof typeof requestHandlers, request, response);
         }
     }
     catch(e) {
@@ -29,9 +32,11 @@ interface RequestHandler {
     listener: (req: IncomingMessage, res: ServerResponse, args: string[]) => void;
 }
 
-const requestHandlers = {GET: [], POST: []} as {
+const requestHandlers = {GET: [], POST: [], DELETE: [], PATCH: []} as {
     GET: RequestHandler[],
-    POST: RequestHandler[]
+    POST: RequestHandler[],
+    DELETE: RequestHandler[],
+    PATCH: RequestHandler[]
 };
 
 /** 
@@ -70,12 +75,12 @@ const handleGet = (request: IncomingMessage, response: ServerResponse) => {
     sendFile(request.url?.slice(1) ?? "", response);
 }
 
-function handlePost(request: IncomingMessage, response: ServerResponse) {
+function handlePostLike(method: keyof typeof requestHandlers, request: IncomingMessage, response: ServerResponse) {
     const requestUrl = new URL(request.url ?? "/", "https://" + request.headers.host);
     const visited = requestUrl.pathname.split('/');
 
     handlerLoop:
-    for (const handler of requestHandlers.POST) {
+    for (const handler of requestHandlers[method]) {
         if (visited.length !== handler.endpoint.length) continue;
         
         const args = [] as string[];

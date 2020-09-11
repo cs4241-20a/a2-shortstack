@@ -12,30 +12,36 @@ function getSentOnMessage(timestamp: number) {
 async function MessageControls(attributes: VanillaJsxFactory.Attributes<{message: Message}>) {
     const msg = attributes?.message!;
 
-    const deleteMessage = () => {
-        fetch(`/messages/${msg.id}`, {
+    const deleteMessage = async () => {
+        const response = await fetch(`/messages/${msg.id}`, {
             method: "DELETE",
             headers: authHeaders()
         });
+        if (response.ok) {
+            refreshMessageCards();
+        }
     };
 
     const openEditMessageModal = async () => {
         const textArea = await (<TextArea/>) as HTMLElement & {value: string};
         textArea.value = msg.content;
 
-        const editMessage = () => {
-            fetch(`/messages/${msg.id}`, {
+        const editMessage = async () => {
+            const response = await fetch(`/messages/${msg.id}`, {
                 method: "PATCH",
                 headers: authHeaders(),
                 body: JSON.stringify({
                     content: textArea.value
                 })
             });
-            modal.remove();
+            if (response.ok) {
+                modal.remove();
+                refreshMessageCards();
+            }
         };
 
         const modal = await (<Modal unwrapped>
-            <div class="card-contents">
+            <div class="card-contents ignore-modal">
                 <div class="horizontal-spread">
                     <span class="mdc-typography--subtitle2">
                         {getSentOnMessage(msg.timestamp)}
@@ -44,14 +50,14 @@ async function MessageControls(attributes: VanillaJsxFactory.Attributes<{message
                 <UserInfo user={{username: msg.author, displayName: await getDisplayName(msg.author)}}/>
                 <p class={CLASS_PARA}>{msg.content}</p>
             </div>
-            <form class="card-contents" onsubmit="return false">
+            <div class="card-contents">
                 <span class={CLASS_SMALLNAME}>Edit Message:</span>
                 {textArea}
                 <div class="horizontal-spread">
-                    <Button click={editMessage}>Save Edit</Button>
                     <Button btnStyle="outline" click={() => modal.remove()}>Cancel</Button>
+                    <Button click={editMessage}>Save Edit</Button>
                 </div>
-            </form>
+            </div>
         </Modal>) as HTMLElement;
 
         document.body.append(modal);

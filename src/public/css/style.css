@@ -18,17 +18,14 @@
     height: 100vh;
     z-index: 100;
     top: 0;
-
+    left: 0;
 }
 
-.modal-controls, .modal-controls > form {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
+.modal-controls {
+    max-width: 90%;
 }
 
-.modal-controls > form > * {
+.modal-controls > .card-contents:not(.ignore-modal) > * {
     margin: 10px auto;
 }
 
@@ -96,6 +93,9 @@ body:not(.logged-in) .card-contents > p {
 body:not(.logged-in) .card-contents > p + * {
     margin-top: 1em;
 }
+.card-contents > p:last-child {
+    margin-bottom: 0;
+}
 
 .replies {
     display: flex;
@@ -106,10 +106,11 @@ body:not(.logged-in) .card-contents > p + * {
     margin-bottom: 8px;
 }
 
-.vertical-center {
+.center {
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-content: center;
+    align-items: center;
     height: 100%;
 }
 
@@ -133,6 +134,10 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+textarea {
+    resize: vertical;
 }
 
 .horizontal-spread {

@@ -3,6 +3,7 @@ import type { User } from "../../common/user.js";
 import { Button, Spacer } from "./components/common.js";
 import { LoginModal } from "./components/loginModal.js";
 import { MessageCard, SendMessageCard } from "./components/messages.js";
+import { Modal } from "./components/modal.js";
 
 let user = undefined as User | undefined;
 let hash = undefined as string | undefined;
@@ -20,7 +21,7 @@ export function authHeaders() {
 }
 
 export async function clearLogin() {
-    (await loginModal).clear();
+    (document.getElementById("login-modal") as any as {clear(): void}).clear();
     refreshMessageCards();
     if (user !== undefined) {
         document.body.classList.add('logged-in');
@@ -48,11 +49,9 @@ export async function refreshMessageCards() {
     );
 }
 
-const loginModal = <LoginModal/> as Promise<HTMLElement & {clear(): void}>;
-
 window.addEventListener('DOMContentLoaded', async () => {
     document.body.append(...await (<>
-        {loginModal}
+        <LoginModal/>
         <div id="message-root">
             <Button btnStyle="none" click={() => refreshMessageCards()}>Refresh Messages</Button>
             <Spacer height="16px"/>

@@ -67,6 +67,32 @@ export default class Model {
         return newMsg;
     }
 
+    replaceMessageContent(msgId: number, content: string) {
+        if (!(msgId in this._messages)) {
+            return undefined;
+        }
+        this._messages[msgId].content = content;
+        return this._messages[msgId];
+    }
+
+    deleteMessage(msgId: number) {
+        if (!(msgId in this._messages)) {
+            return false;
+        }
+        const msg = this._messages[msgId];
+        if (isReply(msg)) {
+            const rootMsg = this._messages[msg.replyTo] as RootMessage;
+            rootMsg.replies = rootMsg.replies.filter(x => x !== msgId);
+        }
+        else {
+            for (const replyId of msg.replies) {
+                delete this._messages[replyId];
+            }
+        }
+        delete this._messages[msgId];
+        return true;
+    }
+
     private _users = {} as {[username: string]: User};
     // Hashes instead of plain text passwords so that a compromised server
     // wouldn't reveal passwords. Basic authentication is still used.
