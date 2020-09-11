@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Roster</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1 id="header"> Roster</h1>
+    
+    <div id="userInput">
+      <table id="roster">
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    
+  </body>
+  <script>
+
+  function updateTable(data){
+    let tableRef = document.getElementById("tableBody")
+    tableRef.innerHTML = ""
+      function addNewPlayer(number, firstName, lastName){
+        let resultsTable = document.getElementById("roster");
+        let newRow = tableRef.insertRow(-1)
+        let numberText = document.createTextNode(number);
+        let firstNameText = document.createTextNode(firstName);
+        let lastNameText = document.createTextNode(lastName);
+        let numberCell = newRow.insertCell(0)
+        let firstNameCell = newRow.insertCell(1)
+        let lastNameCell = newRow.insertCell(2)
+        numberCell.appendChild(numberText)
+        firstNameCell.appendChild(firstNameText)
+        lastNameCell.appendChild(lastNameText)
+    }
+    data.forEach(element => {
+      addNewEntry(element['number'], element['firstName'], element['lastName'])
+    });
+  }
+
+  window.onload = function(e) {
+    const button = document.querySelector( 'button' )
+    e.preventDefault()
+    fetch("/appData", {method: "GET"}).then(response => {
+      response.text().then(function(value){
+        let data = JSON.parse(value)
+        updateTable(data)
+      })
+    });
+  }
+
+  </script>
+</html>
