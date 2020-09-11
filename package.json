@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "assignment2",
+  "version": "1.0",
+  "description": "Webware Assignment 2",
+  "author": "Maria Medina Martinez",
   "scripts": {
     "start": "node server.improved.js"
   },

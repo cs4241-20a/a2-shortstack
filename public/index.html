@@ -1,41 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+<head>
+  <title>CS4241 Assignment 2</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="js/scripts.js"></script>
+  <meta charset="utf-8">
+</head>
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+<body>
+  <form action="">
+    <input type='text' id='yourname' value="your name here">
+    <button>submit</button>
+  </form>
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+  <div id="header">
+    <h1>classic cars wishlist</h1>
+  </div>
 
-    return false
-  }
+  <div id="content">
+    <div id="education">
+      <p>
+        Enter your dream cars and see them appear!
+      </p>
+    </div>
+    <!-- Replace with a table that can populate -->
+    <div id="classes" class="grid-container-1">
+      <div class="grid-1-item">
+        <p>Machine learning</p>
+      </div>
+      <div class="grid-1-item">
+        <p>Database systems I</p>
+      </div>
+    </div>
+  </div>
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
+  <div id="footer">
+    <div class="grid-container-4">
+      <div>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round" onclick="activateDark()"></span>
+        </label>
+        <p>dark mode</p>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
