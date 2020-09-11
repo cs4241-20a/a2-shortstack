@@ -1,6 +1,6 @@
 Pooja Patel https://glitch.com/~a2-pooja-a-patel
 
-This project is Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js. The intention of this project is to deploy a prototype webpae using HTML, CSS, JavaScript, and Node.js.
+This project is Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js. The intention of this project is to deploy a prototype webpage using HTML, CSS, JavaScript, and Node.js.
 
 ## La Fleur by Pooja Patel
 I created a flower shop webpae that woud allow a user to shop for single flowers or a dozen. The Webpage also allows the user to see their order history and also edit or delete their order.
