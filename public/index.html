@@ -3,11 +3,44 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css\style.css">
   </head>
   <body>
-    <form action="">
+    <h1>Welcome to Local Ice Cream Shop!</h1>
+    <h5>We are happy you are here! please place your order below. If you would like to see all the orders we are working on right now,
+      and change your order, please select the button at the bottom of the screen.
+    </h5>
+
+    <ul>
+      <li>
+        Chocolate
+      </li>
+      <li>
+        Vanilla
+      </li>
+      <li>
+        Strawberry
+      </li>
+      <li>
+        Birthday Cake
+      </li>
+      <li>
+        Mint Chocolate Chip
+      </li>
+      <li>
+        Cookie Dough
+      </li>
+      <li>
+        Or request something else, and we'll do our best!
+      </li>
+    </ul>
+
+    <form action="" method="POST">
+    
+      <input type='text' id="yourorder" value="your order">
       <input type='text' id='yourname' value="your name here">
       <button>submit</button>
+      
     </form>
   </body>
   <script>
@@ -17,7 +50,7 @@
     e.preventDefault()
 
     const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+          json = { yourname: input.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', {

@@ -1,5 +1,12 @@
 /*Style your own assignment! This is fun! */
+/* color scheme: */
+h1, h5 {
+    color:pink;
+}
 
+.form {
+    flex-direction: column;
+}
 
 /* TODO: ID selectors */ 
 
