@@ -40,13 +40,20 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-    dataSet.push(JSON.parse( dataString ))
+    dataString = JSON.parse(dataString)
+    console.log( dataString["priority"] )
+    if (dataString["priority"] === "med_priority") {
+      console.log("Medium Priority")
+      dataString["priority"] = "Medium Priority"
+      console.log(dataString["date"])
+      dataString["date"].addDays(3)
+    }
+    dataSet.push(dataString)
     console.log(dataSet)
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( JSON)
+    response.end()
   })
 }
 

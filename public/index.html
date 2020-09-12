@@ -38,7 +38,7 @@
     const input1 = document.querySelector( '#yourtask' ),
           input2 = document.querySelector( '#taskduedate' ),
           input3 = displayRadioValue(),
-          json1 = { yourname: input1.value, duedate: input2.value, priority: input3 },
+          json1 = { yourname: input1.value, date: input2.value, priority: input3 },
           body = JSON.stringify( json1 )
 
     fetch( '/submit', {
