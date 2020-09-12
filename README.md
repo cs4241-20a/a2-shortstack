@@ -1,4 +1,4 @@
-Pooja Patel https://glitch.com/~a2-poojapatel
+Pooja Patel https://glitch.com/~a2-pooja-a-patel
 
 This project is Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js. The intention of this project is to deploy a prototype webpae using HTML, CSS, JavaScript, and Node.js.
 
@@ -12,12 +12,17 @@ The CSS positionng techniques that I used were using element selectors, ID selec
 - **Menu on Webpage**: For easier navigation the webpage includes a menu to switch between ordering flowers and looking at the order history.
 - **User History Updates**: The webpage will update the order history table when the user selects the history page, the user will be able to update or delete the order. 
 - **Price Calculation**: A function was included to calculate the cost for the ordered flowers.
-## Design/Evaluation Achievements
+### Design/Evaluation Achievements
+- **Tested UI with other students**: 
+  1. Corbitt
+  2. The user was confused regarding some of language used on the webpage
+  3. Comments regarding the language used, to me the language was  clear however, I understand that it could be confusing for someone else
+  4. I would add a feature to save the previous button order the user selected.
 - **Transition background for Color Scheme**:  Using JavaScript and CSS I was able to use a color scheme to modulate between a  few colors to animate the background.
 - **Images that Match Theme**: I included images on my webpage to add to  my projects theme and color scheme.
 - **Various Form Options**: The form I created included text-box repsonses, radio buttons, and a submit button.
 
-## Links for the images I used:
+### Links for the images I used:
 - https://www.weloveflorists.com/2019/06/21/how-to-start-a-wedding-florist-business-all-you-need-to-know/
 - https://www.floristmargate.com/product/5762f13c2ff66/classic-long-stem-yellow-rose-bouquet
 - https://www.housebeautiful.com/entertaining/holidays-celebrations/g4365/mothers-day-flowers-ideas/
