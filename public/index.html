@@ -152,7 +152,7 @@
             </div>
             
             <div class="html-form-details" role="radiogroup" aria-label="bouquet-level">
-              <p class="form-label">Is Your Pupper A Lap Dog or Big Dog? </p>
+              <p class="form-label">Would you like to purchase 1 dozen flowers </p>
               <input type="radio" role="radio" checked id="updatebuyBouquet" name="updatebouquet" value="0">
               <label for="updatebuyBouquet">No</label>
               <input type="radio" role="radio" id="updateAllbouquet" name="updatebouquet" value="20">
@@ -246,8 +246,8 @@
           createEntry += (`<td> ${booking.price} </td>\n`);
           createEntry += (`<td> <button id="update-button-${x}" class="table-button" style="font-size: 1vw" onclick="presentEditedForm(${x})" data-string=`
                   + encodeURIComponent(stringbooking) +
-                  `>Update Booking</button> </td>\n`);
-          createEntry += (`<td> <button id="delete-button-${x}" class="table-button" style="font-size: 1vw" onclick="deletebooking(${x})">Delete Booking</button> </td>\n`);
+                  `>Update Order</button> </td>\n`);
+          createEntry += (`<td> <button id="delete-button-${x}" class="table-button" style="font-size: 1vw" onclick="deletebooking(${x})">Delete Order</button> </td>\n`);
           createEntry += '</tr>';
           htmlDiv.innerHTML += createEntry;
         }
