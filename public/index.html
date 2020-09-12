@@ -7,6 +7,7 @@
   <body>
     <form action="">
       <input type="text" id="yourtask" value="your task here"><br>
+      <input type="date" id="taskduedate" value="date"><br>
       <button>submit</button>
     </form>
   </body>
@@ -22,7 +23,7 @@
 
     fetch( '/submit', {
       method:'POST',
-      body 
+      body1
     })
     .then( function( response ) {
       // do something with the reponse 
