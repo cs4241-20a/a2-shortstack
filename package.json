@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Jason's Todo List",
+  "version": "1.0",
+  "description": "A simple todo list application",
+  "author": "ZheCheng Song",
   "scripts": {
     "start": "node server.improved.js"
   },
