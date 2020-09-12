@@ -25,10 +25,20 @@
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
+    
+    function displayRadioValue() {
+      var ele = document.getElementsByName("priority");
+      
+      for (i = 0; i < ele.length; i++) {
+        if (ele[i].checked)
+          return ele[i].value
+      }
+    }
 
     const input1 = document.querySelector( '#yourtask' ),
           input2 = document.querySelector( '#taskduedate' ),
-          json1 = { yourname: input1.value, duedate: input2.value },
+          input3 = displayRadioValue(),
+          json1 = { yourname: input1.value, duedate: input2.value, priority: input3 },
           body = JSON.stringify( json1 )
 
     fetch( '/submit', {
