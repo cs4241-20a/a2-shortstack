@@ -16,21 +16,21 @@ const appdata = [
   },
   {
     name_id: "Pooja",
-    orderDescription: "None",
+    orderDescription: "Rose",
     flower: 2,
     bouquet: 0,
     price: 2
   },
   {
     name_id: "Pooja",
-    orderDescription: "None",
+    orderDescription: "Tulips",
     flower: 0,
     bouquet: 20,
     price: 20
   },
   {
     name_id: "Pooja",
-    orderDescription: "None",
+    orderDescription: "Orchids",
     flower: 2,
     bouquet: 20,
     price: 22
@@ -136,8 +136,8 @@ const sendData = function(response, bookings) {
 };
 
 const addingServices = function(wantsFlower, bigDog) {
-  const baseGroomingPrice = 0;
-  const price = baseGroomingPrice + wantsFlower + bigDog;
+  const baseOrderPrice = 0;
+  const price = baseOrderPrice + wantsFlower + bigDog;
   return price;
 };
 
