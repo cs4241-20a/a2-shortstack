@@ -17,8 +17,8 @@ let gameState = {
     },
     isRunning : true,
     entities : [
-        { id : "0", x : 50, y : 50, dx : 1, dy : -1, life : 3 , updated : true},
-        { id : "1", x : 100, y : 100, dx : -1, dy : 1, life : 3 , updated : true},
+        { id : "0", x : 50, y : 50, dx : 1, dy : -1, life : 3 , element : null},
+        { id : "1", x : 100, y : 100, dx : -1, dy : 1, life : 3 , element : null},
     ],
     ticks : 0,
 
@@ -92,10 +92,42 @@ function stepGame(gs){
         e.y += e.dy;
     }
 
-    // TODO functionality of adding circles
+    // TODO functionality of adding circles 
+
+    if ((gs.ticks % 200) === 0){
+        spawnNewCircle(randNum(gameState.metaData.width - 100, 50), randNum(gameState.metaData.height - 100, 50), randPosOrNeg(), randPosOrNeg(), gameState);
+    }
+
 
     return gs;
 }
+
+function randNum(range, min){
+    return Math.floor(Math.random() * range) + min;
+}
+
+function randPosOrNeg(){
+    let r = Math.floor(Math.random() * 2) // 0 or 1
+
+    let out = -1;
+    if (r === 1){
+        out = 1;
+    }
+
+    return out;
+}
+
+function spawnNewCircle(_x, _y, _dx, _dy, gs){
+    // give circle correct id and proper fields and increment max id 
+    let newC = { id : (++gs.metaData.maxID)+"", x : _x, y : _y, dx : _dx, dy : _dy, life : 3 , element : null};
+
+    //console.log(newC);
+    // add circle to entities
+    gs.entities.push(newC);
+
+
+}
+
 
 function increaseSpeed(velocity, mag){
     if (velocity <= 0) {
@@ -105,66 +137,74 @@ function increaseSpeed(velocity, mag){
 }
 
 function updateDisplay(gs){
-    for (i=0; i<gs.entities.length; i++){
-        gs.entities[i].updated = false;
-    }
-    
     let gw = document.getElementById("gameWindow");
     let currElements = gw.children;
 
-    for( i=0; i<currElements.length; i++) { 
-        for (j=0; j<gs.entities.length; j++) { 
-            if (gs.entities[j].id === currElements[i].id){
-                gs.entities[j].updated = true;
-                currElements[i].style.left = gs.entities[j].x + "px";
-                currElements[i].style.top = gs.entities[j].y + "px";
-                switch(gs.entities[j].life){ 
-                    case 1:
-                        currElements[i].style.background = "red";
-                        break;
-                    case 2:
-                        currElements[i].style.background = "yellow";
-                        break;
-                    case 3:
-                        currElements[i].style.background = "green";
-                        break;
-                    default:
-                        remove(currElements[i])
-                        i--;
-                        j--;
-                        break;
-                 }
-                
-            }
+    for (i=0; i<gs.entities.length; i++){
+        if (gs.entities[i].element != null){
+            gs.entities[i].element.style.left = gs.entities[i].x + "px";
+            gs.entities[i].element.style.top  = gs.entities[i].y + "px";
+            switch(gs.entities[i].life){ 
+                case 1:
+                    gs.entities[i].element.style.background = "red";
+                    break;
+                case 2:
+                    gs.entities[i].element.style.background = "yellow";
+                    break;
+                case 3:
+                    gs.entities[i].element.style.background = "green";
+                    break;
+                default:
+                    remove(gs.entities[i].element, false);
+                    
+                    break;
+                }
         }
     }
+
+
+
     for (i=0; i<gs.entities.length; i++){
        
-        if (gs.entities[i].updated === false){
-           
-           console.log(gs.entities[i]);
+        if (gs.entities[i].element == null){
             let newDiv = document.createElement("div");
             newDiv.className = "entity";
            
             newDiv.id = gs.entities[i].id;
-            gs.entities[i].updated = true;
             gw.appendChild(newDiv);
-            newDiv.onclick = function (){remove(newDiv)};
+            newDiv.onclick = function (){
+                
+                remove(newDiv, true);
+
+            };
             newDiv.style.left = gs.entities[i].x + "px";
             newDiv.style.top = gs.entities[i].y + "px";
+            gs.entities[i].element = newDiv;
+
+
+            // FOR TESTING
+            newDiv.innerHTML = newDiv.id;
         }
     }
-    document.getElementById("score").innerHTML = "Score = "+ gameState.metaData.score;
+    
 }
 
-function remove(el) {
+function remove(el, didScore) {
     if (stillRunning(gameState)){
-        console.log("removeing element " + el.id)
         for(i=0; i<gameState.entities.length; i++){
+            
+         
             if (gameState.entities[i].id = el.id){
-                console.log("removeing entity " + el.id)
-                gameState.metaData.score += gameState.entities[i].life;
+                //console.log("Removing " + gameState.entities[i].id);
+                //gameState.metaData.score += gameState.entities[i].life;
+                if (didScore){
+                    console.log(gameState.entities[i]);
+                    gameState.metaData.score += gameState.entities[i].life;
+                    document.getElementById("score").innerHTML = "Score = "+ gameState.metaData.score;
+                }
+                delete gameState.entities[i].element;
                 gameState.entities.splice(i, 1);
+                break;
             }
         }
         el.remove();
