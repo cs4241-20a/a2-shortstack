@@ -6,9 +6,18 @@
   </head>
   <body>
     <form action="">
-      <input type="text" id="yourtask" value="your task here"><br>
-      <input type="date" id="taskduedate" value="date"><br>
-      <button>submit</button>
+      <label for="priority"> Task </label><br>
+      <input type="text" id="yourtask" value="your task here"><br><br>
+      <label for="priority"> Creation Date </label><br>
+      <input type="date" id="taskduedate" value="date"><br><br>
+      <label for="priority"> Priority </label><br>
+      <input type="radio" id="priority1" name="priority" value="high_priority">
+      <label for="high_priority"> High Priority </label><br>
+      <input type="radio" id="priority2" name="priority" value="med_priority">
+      <label for="med_priority"> Medium Priority </label><br>
+      <input type="radio" id="priority3" name="priority" value="low_priority">
+      <label for="med_priority"> Low Priority </label><br><br>
+      <button>Submit</button>
     </form>
   </body>
   <script>
@@ -18,13 +27,13 @@
     e.preventDefault()
 
     const input1 = document.querySelector( '#yourtask' ),
-          input2 = document.querySelector( '#date' ),
+          input2 = document.querySelector( '#taskduedate' ),
           json1 = { yourname: input1.value, duedate: input2.value },
-          body1 = JSON.stringify( json1 )
+          body = JSON.stringify( json1 )
 
     fetch( '/submit', {
       method:'POST',
-      body: body1
+      body
     })
     .then( function( response ) {
       // do something with the reponse 
