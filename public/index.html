@@ -1,41 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
+    <head>
+        <title>CS4241 Assignment 2</title>
+        <meta charset="utf-8" />
+        <style>
+            table,
+            th,
+            td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Movies to watch</h2>
+        <form action="">
+            <input type="text" id="movie" value="Movie Name" />
+            <label for="seen">Seen?</label>
+            <input type="checkbox" id="seen" name="Seen" />
+            <button>submit</button>
+        </form>
+        <table id="movieTable">
+            <tr>
+                <th>movie</th>
+                <th>seen</th>
+                <th>url</th>
+            </tr>
+        </table>
+    </body>
+    <script>
+        const updateTable = function () {
+            fetch("/data", {
+                method: "GET",
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data);
+                    document.getElementById("movieTable").innerHTML = "";
+                    document.getElementById("movieTable").innerHTML =
+                        "<tr><th>movie</th><th>seen</th><th>url</th></tr>";
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+                    data.map((item) => {
+                        let a = document
+                            .getElementById("movieTable")
+                            .insertRow();
+                        a.innerHTML = `<td>${item.name}</td><td>${item.seen}</td><td><a href="${item.url}">${item.url}</a></td>`;
+                    });
+                });
+        };
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+        const submit = function (e) {
+            // prevent default form action from being carried out
+            e.preventDefault();
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+            const seen = document.querySelector("#seen"),
+                movie = document.querySelector("#movie"),
+                json = { movie: movie.value, seen: seen.checked },
+                body = JSON.stringify(json);
 
-    return false
-  }
+            fetch("/submit", {
+                method: "POST",
+                body,
+            }).then(function (response) {
+                // do something with the reponse
+                console.log(response);
+            });
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+            updateTable();
+            return false;
+        };
 
-  </script>
+        window.onload = function () {
+            updateTable();
+            const button = document.querySelector("button");
+            button.onclick = submit;
+        };
+    </script>
 </html>
