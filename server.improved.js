@@ -1,3 +1,5 @@
+let dataSet = []
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -32,7 +34,6 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
-  let dataSet = []
 
   request.on( 'data', function( data ) {
       dataString += data 
@@ -40,7 +41,7 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-    console.log(JSON.parse( dataString ))
+    dataSet.push(JSON.parse( dataString ))
     console.log(dataSet)
     // ... do something with the data here!!!
 
