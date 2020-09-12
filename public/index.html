@@ -6,13 +6,10 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <script src = "/js/scripts.js"></script>
   </head>
-        <!--Title-->
-  <body background>
-    <div class="container">
+  <body>
+    <div>
       <header> 
         <h1>La Fleur by Pooja Patel</h1>
-
-        </div>
       </header> 
       <main>
      
@@ -25,20 +22,14 @@
         </div>         
 
         <div id="left-form">
-
+              <h3>Order Flowers</h3>
         </div>
-
+          <h4>We charge $2 per flower &
+          $20 per dozen.
+          </h4> 
         <div id="html-booking">
-          <br></br>
-          <h3>Order Flowers</h3>
-          <center>
-
-          <br></br>
-           <h> We charge $2 per flower &</h>
-            <h>$20 per dozen.</h>          <br></br>
-
          
-          <form action="">
+          <form action="a">
             <div class="html-form-details">
               <label for="name_id" class="form-label">Name:</label>
               <input type="text" id="name_id" required>
@@ -50,59 +41,53 @@
             </div>            
             <div class="html-form-details" role="radiogroup" aria-label="flower-level">
               <p class="form-label"> Would you like a to purchase a single flower?</p>
-              <input type="radio" role="radio" id="buyFlower" name="flower" value="0">
+              <input type="radio" id="buyFlower" name="flower" value="0">
               <label for="notToday">No</label>
-              <input type="radio" role="radio" checked id="" name="flower" value="2">
+              <input type="radio" checked id="a" name="flower" value="2">
               <label for="allflower">Yes</label>
             </div>
-             <br></br>   
+ 
             <div class="html-form-details" role="radiogroup" aria-label="bouquet-level">
               <p class="form-label">Would you like  to purchase 1 dozen flowers?</p>
-              <input type="radio" role="radio" id="buyBouquet" name="bouquet" value="0">
+              <input type="radio"  id="buyBouquet" name="bouquet" value="0">
               <label for="nopurchase">No</label>
-              <input type="radio" role="radio" checked id="" name="bouquet" value="20">
+              <input type="radio" checked id="ab" name="bouquet" value="20">
               <label for="allbouquet">Yes</label>
             </div>
-             <br></br>
+
             <div id="submit-btn">
               <button>Submit Order</button>
             </div>
           </form>
         </div>
-        <br></br>
-       </center>
+
 
         <div id="error">
-        <h>Complete all fields.</h>
+        Complete all fields.
         </div>
 
         <div id="thankyou">
-          <br></br>
+
           <h3>Order was Submitted.</h3>
           <h4>A beautiful flower for every  occasion!</h4>
         </div>
 
 
         <div id="booking-table">
-          <br></br>
-          <br></br>
-          <br></br>
+
           <h3>Your Orders</h3>
           <table id="bookings"></table>
 
         </div>
 
-
         <div id="update-html-booking">
           <h3>Edit Your Order</h3>
-          <form action="">
+          <form action="b">
             <div class="html-form-details">
               <label for="updateNameID" class="form-label">Name:</label>
               <input type="text" id="updateNameID" required>
             </div>
         
-
-
             <div class="html-form-details">
               <label for="updateOrder" class="form-label">Custom Order Instructions: List specific flower.</label>
               <textarea id="updateOrder" required></textarea>
@@ -110,17 +95,17 @@
 
             <div class="html-form-details" role="radiogroup" aria-label="flower-level">
               <p class="form-label">Would you like to purchase a single flower?</p>
-              <input type="radio" role="radio" checked id="updatebuyFlower" name="updateflower" value="0">
+              <input type="radio" checked id="updatebuyFlower" name="updateflower" value="0">
               <label for="updatebuyFlower">No</label>
-              <input type="radio" role="radio" id="updateAllflower" name="updateflower" value="2">
+              <input type="radio" id="updateAllflower" name="updateflower" value="2">
               <label for="updateAllflower">Yes</label>
             </div>
             
             <div class="html-form-details" role="radiogroup" aria-label="bouquet-level">
               <p class="form-label">Would you like to purchase 1 dozen flowers </p>
-              <input type="radio" role="radio" checked id="updatebuyBouquet" name="updatebouquet" value="0">
+              <input type="radio"  checked id="updatebuyBouquet" name="updatebouquet" value="0">
               <label for="updatebuyBouquet">No</label>
-              <input type="radio" role="radio" id="updateAllbouquet" name="updatebouquet" value="20">
+              <input type="radio" id="updateAllbouquet" name="updatebouquet" value="20">
               <label for="updateAllbouquet">Yes</label>
             </div>
             
@@ -130,11 +115,7 @@
           </form>
         </div>
       </main>
-
-
-
 <footer>
-<h6><center>Assignment 2 by Pooja Patel</center></h6>
   <h3>
             <img
               class="item"
@@ -168,9 +149,8 @@
             />
           </h3>
 </footer>
+    </div>
   </body>
-
-
 
   <script>
     const addbooking = function( e ) {
@@ -195,10 +175,9 @@
           document.getElementById('left-form').style.display = "none"
 
           resetbookingForm()
-        })
-
+        }
+       )
       }
-
       return false
     }
 
