@@ -3,15 +3,27 @@ const http = require('http'),
     // IMPORTANT: you must run `npm install` in the directory for this assignment
     // to install the mime library used in the following line of code
     mime = require('mime'),
+    https = require('https'),
     dir = 'public/',
     port = 3000
 
 
-const appdata = [
-    { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-    { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-    { 'model': 'ford', 'year': 1987, 'mpg': 14 }
-]
+const appdata = []
+const url = 'https://api.openweathermap.org/data/2.5/weather?q=Monaco, MC&appid=aa0d005506ed7ef7670671f0b8508a21'
+
+const tire_dict = {
+    'soft': 0.0,
+    'medium': 25.0,
+    'hard': 50.0,
+    'inter': 75.0,
+    'wet': 100.0
+}
+
+const toe_dict = {
+    'pos': 1.0,
+    'zero': 0.0,
+    'neg': -1.0
+}
 
 const server = http.createServer(function (request, response) {
     if (request.method === 'GET') {
@@ -26,9 +38,18 @@ const handleGet = function (request, response) {
 
     if (request.url === '/') {
         sendFile(response, 'public/index.html')
+    } else if (request.url === '/data') {
+        sendData(response)
     } else {
         sendFile(response, filename)
     }
+}
+
+const sendData = function(response) {
+    let stringJSON = JSON.stringify(appdata)
+
+    response.writeHeader(200, { 'Content-Type':'json'})
+    response.end(stringJSON)
 }
 
 const handlePost = function (request, response) {
@@ -39,13 +60,72 @@ const handlePost = function (request, response) {
     })
 
     request.on('end', function () {
-        console.log(JSON.parse(dataString))
+        let vehicleJSON = JSON.parse(dataString)
+        
+        // Calculate race results
+        fetchWeather(vehicleJSON)
 
-        // ... do something with the data here!!!
+ 
 
         response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
         response.end()
     })
+}
+
+const fetchWeather = function(vehicleJSON) {
+    console.log(Date.now(), appdata)
+    https.get(url, res => {
+        res.setEncoding("utf8")
+        let body = ""
+        res.on("data", data => {
+            body += data
+        })
+        res.on("end", () => {
+            let weatherJSON = JSON.parse(body)
+            calculateResult(vehicleJSON, weatherJSON)
+        })
+    })
+}
+
+const calculateResult = function (vehicle, weather) {
+    console.log(weather)
+    let temp = weather.main.temp
+    let humidity = weather.main.humidity
+    
+    let temp_min = weather.main.temp_min
+    let temp_max = weather.main.temp_max
+
+    let temp_range = temp_max - temp_min
+
+    let temp_per = (temp - temp_min) / temp_range
+
+    temp_per *= 100.0;
+
+    let tire_humidity_val = tire_dict[vehicle.ttype]
+    let tire_traction_val = 100.0 - tire_dict[vehicle.ttype]
+    let toe_val = toe_dict[vehicle.tangle]
+
+    // Hurt values, from 0.0 to 1.0
+    let humidity_hurt = Math.abs(humidity - tire_humidity_val) / 100.0
+    let toe_hurt = Math.abs(humidity * toe_val) / 100.0
+    let traction_hurt = Math.abs(temp_per - tire_traction_val) / 100.0
+    let drs_hurt = vehicle.drs ? 0.0 : 1.0
+
+    let base_time = 70.0
+
+    let final_time = base_time + (8.0 * humidity_hurt) + (10.0 * traction_hurt) + (5.0 * toe_hurt)
+        + (2.5 * drs_hurt) + Math.random(1.0)
+
+    let result = {
+        cname: vehicle.cname,
+        dname: vehicle.dname,
+        pname: vehicle.pname,
+        ltime: final_time,
+        sdate: (new Date()).toJSON().slice(0, 10).replace(/[-T]/g, '/')
+    }
+
+    appdata.push(result)
+    console.log(appdata)
 }
 
 const sendFile = function (response, filename) {
