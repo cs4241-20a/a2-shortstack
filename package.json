@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "La Fleur by Pooja Patel",
+  "version": "V1.0",
+  "description": "Prototype of a flower shop website with the features to add, modify, or delete orders",
+  "author": "Pooja Patel",
   "scripts": {
     "start": "node server.improved.js"
   },
