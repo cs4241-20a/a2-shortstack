@@ -17,13 +17,14 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourtask' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const input1 = document.querySelector( '#yourtask' ),
+          input2 = document.querySelector( '#date' ),
+          json1 = { yourname: input1.value, duedate: input2.value },
+          body1 = JSON.stringify( json1 )
 
     fetch( '/submit', {
       method:'POST',
-      body1
+      body: body1
     })
     .then( function( response ) {
       // do something with the reponse 
