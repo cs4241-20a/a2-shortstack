@@ -1,16 +1,15 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
       mime = require( 'mime' ),
+      moment = require( 'moment' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+let tasks = [
+  {taskName: "dishes", priority: "8", creationDate: "9/11/2020", dueDate: moment().add(this.priority, 'days').format("MM/DD/YYYY")},
+  {taskName: "laundry", priority: "4", creationDate: "9/11/2020", dueDate: moment().add(this.priority, 'days').format("MM/DD/YYYY")},
+  {taskName: "homework", priority: "6", creationDate: "9/11/2020", dueDate: moment().add(this.priority, 'days').format("MM/DD/YYYY")}
+];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -32,18 +31,15 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
-
   request.on( 'data', function( data ) {
       dataString += data 
   })
-
+ 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
+    tasks.push(JSON.parse(dataString));
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(tasks));
   })
 }
 

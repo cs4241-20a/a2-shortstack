@@ -1,1 +1,18 @@
-/*Style your own assignment! This is fun! */
+table, th, td {
+    border: 1px solid black;
+    border-collapse: separate;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+html{
+    font-family: 'Courier Prime', monospace;
+}
