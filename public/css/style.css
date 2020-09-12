@@ -13,36 +13,59 @@ body {
     width: 90%;
     margin:auto;
 }
-#header {
+.wrapper {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-areas:
+     "header" "sidebar" 
+     "sidebar"
+     "intro"
+     "content"
+  }
+.header {
     font-family: Chivo;
     background-color: #FC7307;
     padding: 75px 0px 25px 0px;
     font-size: xx-large;
 }
-#education {
+#intro {
     background-color: #F7E3D4;
     padding: 0.5em 0;
     margin: 1%;
     font-size: x-large;
     font-family: Abel;
 }
-#footer{
+.footer{
     background-color: #342E09;
     padding: 0.5em 0;
 }
 .grid-container-1 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 1px;
-    align-items: center;
     justify-items: center;
 }
-.grid-container-1 .grid-1-item:hover {
-    color:#FC7307;
+input {
+    font-family: Abel;
+    font-size: large;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
 }
-.grid-container-1-dark .grid-1-item:hover {
-    color:#bb86fc;
+#submit-btn{
+    font-family: Abel;
+    font-size: large;
+    margin: 8px 0;
+    padding: 5px 20px;
+    width: 50%
 }
+#data-table{
+    border: 1px solid black;
+    border-spacing: 10px;
+    width: 90%;
+}
+/*Footer grid container CSS*/
 .grid-container-4 {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -76,7 +99,6 @@ body {
     color: #FC7307;
     text-decoration: none;
 }
-
 .grid-container-4-dark div:nth-child(2) {
     color: #ffffff;
     justify-self: end;
@@ -88,6 +110,7 @@ body {
     color: #ffffff;
     text-decoration: none;
 }
+/*Dark mode switch*/
 .switch {
     position: relative;
     vertical-align: middle ;

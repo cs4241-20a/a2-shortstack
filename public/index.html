@@ -9,42 +9,74 @@
 </head>
 
 <body>
-  <form action="">
-    <input type='text' id='yourname' value="your name here">
-    <button>submit</button>
-  </form>
 
-  <div id="header">
-    <h1>classic cars wishlist</h1>
-  </div>
+  <div class="wrapper">
+    <div class="header">
+      <h1>classic cars wishlist</h1>
+    </div>
 
-  <div id="content">
-    <div id="education">
+    <div class="sidebar">
+
+    </div>
+
+    <div id="intro">
       <p>
         Enter your dream cars and see them appear!
       </p>
     </div>
-    <!-- Replace with a table that can populate -->
-    <div id="classes" class="grid-container-1">
-      <div class="grid-1-item">
-        <p>Machine learning</p>
+
+    <div class="content">
+
+      <div class="grid-container-1">
+        <div id="input-form">
+          <form id="form" action="">
+            <input type='text' id='Make' placeholder="Make">
+            <input type='text' id='Model' placeholder="Model">
+            <input type='number' id='Year' placeholder="Year">
+            <input type='number' id='Price' placeholder="Price">
+            <button id="submit-btn">Submit</button>
+          </form>
+        </div>
+
       </div>
-      <div class="grid-1-item">
-        <p>Database systems I</p>
+
+      <div id="table-div">
+        <table id="data-table">
+          <th>
+            Make
+          </th>
+          <th>
+            Model
+          </th>
+          <th>
+            Year
+          </th>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+        </table>
       </div>
     </div>
-  </div>
 
-  <div id="footer">
-    <div class="grid-container-4">
-      <div>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round" onclick="activateDark()"></span>
-        </label>
-        <p>dark mode</p>
+    <div class="footer">
+      <div class="grid-container-4">
+        <div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round" onclick="activateDark()"></span>
+          </label>
+          <p>dark mode</p>
+        </div>
       </div>
     </div>
   </div>
 </body>
+
 </html>

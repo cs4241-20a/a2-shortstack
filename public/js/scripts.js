@@ -37,20 +37,22 @@ const submit = function( e ) {
     document.body.style.color = "#ffffff";
 
     // change header color
-    document.getElementById('header').style.backgroundColor = "#121212";
+    var header = document.getElementsByClassName('header')
+    for (i = 0; i < header.length; i++) {
+      header[i].style.backgroundColor = "#121212";
+    }
 
     // change box colors
-    var education = document.getElementById('education');
-    education.style.backgroundColor = "#121212";
-
-    var classes = document.getElementById('classes');
-    classes.style.backgroundColor = "#121212";
-    classes.classList.add("grid-container-1-dark");
+    var intro = document.getElementById('intro');
+    intro.style.backgroundColor = "#121212";
 
     // change footer
-    var footer = document.getElementById('footer');
-    footer.style.backgroundColor = "rgba(177, 156, 217, 0.5)";
-    footer.classList.add('grid-container-4-dark');
+    var footer = document.getElementsByClassName('footer');
+
+    for (i = 0; i < header.length; i++) {
+      footer[i].style.backgroundColor = "rgba(177, 156, 217, 0.5)";
+      footer[i].classList.add('grid-container-4-dark');
+    }
   }
   const startLight = function () {
     // change bg color and text
@@ -58,20 +60,21 @@ const submit = function( e ) {
     document.body.style.color = "#342E09";
 
     // change header color
-    document.getElementById('header').style.backgroundColor = "#FC7307";
-
+    var header = document.getElementsByClassName('header')
+    for (i = 0; i < header.length; i++) {
+      header[i].style.backgroundColor = "#FC7307";
+    }
     // change box colors
-    var education = document.getElementById('education');
-    education.style.backgroundColor = "#F7E3D4";
-
-    var classes = document.getElementById('classes');
-    classes.style.backgroundColor = "#F7E3D4";
-    classes.classList.remove("grid-container-1-dark");
+    var intro = document.getElementById('intro');
+    intro.style.backgroundColor = "#F7E3D4";
 
     // change footer
-    var footer = document.getElementById('footer');
-    footer.style.backgroundColor = "#342E09";
-    footer.classList.remove('grid-container-4-dark');
+    var footer = document.getElementsByClassName('footer');
+
+    for (i = 0; i < header.length; i++) {
+      footer[i].style.backgroundColor = "#342E09";
+      footer[i].classList.remove('grid-container-4-dark');
+    }
   }
 
   function activateDark() {
