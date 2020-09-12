@@ -1,4 +1,6 @@
 ## ToDo List
+[Link to site](https://a2-zhechengsong.glitch.me)
+ 
 It's a simple ToDo List application in which you can add task by inputting task name, priority and start time. The system would calculate the due time based on the priority
 (30 mins for high priority, 60 for medium and 120 for low)<br />
 
