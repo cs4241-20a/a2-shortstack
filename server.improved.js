@@ -41,11 +41,11 @@ const server = http.createServer(function(request, response) {
   if (request.method === "GET") {
     handleGet(request, response);
   } else if (request.method === "POST") {
-    handlePost(request, response); //communicate from HTML to server
+    handlePost(request, response); 
   }
 });
 
-//use handleGet to display data structure (server) in UI (server to UI)
+
 const handleGet = function(request, response) {
   const filename = dir + request.url.slice(1);
   if (request.url === "/") {
@@ -68,7 +68,7 @@ const handlePost = function(request, response) {
     switch (request.url) {
       case "/submit":
         const booking = JSON.parse(dataString);
-        //const groomingPrice=
+
         const price = addingServices(
           parseInt(booking.flower),
           parseInt(booking.bouquet)
@@ -145,13 +145,13 @@ const sendFile = function(response, filename) {
   const type = mime.getType(filename);
 
   fs.readFile(filename, function(err, content) {
-    // if the error = null, then we've loaded the file successfully
+
     if (err === null) {
-      // status code: https://httpstatuses.com
+
       response.writeHeader(200, { "Content-Type": type });
       response.end(content);
     } else {
-      // file not found, error code 404
+
       response.writeHeader(404);
       response.end("404 Error: File Not Found");
     }
