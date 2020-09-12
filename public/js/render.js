@@ -20,6 +20,8 @@ renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
 drawingSurface.appendChild(renderer.domElement);
 
+let pmremGenerator = new THREE.PMREMGenerator(renderer);
+
 new RGBELoader()
     .setDataType(THREE.UnsignedByteType)
     .setPath('assets/')
@@ -30,22 +32,19 @@ new RGBELoader()
 
         texture.dispose();
         pmremGenerator.dispose();
-
-        let gltfLoader = new GLTFLoader().setPath('assets/');
-
-        gltfLoader.load('animated.gltf', function (gltf) {
-            mixer = new AnimationMixer(gltf.scene);
-            gltf.animations.forEach((clip) => {
-                const action = mixer.clipAction(clip);
-                action.play();
-            });
-
-            scene.add(gltf.scene);
-        });
     });
 
-let pmremGenerator = new THREE.PMREMGenerator(renderer);
+let gltfLoader = new GLTFLoader().setPath('assets/');
 
+gltfLoader.load('animated.gltf', function (gltf) {
+    mixer = new AnimationMixer(gltf.scene);
+    gltf.animations.forEach((clip) => {
+        const action = mixer.clipAction(clip);
+        action.play();
+    });
+
+    scene.add(gltf.scene);
+});
 
 
 let clock = new THREE.Clock();
