@@ -45,20 +45,20 @@
               <input type="text" id="other-genre" disabled>
             </div>          
             <span class="form-field" id="progress">
-              Reading Progress  
+              Reading Progress:  
               <input type='text' name="current-page" id='current-page' value="" placeholder="I'm on page">
               /
               <input type='text' name="overall-page" id='overall-page' value="" placeholder="# of pages">
             </span>
             <span class="rating form-field">
               Rate this book: 
-              <button class="star-button" id="1-star"> <i class="far fa-star" ></i> <span class="tooltip-text">didn't like it</span></button>
-              <button class="star-button" id="2-star"> <i class="far fa-star" ></i> <span class="tooltip-text">it was okay</span></button>
-              <button class="star-button" id="3-star"> <i class="far fa-star" ></i> <span class="tooltip-text">liked it</span></button>
-              <button class="star-button" id="4-star"> <i class="far fa-star" ></i> <span class="tooltip-text">really liked it</span></button>
-              <button class="star-button" id="5-star"> <i class="far fa-star" ></i> <span class="tooltip-text">it was amazing</span></button>
+              <button class="star-button" id="1-star"><i class="far fa-star" ></i><span class="tooltip-text">didn't like it</span></button>
+              <button class="star-button" id="2-star"><i class="far fa-star" ></i><span class="tooltip-text">it was okay</span></button>
+              <button class="star-button" id="3-star"><i class="far fa-star" ></i><span class="tooltip-text">liked it</span></button>
+              <button class="star-button" id="4-star"><i class="far fa-star" ></i><span class="tooltip-text">really liked it</span></button>
+              <button class="star-button" id="5-star"><i class="far fa-star" ></i><span class="tooltip-text">it was amazing</span></button>
             </span>
-            <span class="form-field">I have a copy of this book <input type="radio" name="have-copy" value="true"> Yes <input type="radio" name="have-copy" value="false"> No </span>
+            <span class="form-field" id="book-copy">I have a copy of this book <input type="radio" name="have-copy" value="true"> Yes <input type="radio" name="have-copy" value="false"> No </span>
             <button id="submit-button">Add to my book list</button>
           </form>
         </div> <!-- id="book-form" -->
@@ -79,40 +79,6 @@
         </div> <!-- id="book-list" -->
       </div> <!-- class="content" -->  
     </div> <!-- class="container" -->
+    <script src="./js/scripts.js"/>
   </body>
-  <script>
-
-    document.getElementById('others').onchange = function() {
-      document.getElementById('other-genre').disabled = !this.checked;
-    };
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const array = []
-    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
-    for (var i = 0; i < checkboxes.length; i++) {
-      array.push(checkboxes[i].value)
-      }
-
-    fetch( '/submit', {
-      method:'POST',
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-      console.log(array)
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
-
 </html>

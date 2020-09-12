@@ -35,6 +35,7 @@
 
 #links a {
     padding: 0 40px 0 40px;
+    text-decoration: none;
 }
 
 #content {
@@ -57,16 +58,14 @@ input {
     border-color: transparent;
 }
 
-input[type=text] {
-    height: 1.5em;
-    border-radius: 10px;
-}
-
 #book-title, #book-author, 
 #book-isbn, #other-genre {
     display: block;
     width: 314px;
     margin-top: 5px;
+    height: 2.5em;
+    border-radius: 10px;
+    padding: 0 10px;
 }
 
 .genre-checkbox {
@@ -78,12 +77,15 @@ input[type=text] {
     margin: 0 1em;
 }
 
-#progress {
-    padding: 10px 0;;
+#progress, #book-copy {
+    padding: 10px 0;
 }
 
 #progress input {
     width: 85px;
+    border-radius: 10px;
+    height: 1.5em;
+    padding-left: 10px;
 }
 
 #progress input:first-child {
@@ -94,18 +96,29 @@ input[type=text] {
     background-color: transparent;
     border: transparent;
     padding: 0;
+    margin: 0;
     position: relative;
     display: inline-block;
+    font-size: 1em;
+}
+
+.star-button:first-child {
+    margin-left: 10px;
+}
+
+.star-button:hover {
+    cursor: pointer;
 }
 
 .tooltip-text {
     visibility: hidden;
-    width: 120px;
+    width: 140px;
     position: absolute;
-    bottom: 100%;
+    bottom: 125%;
     left: 50%;
     margin-left: -60px;
 }
+
 
 .star-button:hover .tooltip-text {
     visibility: visible;
@@ -113,8 +126,10 @@ input[type=text] {
 
 #submit-button {
     margin: 30px 0;
+    padding: 0;
     font-family: 'Grandstander', cursive;
     font-weight: 700;
     font-size: large;
     height: 2.5em;
+    border-radius: 30px;
 }
