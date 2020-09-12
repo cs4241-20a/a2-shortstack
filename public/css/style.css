@@ -1,1 +1,35 @@
-/*Style your own assignment! This is fun! */
+/* COLOR PALLETTE
+    light green: #afdba0
+    dark green: #2f593a
+    dark red: #70352f
+    light yellow: #ede9ce
+*/
+
+
+.container {
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*;*/
+    color: #ede9ce;
+    font-family: 'Grandstander', cursive;
+}
+
+#box{
+    background-color: #70352f;
+    height: 100px;
+    width: 500px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    background-color: #afdba0;
+}
+
+h3{
+    background-image: url("public\notebook.jpg");
+}
