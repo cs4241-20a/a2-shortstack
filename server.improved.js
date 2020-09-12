@@ -32,6 +32,7 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
+  let dataSet = []
 
   request.on( 'data', function( data ) {
       dataString += data 
@@ -39,7 +40,7 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
+    dataSet.log()
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
