@@ -74,7 +74,7 @@ const handlePost = function( request, response ) {
           for (let i = 0; i < nutrients.length; i++) {
             const element = nutrients[i];
             if (element.nutrientId === 1008) {
-              data["cal"] = element.value;
+              data["cal"] = element.value * data.quantity;
             }
           }
         }

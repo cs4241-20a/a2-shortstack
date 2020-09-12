@@ -70,7 +70,6 @@ function addRows(jsonEntry) {
     //Fill those cells with the data gotten back from the server, this includes the new fields
     cell1.innerHTML = jsonEntry.quantity;
     cell2.innerHTML = jsonEntry.food;
-    //TODO: Change this to cal * quantity?
     cell3.innerHTML = jsonEntry.cal;
     cell4.innerHTML = "<button class=\"checkButton\">✓</button>";
 }

@@ -14,6 +14,7 @@
 
 body {
     font-family: Quicksand;
+    color:	#343434;
     font-size: 25px;
 }
 
@@ -38,11 +39,13 @@ tr.purchased {
 button {
     font-family: inherit;
     font-size: 1em;
+    color: inherit;
 }
 
 input {
     font-family: inherit;
     font-size: inherit;
+    color: inherit;
 }
 
 .inputBox {
