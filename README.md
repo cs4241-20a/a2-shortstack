@@ -1,4 +1,4 @@
-Pooja Patel https://glitch.com/~a2-pooja-a-patel
+Pooja Patel https://glitch.com/~a2-poojapatel
 
 This project is Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js. The intention of this project is to deploy a prototype webpae using HTML, CSS, JavaScript, and Node.js.
 
