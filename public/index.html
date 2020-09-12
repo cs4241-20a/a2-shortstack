@@ -3,38 +3,168 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+
+    <!-- Import Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+     <!-- Import Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Import custom stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+
+    <div id="app" class="container">
+      <h1 id="banner">{{ message }}</h1>
+
+      <h2>List a car for auction</h2>
+      <p>
+        Enter your vehicle's details in the form below. We'll determine a fair price for your listing
+        based on our top-secret, proprietary, extremely accurate and not at all arbitrary pricing algorithms.
+      </p>
+
+      <form action="" id="car_form">
+  
+        <div class="form-row centered">
+          <div class="form-group">
+            <label for="make" class="form-label">Make</label>
+            <select id="make" class="form-control">
+              <option value="Bugatti">Bugatti</option>
+              <option value="Lamborghini">Lamborghini</option>
+              <option value="Ferrari">Ferrari</option>
+              <option value="McLaren">McLaren</option>
+              <option value="Koenigsegg">Koenigsegg</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" id="model" class="form-control" placeholder="Model (e.g. 458, Huracan)">
+          </div>
+
+          <div class="form-group">
+            <label for="yearPicker">Year</label>
+            <select id="yearPicker" class="form-control">
+              <!-- Filled in programmatically because I do not want to copy-paste 50ish elements -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mpg">MPG</label>
+            <select id="mpg" class="form-control">
+              <!-- Filled in programmatically when page loads -->
+            </select>
+          </div>
+
+          <button class="btn btn-primary form-control col-2 centered" id="submitButton">Submit</button>
+        </div>
+      </form>
+
+      <div id="results">
+        <h3>Results</h3>
+        <div class="row">
+          <div class="card col-md-4 col-lg-3" v-for="car in cars">
+            <img class="card-img-top" v-bind:src="imgPath(car.make)"  alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ car.year }} {{ car.make }} {{ car.model }}</h5>
+              <p class="card-text">Price: {{ formatPrice(car.price) }} MPG: {{ car.mpg }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </body>
   <script>
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: "Exotic Car Auctions",
+      cars: []
+    },
+    methods: {
+      imgPath(make) {
+        return `/images/${make.toLowerCase()}.jpg`
+      },
+      formatPrice(price) {
+        const formatter = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        });
+
+        // Get rid of cents by splitting price on "." and taking first token.
+        // Who cares about cents on a $250k car?
+        return formatter.format(price).split(".")[0];
+      }
+    }
+  });
 
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const make = document.getElementById("make");
+    const model = document.getElementById("model");
+    const year = document.getElementById("yearPicker");
+    const mpg = document.getElementById("mpg");
+    const json = {
+      make: make.value,
+      model: model.value,
+      year: year.value,
+      mpg: mpg.value
+    };
+
+    const body = JSON.stringify( json )
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+    .then( resp => receiveData(resp) );
 
     return false
   }
 
+  function receiveData(response) {
+    response.json()
+    .then(function(data) {
+      console.log(data);
+      app.cars = data;
+    })
+  }
+
   window.onload = function() {
-    const button = document.querySelector( 'button' )
+    const button = document.getElementById("submitButton")
     button.onclick = submit
+
+    // Programmatically add years to yearPicker select tag
+    const yearPicker = document.getElementById("yearPicker")
+    for(let i = 2020; i >= 1970; i--) {
+      var opt = document.createElement("option");
+      opt.value = i;
+      opt.innerHTML = i;
+      yearPicker.appendChild(opt);
+    }
+
+    // Programmatically add mpg choices
+    const mpg = document.getElementById("mpg")
+    // Realistically, none of these cars will ever reach 50mpg, but that's fine
+    for(let i = 1; i <= 50; i++) {
+      var opt = document.createElement("option");
+      opt.value = i;
+      opt.innerHTML = i;
+      mpg.appendChild(opt);
+    }
+
+
+    // Fetch existing state data from server
+    fetch('/results/', {
+      method: 'GET'
+    })
+    .then( resp => receiveData(resp) );
+    
   }
 
   </script>

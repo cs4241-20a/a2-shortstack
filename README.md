@@ -91,3 +91,10 @@ Include a very brief summary of your project here. Be sure to include the CSS po
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 
+
+### Image Attribution
+Buggatti image: https://commons.wikimedia.org/wiki/File:Red_Bugatti_Veyron_on_the_road_(7559997596).jpg
+Lamborghini image: https://commons.wikimedia.org/wiki/File:Lamborghini_Aventador_Genf_2018.jpg
+Ferrari image: https://commons.wikimedia.org/wiki/File:Ferrari_458_Italia_in_Sweden_2016.jpg
+Koenigsegg image: https://commons.wikimedia.org/wiki/File:NY15.Koenigsegg_Agera_HH.jpg
+McLaren image: https://commons.wikimedia.org/wiki/File:McLaren_P1.jpg

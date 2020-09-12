@@ -1,1 +1,27 @@
-/*Style your own assignment! This is fun! */
+/* I used Bootstrap CSS for this project. Much of the styling (font, card styling, button)
+uses the classes already defined by Bootstrap. I do still make use of flexbox and the
+selectors as required by the project. */
+
+#banner {
+    display: flex;
+    justify-content: center;
+}
+
+#car_form {
+    border: 1px solid lightgrey;
+    border-radius: 1rem 3rem 1rem 1rem;
+    border-spacing: 5rem;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+    padding: 0.5rem;
+}
+
+label {
+    font-weight: bold;
+    color: grey;
+}
