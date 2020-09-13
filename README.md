@@ -53,6 +53,7 @@ Something looked wrong with the old chat messages, and someone pointed out that 
     <figcaption>Current contrast between messages and the background</figcaption>
     <br/>
     <kbd><img width="100" src="https://i.imgur.com/ATUHdDs.png"></kbd>
+    <br/>
 </figure>
 <br/>
 
