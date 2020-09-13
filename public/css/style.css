@@ -1,1 +1,28 @@
-/*Style your own assignment! This is fun! */
+h1{
+    color: #E8ECED;
+    text-align: center;
+    font-size: 40px;
+}
+body{
+    background-color: #A4B7BB ;
+}
+
+form{
+    font-size: 20px;
+
+}
+input[type=text],input[type=date] {
+    width: 50%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+
+  }
+  input[type=number] {
+    width: 5%;
+    padding: 12px 10px;
+    font-size: 15px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
