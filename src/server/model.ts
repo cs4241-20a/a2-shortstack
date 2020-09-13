@@ -98,6 +98,10 @@ export default class Model {
     // wouldn't reveal passwords. Basic authentication is still used.
     private _hashes = {} as {[username: string]: string};
 
+    get users() {
+        return Object.values(this._users);
+    }
+
     getUser(username: string) {
         return this._users[username];
     }

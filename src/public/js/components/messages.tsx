@@ -150,7 +150,7 @@ export async function SendMessageCard(attributes: VanillaJsxFactory.Attributes, 
     const messageTextArea = await (<TextArea></TextArea>) as HTMLElement & {value: string};
 
     const sendMessage = async () => {
-        fetch("/messages", {
+        await fetch("/messages", {
             method: "POST",
             headers: authHeaders(),
             body: JSON.stringify({

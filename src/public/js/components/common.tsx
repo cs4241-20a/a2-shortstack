@@ -61,6 +61,28 @@ export async function Button(attributes: VanillaJsxFactory.Attributes<{btnStyle?
     return elt;
 }
 
+export async function Table(attributes: VanillaJsxFactory.Attributes, children: VanillaJsxFactory.JSXElement[]) {
+    const elt = await (<div class="mdc-data-table">
+        <div class="mdc-data-table__table-container">
+            <table class="mdc-data-table__table" {...attributes}>
+                {...children}
+            </table>
+        </div>
+    </div>) as HTMLElement;
+    elt.querySelectorAll("thead > tr").forEach(x => x.classList.add("mdc-data-table__header-row"));
+    elt.querySelectorAll("thead > tr > th").forEach(x => {
+        x.classList.add("mdc-data-table__header-cell");
+        x.setAttribute("role", "columnheader");
+        x.setAttribute("scope", "col");
+    });
+    elt.querySelectorAll("tbody").forEach(x => x.classList.add("mdc-data-table__content"));
+    elt.querySelectorAll("tbody > tr").forEach(x => x.classList.add("mdc-data-table__row"));
+    elt.querySelectorAll("tbody > tr > th, tbody > tr > td").forEach(x => x.classList.add("mdc-data-table__cell"));
+    elt.querySelectorAll("tbody > tr > th").forEach(x => x.setAttribute("scope", "row"));
+    mdc.dataTable.MDCDataTable.attachTo(elt);
+    return elt;
+}
+
 export async function Spacer(attributes?: VanillaJsxFactory.Attributes<{height?: string}>) {
     return <div class="spacer" style={attributes?.height === undefined ? undefined : `height: ${attributes.height}`}/>;
 }

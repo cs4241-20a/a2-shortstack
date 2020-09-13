@@ -23,6 +23,8 @@
 
 .modal-controls {
     max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
 }
 
 .modal-controls > .card-contents:not(.ignore-modal) > * {
@@ -122,6 +124,7 @@ body:not(.logged-in) .card-contents > p + * {
 .material-icons {
     font-size: 1.5em;
     vertical-align: text-bottom;
+    user-select: none;
 }
 
 body {

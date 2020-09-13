@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "ramchat",
+  "version": "1.0.0",
+  "description": "A twitter-like chat service where all the data is stored in RAM",
+  "author": "Trevor Paley",
   "type": "module",
   "scripts": {
     "clean": "npx rimraf ./dist/",

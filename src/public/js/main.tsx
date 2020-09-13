@@ -1,6 +1,6 @@
-import { RootMessage } from "../../common/message.js";
+import { Message, ReplyMessage, RootMessage } from "../../common/message.js";
 import type { User } from "../../common/user.js";
-import { Button, Spacer } from "./components/common.js";
+import { Button, CLASS_BIGNAME, CLASS_SMALLNAME, Spacer, Table } from "./components/common.js";
 import { LoginModal } from "./components/loginModal.js";
 import { MessageCard, SendMessageCard } from "./components/messages.js";
 import { Modal } from "./components/modal.js";
@@ -49,15 +49,71 @@ export async function refreshMessageCards() {
     );
 }
 
+async function viewRawDataModal() {
+    const data = await (await fetch("/all", {
+        headers: authHeaders()
+    })).json() as {
+        messages: Message[],
+        users: (User & {hash: string})[]
+    };
+
+    const modal = await (<Modal>
+        <h1 class={CLASS_BIGNAME}>Messages</h1>
+        <Table>
+            <thead>
+                <tr>
+                    <th class="mdc-data-table__header-cell--numeric">ID</th>
+                    <th>Author</th>
+                    <th class="mdc-data-table__header-cell--numeric">Timestamp</th>
+                    <th>Content</th>
+                    <th>Replies</th>
+                    <th class="mdc-data-table__header-cell--numeric">Reply To</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Promise.all(data.messages.map(x => <tr>
+                    <td class="mdc-data-table__cell--numeric">{x.id}</td>
+                    <td>{x.author}</td>
+                    <td class="mdc-data-table__cell--numeric">{x.timestamp}</td>
+                    <td>{x.content}</td>
+                    <td>{(x as RootMessage).replies?.join(", ")}</td>
+                    <td class="mdc-data-table__cell--numeric">{(x as ReplyMessage).replyTo}</td>
+                </tr>))}
+            </tbody>
+        </Table>
+        <h1 class={CLASS_BIGNAME}>Users</h1>
+        <span class={CLASS_SMALLNAME}>Hashes are omitted for other users for security reasons</span>
+        <Table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Display Name</th>
+                    <th>Password Hash</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Promise.all(data.users.map(x => <tr>
+                    <td>{x.username}</td>
+                    <td>{x.displayName}</td>
+                    <td>{x.hash}</td>
+                </tr>))}
+            </tbody>
+        </Table>
+        <Button click={() => modal.remove()}>Close</Button>
+    </Modal>) as HTMLElement;
+
+    document.body.append(modal);
+}
+
 window.addEventListener('DOMContentLoaded', async () => {
-    document.body.append(...await (<>
-        <LoginModal/>
-        <div id="message-root">
-            <Button btnStyle="none" click={() => refreshMessageCards()}>Refresh Messages</Button>
-            <Spacer height="16px"/>
-            <SendMessageCard hidden />
-            <div id="messages"/>
-        </div>
-    </>));
+    // Let's load this first
+    document.body.append(await (<LoginModal/>));
+    document.body.append(await (<div id="message-root">
+        <Button btnStyle="none" click={() => refreshMessageCards()}>Refresh Messages</Button>
+        <Spacer height="16px"/>
+        <SendMessageCard hidden />
+        <div id="messages"/>
+        <Button btnStyle="none" click={() => viewRawDataModal()}>View Raw Data</Button>
+    </div>));
     refreshMessageCards();
 });

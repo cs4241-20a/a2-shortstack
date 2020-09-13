@@ -173,6 +173,16 @@ createEndpoint("DELETE", "/messages/{}", async (req, res, args) => {
     return res.writeHead(200).end();
 });
 
+createEndpoint("GET", "/all", (req, res) => {
+    const [username, hash] = readBasicAuth(req) ?? ["", ""];
+    const users = model.users.map(x => x.username === username && model.authorize(username, hash) ? {...x, hash} : {...x, hash: ""})
+
+    return sendJson({
+        messages: model.messages,
+        users
+    }, res);
+});
+
 
 // Makes main count as a module.
 export default undefined;
