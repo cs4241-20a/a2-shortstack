@@ -1,12 +1,14 @@
 {
-  "name": "",
-  "version": "",
+  "name": "shortstack",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Isabel Morales",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node server.improved.js",
+    "build": "npm run bundle; npm start;"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.4",
+    "pouchdb": "^7.1.1"
   }
 }

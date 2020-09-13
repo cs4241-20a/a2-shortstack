@@ -1,1 +1,74 @@
 /*Style your own assignment! This is fun! */
+/* color palette https://coolors.co/2b303a-92dce5-eee5e9-7c7c7c-d64933*/
+
+body{
+    background-color: white;
+    font-family: Arial;
+}
+
+h1{
+    color: #373F47;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+label{
+    color: #373F47;
+}
+
+input{
+    background-color: white;
+    border-color: white;
+    border-radius: 5px;
+    color: #7C7C7C;
+    height: 25px;
+}
+
+button{
+    background-color: #F0544F;
+    border-color: #D64933;
+    border-radius: 10px;
+    height: 40px;
+    color: #EEE5E9;
+}
+
+.v_line{
+    margin: auto;
+    width: 70%;
+    height: 5px;
+    background: #F0544F;
+    box-sizing: border-box;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    background: #1B998B;
+    padding: 4px;
+    box-sizing: border-box;
+    border: 1px solid #1B998B;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table, th, td{
+    border: 3px solid #1B998B;
+}
+
+table{
+    width: 30%;
+}
