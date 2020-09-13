@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Assignment 2",
+  "version": "1.0",
+  "description": "The second assignment of my WebWare course that helps teach integrating HTML, CSS, JavaScript, and Node.js.",
+  "author": "Jordan Stoessel",
   "scripts": {
     "start": "node server.improved.js"
   },

@@ -1,1 +1,7 @@
 /*Style your own assignment! This is fun! */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+body {
+    font-family: "Lato";
+    font-size: 22px;
+}
