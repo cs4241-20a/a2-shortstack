@@ -6,6 +6,7 @@ table, th, td {
 
 h1{
     text-align: center;
+    font-family: 'Courier Prime', monospace;
 }
 
 .center{
@@ -13,6 +14,6 @@ h1{
     margin-right: auto;
 }
 
-html{
-    font-family: 'Courier Prime', monospace;
+label{
+    text-align: center;
 }

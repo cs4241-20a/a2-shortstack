@@ -6,25 +6,16 @@
   <meta charset="utf-8">
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="js/scripts.js"></script>
 </head>
+
 <body>
 
-  <form action="">
-    <label for="taskName">Task Name:</label><br>
-    <input type="text" id="taskName" name="taskName"><br>
-
-    <label for="priorty">Priorty:</label><br>
-    <input type="text" id="priority" name="priorty"><br>
-
-    <label for="creationDate">Creation Date:</label><br>
-    <input type="text" id="creationDate" name="creationDate"><br>
-
-    <button>Submit</button>
-  </form>
-
-  <h1>My Todo List</h1>
-    <table class="center">
+  <div class="jumbotron w-50 p-3 center bg-primary text-white">
+  <h1 class="display-4">My TODO List</h1>
+  <div class="d-flex justify-content-center">
+    <table class="table table-striped table-dark">
       <thead>
       <tr>
         <th>Task Name</th>
@@ -34,53 +25,37 @@
       </tr>
       </thead>
     </table>
-  </body>
+    </div>
+  </div>
 
-<script>
-  const submit = function (e) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+  <div class="jumbotron w-50 p-3 center bg-primary text-white">
+  <form action="">
+    <div class="d-flex justify-content-center">
+      <div class="form-group">
+        <label for="taskName">Task Name:</label><br>
+        <input type="text" id="taskName" name="taskName"><br>
+      </div>
+    </div>
+  
+    <div class="d-flex justify-content-center">
+      <div class="form-group">
+        <label for="priorty">Priorty:</label><br>
+        <input type="text" id="priority" name="priorty"><br>
+      </div>
+    </div>
 
-    const input = document.querySelector('#taskName');
-    const priority = document.querySelector('#priority');
-    const creationDate = document.querySelector('#creationDate');
-    let dueDate = "";
+    <div class="d-flex justify-content-center">
+      <div class="form-group">
+        <label for="creationDate">Creation Date:</label><br>
+        <input type="text" id="creationDate" name="creationDate"><br>
+      </div>
+    </div>
 
-    json = { taskName: input.value, priority: priority.value, creationDate: creationDate.value, dueDate: ""};
-    body = JSON.stringify(json);
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-light">Submit</button>
+    </div>
+  </form>
+  </div>
 
-    fetch('/submit', {
-      method: 'POST',
-      body
-    })
-      .then(function (response) {
-        return response.text();
-      })
-      .then ( function ( txt ){
-        txt = JSON.parse(txt);        
-        let table = document.querySelector("table");
-        createTable(table, txt);
-      })
-    return false
-  }
-
-function createTable(table, data) {
-  for (let word of data) {
-    let row = table.insertRow();
-    for (i in word) {
-      let cell = row.insertCell();
-      let cellContents = document.createTextNode(word[i]);
-      cell.appendChild(cellContents);
-    }
-  }
-}
-
-
-  window.onload = function () {
-    const button = document.querySelector('button')
-    button.onclick = submit
-  }
-
-</script>
-
+</body>
 </html>

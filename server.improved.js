@@ -6,9 +6,9 @@ const http = require( 'http' ),
       port = 3000
 
 let tasks = [
-  {taskName: "dishes", priority: "8", creationDate: "9/11/2020", dueDate: moment().add(this.priority, 'days').format("MM/DD/YYYY")},
-  {taskName: "laundry", priority: "4", creationDate: "9/11/2020", dueDate: moment().add(this.priority, 'days').format("MM/DD/YYYY")},
-  {taskName: "homework", priority: "6", creationDate: "9/11/2020", dueDate: moment().add(this.priority, 'days').format("MM/DD/YYYY")}
+  {taskName: "dishes", priority: "8", creationDate: "9/11/2020", dueDate: moment().add(2, 'days').format("MM/DD/YYYY")},
+  {taskName: "laundry", priority: "4", creationDate: "9/11/2020", dueDate: moment().add(6, 'days').format("MM/DD/YYYY")},
+  {taskName: "homework", priority: "6", creationDate: "9/11/2020", dueDate: moment().add(4, 'days').format("MM/DD/YYYY")}
 ];
 
 const server = http.createServer( function( request,response ) {
@@ -32,11 +32,17 @@ const handleGet = function( request, response ) {
 const handlePost = function( request, response ) {
   let dataString = ''
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
+      data.dueDate = 2;
   })
  
   request.on( 'end', function() {
     tasks.push(JSON.parse(dataString));
+    let prior = JSON.parse(dataString).priority;
+    
+    if (prior){
+      tasks[tasks.length-1].dueDate = moment().add((10-prior), 'days').format("MM/DD/YYYY");
+    }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end(JSON.stringify(tasks));
