@@ -25,30 +25,40 @@ At the bottom of the page is a button to allow the user to view all of the raw d
 
 The original login modal didn't look right. After a few iterations going back and forth, we got to iteration 2, a substantial improvement, which I later tweaked a bit to get the current version.
 <figure>
-    <img src="https://i.imgur.com/pQsktSK.png"><figcaption>Original Login Modal</figcaption>
+    <figcaption>Original Login Modal</figcaption>
+    <img src="https://i.imgur.com/pQsktSK.png">
 </figure>
 <figure>
-    <img src="https://i.imgur.com/5eKAD8V.png"><figcaption>Iteration 1 Login Modal</figcaption>
+    <figcaption>Iteration 1 Login Modal</figcaption>
+    <img src="https://i.imgur.com/5eKAD8V.png">
 </figure>
 <figure>
-    <img src="https://i.imgur.com/UsYPQdx.png"><figcaption>Iteration 2 Login Modal</figcaption>
+    <figcaption>Iteration 2 Login Modal</figcaption>
+    <img src="https://i.imgur.com/UsYPQdx.png">
 </figure>
 <figure>
-    <img src="https://i.imgur.com/xYRxKJZ.png"><figcaption>Current Login Modal</figcaption>
+    <figcaption>Current Login Modal</figcaption>
+    <img src="https://i.imgur.com/xYRxKJZ.png">
 </figure>
+<br/>
 
 Something looked wrong with the old chat messages, and someone pointed out that it may have been an issue with contrast with the background. The change is subtle but significant.
 <figure>
-    <img style="border: 1px solid black" width="100" src="https://i.imgur.com/Z3pH366.png"><figcaption>Original contrast between messages and the background</figcaption>
+    <figcaption>Original contrast between messages and the background</figcaption>
+    <kbd><img width="100" src="https://i.imgur.com/Z3pH366.png"></kbd>
 </figure>
 <figure>
-    <img style="border: 1px solid black" width="100" src="https://i.imgur.com/ATUHdDs.png"><figcaption>Current contrast between messages and the background</figcaption>
+    <figcaption>Current contrast between messages and the background</figcaption>
+    <kbd><img width="100" src="https://i.imgur.com/ATUHdDs.png"></kbd>
 </figure>
+<br/>
 
 This last one was actually farily divisive between the students, but I think the "save on right" crowd was correct.
 <figure>
-    <img src="https://i.imgur.com/g0d12GL.png"><figcaption>Save on the left (original)</figcaption>
+    <figcaption>Save on the left (original)</figcaption>
+    <img src="https://i.imgur.com/g0d12GL.png">
 </figure>
 <figure>
-    <img src="https://i.imgur.com/BokG5jP.png"><figcaption>Save on the right (chosen)</figcaption>
+    <figcaption>Save on the right (chosen)</figcaption>
+    <img src="https://i.imgur.com/BokG5jP.png">
 </figure>
