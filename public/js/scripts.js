@@ -6,6 +6,10 @@ const ttype_input = document.getElementById('ttype');
 const tangle_input = document.getElementById('tangle');
 const drs_input = document.getElementById('drs');
 
+const result_modal = document.getElementById('result_modal');
+const result_text = document.getElementById('result_text');
+const result_spin = document.getElementById('result_spin');
+
 function checkField(field) {
     if (field.value.length == 0) {
         field.classList.add('is-danger');
@@ -38,15 +42,29 @@ const submit = function (e) {
         drs: drs_input.checked
     }
 
-    const body = JSON.stringify(json);
+    result_modal.classList.add('is-active');
+    result_text.innerHTML = "";
+    result_spin.style.display = "inline-block";
+
+
 
     fetch('/submit', {
         method: 'POST',
-        body
-    }).then(function (response) {
-        // do something with the reponse 
-        console.log(response)
-    })
+        body: JSON.stringify(json)
+    }).then(response => { 
+            return response.json();
+        }
+    ).then(data => {
+        let time_seconds = Number(data.ltime);
+
+        let minutes = Math.floor(time_seconds / 60);
+        let seconds = time_seconds - minutes * 60;
+        
+        result_spin.style.display = "none";
+
+        result_text.innerHTML = "Your time was <b> " + minutes + ":" + seconds.toFixed(3)
+            + "</b>, putting you in <b> P" + data.position;
+    });
 
     return false;
 }
@@ -54,4 +72,8 @@ const submit = function (e) {
 window.onload = function () {
     const button = document.querySelector('button')
     button.onclick = submit
+}
+
+function scrollToBottom() {
+    cname_input.scrollIntoView(({ block: 'center',  behavior: 'smooth' }));
 }

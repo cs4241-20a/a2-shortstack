@@ -7,8 +7,45 @@ const http = require('http'),
     dir = 'public/',
     port = 3000
 
+const fill_date = "05/25/2019"
+const fill_time = "12:00"
 
-const appdata = []
+const appdata = [
+    {
+        cname: "Mercedes",
+        dname: "Lewis Hamilton",
+        pname: "W10 EQ Power+",
+        ltime: 71.542,
+        sdate: fill_date + " @ " + fill_time + " UTC"
+    }, {
+        cname: "Mercedes",
+        dname: "Valtteri Bottas",
+        pname: "W10 EQ Power+",
+        ltime: 73.934,
+        sdate: fill_date + " @ " + fill_time + " UTC"
+    }, {
+        cname: "Red Bull Racing",
+        dname: "Max Verstappen",
+        pname: "RB15",
+        ltime: 74.173,
+        sdate: fill_date + " @ " + fill_time + " UTC"
+    }, {
+        cname: "Ferrari",
+        dname: "Sebastian Vettel",
+        pname: "SF90",
+        ltime: 76.036,
+        sdate: fill_date + " @ " + fill_time + " UTC"
+    }, {
+        cname: "Red Bull Racing",
+        dname: "Pierre Gasly",
+        pname: "RB15",
+        ltime: 78.284,
+        sdate: fill_date + " @ " + fill_time + " UTC"
+    }
+]
+
+appdata.sort((a, b) => (a.ltime > b.ltime) ? 1 : -1)
+
 const url = 'https://api.openweathermap.org/data/2.5/weather?q=Monaco, MC&appid=aa0d005506ed7ef7670671f0b8508a21'
 
 const tire_dict = {
@@ -24,6 +61,11 @@ const toe_dict = {
     'zero': 0.0,
     'neg': -1.0
 }
+
+const putFakeResults = function() {
+
+}
+
 
 const server = http.createServer(function (request, response) {
     if (request.method === 'GET') {
@@ -63,16 +105,11 @@ const handlePost = function (request, response) {
         let vehicleJSON = JSON.parse(dataString)
         
         // Calculate race results
-        fetchWeather(vehicleJSON)
-
- 
-
-        response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
-        response.end()
+        fetchWeather(vehicleJSON, response)
     })
 }
 
-const fetchWeather = function(vehicleJSON) {
+const fetchWeather = function(vehicleJSON, response) {
     console.log(Date.now(), appdata)
     https.get(url, res => {
         res.setEncoding("utf8")
@@ -82,12 +119,12 @@ const fetchWeather = function(vehicleJSON) {
         })
         res.on("end", () => {
             let weatherJSON = JSON.parse(body)
-            calculateResult(vehicleJSON, weatherJSON)
+            calculateResult(vehicleJSON, weatherJSON, response)
         })
     })
 }
 
-const calculateResult = function (vehicle, weather) {
+const calculateResult = function (vehicle, weather, response) {
     console.log(weather)
     let temp = weather.main.temp
     let humidity = weather.main.humidity
@@ -99,7 +136,7 @@ const calculateResult = function (vehicle, weather) {
 
     let temp_per = (temp - temp_min) / temp_range
 
-    temp_per *= 100.0;
+    temp_per *= 100.0
 
     let tire_humidity_val = tire_dict[vehicle.ttype]
     let tire_traction_val = 100.0 - tire_dict[vehicle.ttype]
@@ -116,16 +153,32 @@ const calculateResult = function (vehicle, weather) {
     let final_time = base_time + (8.0 * humidity_hurt) + (10.0 * traction_hurt) + (5.0 * toe_hurt)
         + (2.5 * drs_hurt) + Math.random(1.0)
 
+    let date = new Date()
+
+    let current_date = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()
+
+    let current_time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+
     let result = {
         cname: vehicle.cname,
         dname: vehicle.dname,
         pname: vehicle.pname,
         ltime: final_time,
-        sdate: (new Date()).toJSON().slice(0, 10).replace(/[-T]/g, '/')
+        sdate: current_date + " @ " + current_time + " UTC"
     }
 
     appdata.push(result)
     console.log(appdata)
+
+    appdata.sort((a, b) => (a.ltime > b.ltime) ? 1 : -1)
+
+    let sendBack = {
+        ltime: final_time,
+        position: appdata.indexOf(result) + 1
+    }
+
+    response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+    response.end(JSON.stringify(sendBack))
 }
 
 const sendFile = function (response, filename) {

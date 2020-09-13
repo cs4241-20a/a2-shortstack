@@ -13,10 +13,12 @@ xhttp.send();
 function createTable(dataJSON) {
     let table = document.getElementById("data_table");
 
-    dataJSON.forEach(element => {
+    dataJSON.forEach((element, place) => {
         let entry = document.createElement("TR");
         
         table.appendChild(entry);
+
+        addEntry(entry, "P" + (place + 1));
 
         addEntry(entry, element.cname);
         addEntry(entry, element.dname);

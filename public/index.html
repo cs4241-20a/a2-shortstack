@@ -1,156 +1,195 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>CS4241 Assignment 2</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="https://kit.fontawesome.com/91e071f40d.js" crossorigin="anonymous"></script>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <section class="hero is-dark is-fullheight">
-            <!-- Hero head: will stick at the top -->
-            <div class="hero-head" id="copyOFFSET">
-                <header class="navbar">
-                    <div class="container navbar-start">
-                        <a href="index.html" class="navbar-item is-active">Design
+
+<head>
+	<title>CS4241 Assignment 2</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://kit.fontawesome.com/91e071f40d.js" crossorigin="anonymous"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<section class="hero is-dark is-fullheight" id="copySIZE">
+		<!-- Hero head: will stick at the top -->
+		<div class="hero-head">
+			<header class="navbar">
+                <div class="navbar-brand">
+                    <a href="index.html" class="navbar-item has-text-white has-text-weight-bold is-size-3">
+                    <p> simcar </p>
                     </a>
-                        <a href="leaderboard.html" class="navbar-item">Leaderboard
-                    </a>
-                    </div>
-                </header>
-            </div>
-            <!-- Hero content: will be in the middle -->
-            <div class="hero-body" id="copySIZE">
-            </div>
-            <div class="cheat-time" id="threeJS" style="position: absolute">
-            </div>
-            <!-- Hero footer: will stick at the bottom -->
-            <div class="hero-foot">
-                <nav class="tabs is-boxed is-centered">
-                    <div class="container">
-                        <ul>
-                            <li class="is-active">
-                                <a class="py-3 px-6 has-text-dark is-size-5">Configure Vehicle</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </section>
-        <div class="container py-5 px-3">
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Vehicle Registration</label>
                 </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control has-icons-left">
-                            <input id="cname" class="input" type="text" placeholder="Company Name">
-                            <span class="icon is-small is-left">
+				<div class="navbar-start">
+					<a href="index.html" class="navbar-item is-active">Design
+					</a>
+					<a href="leaderboard.html" class="navbar-item">Leaderboard
+					</a>
+				</div>
+			</header>
+		</div>
+		<!-- Hero content: will be in the middle -->
+		<div class="hero-body has-text-centered" id="noman">
+			<div class="container" id="hide_on_load">
+				<i class="fas is-size-1 fa-sync fa-spin"></i>
+			</div>
+		</div>
+		<div class="cheat-time" id="threeJS" style="position: absolute">
+		</div>
+		<!-- Hero footer: will stick at the bottom -->
+		<div class="hero-foot">
+			<nav class="tabs is-boxed is-centered">
+				<div class="container">
+					<ul>
+						<li class="is-active">
+							<a class="py-3 px-6 has-text-dark is-size-5" onclick="scrollToBottom()">
+								<span class="icon is-small ml-0">
+                                    <i class="fas fa-wrench"></i>
+                                </span>
+								Configure Vehicle
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</section>
+	<div class="container py-4 px-4 has-background-white" id="userInput">
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label class="label">Vehicle Registration</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<p class="control has-icons-left">
+						<input id="cname" class="input" type="text" placeholder="Company Name">
+						<span class="icon is-small is-left">
                                 <i class="fas fa-building"></i>
                             </span>
-                        </p>
-                    </div>
-                    <div class="field">
-                        <p class="control has-icons-left">
-                            <input id="dname" class="input" type="text" placeholder="Designer Name">
-                            <span class="icon is-small is-left">
+					</p>
+				</div>
+				<div class="field">
+					<p class="control has-icons-left">
+						<input id="dname" class="input" type="text" placeholder="Designer Name">
+						<span class="icon is-small is-left">
                                 <i class="fas fa-user"></i>
                             </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label"></div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control has-icons-left">
-                            <input id="pname" class="input" type="text" placeholder="Prototype Name">
-                            <span class="icon is-small is-left">
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class="field-label"></div>
+			<div class="field-body">
+				<div class="field">
+					<p class="control has-icons-left">
+						<input id="pname" class="input" type="text" placeholder="Prototype Name">
+						<span class="icon is-small is-left">
                                 <i class="fas fa-car"></i>
                             </span>
-                        </p>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <div class="select is-fullwidth">
-                                <select id="pcolor">
+					</p>
+				</div>
+				<div class="field">
+					<div class="control">
+						<div class="select is-fullwidth">
+							<select id="pcolor" onchange="updateColor()">
                                     <option value="red">Red Paint</option>
                                     <option value="blue">Blue Paint</option>
                                     <option value="green">Green Paint</option>
-                                    <option value="yellow">Yellow Paint</option>
+                                    <option value="orange">Orange Paint</option>
                                     <option value="black">Black Paint</option>
+                                    <option value="white">White Paint</option>
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Tire Setup</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <div class="select is-fullwidth">
-                                <select id="ttype">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class="field-label is-normal">
+				<label class="label">Tire Setup</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<div class="select is-fullwidth">
+							<select id="ttype">
                                     <option value="soft">Soft Tires</option>
-                                    <option value="medium"selected>Medium Tires</option>
+                                    <option value="medium" selected>Medium Tires</option>
                                     <option value="hard">Hard Tires</option>
                                     <option value="inter">Intermediate Tires</option>
                                     <option value="wet">Wet Tires</option>
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <div class="select is-fullwidth">
-                                <select id="tangle">
+						</div>
+					</div>
+				</div>
+				<div class="field">
+					<div class="control">
+						<div class="select is-fullwidth">
+							<select id="tangle">
                                     <option value="pos">Postive Toe</option>
                                     <option value="zero" selected>Zero Toe</option>
                                     <option value="neg">Negative Toe</option>
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Enable DRS?</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <label class="radio">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label class="label">Enable DRS?</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<label class="radio">
                                 <input id="drs" type="radio" name="member" class="mr-2" checked>Yes
                             </label>
-                            <label class="radio">
+						<label class="radio">
                                 <input type="radio" name="member" class="mr-2">No
                             </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                <!-- Left empty for spacing -->
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-link" onsubmit="submit">Simulate Race</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<!-- Left empty for spacing -->
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<button class="button is-link" onsubmit="submit">Simulate Race</button>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="field is-horizontal">
+			<div class="field-label">
+				<label class="label">Current Weather</label>
+			</div>
+			<div class="field-body">
+			<div id="openweathermap-widget-15"  style=""></div>
+			<script>
+				window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 15,cityid: '2993458',appid: 'aa0d005506ed7ef7670671f0b8508a21',units: 'imperial',containerid: 'openweathermap-widget-15',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
+			</script>
+		</div>
+		</div>
+        
+	</div>
+    <div id="result_modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+        <div class="box">
+            <i class="fas fa-sync fa-spin" id="result_spin"></i>
+            <p id="result_text"></p>
         </div>
-    </body>
-    <script src="js/scripts.js"></script>
-    <script type="module" src="js/render.js"></script>
+        </div>
+        <button onclick="document.getElementById('result_modal').classList.remove('is-active')" class="modal-close is-large" aria-label="close"></button>
+    </div>
+	<script src="js/scripts.js"></script>
+	<script type="module" src="js/render.js"></script>
+</body>
+
 </html>
