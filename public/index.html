@@ -15,29 +15,29 @@
       <input type="password" id="userPassword" value=""><br><br>
     <label for="userTemp">Resting Temperature (°F):</label><br>
       <input type="number" id="userTemp" value=""><br><br> 
-    <h2>Do you have any of the following symptoms on a regular basis?</h2>
+    <h3>Do you have any of the following symptoms on a regular basis?</h3>
     <label for="userChills">Chills:</label><br>
-      <input type="checkbox" name="userChills" value="0"><br><br> 
+      <input type="checkbox" id="userChills" value="0"><br><br> 
     <label for="userCough">Cough:</label><br>
-      <input type="checkbox" name="userCough" value="0"><br><br> 
+      <input type="checkbox" id="userCough" value="0"><br><br> 
     <label for="userBreath">Shortness of Breath:</label><br>
-      <input type="checkbox" name="userBreath" value="0"><br><br> 
+      <input type="checkbox" id="userBreath" value="0"><br><br> 
     <label for="userThroat">Sore Throat:</label><br>
-      <input type="checkbox" name="userThroat" value="0"><br><br> 
+      <input type="checkbox" id="userThroat" value="0"><br><br> 
     <label for="userFatigue">Fatigue:</label><br>
-      <input type="checkbox" name="userFatigue" value="0"><br><br> 
+      <input type="checkbox" id="userFatigue" value="0"><br><br> 
     <label for="userHeadache">Headache:</label><br>
-      <input type="checkbox" name="userHeadache" value="0"><br><br> 
+      <input type="checkbox" id="userHeadache" value="0"><br><br> 
     <label for="userAche">Muscle Aches:</label><br>
-      <input type="checkbox" name="userAche" value="0"><br><br> 
+      <input type="checkbox" id="userAche" value="0"><br><br> 
     <label for="userNose">Runny Nose or Congestion:</label><br>
-      <input type="checkbox" name="userNose" value="0"><br><br> 
+      <input type="checkbox" id="userNose" value="0"><br><br> 
     <label for="userLoss">Loss of taste or smell:</label><br>
-      <input type="checkbox" name="userLoss" value="0"><br><br> 
+      <input type="checkbox" id="userLoss" value="0"><br><br> 
     <label for="userNausea">Nausea:</label><br>
-      <input type="checkbox" name="userNausea" value="0"><br><br> 
+      <input type="checkbox" id="userNausea" value="0"><br><br> 
     <label for="userDiarrhea">Nausea:</label><br>
-      <input type="checkbox" name="userDiarrhea" value="0"><br><br> 
+      <input type="checkbox" id="userDiarrhea" value="0"><br><br> 
       <br><button id="newUserButton">Submit</button>
       <br><br><button id="resetButton">Reset</button>
     </form>
@@ -47,49 +47,65 @@
       <input type="text" id="updateUserName" value=""><br><br>
 	  <label for="updateUserPassword">User Password:</label><br>
       <input type="password" id="updateUserPassword" value=""><br><br>
-      <h2>Do you have any of the following symptoms today?</h2>
+      <label for="updateUserTemp">Current Temperature (°F):</label><br>
+        <input type="number" id="updateUserTemp" value=""><br><br> 
+      <label for="updateUserPositive">Have you tested positive for Covid19 in the past 14 days?:</label><br>
+        <input type="checkbox" id="updateUserPositive" value="0"><br><br> 
+      <label for="updateUserContact">Have you been in close contact with someone who has been diagnosed with Covid19 in the past 14 days?:</label><br>
+        <input type="checkbox" id="updateUserContact" value="0"><br><br> 
+      <h3>Do you have any of the following symptoms today?</h3>
       <label for="updateUserChills">Chills:</label><br>
-        <input type="checkbox" name="updateUserChills" value="0"><br><br> 
+        <input type="checkbox" id="updateUserChills" value="0"><br><br> 
       <label for="updateUserCough">Cough:</label><br>
-        <input type="checkbox" name="updateUserCough" value="0"><br><br> 
+        <input type="checkbox" id="updateUserCough" value="0"><br><br> 
       <label for="updateUserBreath">Shortness of Breath:</label><br>
-        <input type="checkbox" name="updateUserBreath" value="0"><br><br> 
+        <input type="checkbox" id="updateUserBreath" value="0"><br><br> 
       <label for="updateUserThroat">Sore Throat:</label><br>
-        <input type="checkbox" name="updateUserThroat" value="0"><br><br> 
+        <input type="checkbox" id="updateUserThroat" value="0"><br><br> 
       <label for="updateUserFatigue">Fatigue:</label><br>
-        <input type="checkbox" name="updateUserFatigue" value="0"><br><br> 
+        <input type="checkbox" id="updateUserFatigue" value="0"><br><br> 
       <label for="updateUserHeadache">Headache:</label><br>
-        <input type="checkbox" name="updateUserHeadache" value="0"><br><br> 
+        <input type="checkbox" id="updateUserHeadache" value="0"><br><br> 
       <label for="updateUserAche">Muscle Aches:</label><br>
-        <input type="checkbox" name="updateUserAche" value="0"><br><br> 
+        <input type="checkbox" id="updateUserAche" value="0"><br><br> 
       <label for="updateUserNose">Runny Nose or Congestion:</label><br>
-        <input type="checkbox" name="updateUserNose" value="0"><br><br> 
+        <input type="checkbox" id="updateUserNose" value="0"><br><br> 
       <label for="updateUserLoss">Loss of taste or smell:</label><br>
-        <input type="checkbox" name="updateUserLoss" value="0"><br><br> 
+        <input type="checkbox" id="updateUserLoss" value="0"><br><br> 
       <label for="updateUserNausea">Nausea:</label><br>
-        <input type="checkbox" name="updateUserNausea" value="0"><br><br> 
+        <input type="checkbox" id="updateUserNausea" value="0"><br><br> 
       <label for="updateUserDiarrhea">Nausea:</label><br>
-        <input type="checkbox" name="updateUserDiarrhea" value="0"><br><br> 
+        <input type="checkbox" id="updateUserDiarrhea" value="0"><br><br> 
       <br><button id="updateButton">Update</button>
     </form>
     <h1>Current Users</h1>
     <p id="database"></p>
   </body>
   <script>
-
+  const statusMessages = ["All clear", "Be cautious", "Covid19 risk"]
   const newUser = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
-    const nameInput = document.querySelector( '#userName' ),
-		  idInput = document.querySelector( '#userID' ),
-		  passwordInput = document.querySelector( '#userPassword' ),
-          json = { 
-		  userName: nameInput.value,
-		  userID: idInput.value,
-		  userPassword: passwordInput.value
+    const json = { 
+		  userName: document.querySelector( '#userName' ).value,
+		  userID: document.querySelector( '#userID' ).value,
+		  userPassword: document.querySelector( '#userPassword' ).value,
+      userTemp: document.querySelector( '#userTemp' ).value,
+      userChills: document.querySelector( '#userChills' ).checked,
+      userCough: document.querySelector( '#userCough' ).checked,
+      userBreath: document.querySelector( '#userBreath' ).checked,
+      userThroat: document.querySelector( '#userThroat' ).checked,
+      userFatigue: document.querySelector( '#userFatigue' ).checked,
+      userHeadache: document.querySelector( '#userHeadache' ).checked,
+      userAche: document.querySelector( '#userAche' ).checked,
+      userNose: document.querySelector( '#userNose' ).checked,
+      userLoss: document.querySelector( '#userLoss' ).checked,
+      userNausea: document.querySelector( '#userNausea' ).checked,
+      userDiarrhea: document.querySelector( '#userDiarrhea' ).checked,
+      userStatus: 0
 		  },
           body = JSON.stringify( json )
-
+    
     fetch( '/newUser', {
       method:'POST',
       body 
@@ -104,8 +120,8 @@
       document.getElementById("database").innerHTML = "";
       for (const entry of entries) {
         var entryjson = JSON.parse(entry+(entry.slice(-1) == "}" ? "" : "}"));
-        document.getElementById("database").innerHTML += entryjson.userName + ": " + entryjson.userID + "<br>";
-        console.log( entryjson );//can access elements with .elementName
+        document.getElementById("database").innerHTML += entryjson.userName + " (" + entryjson.userID + "): " + statusMessages[entryjson.userStatus] + "<br>";
+        // console.log( entryjson );//can access elements with .elementName
       }      
     })
 
@@ -115,11 +131,23 @@
   const update = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
-    const nameInput = document.querySelector( '#updateUserName' ),
-      passwordInput = document.querySelector( '#updateUserPassword' ),
-      json = { 
-      userName: nameInput.value,
-      userPassword: passwordInput.value
+    const json = { 
+      userName: document.querySelector( '#updateUserName' ).value,
+      userPassword: document.querySelector( '#updateUserPassword' ).value,
+      userTemp: document.querySelector( '#updateUserTemp' ).value,
+      userPositive: document.querySelector( '#updateUserPositive' ).checked,
+      userContact: document.querySelector( '#updateUserContact' ).checked,
+      userChills: document.querySelector( '#updateUserChills' ).checked,
+      userCough: document.querySelector( '#updateUserCough' ).checked,
+      userBreath: document.querySelector( '#updateUserBreath' ).checked,
+      userThroat: document.querySelector( '#updateUserThroat' ).checked,
+      userFatigue: document.querySelector( '#updateUserFatigue' ).checked,
+      userHeadache: document.querySelector( '#updateUserHeadache' ).checked,
+      userAche: document.querySelector( '#updateUserAche' ).checked,
+      userNose: document.querySelector( '#updateUserNose' ).checked,
+      userLoss: document.querySelector( '#updateUserLoss' ).checked,
+      userNausea: document.querySelector( '#updateUserNausea' ).checked,
+      userDiarrhea: document.querySelector( '#updateUserDiarrhea' ).checked
       },
           body = JSON.stringify( json )
 
@@ -136,9 +164,9 @@
       console.log("Data:")
       document.getElementById("database").innerHTML = "";
       for (const entry of entries) {
+        // console.log(entry);
         var entryjson = JSON.parse(entry+(entry.slice(-1) == "}" ? "" : "}"));
-        document.getElementById("database").innerHTML += entryjson.userName + ": " + entryjson.userID + "<br>";
-        console.log( entryjson );//can access elements with .elementName
+        document.getElementById("database").innerHTML += entryjson.userName + " (" + entryjson.userID + "): " + statusMessages[entryjson.userStatus] + "<br>";
       }      
     })
 
