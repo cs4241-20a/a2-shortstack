@@ -1,1 +1,107 @@
-/*Style your own assignment! This is fun! */
+body {
+    background-color: dimgray;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 0px;
+}
+
+#top-container {
+    width: 100%;
+    background-color: aqua;
+}
+
+#content-container {
+    width: 95%;
+    background-color: red;
+}
+
+h1.welcome-header {
+    display: flex;
+    justify-content: center;
+    font-family: 'Shrikhand', cursive;
+    font-size: 4vw;
+}
+
+#app-description {
+    font-size: 2vw;
+}
+
+div.column {
+    float: left;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#leftColumn {
+    width: 35%;
+}
+
+#rightColumn {
+    width: 65%;
+}
+
+#horizontal-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+table, th, td {
+    background-color: white;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    width: 90%;
+    font-size: 18px;
+    text-align: right;
+}
+
+label {
+    margin: 5px;
+
+    margin-right: 1vw;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+select {
+    display: inline-flex;
+    float: right;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+button {
+    width: 30%;
+    height: 30px;
+    margin: 10px;
+    font-size: 20px;
+}
+
+#device {
+    margin-top: 0px;
+}
+
+#submit {
+    margin: 20px;
+    margin-bottom: 30px;
+}
+
+
+input {
+    height: 20px;
+    margin: 5px;
+    font-size: 20px;
+}
+
+#index-label {
+    font-size: 1px;
+    
+}
