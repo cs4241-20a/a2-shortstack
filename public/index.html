@@ -9,7 +9,7 @@
   <body>
     <h1>Gompei The Game: High Scores</h1>
     <h3>By Kyle Mikolajczyk</h3>
-    <div id="insert-scores-flex">
+    <div id="insert-scores-flex" class="insert-scores-flex">
       <h2>Insert new score</h2>
       <h4>Use this form to post your high score</h4>
       <form action="" id="score-form">
@@ -20,6 +20,13 @@
       </form>
     </div>
     <h2>All Scores</h2>
+    <table id="highscores">
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+        <th>Date</th>
+      </tr>
+    </table>
   </body>
   <script>
 
@@ -38,11 +45,27 @@
       body 
     })
     .then( function( response ) {
+      
       // do something with the reponse 
+      console.log(response.json().then((data) => {
+      responseJSON(data);
+      }));;
       console.log( response )
     })
 
     return false
+  }
+
+  function responseJSON(json) {
+    console.log(json);
+    var table = '<tr><th>Name</th><th>Score</th><th>Date</th></tr>';
+    for(var i = 0; i < json.length; i++) {
+      var obj = json[i];
+      console.log(obj);
+      console.log(obj[0]);
+      table+="<tr><td>" + obj['name'] + "</td><td>" + obj['score'] + "</td><td>" + obj['date'] + "</td></td>";
+    }
+    document.getElementById("highscores").innerHTML = table;
   }
 
   window.onload = function() {

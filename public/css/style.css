@@ -31,8 +31,7 @@ h4 {
 .my-buttons {
     font-family: 'Noto Sans', sans-serif;
 }
-
-#insert-scores-flex {
+.insert-scores-flex {
     display: flex;
     flex-direction: column;
     text-align: right;
