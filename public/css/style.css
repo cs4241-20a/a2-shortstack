@@ -7,10 +7,6 @@ D: (Yellow) #A88300
 E: (Yellow) #F5BF00
 */
 
-.header { grid-area: header; }
-.left { grid-area: left; }
-.content { grid-area: content; }
-
 body {
     background-color: black;
     font-family: 'Roboto', sans-serif;
@@ -44,23 +40,6 @@ input {
     background-color: darkgreen;
 }
 
-.grid-container {
-    display: inline-block;
-    text-align: center;
-    background: lightgray;
-    display: grid;
-    gap: 1px;
-    grid-template-areas: 
-        'header header header header header'
-        'left content content content content';
-}
-
-.grid-container > div {
-    text-align: center;
-    background-color: black;
-    padding: 20px 0;
-}
-
 #resultsTable{
     font-size: x-large;
     width: 100%;
@@ -72,4 +51,25 @@ input {
     border: 1px solid lightgray;
     border-top: none;
     padding: 10px;
+}
+
+.grid-container {
+    display: inline-block;
+    text-align: center;
+    background: lightgray;
+    display: grid;
+    gap: 1px;
+    grid-template-areas: 
+        'header header header header header'
+        'left content content content content';
+}
+
+.header { grid-area: header; }
+.left { grid-area: left; }
+.content { grid-area: content; }
+
+.grid-container > div {
+    text-align: center;
+    background-color: black;
+    padding: 20px 0;
 }
