@@ -8,22 +8,72 @@
     <h1>Make a new user</h1>
     <form action="">
 	  <label for="userName">User Name:</label><br>
-      <input type='text' id='userName' value=""><br><br>
+      <input type="text" id="userName" value=""><br><br>
 	  <label for="userID">User ID:</label><br>
-      <input type='number' id='userID' value=""><br><br>
+      <input type="number" id="userID" value=""><br><br>
 	  <label for="userPassword">User Password:</label><br>
-      <input type='password' id='userPassword' value=""><br><br>
+      <input type="password" id="userPassword" value=""><br><br>
+    <label for="userTemp">Resting Temperature (°F):</label><br>
+      <input type="number" id="userTemp" value=""><br><br> 
+    <h2>Do you have any of the following symptoms on a regular basis?</h2>
+    <label for="userChills">Chills:</label><br>
+      <input type="checkbox" name="userChills" value="0"><br><br> 
+    <label for="userCough">Cough:</label><br>
+      <input type="checkbox" name="userCough" value="0"><br><br> 
+    <label for="userBreath">Shortness of Breath:</label><br>
+      <input type="checkbox" name="userBreath" value="0"><br><br> 
+    <label for="userThroat">Sore Throat:</label><br>
+      <input type="checkbox" name="userThroat" value="0"><br><br> 
+    <label for="userFatigue">Fatigue:</label><br>
+      <input type="checkbox" name="userFatigue" value="0"><br><br> 
+    <label for="userHeadache">Headache:</label><br>
+      <input type="checkbox" name="userHeadache" value="0"><br><br> 
+    <label for="userAche">Muscle Aches:</label><br>
+      <input type="checkbox" name="userAche" value="0"><br><br> 
+    <label for="userNose">Runny Nose or Congestion:</label><br>
+      <input type="checkbox" name="userNose" value="0"><br><br> 
+    <label for="userLoss">Loss of taste or smell:</label><br>
+      <input type="checkbox" name="userLoss" value="0"><br><br> 
+    <label for="userNausea">Nausea:</label><br>
+      <input type="checkbox" name="userNausea" value="0"><br><br> 
+    <label for="userDiarrhea">Nausea:</label><br>
+      <input type="checkbox" name="userDiarrhea" value="0"><br><br> 
       <br><button id="newUserButton">Submit</button>
       <br><br><button id="resetButton">Reset</button>
     </form>
     <h1>Update a Current User</h1>
     <form action="">
 	  <label for="updateUserName">User Name:</label><br>
-      <input type='text' id='updateUserName' value=""><br><br>
+      <input type="text" id="updateUserName" value=""><br><br>
 	  <label for="updateUserPassword">User Password:</label><br>
-      <input type='password' id='updateUserPassword' value=""><br><br>
+      <input type="password" id="updateUserPassword" value=""><br><br>
+      <h2>Do you have any of the following symptoms today?</h2>
+      <label for="updateUserChills">Chills:</label><br>
+        <input type="checkbox" name="updateUserChills" value="0"><br><br> 
+      <label for="updateUserCough">Cough:</label><br>
+        <input type="checkbox" name="updateUserCough" value="0"><br><br> 
+      <label for="updateUserBreath">Shortness of Breath:</label><br>
+        <input type="checkbox" name="updateUserBreath" value="0"><br><br> 
+      <label for="updateUserThroat">Sore Throat:</label><br>
+        <input type="checkbox" name="updateUserThroat" value="0"><br><br> 
+      <label for="updateUserFatigue">Fatigue:</label><br>
+        <input type="checkbox" name="updateUserFatigue" value="0"><br><br> 
+      <label for="updateUserHeadache">Headache:</label><br>
+        <input type="checkbox" name="updateUserHeadache" value="0"><br><br> 
+      <label for="updateUserAche">Muscle Aches:</label><br>
+        <input type="checkbox" name="updateUserAche" value="0"><br><br> 
+      <label for="updateUserNose">Runny Nose or Congestion:</label><br>
+        <input type="checkbox" name="updateUserNose" value="0"><br><br> 
+      <label for="updateUserLoss">Loss of taste or smell:</label><br>
+        <input type="checkbox" name="updateUserLoss" value="0"><br><br> 
+      <label for="updateUserNausea">Nausea:</label><br>
+        <input type="checkbox" name="updateUserNausea" value="0"><br><br> 
+      <label for="updateUserDiarrhea">Nausea:</label><br>
+        <input type="checkbox" name="updateUserDiarrhea" value="0"><br><br> 
       <br><button id="updateButton">Update</button>
     </form>
+    <h1>Current Users</h1>
+    <p id="database"></p>
   </body>
   <script>
 
@@ -51,9 +101,11 @@
     .then( function( text ) {
       entries = text.split("},");
       console.log("Data:")
+      document.getElementById("database").innerHTML = "";
       for (const entry of entries) {
-        // console.log(entry+(entry.slice(-1) == "}" ? "" : "}"));
-        console.log( JSON.parse(entry+(entry.slice(-1) == "}" ? "" : "}")) );//can access elements with .elementName
+        var entryjson = JSON.parse(entry+(entry.slice(-1) == "}" ? "" : "}"));
+        document.getElementById("database").innerHTML += entryjson.userName + ": " + entryjson.userID + "<br>";
+        console.log( entryjson );//can access elements with .elementName
       }      
     })
 
@@ -82,9 +134,11 @@
     .then( function( text ) {
       entries = text.split("},");
       console.log("Data:")
+      document.getElementById("database").innerHTML = "";
       for (const entry of entries) {
-        // console.log(entry+(entry.slice(-1) == "}" ? "" : "}"));
-        console.log( JSON.parse(entry+(entry.slice(-1) == "}" ? "" : "}")) );//can access elements with .elementName
+        var entryjson = JSON.parse(entry+(entry.slice(-1) == "}" ? "" : "}"));
+        document.getElementById("database").innerHTML += entryjson.userName + ": " + entryjson.userID + "<br>";
+        console.log( entryjson );//can access elements with .elementName
       }      
     })
 
@@ -101,15 +155,9 @@
     })
     .then( function( response ) {
       // do something with the reponse 
-      // return response.text()
       console.log("RESET")
+      document.getElementById("database").innerText = "Database cleared.";
     })
-    // .then( function( text ) {
-    //   // entries = text.split("},");
-    //   // for (const entry of entries) {
-    //   //   console.log(entry+(entry.slice(-1) == "}" ? "" : "}"));
-    //   // }      
-    // })
 
     return false
   }
