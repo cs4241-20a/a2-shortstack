@@ -13,13 +13,21 @@
       <input type='number' id='userID' value=""><br><br>
 	  <label for="userPassword">User Password:</label><br>
       <input type='password' id='userPassword' value=""><br><br>
-      <br><button id="submitButton">Submit</button>
+      <br><button id="newUserButton">Submit</button>
       <br><br><button id="resetButton">Reset</button>
+    </form>
+    <h1>Update a Current User</h1>
+    <form action="">
+	  <label for="updateUserName">User Name:</label><br>
+      <input type='text' id='updateUserName' value=""><br><br>
+	  <label for="updateUserPassword">User Password:</label><br>
+      <input type='password' id='updateUserPassword' value=""><br><br>
+      <br><button id="updateButton">Update</button>
     </form>
   </body>
   <script>
 
-  const submit = function( e ) {
+  const newUser = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
     const nameInput = document.querySelector( '#userName' ),
@@ -32,7 +40,38 @@
 		  },
           body = JSON.stringify( json )
 
-    fetch( '/submit', {
+    fetch( '/newUser', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      return response.text()
+    })
+    .then( function( text ) {
+      entries = text.split("},");
+      console.log("Data:")
+      for (const entry of entries) {
+        // console.log(entry+(entry.slice(-1) == "}" ? "" : "}"));
+        console.log( JSON.parse(entry+(entry.slice(-1) == "}" ? "" : "}")) );//can access elements with .elementName
+      }      
+    })
+
+    return false
+  }
+  
+  const update = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+    const nameInput = document.querySelector( '#updateUserName' ),
+      passwordInput = document.querySelector( '#updateUserPassword' ),
+      json = { 
+      userName: nameInput.value,
+      userPassword: passwordInput.value
+      },
+          body = JSON.stringify( json )
+
+    fetch( '/update', {
       method:'POST',
       body 
     })
@@ -76,10 +115,12 @@
   }
 
   window.onload = function() {
-    const submitButton = document.querySelector( '#submitButton' )
-    submitButton.onclick = submit
+    const newUserButton = document.querySelector( '#newUserButton' )
+    newUserButton.onclick = newUser
     const resetButton = document.querySelector( '#resetButton' )
     resetButton.onclick = reset
+    const updateButton = document.querySelector( '#updateButton' )
+    updateButton.onclick = update
   }
 
   </script>

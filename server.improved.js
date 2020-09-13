@@ -34,8 +34,18 @@ const handlePost = function( request, response ) {
       // appdata.push('{"resetting" : "true"}')
       appdata = []
       // appdata.push('{"resetting" : "true"}')
-    } else {
+    } else if (request.url == "/newUser") {
       appdata.push(data)
+    } else if (request.url == "/update") {
+      var match = false
+      for (const entry of appdata) {
+        var entryjson = JSON.parse(entry);//can access elements with .elementName
+        var datajson = JSON.parse(data);
+        if(entryjson.userName == datajson.userName && entryjson.userPassword == datajson.userPassword) {
+          match = true;
+        }
+      }  
+      appdata.push('{"matching" : "' + match + '"}')
     }
     // appdata.push('{"url" : "' + request.url + '"}')
   })
