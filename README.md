@@ -9,7 +9,7 @@ Realtime weather information is used to calculate lap times, so that information
 The 3D rendering is powered by ThreeJS, with a model from SketchFab that has been modified by me to be customizable and animated (here is the [original](https://skfb.ly/6TzIR)).
 
 For styling I wanted to try Bootstrap but it seemed like a little much, so I opted for [Bulma](https://bulma.io/) instead. It's a single CSS file, but golly is it usefull.\
-The only downside is that I had to write all the clientside Javascript myself, but that wasn't too painful after doing the ThreeJS code.\
+The only downside is that I had to write all the clientside Javascript myself, but that wasn't too painful after doing the ThreeJS code.
 
 This does mean that the W3C validator throws a **warning** about not having a header for a `<section>`. I would have thrown in a header with `visibility: hidden` to get around it, but that seems like cheating.\
 Lastly, the website works pretty great on mobile (except for ThreeJS which renders lighting *slightly* differently for some reason).
