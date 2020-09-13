@@ -15,11 +15,11 @@
 		<!-- Hero head: will stick at the top -->
 		<div class="hero-head">
 			<header class="navbar">
-                <div class="navbar-brand">
-                    <a href="index.html" class="navbar-item has-text-white has-text-weight-bold is-size-3">
-                    <p> simcar </p>
-                    </a>
-                </div>
+				<div class="navbar-brand">
+					<a href="index.html" class="navbar-item has-text-white has-text-weight-bold is-size-3">
+						<p> simcar </p>
+					</a>
+				</div>
 				<div class="navbar-start">
 					<a href="index.html" class="navbar-item is-active">Design
 					</a>
@@ -165,29 +165,43 @@
 				</div>
 			</div>
 		</div>
-        <div class="field is-horizontal">
+		<div class="field is-horizontal">
 			<div class="field-label">
 				<label class="label">Current Weather</label>
 			</div>
 			<div class="field-body">
-			<div id="openweathermap-widget-15"  style=""></div>
-			<script>
-				window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 15,cityid: '2993458',appid: 'aa0d005506ed7ef7670671f0b8508a21',units: 'imperial',containerid: 'openweathermap-widget-15',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
-			</script>
+				<div id="openweathermap-widget-15"></div>
+				<script>
+					window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 15,cityid: '2993458',appid: 'aa0d005506ed7ef7670671f0b8508a21',units: 'imperial',containerid: 'openweathermap-widget-15',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
+				</script>
+			</div>
 		</div>
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label class="label">Special Thanks</label>
+			</div>
+			<div class="field-body">
+				<a target="_blank" href="https://skfb.ly/6TzIR"> RC-14 Model by Dahie</a>
+			</div>
 		</div>
-        
+        <div class="field is-horizontal">
+			<div class="field-label">
+			</div>
+			<div class="field-body">
+				<a target="_blank" href="https://hdrihaven.com/hdri/?h=quattro_canti"> HDRI from HDRIHaven</a>
+			</div>
+		</div>
 	</div>
-    <div id="result_modal" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-        <div class="box">
-            <i class="fas fa-sync fa-spin" id="result_spin"></i>
-            <p id="result_text"></p>
-        </div>
-        </div>
-        <button onclick="document.getElementById('result_modal').classList.remove('is-active')" class="modal-close is-large" aria-label="close"></button>
-    </div>
+	<div id="result_modal" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="box">
+				<i class="fas fa-sync fa-spin" id="result_spin"></i>
+				<p id="result_text"></p>
+			</div>
+		</div>
+		<button onclick="document.getElementById('result_modal').classList.remove('is-active')" class="modal-close is-large" aria-label="close"></button>
+	</div>
 	<script src="js/scripts.js"></script>
 	<script type="module" src="js/render.js"></script>
 </body>
