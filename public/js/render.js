@@ -67,6 +67,8 @@ gltfLoader.load('animated.gltf', function (gltf) {
                 o.position.z = -0.25;
             } else if (o.material.name === "paint") {
                 o.material = carMaterial;
+            } else if (o.name === "Cylinder_0") {
+                o.position.z = -0.3;
             }
         }
     });
