@@ -54,7 +54,7 @@
     const button = document.querySelector( 'button' )
     button.onclick = submit
 
-    const table = document.querySelector( '.resultsTable' )
+    const table = document.querySelector( '#resultsTable' )
     fetch( '/appdata' )
     .then(function(response) {
       return response.json()
