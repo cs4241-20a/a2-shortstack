@@ -7,11 +7,14 @@
   <body>
     <link rel="stylesheet" href="/css/style.css">
     <h1 style="text-align:center">Fishing World Record Log</h1>
-    <form action="">
-      <center><input type='text' id='fishtype' value="your capture">
-      <input type='text' id='fishweight' value="weight in pounds">
-      <br></br>
-      <button id="submitBtn">submit</button></center>
+    <form>
+      <center>
+        <input type="text" id="anglername" value="angler name">
+        <input type="text" id="fishtype" value="your capture">
+      <input type="text" id="fishweight" value="weight in pounds">
+      <br>
+      <button id="submitBtn">submit</button>
+      </center>
     </form>
   </body>
   <script>
@@ -20,21 +23,19 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const fType = document.querySelector( '#fishtype' ),
-          json = { fishtype: fType.value },
+          json = { 
+                  anglername: document.querySelector('#anglername').value,
+                  fishtype: document.querySelector('#fishtype').value,
+                  fishweight: document.querySelector('#fishweight').value
+                 }
           body = JSON.stringify( json )
-
-    const fWeigth = document.querySelector( '#fishweight' ),
-          json2 = { fishweight: fWeigth.value },
-          body2 = JSON.stringify( json2 )
-
-    fetch( '/submit', {
+    fetch('/submit', {
       method:'POST',
       body
     })
     .then( function( response ) {
-      console.log(body + body2);
-
+      console.log(body);
+      
     })
 
     return false
