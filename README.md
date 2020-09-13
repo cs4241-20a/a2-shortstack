@@ -1,6 +1,8 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
+Jonathan Dang: <insert glitch>
+
 For this assignment I used HTML/CSS and JavaScript to create a website that collects user reviews on phones, tablets, and laptops. The user would input in their own ratings for each of the categories asked and with those ratings the website would calculate and present the overall rating in a table.
 
 # Concepts that Application Demonstrates

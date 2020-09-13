@@ -49,6 +49,7 @@ function generateBody(action) {
     }
 }
 
+
 function performFetch(name, body) {
     // fetching data from the input entries
     // POST used to send to server
@@ -118,6 +119,7 @@ function updateTable() {
     });
 }
 
+
 function createTable(data) {
     let table = document.getElementById('table');
     let numOfRows = table.rows.length;
@@ -149,6 +151,7 @@ function createTable(data) {
     }
 }
 
+
 function resetForms() {
     document.getElementById("name-input").reset();
     document.getElementById("device-selector").reset();
@@ -158,6 +161,7 @@ function resetForms() {
     document.getElementById("device-feel").value = "1 Star";
     document.getElementById("index-input").reset();
 }
+
 
 window.onload = function() {
     const submitButton = document.getElementById( 'submit' )

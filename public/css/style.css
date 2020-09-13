@@ -2,58 +2,12 @@ body {
     background-color: #F0D0B7;
 }
 
-.center {
-    margin: auto;
-    width: 50%;
-    padding: 0px;
-}
-
-#top-container {
-    width: 100%;
-    background-color: #DBA4C9;
-}
-
-#content-container {
-    width: 95%;
-    background-color: red;
-}
-
 h1 {
     display: flex;
     justify-content: center;
     font-family: 'Shrikhand', cursive;
     font-size: 4vw;
     color:white;
-}
-
-h1.welcome-header {
-    margin-top: -5px;
-}
-
-#app-description {
-    font-size: 3vw;
-    font-family: 'Fjalla One', sans-serif;
-}
-
-div.column {
-    float: left;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    
-}
-
-#leftColumn {
-    width: 35%;
-}
-
-#rightColumn {
-    width: 65%;
-}
-
-#horizontal-flex {
-    display: flex;
-    flex-direction: row;
 }
 
 table, th, td {
@@ -91,6 +45,56 @@ button {
     font-size: 20px;
 }
 
+input {
+    height: 20px;
+    margin: 5px;
+    font-size: 20px;
+}
+
+
+h1.welcome-header {
+    margin-top: -5px;
+}
+
+div.column {
+    float: left;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+#top-container {
+    width: 100%;
+    background-color: #DBA4C9;
+}
+
+#content-container {
+    width: 95%;
+    background-color: red;
+}
+
+
+#app-description {
+    font-size: 3vw;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+
+#leftColumn {
+    width: 35%;
+}
+
+#rightColumn {
+    width: 65%;
+}
+
+#horizontal-flex {
+    display: flex;
+    flex-direction: row;
+}
+
 #device {
     margin-top: 0px;
 }
@@ -100,15 +104,15 @@ button {
     margin-bottom: 30px;
 }
 
-
-input {
-    height: 20px;
-    margin: 5px;
-    font-size: 20px;
-}
-
 #index-label {
     font-size: 1px;
     
+}
+
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 0px;
 }
 

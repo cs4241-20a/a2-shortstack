@@ -11,6 +11,7 @@ const http = require( 'http' ),
 const reviews = [];
 var currentIndex = 0;
 
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -18,6 +19,7 @@ const server = http.createServer( function( request,response ) {
     handlePost( request, response ) 
   }
 })
+
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
@@ -38,6 +40,7 @@ const handleGet = function( request, response ) {
   }
 }
 
+
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -57,10 +60,10 @@ const handlePost = function( request, response ) {
       if (index !== -1) {
 
         reviews.splice(index, 1);
-        console.log("Deleted Entry Successfully!");
+        console.log("Deleted Entry at " + index + " Successfully!");
       }
       else {
-        console.error("Index is Out of Range!");
+        console.error("Index: " + recievedData.index + " Does Not Exist in Data!");
       }
     }
 
@@ -83,11 +86,11 @@ const handlePost = function( request, response ) {
 
           recievedData.currentIndex = index;
           reviews[desiredIndex] = recievedData;
-          console.log("Modified Entry Sucessfully!")
+          console.log("Modified Entry at " + index + " Sucessfully!")
         }
         
         else {
-          console.error("Index is Out of Range!");
+          console.error("Index: " + index + " Does Not Exist in Data!");
         }
       }
 
@@ -103,6 +106,7 @@ const handlePost = function( request, response ) {
   })
 }
 
+
 function findIndexPostion(index) {
   for (let i = 0; i < reviews.length; i++) {
     if (reviews[i].currentIndex == index) {
@@ -112,6 +116,7 @@ function findIndexPostion(index) {
 
   return -1;
 }
+
 
 function calculateOverallRating(price, battery, performance, feel) {
   var overallRating = (price + battery + performance + feel) / 4;
@@ -134,7 +139,7 @@ const sendFile = function( response, filename ) {
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
 
-     }else{
+     } else{
 
        // file not found, error code 404
        response.writeHeader( 404 )
