@@ -49,28 +49,32 @@ function generateBody(action) {
     }
 }
 
+function performFetch(name, body) {
+    // fetching data from the input entries
+    // POST used to send to server
+    fetch( name, {
+        // adding method type POST
+        method:'POST',
+        body // adding body of the input to send to server (is in JSON)
+    })
+    // response is from the server
+    .then( function( response ) { // once this async promise task completes then run this particular function
+        // do something with the reponse 
+        console.log( response )
+        updateTable()
+    })
+
+    resetForms();
+}
+
+
 const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
     
     body = generateBody(1)
 
-    // fetching data from the submit entry
-    // POST used to submit forms to server
-    fetch( '/submit', {
-      // adding method type POST
-      method:'POST',
-      body // adding body of the input to send to server (is in JSON)
-    })
-    // response is from the server
-    .then( function( response ) { // once this async promise task completes then run this particular function
-      // do something with the reponse 
-      console.log( response );
-      updateTable();
-
-    })
-    
-    resetForms();
+    performFetch('/submit', body)
 
     return false;
 }
@@ -82,49 +86,18 @@ const modify = function( e ) {
     
     body = generateBody(2)
 
-    // fetching data from the submit entry
-    // POST used to submit forms to server
-    fetch( '/modify', {
-      // adding method type POST
-      method:'POST',
-      body // adding body of the input to send to server (is in JSON)
-    })
-    // response is from the server
-    .then( function( response ) { // once this async promise task completes then run this particular function
-      // do something with the reponse 
-      console.log( response )
-      updateTable()
-
-    })
- 
-    resetForms();
+    performFetch('/modify', body)
 
     return false;
 }
 
-
-const deleteButton = function( e ) {
+const deletion = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
     
     body = generateBody(3);
 
-    // fetching data from the submit entry
-    // POST used to submit forms to server
-    fetch( '/deleteButton', {
-      // adding method type POST
-      method:'POST',
-      body // adding body of the input to send to server (is in JSON)
-    })
-    // response is from the server
-    .then( function( response ) { // once this async promise task completes then run this particular function
-      // do something with the reponse 
-      console.log( response );
-      updateTable();
-
-    })
- 
-    resetForms();
+    performFetch('/deletion', body)
 
     return false;
 }
@@ -151,7 +124,7 @@ function createTable(data) {
 
     // clearing all the rows before re-inserting
     for (let i = numOfRows - 1; i > 0; i--) {
-      table.deleteRow(i);
+        table.deleteRow(i);
     }
 
     for (let i = 0; i < data.length; i++) {
@@ -181,22 +154,21 @@ function resetForms() {
     document.getElementById("device-selector").reset();
     document.getElementById("price-selector").reset();
     document.getElementById("battery-selector").reset();
-    document.getElementById("performance-selector").reset();
-    document.getElementById("feel-selector").reset();
+    document.getElementById("performance").value = "1 Star";
+    document.getElementById("device-feel").value = "1 Star";
     document.getElementById("index-input").reset();
 }
 
 window.onload = function() {
-    const buttonS = document.getElementById( 'submit' )
-    buttonS.onclick = submit;
+    const submitButton = document.getElementById( 'submit' )
+    submitButton.onclick = submit;
 
-    const buttonM = document.getElementById('modify');
-    buttonM.onclick = modify;
+    const modifyButton = document.getElementById('modify');
+    modifyButton.onclick = modify;
 
-    const buttonD = document.getElementById('delete');
-    buttonD.onclick = deleteButton;
+    const deleteButton = document.getElementById('delete');
+    deleteButton.onclick = deletion;
 
-    
 
     fetch('/reviews') // using fetch to GET the reviews array in server
     .then(response => response.json())

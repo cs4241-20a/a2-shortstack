@@ -5,16 +5,17 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="container center" id="top-container">
+    <div id="top-container">
       <h1 class="welcome-header">WELCOME!</h1>
-      <h1 class="welcome-header" id="app-description">This is a Phone/Tablet/Laptop User Rating</h1>
+      <h1 id="app-description">This is a Phone/Tablet/Laptop User Rating</h1>
     </div>
     <div class="center" id="content-container">
       <div class="row">
-        <div class="column" style="background-color: red;" id="leftColumn">
-          <h3>column 1</h3>
+        <div class="column" id="leftColumn">
+          <center><h2>Enter in Your Inputs</h2></center>
           <form action="" id="name-input">
             <div id="horizontal-flex">
               <label>Your Name: </label>
@@ -49,7 +50,7 @@
             </select>
           </form>
           <form action="" id="price-selector">
-            <label style="margin-right: 50px;"for="price-rating">Choose Price Rating:</label>
+            <label for="price-rating">Choose Price Rating:</label>
             <select name="price-rating" id="price">
               <option value="1 Star">1 Star</option>
               <option value="2 Stars">2 Stars</option>
@@ -68,7 +69,7 @@
               <option value="5 Stars">5 Stars</option>
             </select>
           </form>
-          <form action="" id="performance-selecotr">
+          <form action="" id="peformance-selector">
             <label for="performance-rating">Choose Performance Rating:</label>
             <select name="performance-rating" id="performance">
               <option value="1 Star">1 Star</option>
@@ -97,10 +98,10 @@
 
           <center><button id='modify'>modify</button></center>
           <center><button id='delete'>delete</button></center>
-          
+
         </div>
-        <div class="column" style="background-color: green;" id="rightColumn">
-          <h3>column 2</h3>
+        <div class="column" id="rightColumn">
+          <center><h2>Collected User Reviews</h2></center>
           <center><table id="table">
             <tr>
               <th>Index</th>

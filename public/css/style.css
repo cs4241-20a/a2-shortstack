@@ -1,5 +1,5 @@
 body {
-    background-color: dimgray;
+    background-color: #F0D0B7;
 }
 
 .center {
@@ -10,7 +10,7 @@ body {
 
 #top-container {
     width: 100%;
-    background-color: aqua;
+    background-color: #DBA4C9;
 }
 
 #content-container {
@@ -18,15 +18,21 @@ body {
     background-color: red;
 }
 
-h1.welcome-header {
+h1 {
     display: flex;
     justify-content: center;
     font-family: 'Shrikhand', cursive;
     font-size: 4vw;
+    color:white;
+}
+
+h1.welcome-header {
+    margin-top: -5px;
 }
 
 #app-description {
-    font-size: 2vw;
+    font-size: 3vw;
+    font-family: 'Fjalla One', sans-serif;
 }
 
 div.column {
@@ -75,7 +81,7 @@ select {
     float: right;
     margin-bottom: 30px;
     margin-right: 20px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 button {
@@ -105,3 +111,4 @@ input {
     font-size: 1px;
     
 }
+
