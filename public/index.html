@@ -3,28 +3,154 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link href="/CSS/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/scripts.js"></script>
+    <!--selector example-->
+    <style>
+      .btn {
+        background-color:red
+      }
+    </style>
   </head>
   <body>
+    List a new camera:
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <ul>
+        <li>
+          <input type='text' id='cameramake' value="Camera Make">
+        </li>
+        <li>
+          <input type='text' id='cameramodel' value="Camera Model">
+        </li>
+        <li>
+          <input type='text' id='cameraformat' value="Camera format">
+        </li>
+        <li>
+          <input type='number' id='price' value="Listing Price" min="1" required>
+          <label for="price">Please Enter Price in Dollars</label>
+        </li>
+        <li>
+          <input type="number" id='condition' value="Camera Condition" min="0" max="100" required>
+          <label for="condition">Please Enter Condition as a Percent</label>
+        </li>
+        <li>
+          <input type='text' id='firstname' value="First Name">
+        </li>
+        <li>
+          <input type='text' id='lastname' value="Last Name">
+        </li>
+          <button id='submitbutton'>submit</button>
+        </li>
+      </ul>
     </form>
+
+    <form action="">
+      <body>
+        Delete my Listing:
+      </body>
+      <ul>
+        <li>
+          <input type='text' id='deletefirstname' value="First Name">
+        </li>
+        <li>
+          <input type='text' id='deletelastname' value="Last Name">
+        </li>
+        <li>
+          <input type="number" id='deletelistingnumber' value="Listing Number" min="0" required>
+          <label for="deletelistingnumber">Listing Number</label>
+        </li> 
+        <li>
+          <button id='deletebutton'>delete</button>
+        </li>
+      </ul>
+    </form>
+    <form action="">
+      <body>
+        Update Listing
+      </body>
+      <ul>
+        <li>
+          <input type='text' id='updatecameramake' value="Camera Make">
+        </li>
+        <li>
+          <input type='text' id='updatecameramodel' value="Camera Model">
+        </li>
+        <li>
+          <input type='text' id='updatecameraformat' value="Camera format">
+        </li>
+        <li>
+          <input type='number' id='updateprice' value="Listing Price" min="1" required>
+          <label for="price">Please Enter Price in Dollars</label>
+        </li>
+        <li>
+          <input type="number" id='updatecondition' value="Camera Condition" min="0" max="100" required>
+          <label for="condition">Please Enter Condition as a Percent</label>
+        </li>
+        <li>
+          <input type="number" id='listingnumber' value="Listing Number" min="0" required>
+          <label for="listingnumber">Listing Number</label>
+        </li> 
+        <li>
+          <input type='text' id='updatefirstname' value="First Name">
+        </li>
+        <li>
+          <input type='text' id='updatelastname' value="Last Name">
+        </li>    
+        <li>
+          <button id='updatebutton'>Update</button>
+        </li>   
+      </ul>
+    </form>
+    <form action="">
+      <body>
+        Show all Listings:
+      </body>
+          <button id='listingsbutton'>Listings</button>
+    </form>
+
+     
+
   </body>
   <script>
 
   const submit = function( e ) {
     // prevent default form action from being carried out
+    // requires 3 parts
+    // set action to blank 
+    // preventDefault() called
+    // function must return false
+
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    // document represents current HTML document
+    const firstName = document.querySelector( '#firstname' ),
+          lastName = document.querySelector( '#lastname' ),
+          cameraMake = document.querySelector( '#cameramake' ),
+          cameraModel = document.querySelector( '#cameramodel' ),
+          cameraFormat = document.querySelector( '#cameraformat' ),
+          price = document.querySelector( '#price' ),
+          condition = document.querySelector( '#condition' )
+          json = { firstname: firstName.value, 
+            lastname: lastName.value, 
+            cameramake: cameraMake.value,
+            cameramodel: cameraModel.value, 
+            cameraformat: cameraFormat.value,
+            price: price.value,
+            condition: condition.value,
+            delete: false},
+          body = JSON.stringify( json ) // passed to fetch
+
+    // Fetch is type of JS 'promise'
+    // type of asynchronous function - prevents blocking main thread
+    // important for JS as it usually is single-threaded
+
+
 
     fetch( '/submit', {
       method:'POST',
-      body 
+      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
     })
-    .then( function( response ) {
+    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
       // do something with the reponse 
       console.log( response )
     })
@@ -32,10 +158,148 @@
     return false
   }
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+  const deleteListing = function( e ) {
+    // prevent default form action from being carried out
+    // requires 3 parts
+    // set action to blank 
+    // preventDefault() called
+    // function must return false
+
+    e.preventDefault()
+
+    // document represents current HTML document
+    const firstName = document.querySelector( '#deletefirstname' ),
+          lastName = document.querySelector( '#deletelastname' ),
+          id = document.querySelector( '#deletelistingnumber')
+
+          json = { firstname: firstName.value, 
+            lastname: lastName.value,
+            id: id.value,
+            delete: true },
+          body = JSON.stringify( json ) // passed to fetch
+
+    // Fetch is type of JS 'promise'
+    // type of asynchronous function - prevents blocking main thread
+    // important for JS as it usually is single-threaded
+
+
+
+    fetch( '/data', {
+      method:'POST',
+      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
+    })
+    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
+      // do something with the reponse 
+      console.log( response )
+    })
+
+    return false
   }
 
+  const getListings = function( e ) {
+    // prevent default form action from being carried out
+    // requires 3 parts
+    // set action to blank 
+    // preventDefault() called
+    // function must return false
+
+    e.preventDefault()
+
+    // document represents current HTML document
+    const firstName = document.querySelector( '#firstname' ),
+          lastName = document.querySelector( '#lastname' ),
+          cameraMake = document.querySelector( '#cameramake' ),
+          cameraModel = document.querySelector( '#cameramodel' ),
+          cameraFormat = document.querySelector( '#cameraformat' ),
+          price = document.querySelector( '#price' ),
+          condition = document.querySelector( '#condition' )
+          json = { firstname: firstName.value, 
+            lastname: lastName.value, 
+            cameramake: cameraMake.value,
+            cameramodel: cameraModel.value, 
+            cameraformat: cameraFormat.value,
+            price: price.value,
+            condition: condition.value,
+            delete: false},
+          body = JSON.stringify( json ) // passed to fetch
+
+    // Fetch is type of JS 'promise'
+    // type of asynchronous function - prevents blocking main thread
+    // important for JS as it usually is single-threaded
+
+
+
+    fetch( '/data', {
+      method:'GET',
+      //body // this variable has the same name as the property, so the : is omitted - same as writing body: body
+    })
+    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
+      // do something with the reponse 
+      console.log( response )
+    })
+
+    return false
+  }
+
+  const updateListing = function( e ) {
+    // prevent default form action from being carried out
+    // requires 3 parts
+    // set action to blank 
+    // preventDefault() called
+    // function must return false
+
+    e.preventDefault()
+
+    // document represents current HTML document
+    const firstName = document.querySelector( '#updatefirstname' ),
+          lastName = document.querySelector( '#updatelastname' ),
+          cameraMake = document.querySelector( '#updatecameramake' ),
+          cameraModel = document.querySelector( '#updatecameramodel' ),
+          cameraFormat = document.querySelector( '#updatecameraformat' ),
+          price = document.querySelector( '#updateprice' ),
+          condition = document.querySelector( '#updatecondition' ),
+          id = document.querySelector( '#listingnumber')
+          json = { firstname: firstName.value, 
+            lastname: lastName.value, 
+            cameramake: cameraMake.value,
+            cameramodel: cameraModel.value, 
+            cameraformat: cameraFormat.value,
+            price: price.value,
+            condition: condition.value,
+            id: id.value,
+            delete: false},
+          body = JSON.stringify( json ) // passed to fetch
+          console.log( body)
+
+    // Fetch is type of JS 'promise'
+    // type of asynchronous function - prevents blocking main thread
+    // important for JS as it usually is single-threaded
+
+
+
+    fetch( '/submit', {
+      method:'POST',
+      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
+    })
+    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
+      // do something with the reponse 
+      console.log( response )
+    })
+
+    return false
+  }
+
+  // assigns window.onload to a function
+  window.onload = function() {
+    const submitButton = document.getElementById( 'submitbutton' )
+    const deleteButton = document.getElementById( 'deletebutton' )
+    const listingsButton = document.getElementById( 'listingsbutton' )
+    const updateButton = document.getElementById( 'updatebutton' )
+    // when this button is clicked, call submit for the button that was found in this document
+    submitButton.onclick = submit
+    deleteButton.onclick = deleteListing
+    listingsButton.onclick = getListings
+    updateButton.onclick = updateListing
+  }
   </script>
 </html>

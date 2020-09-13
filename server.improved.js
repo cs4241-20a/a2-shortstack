@@ -12,10 +12,11 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+// server creation
 const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
+  if( request.method === 'GET' ) { // true for index, JS, CSS, etc.
     handleGet( request, response )    
-  }else if( request.method === 'POST' ){
+  }else if( request.method === 'POST' ){ // submitting user data
     handlePost( request, response ) 
   }
 })
@@ -36,10 +37,61 @@ const handlePost = function( request, response ) {
   request.on( 'data', function( data ) {
       dataString += data 
   })
-
+  const bargain = 'bargain'
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
 
+    incomingData = JSON.parse( dataString )
+
+    if( incomingData.delete === true ){
+      console.log( "deleting entry" )
+      incomingData.id = parseInt( incomingData.id )
+      for( var i = 0; i< appdata.length; i++ ) {
+        //  console.log( "incomingData:" + incomingData + "Listing:" + appdata[i])
+        if( incomingData.id === appdata[i].id ) {
+          appdata.splice( i, 1 )
+          console.log( "Removed Listing with ID: " + incomingData.id )
+        }
+      }
+    }
+    else {
+    // convert prices and conditions to ints
+    incomingData.price = parseInt( incomingData.price )
+    incomingData.condition = parseInt( incomingData.condition )
+    console.log( incomingData )
+
+    // the data has an ID, so it is either an update listing or delete request
+    if( incomingData.id != null ) {
+      console.log( "updating entry" )
+      incomingData.id = parseInt( incomingData.id )
+      for( var i = 0; i< appdata.length; i++ ) {
+        //  console.log( "incomingData:" + incomingData + "Listing:" + appdata[i])
+        if( incomingData.id === appdata[i].id ) {
+          appdata[i] = incomingData
+          console.log( "Updated Listing" )
+        }
+      }
+    }
+    else
+    {
+      // is this camera a good bargin?
+      incomingData.price = parseInt( incomingData.price )
+      incomingData.condition = parseInt( incomingData.condition )
+      var isBargain = true
+
+
+      if( incomingData.price > 1 && incomingData.condition < 10 ) {
+        console.log( "This is stupid" )
+        isBargain = false
+      }
+      incomingData[bargain] = isBargain
+
+      incomingData["id"] = appdata.length + 1
+
+      appdata.push( incomingData )
+
+  }
+}
+  console.log( appdata )
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })

@@ -1,1 +1,38 @@
 /*Style your own assignment! This is fun! */
+
+body {
+    background-color: #fafafa;
+    color: #187BFF;
+    font-size: 1.2em;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+h1 {
+    color: #0C89E8;
+    font-size: 4em;
+}
+h2 {
+    color: #00B2FF;
+    font-size: 3em;
+}
+h3 {
+    font-size: 2em;
+}
+table {
+    color: #0DF7FF;
+    text-align: center;
+    font-size: 1.5em;
+}
+th {
+    color: #0CC3E8;
+    font-size: 1.75em;
+}
+p {
+    font-size: 1.25em;
+}
+
+li {
+    font-size: 1.5em;
+}
+img {
+    width: 1080px;
+}
