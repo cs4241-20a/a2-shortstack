@@ -31,6 +31,6 @@ I've done a few tricks to make it as realistic as possible:
 They can (of course) also see their lap time and position both when submitting and when viewing the leaderboard.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Bulma to style the website in a modern style, with a large hero element and button that smoothly scrolls the user down
+- **Design Achievement 1**: Bulma to style the website in a modern style, with a large hero element and button that smoothly scrolls the user down to a seperate section where they can enter their simulation setup
 
 *Maybe next project, you'll be able to drive the car around*
