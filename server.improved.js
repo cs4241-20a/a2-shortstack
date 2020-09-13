@@ -43,11 +43,14 @@ const handlePost = function( request, response ) {
     dataString = JSON.parse(dataString)
     console.log( dataString["priority"] )
     if (dataString["priority"] === "med_priority") {
-      console.log("Medium Priority")
       dataString["priority"] = "Medium Priority"
-      console.log(dataString["date"])
-      dataString["date"].addDays(3)
+      dataString["Message for you"] = "Finish your high priority tasks first and then get to this!"
     }
+    if (dataString["priority"] === "high_priority") {
+      dataString["priority"] = "High Priority"
+      dataString["Message for you"] = "Finish this task first!"
+    }
+    
     dataSet.push(dataString)
     console.log(dataSet)
     // ... do something with the data here!!!
