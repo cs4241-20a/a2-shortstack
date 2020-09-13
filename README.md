@@ -45,10 +45,13 @@ The original login modal didn't look right. After a few iterations going back an
 Something looked wrong with the old chat messages, and someone pointed out that it may have been an issue with contrast with the background. The change is subtle but significant.
 <figure>
     <figcaption>Original contrast between messages and the background</figcaption>
+    <br/>
     <kbd><img width="100" src="https://i.imgur.com/Z3pH366.png"></kbd>
 </figure>
+<br/>
 <figure>
     <figcaption>Current contrast between messages and the background</figcaption>
+    <br/>
     <kbd><img width="100" src="https://i.imgur.com/ATUHdDs.png"></kbd>
 </figure>
 <br/>
