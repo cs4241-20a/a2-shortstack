@@ -7,4 +7,16 @@ This is a page for a car dealership to keep tabs on what car they have in stock 
 - **Create Single Page App**: The program is a single page app that updates with (and stores) the data inputted by the user. When new car details are added to the list, a script updates the html page and displays the details in a new row on a table, then communicates with the server to update the data stored on it in order for it to be persistent (so long as the server is on).
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: 
+- **Thinkaloud #1**:
+User was asked to add two different cars to the list.
+1. Last Name: Lee
+2. Problems: No problems were encountered.
+3. Surprising Comments: The interviewee wanted autocomplete and the ability to edit and delete entries.
+4. Potential Changes: Add autocomplete, ability to edit and delete entries.
+
+- **Thinkaloud #2**:
+User was asked to add two different cars to the list.
+1. Last Name
+2. Problems
+3. Surprising Comments
+4. Potential Changes
