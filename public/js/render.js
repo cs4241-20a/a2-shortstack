@@ -28,7 +28,7 @@ new RGBELoader()
     .setPath('assets/')
     .load('quattro_canti_1k.hdr', function (texture) {
         let envMap = pmremGenerator.fromEquirectangular(texture).texture;
-;
+        
         scene.environment = envMap;
 
         texture.dispose();
