@@ -3,12 +3,23 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <h1>Gompei The Game: High Scores</h1>
+    <h3>By Kyle Mikolajczyk</h3>
+    <div id="insert-scores-flex">
+      <h2>Insert new score</h2>
+      <h4>Use this form to post your high score</h4>
+      <form action="" id="score-form">
+        <input type='text' id='name' placeholder="Your Name">
+        <input type='number' id='score' placeholder="Your High Score">
+        <input type='date' id='date' value="Date of Score">
+       <button id="submit-button" class="my-buttons">Submit</button>
+      </form>
+    </div>
+    <h2>All Scores</h2>
   </body>
   <script>
 
@@ -16,8 +27,10 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const number = document.querySelector('#score');
+    const date = document.querySelector('#date');
+    const input = document.querySelector( '#name' ),
+          json = { name: input.value, date: date.value, score: number.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {

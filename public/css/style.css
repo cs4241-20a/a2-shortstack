@@ -1,1 +1,41 @@
 /*Style your own assignment! This is fun! */
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: auto;
+    text-align: center;
+    /* text-shadow: 1px 1px 8px black; */
+    background: #00cbc2;
+}
+
+h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+h4 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.my-buttons {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+#insert-scores-flex {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    align-content: center;
+    padding-right: 5%;
+}
