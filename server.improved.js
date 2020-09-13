@@ -34,6 +34,7 @@ const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
+      appdata.push({data})
       dataString += data 
   })
 
@@ -43,6 +44,7 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end(String(appdata))
     response.end()
   })
 }
