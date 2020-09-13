@@ -1,0 +1,19 @@
+/*Style your own assignment! This is fun! */
+
+#form-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#form-header {
+    padding-top: 5%;
+    padding-bottom: 0;
+    margin: 0;
+    text-align: center;
+}
+
+#form-title {
+    margin-bottom: 0;
+}
