@@ -10,6 +10,8 @@ Users may send messages using a text box at the top of the page, or reply to exi
 At the bottom of the page is a button to allow the user to view all of the raw data stored by the server. Since popularity values are generated on the fly, they are not included though you can see the rounded popularity value of each message on the top of its card. Password hashes for other users are also not sent by the server for security reasons.
 
 ## Technical Achievements
+- **Editing and Deleting Messages and Replies**: Users can edit/delete their own messages and replies.
+
 - **HTTPS Redirect, Registration, and Authorization**: Users are required to register on the site before sending messages. The passwords created by users are SHA-512 hashed using `crypto.subtle.digest`, and are then sent along with usernames using the `Authorization` header and the `Basic` authorization type. While hashing passwords is not strictly necessary due to an automatic HTTPS redirect from the frontend javascript, it is done so that if the server were to be compromized, it wouldn't give the attacker every user's password in plain text. All requests that involve sending, editing, or deleting messages require valid credentials to be send in the `Authorization` header and will fail if appropriate credentials are not provided.
 
 - **JSX and TypeScript**: TypeScript is used to avoid bugs from type incompatibilities, which is particularly useful with the large number of promises that RAMChat uses and making sure that they're properly awaited as necessary. TypeScript is also used as a JSX transpiler, which instead of using React, uses a custom JSX factory. The site is almost entirely javascript-rendered with the help of the JSX syntax.
