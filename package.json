@@ -1,13 +1,12 @@
 {
   "name": "simcar",
   "version": "1.0.0",
-  "description": "",
+  "description": "a mssrg",
   "author": "Robear Mankaryous",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "bulma": "^0.9.0",
     "mime": "^2.4.4"
   }
 }
