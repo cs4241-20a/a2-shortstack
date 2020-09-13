@@ -50,13 +50,17 @@ const handlePost = function( request, response ) {
       dataString["priority"] = "High Priority"
       dataString["Message for you"] = "Finish this task first!"
     }
+    if (dataString["priority"] === "low_priority") {
+      dataString["priority"] = "Low Priority"
+      dataString["Message for you"] = "You have some time, go watch some Netflix :)"
+    }
     
     dataSet.push(dataString)
     console.log(dataSet)
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end( dataString )
   })
 }
 
