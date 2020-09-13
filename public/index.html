@@ -1,13 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>Coronavirus Symtom Tracker 2.0</title>
     <meta charset="utf-8">
   </head>
   <body>
+    <h1>Make a new user</h1>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+	  <label for="userName">User Name:</label><br>
+      <input type='text' id='userName' value=""><br><br>
+	  <label for="userID">User ID:</label><br>
+      <input type='number' id='userID' value=""><br><br>
+	  <label for="userPassword">User Password:</label><br>
+      <input type='password' id='userPassword' value=""><br><br>
+      <br><button>submit</button>
     </form>
   </body>
   <script>
@@ -16,8 +22,14 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const nameInput = document.querySelector( '#userName' ),
+		  idInput = document.querySelector( '#userID' ),
+		  passwordInput = document.querySelector( '#userPassword' ),
+          json = { 
+		  userName: nameInput.value,
+		  userID: idInput.value,
+		  userPassword: passwordInput.value
+		  },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
