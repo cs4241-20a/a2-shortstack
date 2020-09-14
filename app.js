@@ -40,6 +40,8 @@ async function index(ctx) {
 async function list(ctx) {
     for (let i = 0; i < data.length; i++) {
 
+        data[i].id = i;
+
         if (typeof data[i].score !== 'undefined' || data[i].score == null) {
             data[i].ps = Number(data[i].ps);
             data[i].ms = Number(data[i].ms);
