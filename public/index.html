@@ -5,10 +5,58 @@
     <meta charset="utf-8">
   </head>
   <body>
+    <div class="headerOne">
+      <h1> To Do List <h2>
+    </div>
+
+    <div class="task">
+      <h2> Enter your to-do task </h2>
+
+      <form name "task-form" action="/server.improved.js">
+        <div class="input-task">
+          <div class="input">
+            <label for="name"> Task Name:</label>
+            <input type="text" id="name" value="" required>
+          </div>
+
+
+
+    </div>
+
     <form action="">
+
       <input type='text' id='yourname' value="your name here">
+
       <button>submit</button>
+
+
+
+
+
     </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </body>
   <script>
 
@@ -22,10 +70,10 @@
 
     fetch( '/submit', {
       method:'POST',
-      body 
+      body
     })
     .then( function( response ) {
-      // do something with the reponse 
+      // do something with the reponse
       console.log( response )
     })
 
