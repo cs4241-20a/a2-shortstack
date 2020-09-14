@@ -14,7 +14,8 @@ function handle_add(){
         body
     }).then(function( response ) {
         if(response.status === 200){
-            getLatestResults();
+            updateResults(response);
+            //getLatestResults();
         }
         return true;
     });
@@ -37,7 +38,8 @@ function handle_modify(){
         body
     }).then(function( response ) {
         if(response.status === 200){
-            getLatestResults();
+            updateResults(response);
+            //getLatestResults();
         }
         return true;
     });
@@ -57,7 +59,8 @@ function handle_delete(){
         body
     }).then(function( response ) {
         if(response.status === 200){
-            getLatestResults();
+            updateResults(response);
+            //getLatestResults();
         }
         return true;
     });

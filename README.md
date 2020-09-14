@@ -46,10 +46,11 @@ I satisfied the requirements for the assignments in the following ways:
     CSS. Each elements has style rules in /public/css/style.css.
     - In /public/css/style.css, Element, ID, and Class selctors have all been 
     used (Ex: h1, .app-item, #add).
-    -A flex box was used to place the three forms and two tables. The div
-    item with class "appgrid" has "display: flex" to contain these element.
-    -The ___ font was used for all text. It's imported in on line ___ of
-    index.html.
+    -The three forms and two tables are inside a flex box for formatting. The 
+    div item with class "appgrid" has "display: flex" to contain these elements.
+    -All text uses the font Inconsolata from Google Fonts. It's linked into 
+    index.html at line 7, and set as the font family for all text on line 7 .of 
+    public/css/style.css
     -The CSS is all maintained in the external stylesheet /public/css/style.css
 - **JS**:
     - Front-end JS is located in /public/js/scripts.js to fetch data from the
@@ -60,8 +61,9 @@ I satisfied the requirements for the assignments in the following ways:
 http://a2-joeswetz.glitch.me
         
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Real-Time Update**: The tables in index.html update automatically as the
+contents change based on the user input. Whenever the user makes an add, modify, or 
+delete request, the server returns a list containing the current contents of the tables.
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...

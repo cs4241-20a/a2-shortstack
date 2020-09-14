@@ -1,4 +1,11 @@
-/*Style your own assignment! This is fun! */
+/*
+ * Joseph Swetz
+ * Stylesheet for index.html for CS4241 A2
+ */
+
+* {
+    font-family: Inconsolata, serif;
+}
 
 h1 {
     text-align: center;

@@ -53,18 +53,20 @@ const handlePost = function( request, response ) {
 
         if(request.url === "/add") {
             addItem(data);
-            response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+            sendTable(response);
+            //response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         }else if(request.url === "/modify"){
             modifyItem(data);
-            response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+            sendTable(response);
+            //response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         }else if(request.url === "/delete"){
             deleteItem(data);
-            response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+            sendTable(response);
+            //response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         }else{
             response.writeHead(400, "Invalid request type", {'Content-Type': 'text/plain'});
+            response.end();
         }
-
-        response.end();
     })
 }
 
