@@ -21,29 +21,13 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
+
           json = {
                   anglername: document.querySelector('#anglername').value,
                   fishtype: document.querySelector('#fishtype').value,
                   fishweight: document.querySelector('#fishweight').value,
                   lineclass: document.querySelector('#line').value
                  }
-
-                 // var entry = {
-                 //   "_id": JSON.stringify(Date.now()),
-                 //   "name":JSON.stringify(json.anglername),
-                 //   "ftype": JSON.stringify(json.fishtype),
-                 //   "fweight": JSON.stringify(json.fishweight)
-                 //
-                 // }
-                 // db.put(entry).then((res) => {
-                 //      console.log("Document inserted OK");
-                 //  }).catch((err) => {
-                 //      console.error(err);
-                 //  });
-                 //
-                 //  db.info().then(function (info) {
-                 //    console.log(info);
-                 //    })
 
     window.alert('Successfully Recorded');
 
@@ -52,7 +36,8 @@
       method:'POST',
       body
     })
-    .then( function( response ) {
+    .then(function(response){
+      console.log(response.json());
 
       var table = document.getElementById("table1");
       // Create an empty <tr> element and add it to the 1st position of the table:
@@ -73,25 +58,19 @@
       cell5.innerHTML = curday('/');
       cell6.innerHTML = time(Number(json.fishweight),Number(json.lineclass));
 
-
     })
-
     return false
   }
 
-var update_loop = setInterval(Main, 1000);
-
-function Main(){
-
-  fetch('/r', {
-    method:'GET',
-
-  })
-
-}
-Main();
-
-
+// function Main(){
+//   fetch('/read', {
+//     method:'GET'
+//   })
+//   .then( function(response) {
+//
+//     console.log(JSON.stringify(response))
+//   })
+// }
 
   window.onload = function() {
     const button = document.querySelector( 'button' )

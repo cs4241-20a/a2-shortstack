@@ -6,10 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-
-
-var appdata = []
-
+      var appdata = []
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )
@@ -24,8 +21,12 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }
-  else if( request.url === '/r' ) {
-    console.log("send DAta now");
+  if( request.url === '/read' ) {
+    send = JSON.stringify(appdata);
+    console.log("THE FUCKING DATA")
+    console.log(send);
+    sendResponse(response);
+    //response.write(send);
   }
   else{
     sendFile( response, filename )
@@ -39,12 +40,20 @@ const handlePost = function( request, response ) {
       dataString += data
   })
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-    appdata = appdata + dataString;
-    console.log(appdata);
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    console.log( JSON.parse( dataString ))
+    let parsedData = JSON.parse(dataString)
+    appdata.push(parsedData);
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.data(JSON.stringify(appdata))
     response.end()
   })
+}
+
+
+const sendResponse = function(response){
+  let s = JSON.stringify(appdata)
+    response.writeHeader(200, { 'Content-Type': 'json' })
+    response.end(s)
 }
 
 const sendFile = function( response, filename ) {
@@ -60,7 +69,6 @@ const sendFile = function( response, filename ) {
        response.end( content )
 
      }else{
-
        // file not found, error code 404
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
