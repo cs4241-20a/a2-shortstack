@@ -1,15 +1,15 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+let appData = [
+  { 'name': 'frank', 'color': 'blue', 'rapname': 'Fk-Teddy bluⓔ$'},
+  { 'name': 'thomas', 'color': 'green', 'rapname': 'Ts-Candy grⓔⓔn$' },
+  { 'name': 'ford', 'color': 'blue', 'rapname': 'Fd-Dollaz bluⓔ$'} ,
+  { 'name': 'punch', 'color': 'yellow', 'rapname': 'Ph-Bopz yellow$' },
+  { 'name': 'love', 'color': 'orange', 'rapname': 'Le-Mansion orangⓔ$'} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,29 +25,78 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
+
 const handlePost = function( request, response ) {
-  let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+    var obj = JSON.parse(data);
+
+      rapname(obj); // using score will rearrange appData to have correct ranking
+    
+
+    return JSON.stringify(appData);
+     
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(appData))
   })
 }
 
+
+let middle = ['Bopz', 'Nasty', 'Cake', 'Dollaz', 'Boss', 'Teddy', 'Munchkin', 'Candy','Mansion','Monsta']
+
+const rapname = function(obj){//dervives rapper name
+
+  const { length } = appData;
+  var newColor=obj.color;
+  var newName ='';
+
+  let color = obj.color;
+  let name = obj.name;
+  let nameLength = name.length;
+
+  //change any instances of 'e' to 'ⓔ'
+  for (var i = 0; i < color.length; i++) {
+    if((color.charAt(i)).toLowerCase()==='e' ){
+
+      newColor = color.substr(0, i) + 'ⓔ' + color.substr(i+1);
+    }
+
+  }
+
+  //take first and last letter of name
+  for(var i = 0; i < nameLength; i++){
+    if(i===0){
+      newName = (name.charAt(0)).toUpperCase();
+    }
+    else if(i===nameLength-1 && nameLength > 1){
+      newName += (name.charAt(nameLength -1)).toLowerCase();
+    }
+  }
+
+  //pick a random middle part
+  let randNum =Math.floor(Math.random() * 10);
+
+  const rapname =  newName+ "-" + middle[randNum] +" " +newColor +"$";
+
+  //add data to the server
+  appData.push({name: name, color: color, rapname: rapname });
+  console.log(appData[length])
+  return true;
+
+}
+
 const sendFile = function( response, filename ) {
+  //console.log(filename)
    const type = mime.getType( filename ) 
 
    fs.readFile( filename, function( err, content ) {
