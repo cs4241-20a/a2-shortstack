@@ -43,15 +43,15 @@ const handlePost = function( request, response ) {
     dataString = JSON.parse(dataString)
     // console.log( dataString["priority"] )
     if (dataString["priority"] === "med_priority") {
-      dataString["priority"] = "Medium Priority"
+      dataString["priority"] = "Medium"
       dataString["message"] = "Finish your high priority tasks first and then get to this!"
     }
     if (dataString["priority"] === "high_priority") {
-      dataString["priority"] = "High Priority"
+      dataString["priority"] = "High"
       dataString["message"] = "Finish this task first!"
     }
     if (dataString["priority"] === "low_priority") {
-      dataString["priority"] = "Low Priority"
+      dataString["priority"] = "Low"
       dataString["message"] = "You have some time, go watch some Netflix :)"
     }
     

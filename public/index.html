@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>
-      
+      Your Work Advisor
     </h1>
     <form action="">
       <label for="priority"> Task </label><br />
@@ -34,10 +34,10 @@
           <th>Work List</th>
         </tr>
         <tr>
-          <th>Task</th>
           <th>Creation Date</th>
+          <th>Task</th>
           <th>Priority</th>
-          <th>Message For You</th>
+          <th>Advice</th>
         </tr>
       </thead>
       <tbody id="taskBody"></tbody>
@@ -55,8 +55,8 @@
       let cell4 = row.insertCell(3);
 
       //Fill those cells with the data gotten back from the server, this includes the new fields
-      row.insertCell(0).innerHTML = json.yourtask;
-      row.insertCell(1).innerHTML = json.date;
+      row.insertCell(0).innerHTML = json.date;
+      row.insertCell(1).innerHTML = json.yourtask;
       row.insertCell(2).innerHTML = json.priority;
       row.insertCell(3).innerHTML = json.message;
       console.log("got here")
@@ -90,11 +90,6 @@
       }).then(response => response.json())
     .then( function( response ) {
         addRows(response);})
-      // }).then(function(response) {
-      //   // do something with the reponse
-      //   addRows(response);
-      //   console.log(response);
-      // });
 
       return false;
     };
