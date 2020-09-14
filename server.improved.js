@@ -4,11 +4,12 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3000
+      port = 3000,
+      dayjs = require('dayjs'),
+      localizedFormat = require('dayjs/plugin/localizedFormat')
+dayjs.extend(localizedFormat)
 
-const appdata = [
-
-]
+var appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -23,7 +24,15 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if( request.url === '/results') {
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(appdata))
+  }
+  else if( request.url === '/result') {
+
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -36,14 +45,58 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-    console.log('hello')
+    dataString = JSON.parse(dataString)
 
-    // ... do something with the data here!!!
+    if(request.url === '/delete'){
+      manageData('/delete', dataString)
+    }
+    else if(request.url === '/edit'){
+      manageData('/edit', dataString)
+    }
+    else {
+      manageData('/submit', dataString)
+    }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end('hi')
   })
+}
+
+const manageData = function( url, data ) {
+  if(url === '/submit'){
+    if(data.currentPage !== "" && data.overallPage !== "") {
+      const progress = (data.currentPage / data.overallPage) * 100
+      data.progress = `${progress.toPrecision(2)}%`
+    } else {
+      data.progress = '-'
+    }
+    data.createdAt = dayjs().format('lll') 
+    data.updatedAt = dayjs().format('lll')
+    appdata.push(data)
+    return 200
+  }
+  else if(url === '/delete'){
+    appdata = appdata.filter(book => book.isbn !== data[0].isbn)
+    return 200
+  }
+
+  else if(url === '/edit' ){
+    if(data.currentPage !== "" && data.overallPage !== "") {
+      const progress = (data.currentPage / data.overallPage) * 100
+      data.progress = `${progress.toPrecision(2)}%`
+    } else {
+      data.progress = '-'
+    }
+    data.updatedAt = dayjs().format('lll') 
+    appdata = appdata.filter(book => book.isbn !== data.isbn)
+    appdata.push(data)
+    return 200
+  }
+}
+
+/** as isbn# is unique for books, we use it as the 'primary key' */
+const isDuplicate = function( data ) {
+
 }
 
 const sendFile = function( response, filename ) {
