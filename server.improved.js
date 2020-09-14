@@ -34,13 +34,32 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
     const json = JSON.parse(dataString)
-    json.itemtotal = ((parseFloat(json.itemprice) * parseFloat(json.itemquantity)).toFixed(2)).toString()
-    appdata.push(json)
+    const cond = json.itemaction
+    switch(cond) {
+      case "add":
+        json.itemtotal = ((parseFloat(json.itemprice) * parseFloat(json.itemquantity)).toFixed(2)).toString()
+        appdata.push(json)
+        break;
+      case "delete":
+        appdata.pop()
+        break;
+      case "edit":
+        for(var i = 0; i < appdata.length; i++){
+          if(appdata[i].itemname == json.itemname){
+            appdata[i].itemprice = json.itemprice
+            appdata[i].itemquantity = json.itemquantity
+            appdata[i].itemtotal = ((parseFloat(appdata[i].itemprice) * parseFloat(appdata[i].itemquantity)).toFixed(2)).toString()
+          }
+        }
+        break;
+      default:
+        // code block
+    }
+    
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(JSON.stringify(json))
+    response.end(JSON.stringify(appdata))
   })
 }
 

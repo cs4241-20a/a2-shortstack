@@ -8,12 +8,25 @@
     <link rel="stylesheet" href="css/style.css">
     
   </head>
-  <div class="flex-container">
-    <h1>
-      Shopping List
-    </h1>
-
-    <body>
+  <body>
+    <div class="flex-container">
+      <h1>
+        Shopping List
+      </h1>
+      <form action="">
+        <div class = "forms">
+          <input class="inputs" type="text" id="itemname" value="Item Name Here">
+          <input class="inputs" type="text" id="itemprice" value="Item Price Here">
+          <input class="inputs" type="text" id="itemquantity" value="Item Quantity Here">
+        </div>
+        <br>
+        <div class="buttons">
+          <button id="addbutton">Add</button>
+          <button id="deletebutton">Delete Previous Item</button>
+          <button id="editbutton">Edit Item</button>
+        </div>
+      </form>
+      <br>
       <table id="myTable">
         <tr>
           <td>Item Name</td>
@@ -22,84 +35,6 @@
           <td>Total Price</td>
         </tr>
       </table>
-      <br>
-
-      <form action="">
-        <div class = "forms">
-        <input class="inputs" type="text" id="itemname" value="Item Name Here">
-        <input class="inputs" type="text" id="itemprice" value="Item Price Here">
-        <input class="inputs" type="text" id="itemquantity" value="Item Quantity Here">
-        </div>
-        <br>
-        <br>
-        <div class="buttons">
-          <button id="addbutton">Add</button>
-          <button id="deletebutton">Delete Previous Item</button>
-        </div>
-      </form>
-    </body>
-  </div>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#itemname' )
-    const input2 = document.querySelector( '#itemprice' )
-    const input3 = document.querySelector( '#itemquantity' )
-    const json = { itemname: input.value,  itemprice: input2.value, itemquantity: input3.value, itemtotal: ""}
-    const body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    //MODIFY THIS
-    .then( function( response ) {
-      // do something with the reponse
-      return response.text()
-    })
-    .then( function(txt){
-      console.log(txt)
-      let x = JSON.parse(txt)
-      updateTable(x.itemname, x.itemprice, x.itemquantity, x.itemtotal)
-    })
-
-    return false
-  }
-  
-  let numRows = 1
-  
-  function updateTable(p1, p2, p3, p4) {
-    var table = document.getElementById("myTable");
-    var row = table.insertRow(-1);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    cell1.innerHTML = p1;
-    cell2.innerHTML = p2;
-    cell3.innerHTML = p3;
-    cell4.innerHTML = p4;
-    numRows++
-  }
-  
-  const delRow = function deleteLastRow() {
-    console.log("Removing last row...")
-    if(numRows !== 1){
-      document.getElementById("myTable").deleteRow(-1);
-      numRows--
-    }
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( '#addbutton' )
-    button.onclick = submit
-    const dbutton = document.querySelector( '#deletebutton' )
-    dbutton.onclick = delRow
-  }
-
-  </script>
+    </div>
+  </body>
 </html>
