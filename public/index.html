@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+  <script src="js/scripts.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
           <input type='text' id='username' placeholder="John Doe">
         </div>
         <div class="flexContainer margin-spacer">
-          <label for="device-selection">Choose a Device:</label>
+          <label>Choose a Device:</label>
           <select name="device-selection" id="device">
             <optgroup label="Phones">
               <option value="Apple iPhone 11 Pro Max">Apple iPhone 11 Pro Max</option>
@@ -50,7 +51,7 @@
           </select>
         </div>
         <div class="flexContainer margin-spacer">
-          <label for="price-rating">Choose Price Rating:</label>
+          <label>Choose Price Rating:</label>
           <select name="price-rating" id="price">
             <option value="1 Star">1 Star</option>
             <option value="2 Stars">2 Stars</option>
@@ -60,7 +61,7 @@
           </select>
         </div>
         <div class="flexContainer margin-spacer">
-          <label for="battery-rating">Choose Battery-Life Rating:</label>
+          <label>Choose Battery-Life Rating:</label>
           <select name="battery-rating" id="battery">
             <option value="1 Star">1 Star</option>
             <option value="2 Stars">2 Stars</option>
@@ -70,7 +71,7 @@
           </select>
         </div>
         <div class="flexContainer margin-spacer">
-          <label for="performance-rating">Choose Performance Rating:</label>
+          <label>Choose Performance Rating:</label>
           <select name="performance-rating" id="performance">
             <option value="1 Star">1 Star</option>
             <option value="2 Stars">2 Stars</option>
@@ -79,8 +80,8 @@
             <option value="5 Stars">5 Stars</option>
           </select>
         </div>
-        <div class="flexContainer margin-spacer" id="last-selector">
-          <label for="device-feel-rating">Choose Device Feel Rating:</label>
+        <div class="flexContainer margin-spacer">
+          <label>Choose Device Feel Rating:</label>
           <select name="device-feel-rating" id="device-feel">
             <option value="1 Star">1 Star</option>
             <option value="2 Stars">2 Stars</option>
@@ -89,13 +90,18 @@
             <option value="5 Stars">5 Stars</option>
           </select>
         </div>
-        <center><button id='submit'>submit</button></center>
+
+        <button id='submit'>submit</button>
+
         <div class="horizontal-flex margin-spacer">
           <label>Index Position for Modify/Delete: </label>
           <input type='number' id='index' value=0 min=0>
         </div>
-        <center><button class="bottom-spacer" id='modify'>modify</button></center>
-        <center><button id='delete'>delete</button></center>
+        <div class="buttons-flexContainer">
+          <button id='modify'>modify</button>
+          <button id='delete'>delete</button>
+        </div>
+        
       </form>
 
     </div>
@@ -116,6 +122,5 @@
     </div>
   </div>
 </body>
-<script src="js/scripts.js"></script>
 
 </html>
