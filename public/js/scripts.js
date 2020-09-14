@@ -13,36 +13,73 @@ const submit = function( e ) {
     const gender = document.getElementById("gender").value;
     const birthday = document.getElementById("birthday").value;
 
-    //test
-    console.log(fName);
-    console.log(mName);
-    console.log(lName);
-    console.log(gender);
-    console.log(birthday);
-
     //constructing the response
     let json = {
         firstName: fName,
         middleName: mName,
         lastName: lName,
         gender: gender,
-        birthday: birthday
+        birthday: birthday,
+        removeElement: -1
     };
 
     let body = JSON.stringify(json);
 
     fetch( '/submit', {
         method:'POST',
-        body:body
+        body
     }).then( function( response ) {
         // do something with the response
-        console.log( response )
+        return response.json();
+    }).then( function( json ) {
+        loadTable(json);
     });
 
     return false
 };
 
+const loadTable = function (json){
+    const table = document.getElementById("table-body");
+    table.innerHTML = "";
+    for (let i = 0; i < json.length; i++){
+        table.innerHTML += (
+            "<tr>" +
+            "<td>" + json[i]['fullName'] + "</td>" +
+            "<td>" + json[i]['gender'] + "</td>" +
+            "<td>" + json[i]['birthday'] + "</td>" +
+            "<td>" + json[i]['ableToDrink'] + "</td>" +
+            "<td>" + "<button type=\"button\" onclick='deleteElement(this)' class=\"btn btn-danger deleteButton\" value='" + i + "'>Delete</button>" + "</td>"    +
+            "</tr>"
+        )
+    }
+};
+
+const deleteElement = function (e){
+    let json = {
+        removeElement: e.value
+    };
+
+    let body = JSON.stringify(json);
+
+    fetch( '/submit', {
+        method:'POST',
+        body
+    }).then( function( response ) {
+        return response.json();
+    }).then( function( json ) {
+        loadTable(json);
+    });
+
+};
+
 window.onload = function() {
     const button = document.querySelector( '#addGuestButton' );
-    button.onclick = submit
+    button.onclick = submit;
+    fetch("/submit", {
+        method:'POST'
+    }).then(function (response){
+        return response.json();
+    }).then(function (json){
+       loadTable(json);
+    });
 };

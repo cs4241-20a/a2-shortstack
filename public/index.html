@@ -11,7 +11,7 @@
     <!--Links external scripts and styles-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
-  <body style="background-color: #DCDCDC">
+  <body style="background-color: rgb(234,236,239);">
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
         <img src="https://images.emojiterra.com/google/android-10/512px/1f389.png" width="30" height="30" class="d-inline-block align-top" alt="Party Popper">
@@ -67,9 +67,28 @@
               </div>
             </div>
           </div>
-          <button id="addGuestButton"class="btn btn-secondary" type="submit">Add Guest</button>
+          <button id="addGuestButton" class="btn btn-primary" type="submit">Add Guest</button>
         </form>
       </div>
+    </div>
+    <div id="table-header" class="jumbotron">
+      <h1 id="table-title">Guest List</h1>
+    </div>
+    <div id="table-section" class="jumbotron">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Able to Drink</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
