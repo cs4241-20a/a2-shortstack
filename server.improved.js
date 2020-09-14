@@ -7,9 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  {'habit_name': 'exercise', 'startDate':"08/14/2020", 'weeks':4, 'days':[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0], 'longest_streak':0}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -21,29 +19,30 @@ const server = http.createServer( function( request,response ) {
 })
 
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
-
+  const filename = dir + request.url.slice( 1 )
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else{
     sendFile( response, filename )
   }
 }
-
+let dataStorage = []
+//dataStorage.push(appdata.toString())
 const handlePost = function( request, response ) {
-  let dataString = ''
-
-  request.on( 'data', function( data ) {
-      dataString += data 
+    request.on( 'data', function( data ) {
+      let newdata = JSON.parse(data)
+      let days = new Array(newdata.weeks*7).fill(0)
+      newdata.days = days
+    dataStorage.push(JSON.stringify(newdata))
+    console.log(dataStorage)
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(dataStorage))
   })
 }
 
@@ -69,4 +68,4 @@ const sendFile = function( response, filename ) {
    })
 }
 
-server.listen( process.env.PORT || port )
+server.listen(  process.env.PORT || port )
