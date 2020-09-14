@@ -49,7 +49,7 @@ const handlePost = function( request, response ) {
   request.on('data', function (data) {
     //parse the received data into a JSON object
     let recv = JSON.parse(data);
-    if (recv['removeElement'] === -1) {
+    if (recv['removeElement'] === -1 && recv['modifyElement'] === -1) {
       //calculate the full name of the individual to a single string
       let fullName = getFullName(recv['firstName'], recv['middleName'], recv['lastName']);
 
@@ -67,7 +67,7 @@ const handlePost = function( request, response ) {
       //add the json to a list
       guests.push(returnJson);
     }
-    else {
+    else if(recv['removeElement'] >= 0){
       let deleteValue = parseInt(recv["removeElement"]);
       let newArr = [];
       for (let i = 0; i < guests.length; i++) {
@@ -76,6 +76,29 @@ const handlePost = function( request, response ) {
         }
       }
       guests=newArr;
+    }
+    else if(recv['modifyElement'] >= 0){
+      let modifyValue = parseInt(recv["modifyElement"]);
+      let newArr = [];
+      for (let i = 0; i < guests.length; i++) {
+        if (modifyValue !== i) {
+          newArr.push(guests[i]);
+        }
+        else{
+          let newValue;
+          newValue = guests[i]['ableToDrink'] !== true;
+          newArr.push({
+            fullName: guests[i]['fullName'],
+            gender: guests[i]['gender'],
+            birthday: guests[i]['birthday'],
+            ableToDrink: newValue
+          });
+        }
+      }
+      guests=newArr;
+    }
+    else{
+      console.log("this should not occur!")
     }
   });
 

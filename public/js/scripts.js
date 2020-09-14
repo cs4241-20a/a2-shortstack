@@ -26,7 +26,8 @@ const submit = function( e ) {
         lastName: lName,
         gender: gender,
         birthday: birthday,
-        removeElement: -1
+        removeElement: -1,
+        modifyElement: -1
     };
 
     let body = JSON.stringify(json);
@@ -55,9 +56,27 @@ const loadTable = function (json){
             "<td>" + json[i]['birthday'] + "</td>" +
             "<td>" + json[i]['ableToDrink'] + "</td>" +
             "<td>" + "<button type=\"button\" onclick='deleteElement(this)' class=\"btn btn-danger deleteButton\" value='" + i + "'>Delete</button>" + "</td>"    +
+            "<td>" + "<button type=\"button\" onclick='modifyElement(this)' class=\"btn btn-warning modifyButton\" value='" + i + "'>Override</button>" + "</td>"    +
             "</tr>"
         )
     }
+};
+
+const modifyElement = function (e){
+    let json = {
+        modifyElement: e.value
+    };
+
+    let body = JSON.stringify(json);
+
+    fetch( '/submit', {
+        method:'POST',
+        body
+    }).then( function( response ) {
+        return response.json();
+    }).then( function( json ) {
+        loadTable(json);
+    });
 };
 
 const deleteElement = function (e){
