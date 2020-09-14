@@ -13,6 +13,12 @@ const submit = function( e ) {
     const gender = document.getElementById("gender").value;
     const birthday = document.getElementById("birthday").value;
 
+    document.getElementById('fName').value = "";
+    document.getElementById("mName").value = "";
+    document.getElementById("lName").value = "";
+    document.getElementById("gender").value = "Male";
+    document.getElementById("birthday").value = "";
+
     //constructing the response
     let json = {
         firstName: fName,
