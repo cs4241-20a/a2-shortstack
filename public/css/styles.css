@@ -1,5 +1,9 @@
 /*Style your own assignment! This is fun! */
 
+.special-font{
+    font-family: 'Charmonman', cursive;
+}
+
 #form-section {
     display: flex;
     justify-content: center;
