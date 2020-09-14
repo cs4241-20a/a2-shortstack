@@ -1,6 +1,5 @@
 
-## a2-Zacoulou.glitch.me
-Glitch Link: a2-Zacoulou.glitch.me
+## https://a2-zacoulou.glitch.me/
 This is a To-do list web page that allows a user to add new taks and generate respective deadlines based on the start date and priority of the task. I used flexbox for layout as it helped simplify the process of adding tasks for the website. To create a task, fill out all fields at the top: the task name, the priority level, and the start date. Click the blue rocket icon to submit this task to the task list below. To edit a task, click the green edit button on a given task, make the desired changes to the name, priority, or start date, and then click the check mark to indicate you would like to save your changes. To remove a task once it has been completed, click the red X mark next to a given task to remove it from the list.
 
 ## Technical Achievements
