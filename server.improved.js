@@ -105,7 +105,7 @@ const handlePost = function (request, response) {
     let vehicleJSON = JSON.parse(dataString);
 
     // Calculate race results
-    fetchWeather(vehicleJSON).then((weatherBody) => {
+    fetchWeather().then((weatherBody) => {
       let weatherJSON = JSON.parse(weatherBody);
       let result = calculateResult(vehicleJSON, weatherJSON);
 
@@ -115,8 +115,8 @@ const handlePost = function (request, response) {
   });
 };
 
-const fetchWeather = function (vehicleJSON) {
-  return new Promise((resolve, reject) => {
+const fetchWeather = function () {
+  return new Promise((resolve) => {
     https.get(url, (res) => {
       res.setEncoding("utf8");
       let body = "";
