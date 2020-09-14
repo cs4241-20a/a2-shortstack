@@ -60,7 +60,7 @@ const handlePost = function( request, response ) {
       if (index !== -1) {
 
         reviews.splice(index, 1);
-        console.log("Deleted Entry at " + index + " Successfully!");
+        console.log("Deleted Entry at " + recievedData.index + " Successfully!");
       }
       else {
         console.error("Index: " + recievedData.index + " Does Not Exist in Data!");

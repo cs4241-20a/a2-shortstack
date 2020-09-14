@@ -65,7 +65,7 @@ function performFetch(name, body) {
         updateTable()
     })
 
-    resetForms();
+    resetForm();
 }
 
 
@@ -152,14 +152,8 @@ function createTable(data) {
 }
 
 
-function resetForms() {
-    document.getElementById("name-input").reset();
-    document.getElementById("device-selector").reset();
-    document.getElementById("price-selector").reset();
-    document.getElementById("battery-selector").reset();
-    document.getElementById("performance").value = "1 Star";
-    document.getElementById("device-feel").value = "1 Star";
-    document.getElementById("index-input").reset();
+function resetForm() {
+    document.getElementById("formID").reset();
 }
 
 

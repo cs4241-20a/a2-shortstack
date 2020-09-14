@@ -1,123 +1,121 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="top-container">
-      <h1 class="welcome-header">WELCOME!</h1>
-      <h1 id="app-description">This is a Phone/Tablet/Laptop User Rating</h1>
-    </div>
-    <div class="center" id="content-container">
-      <div class="row">
-        <div class="column" id="leftColumn">
-          <center><h2>Enter in Your Inputs</h2></center>
-          <form action="" id="name-input">
-            <div id="horizontal-flex">
-              <label>Your Name: </label>
-              <input type='text' id='username' placeholder="John Doe">
-            </div>
-            
-          </form>
-          <form action="" id="device-selector">
-            <label for="device-selection">Choose a Device:</label>
-            <select name="device-selection" id="device" >
-              <optgroup label="Phones">
-                <option value="Apple iPhone 11 Pro Max">Apple iPhone 11 Pro Max</option>
-                <option value="Apple iPhone SE">Apple iPhone SE</option>
-                <option value="Google Pixel 3a">Google Pixel 3a</option>
-                <option value="Google Pixel 4a">Google Pixel 4a</option>
-                <option value="Google Pixel 4">Google Pixel 4</option>
-                <option value="Samsung Galaxy S20 Ultra">Samsung Galaxy S20 Ultra</option>
-              </optgroup>
-              <optgroup label="Tablets">
-                <option value="Apple iPad Pro (2020)">Apple iPad Pro (2020)</option>
-                <option value="Google Pixel Slate">Google Pixel Slate</option>
-                <option value="Samsung Galaxy Tab S6">Samsung Galaxy Tab S6</option>
-                <option value="Samsung Galaxy Tab S5e">Samsung Galaxy Tab S5e</option>
-              </optgroup>
-              <optgroup label="Laptops">
-                <option value="Apple MacBook Pro (2020)">Apple MacBook Pro (2020)</option>
-                <option value="Apple MacBook Air (2020)">Apple MacBook Air (2020)</option>
-                <option value="Lenovo ThinkPad X1 Carbon Gen 6">Lenovo ThinkPad X1 Carbon Gen 6</option>
-                <option value="Dell XPS 13 (2020)">Dell XPS 13 (2020)</option>
-                <option value="Dell XPS 15 (2020)">Dell XPS 15 (2020)</option>
-              </optgroup>
-            </select>
-          </form>
-          <form action="" id="price-selector">
-            <label for="price-rating">Choose Price Rating:</label>
-            <select name="price-rating" id="price">
-              <option value="1 Star">1 Star</option>
-              <option value="2 Stars">2 Stars</option>
-              <option value="3 Stars">3 Stars</option>
-              <option value="4 Stars">4 Stars</option>
-              <option value="5 Stars">5 Stars</option>
-            </select>
-          </form>
-          <form action="" id="battery-selector">
-            <label for="battery-rating">Choose Battery-Life Rating:</label>
-            <select name="battery-rating" id="battery">
-              <option value="1 Star">1 Star</option>
-              <option value="2 Stars">2 Stars</option>
-              <option value="3 Stars">3 Stars</option>
-              <option value="4 Stars">4 Stars</option>
-              <option value="5 Stars">5 Stars</option>
-            </select>
-          </form>
-          <form action="" id="peformance-selector">
-            <label for="performance-rating">Choose Performance Rating:</label>
-            <select name="performance-rating" id="performance">
-              <option value="1 Star">1 Star</option>
-              <option value="2 Stars">2 Stars</option>
-              <option value="3 Stars">3 Stars</option>
-              <option value="4 Stars">4 Stars</option>
-              <option value="5 Stars">5 Stars</option>
-            </select>
-          </form>
-          <form action="" id="feel-selector">
-            <label for="device-feel-rating">Choose Device Feel Rating:</label>
-            <select name="device-feel-rating" id="device-feel">
-              <option value="1 Star">1 Star</option>
-              <option value="2 Stars">2 Stars</option>
-              <option value="3 Stars">3 Stars</option>
-              <option value="4 Stars">4 Stars</option>
-              <option value="5 Stars">5 Stars</option>
-            </select>
-          </form>
-          <center><button id='submit'>submit</button></center>
-          
-          <form action="" id="index-input">
-            <label>Index Position for Modify/Delete: </label>
-            <input type='number' id='index' value=0 min=0>
-          </form>
 
-          <center><button id='modify'>modify</button></center>
-          <center><button id='delete'>delete</button></center>
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
 
+<body>
+  <div id="top-container">
+    <h1 class="welcome-header">WELCOME!</h1>
+    <h1 id="app-description">This is a Phone/Tablet/Laptop User Rating</h1>
+  </div>
+  <div class="center" id="content-container">
+    <div class="column" id="leftColumn">
+      <h2>Collected User Reviews</h2>
+
+      <form action="" id="formID">
+        <div class="horizontal-flex margin-spacer">
+          <label>Your Name: </label>
+          <input type='text' id='username' placeholder="John Doe">
         </div>
-        <div class="column" id="rightColumn">
-          <center><h2>Collected User Reviews</h2></center>
-          <center><table id="table">
-            <tr>
-              <th>Index</th>
-              <th>Name</th>
-              <th>Device Name</th>
-              <th>Price Rating</th>
-              <th>Battery Life Rating</th>
-              <th>Performance Rating</th>
-              <th>Device Feel Rating</th>
-              <th>Overall Rating</th>
-            </tr>
-          </table></center>
+        <div class="flexContainer margin-spacer">
+          <label for="device-selection">Choose a Device:</label>
+          <select name="device-selection" id="device">
+            <optgroup label="Phones">
+              <option value="Apple iPhone 11 Pro Max">Apple iPhone 11 Pro Max</option>
+              <option value="Apple iPhone SE">Apple iPhone SE</option>
+              <option value="Google Pixel 3a">Google Pixel 3a</option>
+              <option value="Google Pixel 4a">Google Pixel 4a</option>
+              <option value="Google Pixel 4">Google Pixel 4</option>
+              <option value="Samsung Galaxy S20 Ultra">Samsung Galaxy S20 Ultra</option>
+            </optgroup>
+            <optgroup label="Tablets">
+              <option value="Apple iPad Pro (2020)">Apple iPad Pro (2020)</option>
+              <option value="Google Pixel Slate">Google Pixel Slate</option>
+              <option value="Samsung Galaxy Tab S6">Samsung Galaxy Tab S6</option>
+              <option value="Samsung Galaxy Tab S5e">Samsung Galaxy Tab S5e</option>
+            </optgroup>
+            <optgroup label="Laptops">
+              <option value="Apple MacBook Pro (2020)">Apple MacBook Pro (2020)</option>
+              <option value="Apple MacBook Air (2020)">Apple MacBook Air (2020)</option>
+              <option value="Lenovo ThinkPad X1 Carbon Gen 6">Lenovo ThinkPad X1 Carbon Gen 6</option>
+              <option value="Dell XPS 13 (2020)">Dell XPS 13 (2020)</option>
+              <option value="Dell XPS 15 (2020)">Dell XPS 15 (2020)</option>
+            </optgroup>
+          </select>
         </div>
-      </div>
-      
+        <div class="flexContainer margin-spacer">
+          <label for="price-rating">Choose Price Rating:</label>
+          <select name="price-rating" id="price">
+            <option value="1 Star">1 Star</option>
+            <option value="2 Stars">2 Stars</option>
+            <option value="3 Stars">3 Stars</option>
+            <option value="4 Stars">4 Stars</option>
+            <option value="5 Stars">5 Stars</option>
+          </select>
+        </div>
+        <div class="flexContainer margin-spacer">
+          <label for="battery-rating">Choose Battery-Life Rating:</label>
+          <select name="battery-rating" id="battery">
+            <option value="1 Star">1 Star</option>
+            <option value="2 Stars">2 Stars</option>
+            <option value="3 Stars">3 Stars</option>
+            <option value="4 Stars">4 Stars</option>
+            <option value="5 Stars">5 Stars</option>
+          </select>
+        </div>
+        <div class="flexContainer margin-spacer">
+          <label for="performance-rating">Choose Performance Rating:</label>
+          <select name="performance-rating" id="performance">
+            <option value="1 Star">1 Star</option>
+            <option value="2 Stars">2 Stars</option>
+            <option value="3 Stars">3 Stars</option>
+            <option value="4 Stars">4 Stars</option>
+            <option value="5 Stars">5 Stars</option>
+          </select>
+        </div>
+        <div class="flexContainer margin-spacer" id="last-selector">
+          <label for="device-feel-rating">Choose Device Feel Rating:</label>
+          <select name="device-feel-rating" id="device-feel">
+            <option value="1 Star">1 Star</option>
+            <option value="2 Stars">2 Stars</option>
+            <option value="3 Stars">3 Stars</option>
+            <option value="4 Stars">4 Stars</option>
+            <option value="5 Stars">5 Stars</option>
+          </select>
+        </div>
+        <center><button id='submit'>submit</button></center>
+        <div class="horizontal-flex margin-spacer">
+          <label>Index Position for Modify/Delete: </label>
+          <input type='number' id='index' value=0 min=0>
+        </div>
+        <center><button class="bottom-spacer" id='modify'>modify</button></center>
+        <center><button id='delete'>delete</button></center>
+      </form>
+
     </div>
-  </body>
-  <script src="js/scripts.js"></script>
+    <div class="column" id="rightColumn">
+      <h2>Collected User Reviews</h2>
+      <table class="table-center" id="table">
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Device Name</th>
+          <th>Price Rating</th>
+          <th>Battery Life Rating</th>
+          <th>Performance Rating</th>
+          <th>Device Feel Rating</th>
+          <th>Overall Rating</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+<script src="js/scripts.js"></script>
+
 </html>
