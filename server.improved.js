@@ -4,12 +4,11 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3000
+      port = 3001
+
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { task : 'dishes', DueDate :1, Priority: 1 },
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -17,6 +16,8 @@ const server = http.createServer( function( request,response ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
+  }else if (request.method === 'DELETE'){
+    handleDelete(request, response)
   }
 })
 
@@ -31,6 +32,7 @@ const handleGet = function( request, response ) {
 }
 
 const handlePost = function( request, response ) {
+  
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -39,11 +41,34 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    incomingData = JSON.parse( dataString )
 
-    // ... do something with the data here!!!
+    const TASK = incomingData.Task
+    const daysTillDue = incomingData.DaysTillDue
+    const day = incomingData.curDate
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    //get the date that the task is due
+    var dueDate = parseInt(day,10) + (parseInt(daysTillDue, 10) * 86400000)
+
+    //calculate the priority
+    var PRIORITY = dueDate - new Date().getTime()
+    var task = JSON.stringify({ Task: TASK, DaysTillDue: daysTillDue, Priority: PRIORITY })
+
+    //adds the current task to the server database
+    appdata.push(task)
+
+    //sends the response
+    if(isNaN(dueDate)){
+      console.log("Days Till Due was not a number")
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      let body = JSON.stringify({ dataBase: 'Bad Input'})
+      response.end( body )
+    }else{
+      console.log("Sent Data Base")
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.end( task )
+    }
+    
   })
 }
 
