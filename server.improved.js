@@ -58,7 +58,6 @@ const handlePost = function( request, response ) {
     }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end('hi')
   })
 }
 
@@ -92,11 +91,6 @@ const manageData = function( url, data ) {
     appdata.push(data)
     return 200
   }
-}
-
-/** as isbn# is unique for books, we use it as the 'primary key' */
-const isDuplicate = function( data ) {
-
 }
 
 const sendFile = function( response, filename ) {
