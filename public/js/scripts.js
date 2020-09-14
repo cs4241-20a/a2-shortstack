@@ -6,8 +6,9 @@ var priorityButton = document.querySelector('.priorityButton');
 var dateButton = document.querySelector('.dateButton');
 const container = document.querySelector('.container');
 
-//checks if local storage has been set and if not, it initializes it
-if(window.localStorage.getItem("todos") === undefined){
+//checks if local storage has been set and if not, it initializes it. 
+//The double equals is used due to the fact that before todos is initialized, the type is not known
+if(window.localStorage.getItem("todos") == undefined){
      var todos = [];
      window.localStorage.setItem("todos", JSON.stringify(todos));
 }
