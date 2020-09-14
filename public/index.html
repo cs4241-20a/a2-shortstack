@@ -52,10 +52,11 @@
       let cell4 = row.insertCell(3);
 
       //Fill those cells with the data gotten back from the server, this includes the new fields
-      cell1.innerHTML = jsonEntry.yourtask;
-      cell2.innerHTML = jsonEntry.date;
-      cell3.innerHTML = jsonEntry.priority;
-      cell4.innerHTML = jsonEntry.message;
+      cell1.innerHTML = json.yourtask;
+      cell2.innerHTML = json.date;
+      cell3.innerHTML = json.priority;
+      cell4.innerHTML = json.message;
+      console.log("got here")
     }
 
     const submit = function(e) {
@@ -74,7 +75,7 @@
         input2 = document.querySelector("#taskduedate"),
         input3 = displayRadioValue(),
         json1 = {
-          yourntask: input1.value,
+          yourtask: input1.value,
           date: input2.value,
           priority: input3
         },
@@ -83,11 +84,14 @@
       fetch("/submit", {
         method: "POST",
         body
-      }).then(function(response) {
-        // do something with the reponse
-        addRows(response.json());
-        console.log(response);
-      });
+      }).then(response => response.json())
+    .then( function( response ) {
+        addRows(response);
+      // }).then(function(response) {
+      //   // do something with the reponse
+      //   addRows(response);
+      //   console.log(response);
+      // });
 
       return false;
     };

@@ -41,7 +41,7 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     dataString = JSON.parse(dataString)
-    console.log( dataString["priority"] )
+    // console.log( dataString["priority"] )
     if (dataString["priority"] === "med_priority") {
       dataString["priority"] = "Medium Priority"
       dataString["message"] = "Finish your high priority tasks first and then get to this!"
@@ -56,10 +56,11 @@ const handlePost = function( request, response ) {
     }
     
     dataSet.push(dataString)
-    console.log(dataSet)
+    // console.log(dataSet)
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    console.log( dataString )
     response.end( JSON.stringify(dataString) )
   })
 }
