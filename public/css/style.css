@@ -1,1 +1,53 @@
 /*Style your own assignment! This is fun! */
+.habitBlock{
+    padding: 20px;
+    margin: 10px;
+    border-color: black;
+    border-style: solid;
+    justify-content: center;
+    text-align: center;
+}
+
+#habitView{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+
+}
+#createHabitForm{
+    text-align: center;
+    font-size: x-large;
+    margin: 20px
+}
+#submitBtn{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+}
+
+#task, #weeks{
+    font-size: x-large;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    margin: 10px
+
+}
+.habitName{
+    margin: 0;
+    text-align: center;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+table{
+    font-size: x-large;
+}
+td{
+    padding: 2px;
+}
+tr{
+    padding:2px
+}
