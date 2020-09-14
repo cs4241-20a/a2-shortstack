@@ -7,7 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { name: 'Kyle\'s High Score', date: '2020-08-08', score: '12321' }
+  { name: 'Kyle\'s Score', date: '2020-08-08', score: '12321', formatted_score: 'KYLE-12321' },
+  { name: 'Joe\'s Score', date: '2020-08-10', score: '34029', formatted_score: 'JOE\'-34029' },
+  { name: 'TJ\'s Score', date: '2020-08-18', score: '66766', formatted_score: 'TJ\'S-66766' }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -43,6 +45,9 @@ const handlePost = function( request, response ) {
     }
     else
     {
+      var formattedScore = "";
+      formattedScore = newData['name'].substring(0,4).toUpperCase() + "-" + newData['score']; 
+      newData['formatted_score'] = formattedScore; //this is the server logic
       appdata.push(newData);
     }
     console.log(appdata);

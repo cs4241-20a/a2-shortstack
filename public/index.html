@@ -63,12 +63,12 @@
 
   function responseJSON(json) {
     console.log(json);
-    var table = '<tr><th>Name</th><th>Score</th><th>Date</th></tr>';
+    var table = '<tr><th>Name</th><th>Score</th><th>Date</th><th>Generated Name\/Score</th></tr>';
     for(var i = 0; i < json.length; i++) {
       var obj = json[i];
       console.log(obj);
       console.log(obj[0]);
-      table+="<tr><td>" + obj['name'] + "</td><td>" + obj['score'] + "</td><td>" + obj['date'] + "</td></td>";
+      table+="<tr><td>" + obj['name'] + "</td><td>" + obj['score'] + "</td><td>" + obj['date'] + "</td><td>" + obj['formatted_score'] + "</td></tr>";
     }
     document.getElementById("highscores").innerHTML = table;
   }
