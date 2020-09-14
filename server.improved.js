@@ -17,10 +17,10 @@ const randomwords = ['size','pipe','show','toy','zipper','throne','baby','seat',
 'door','place','wing','fact','cherries','need','knee','ground','key','farm','direction','crayon','authority',
 'idea','cake','winter','copper','son','cactus','caption','road','slope','trouble','finger','comparison'];
 
-let scores = [{date: "2020-09-14T19:09:02.410Z", name: "MOM", score: 250}, // filler scores
-              {date: "2020-09-14T19:09:45.849Z", name: "DAD", score: 2},
-              {date: "2020-09-14T19:09:52.299Z", name: "LOV", score: 4},
-              {date: "2020-09-14T19:09:55.471Z", name: "XXX", score: 420}],
+let scores = [{date: "2020-09-14T19:09:02.410Z", name: "MOM", score: 50, rating: 500}, // filler scores
+              {date: "2020-09-14T19:09:45.849Z", name: "DAD", score: 12, rating: 120},
+              {date: "2020-09-14T19:09:52.299Z", name: "MAD", score: 9, rating: 90},
+              {date: "2020-09-14T19:09:55.471Z", name: "DOG", score: 8, rating: 80}],
     currentScore = 0,
     currentWord = '';
 
@@ -59,7 +59,7 @@ const handleGet = function(request, response) {
   } else if (request.url === '/currentWord') {
     currentWord = randomwords[Math.floor(Math.random() * randomwords.length)];
 
-    response.writeHead(200, {'Content-Type': 'text/plain' });
+    response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end(scramble(currentWord)); 
 
   } else if (request.url === '/getCurrScore') {
@@ -69,6 +69,14 @@ const handleGet = function(request, response) {
   } else if (request.url === '/getScores') {
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end(JSON.stringify(scores));
+
+  } else if (request.url === '/deleteEverything') {
+    scores = [];
+    currentScore = 0;
+    currentWord = '';
+
+    response.writeHead(200, "OK");
+    response.end();
 
   } else {
     sendFile(response, filename);
@@ -87,7 +95,7 @@ const handlePost = function(request, response) {
       let guess = JSON.parse(dataString).guess;
       currentScore = guess === currentWord ? currentScore + 1 : currentScore;
 
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
       response.end((guess === currentWord).toString()); // sends the boolean in string format
     });
 
@@ -96,6 +104,8 @@ const handlePost = function(request, response) {
       let scoreJSON = JSON.parse(dataString);
 
       scoreJSON.score = currentScore;
+      scoreJSON.rating = scoreJSON.score * 10;
+
       scores.push(scoreJSON);
       currentScore = 0;
 
@@ -108,7 +118,7 @@ const handlePost = function(request, response) {
       let hint = parseInt(dataString);
       let ret = hint < currentWord.length ? currentWord[hint] : '';
 
-      response.writeHead(200,  "OK", {'Content-Type': 'text/plain' });
+      response.writeHead(200,  "OK", {'Content-Type': 'text/plain'});
       response.end(ret.toString());
 
     });

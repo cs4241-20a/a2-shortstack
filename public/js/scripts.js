@@ -14,6 +14,18 @@
   };
 
 
+  function deleteEverything() {
+  	endGame();
+  	fetch('/deleteEverything', {
+  		method: 'GET'
+  	}).then((res) => {
+		document.querySelector('#currScore').innerHTML = 0;
+		updateScores();
+		newScrambled();
+  	});
+  }
+
+
   function hint() {
   	let inp = document.querySelector('#answer');
 
@@ -53,7 +65,7 @@
 
   			scores.forEach((score, i) => {
   				if (i < 5){
-	  				let ele = document.createElement('div');
+	  				let ele = document.createElement('tr');
 
 	  				ele.innerHTML = `${score.name}: ${score.score}`;
 	  				insertDiv.appendChild(ele);
