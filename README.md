@@ -83,11 +83,11 @@ You'll need to use sometype of collaborative software that will enable you both 
 Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
 ---
 
-## Your Web Application Title
-Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
+## Gompei The Game: High Scores
+This page is designed to show user's high scores from a made up game called "Gompei The Game". On page load a user can view a person's name, highscore, and date of the score, which can also be submitted and updated in real time using the submission form. The last field, Generated Name/Score is calculated on the server side, taking upto the first 4 characters in the username (transformed to upper case), with a dash, and then the actual user score.
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
+- **Single Page App**: Using node.js along with JavaScript on the front end, I achieved a webpage that always shows the results of the state of the server-side data. This was achieved by when the page loads, the window.onLoad function automatically calls for the response from the button submit. To make the data update after a user submitts a new score, in the response from the form submission contanis the JSON of all the data stored on the server including the submitted data. The combination of these allow for a single-page app that always shows the current state of the server-side data.6
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 

@@ -51,5 +51,36 @@ h4 {
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.5em;
     border-collapse: collapse;
-    width: 100%;
+    width: 95%;
+    margin-left: 5%;
   }
+
+#highscores th {
+    text-align: right;
+    background-color: #000000;
+    color: white;
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
+
+#highscores tr:nth-child(even){
+    background-color: #ffffff;
+}
+
+#highscores tr:nth-child(odd){
+    background-color: #9b9b9b;
+}
+
+#highscores tr:hover {
+    background-color: rgb(228, 213, 0);
+}
+
+#highscores td {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 8px;
+}
+
+#highscores th {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 8px;
+}
