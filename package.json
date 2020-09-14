@@ -4,9 +4,17 @@
   "description": "",
   "author": "",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node app.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "@koa/router": "^9.4.0",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.3.0"
   }
 }

@@ -64,15 +64,15 @@ Below are some suggested technical and design achievements. You can use these to
 *Technical*
 - (10 points) Create a single-page app that both provides a form for users to submit data and always shows the current state of the server-side data. To put it another way, when the user submits data, the server should respond sending back the updated data (including the derived field calculated on the server) and the client should then update its data display.
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
+Readme
 ---
 
 ## Your Web Application Title
 Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Framework**: Using Koa as the framework
+
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...

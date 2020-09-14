@@ -1,0 +1,124 @@
+{% extends 'template.html' %}
+
+{% block title %}My Movie List{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-7 is-offset-3">
+
+          <h1 class="title is-4 is-spaced">My Movie List</h1>
+
+          <nav class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <p><button class="button is-outlined is-small" onclick="showModal()">Add</button></p>
+              </div>
+            </div>
+          </nav>
+
+          <div class="modal" id="modal">
+            <div class="modal-background" onclick="closeModal()"></div>
+            <div class="modal-card">
+
+              <header class="modal-card-head">
+                <p class="modal-card-title">Add a Movie</p>
+                <button class="delete" aria-label="close" onclick="closeModal()"></button>
+              </header>
+
+              <form method="post" action="/add">
+                <section class="modal-card-body">
+                  <input class="input" type="text" name="name" placeholder="Movie Title" required><br><br>
+                  <input class="input" type="text" name="ps" placeholder="Plot Score" required><br><br>
+                  <input class="input" type="text" name="ms" placeholder="Meaning Score" required><br><br>
+                  <input class="input" type="text" name="ss" placeholder="Sound Score" required><br><br>
+                  <input class="input" type="text" name="es" placeholder="Enjoyment Score" required><br><br>
+                  <input class="input" type="text" name="date" placeholder="Date (YYYY-MM-DD)" required>
+
+                </section>
+                <footer class="modal-card-foot">
+                  <button class="button is-success">Add</button>
+                  <a class="button" onclick="closeModal()">Cancel</a>
+                </footer>
+              </form>
+            </div>
+          </div>
+
+
+          <table class="table is-bordered is-fullwidth has-background-light is-hoverable is-narrow">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>★</th>
+              <th>Date</th>
+              <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody id="table-container">
+            </tbody>
+          </table>
+          <p><span id="mean-score"></span></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+  function showModal() {
+    document.getElementById("modal").classList.add("is-active");
+  }
+
+  function closeModal() {
+    document.getElementById("modal").classList.remove("is-active");
+  }
+
+  function fetchAndRender() {
+
+    fetch('/list')
+        .then(response => response.json())
+        .then(result => {
+          // render
+
+          const data = result;
+
+          let content = "";
+          let sum = 0;
+
+          for (let i = 0; i < data.length; i++) {
+            content += `<tr>
+                          <td class="mdl-data-table__cell--non-numeric">${i+1}</td>
+                          <td>${data[i].name}</td>
+                          <td>${data[i].score}</td>
+                          <td>${data[i].date}</td>
+                          <td><a href="javascript:if(confirm('Are you sure?'))location='/del/${data[i].id}'" class="button is-small">Delete</a></td>
+                        </tr>`;
+            sum += parseFloat(data[i].score);
+          }
+          console.log(data);
+
+          document.getElementById('table-container').innerHTML = content;
+          document.getElementById('mean-score').innerHTML = "Mean = " + (sum / data.length).toFixed(2);
+
+        });
+
+  }
+
+  $(function() {
+
+    fetchAndRender();
+
+  });
+
+
+
+</script>
+{% endblock %}

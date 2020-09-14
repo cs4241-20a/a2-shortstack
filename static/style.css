@@ -1,0 +1,17 @@
+html, body {
+    font-family: 'Noto Serif JP', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.input {
+    width: 500px;
+}
+
+.button {
+    background-color: #f5f5f5;
+}
+
+#mean-score {
+    font-weight: bold;
+}
