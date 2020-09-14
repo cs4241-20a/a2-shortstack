@@ -35,9 +35,16 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-    appdata.push(JSON.parse(dataString));
-    // ... do something with the data here!!!
+    let newData = JSON.parse(dataString)
+    console.log(newData)
+    if(newData['name'] === '' || newData['date'] === '' || newData['score'] === '')
+    {
+      //Do nothing
+    }
+    else
+    {
+      appdata.push(newData);
+    }
     console.log(appdata);
     console.log("Logged...");
 

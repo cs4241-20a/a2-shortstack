@@ -32,7 +32,12 @@
 
   const submit = function( e ) {
     // prevent default form action from being carried out
-    e.preventDefault()
+    try {
+      e.preventDefault()
+    }
+    catch {
+      //If I forced the submit button on window load just continue, this was not a form submission
+    }
 
     const number = document.querySelector('#score');
     const date = document.querySelector('#date');
@@ -71,6 +76,7 @@
   window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit
+    submit();
   }
 
   </script>
