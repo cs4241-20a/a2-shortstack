@@ -88,3 +88,6 @@ label{
 p{
     text-align: center;
 }
+#title, #space{
+  text-align: "center";
+}
