@@ -8,6 +8,7 @@ const http = require( 'http' ),
 
 //Format: { "id": 0, "kills": 0, "assists": 0, "deaths": 0, "kd_ratio": 0, "ad_ratio": 0 },
 const appdata = [];
+const DECIMAL_PRECISION = 2;
 
 let id = 1;//Unique IDs to indicate rows to modify or delete
 let numEntries = 0;//Length of appdata
@@ -50,19 +51,18 @@ const handlePost = function( request, response ) {
     request.on( 'end', function() {
         let data = JSON.parse(dataString);
         console.log(data);
+        convertDataToNum(data);
+        calculateKDandAD(data);
 
         if(request.url === "/add") {
             addItem(data);
             sendTable(response);
-            //response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         }else if(request.url === "/modify"){
             modifyItem(data);
             sendTable(response);
-            //response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         }else if(request.url === "/delete"){
             deleteItem(data);
             sendTable(response);
-            //response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         }else{
             response.writeHead(400, "Invalid request type", {'Content-Type': 'text/plain'});
             response.end();
@@ -70,14 +70,25 @@ const handlePost = function( request, response ) {
     })
 }
 
+const convertDataToNum = function(data){
+    data.kills = parseInt(data.kills, 10);
+    data.assists = parseInt(data.assists, 10);
+    data.deaths = parseInt(data.deaths, 10);
+}
+
+const calculateKDandAD = function(data){
+    data.kd_ratio = parseFloat((data.kills / data.deaths).toFixed(DECIMAL_PRECISION));
+    data.ad_ratio = parseFloat((data.assists / data.deaths).toFixed(DECIMAL_PRECISION));
+}
+
 const addItem = function(data){
     appdata.push({
         "id": id,
         "kills": data.kills,
         "assists": data.assists,
-        "deaths": data.kills,
-        "kd_ratio": data.kills / data.deaths,
-        "ad_ratio": data.assists / data.deaths
+        "deaths": data.deaths,
+        "kd_ratio": data.kd_ratio,
+        "ad_ratio": data.ad_ratio
     })
     id++;
     numEntries++;
@@ -89,15 +100,15 @@ const modifyItem = function(data){
     for(let i = 0; i < numEntries; i++){
         if(appdata[i]["id"] === targetID){
             //Remove old values from running total
-            totalKills -= Number(appdata[i]["kills"]);
-            totalAssists -= Number(appdata[i]["deaths"]);
-            totalDeaths -= Number(appdata[i]["assists"]);
+            totalKills -= appdata[i]["kills"];
+            totalAssists -= appdata[i]["deaths"];
+            totalDeaths -= appdata[i]["assists"];
 
             appdata[i]["kills"] = data.kills;
             appdata[i]["assists"] = data.assists;
             appdata[i]["deaths"] = data.deaths;
-            appdata[i]["kd_ratio"] = data.kills / data.deaths;
-            appdata[i]["ad_ratio"] = data.assists / data.deaths;
+            appdata[i]["kd_ratio"] = data.kd_ratio;
+            appdata[i]["ad_ratio"] = data.ad_ratio;
 
             calculateTotalsAvgs(data);
             return true;
@@ -108,18 +119,16 @@ const modifyItem = function(data){
 }
 
 const deleteItem = function(data){
-    let targetID = Number(data.id);
-    console.log("targetID is: " +targetID);
+    let targetID = data.id;
     for(let i = 0; i < numEntries; i++){
-        console.log(appdata[i]);
         if(appdata[i]["id"] === targetID){
             numEntries--;
 
-            totalKills -= Number(appdata[i]["kills"]);
+            totalKills -= appdata[i]["kills"];
             avgKills = totalKills / numEntries;
-            totalAssists -= Number(appdata[i]["deaths"]);
+            totalAssists -= appdata[i]["deaths"];
             avgAssists = totalAssists / numEntries;
-            totalDeaths -= Number(appdata[i]["assists"]);
+            totalDeaths -= appdata[i]["assists"];
             avgDeaths = totalDeaths / numEntries;
 
             appdata.splice(i, 1);
@@ -130,12 +139,13 @@ const deleteItem = function(data){
     return false;
 }
 
+
 const calculateTotalsAvgs = function(data){
-    totalKills += Number(data.kills);
+    totalKills += data.kills;
     avgKills = totalKills / numEntries;
-    totalAssists += Number(data.assists);
+    totalAssists += data.assists;
     avgAssists = totalAssists / numEntries;
-    totalDeaths += Number(data.deaths);
+    totalDeaths += data.deaths;
     avgDeaths = totalDeaths / numEntries;
 }
 
