@@ -9,72 +9,35 @@
 </head>
 
 <body>
-
   <div class="wrapper">
-    <div class="header">
-      <h1>classic cars wishlist</h1>
-    </div>
+    <div class="box header">classic cars wishlist</div>
 
-    <div class="sidebar">
+    <div class="box sidebar">
+      <p>Enter your dream cars in this handy wishlist!</p>
 
-    </div>
-
-    <div id="intro">
-      <p>
-        Enter your dream cars and see them appear!
-      </p>
-    </div>
-
-    <div class="content">
-
-      <div class="grid-container-1">
-        <div id="input-form">
-          <form id="form" action="">
-            <input type='text' id='Make' placeholder="Make">
-            <input type='text' id='Model' placeholder="Model">
-            <input type='number' id='Year' placeholder="Year">
-            <input type='number' id='Price' placeholder="Price">
-            <button id="submit-btn">Submit</button>
-          </form>
-        </div>
-
-      </div>
-
-      <div id="table-div">
-        <table id="data-table">
-          <th>
-            Make
-          </th>
-          <th>
-            Model
-          </th>
-          <th>
-            Year
-          </th>
-          <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-          </tr>
-          <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-          </tr>
-        </table>
+      <div class="data-form">
+        <form id="form" action="">
+          <input type='text' id='Make' placeholder="Make">
+          <input type='text' id='Model' placeholder="Model">
+          <input type='number' id='Year' placeholder="Year">
+          <input type='number' id='Price' placeholder="Price">
+          <button id="submit-btn">Submit</button>
+        </form>
       </div>
     </div>
 
-    <div class="footer">
-      <div class="grid-container-4">
-        <div>
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider round" onclick="activateDark()"></span>
-          </label>
-          <p>dark mode</p>
-        </div>
-      </div>
+    <div class="box content">
+      <table id="data-table">
+        <th>Make </th>
+        <th> Model </th>
+        <th> Year </th>
+        <th> Price </th>
+        <th> Priority </th>
+      </table>
+    </div>
+
+    <div class="box footer">
+      <p>Footer</p>
     </div>
   </div>
 </body>

@@ -2,88 +2,77 @@
 
 console.log("Welcome to assignment 2!")
 
-const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+const submit = function (e) {
+  // prevent default form action from being carried out
+  e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+  const make = document.querySelector('#Make')
+  const model = document.querySelector('#Model')
+  const year = document.querySelector('#Year')
+  const price = document.querySelector('#Price')
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
+  const json = {
+    make: make.value,
+    model: model.value,
+    year: year.value,
+    price: price.value
+  }
+
+  const body = JSON.stringify(json)
+
+  fetch('/submit', {
+    method: 'POST',
+    body
+  })
+    .then(response => response.json())
+    .then(json => {
+      updateTable(json)
     })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
 
-    return false
-  }
+  document.getElementById('Make').value = ""
+  document.getElementById('Model').value = ""
+  document.getElementById('Year').value = ""
+  document.getElementById('Price').value = ""
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+  return false
+}
 
-  // Code for dark mode 
-    var activated = false;
+const updateTable = function (json) {
+  let dataTable = document.getElementById('data-table')
 
-  const startDark = function () {
-
-    // change bg color and text
-    document.body.style.backgroundColor = "#121212";
-    document.body.style.color = "#ffffff";
-
-    // change header color
-    var header = document.getElementsByClassName('header')
-    for (i = 0; i < header.length; i++) {
-      header[i].style.backgroundColor = "#121212";
-    }
-
-    // change box colors
-    var intro = document.getElementById('intro');
-    intro.style.backgroundColor = "#121212";
-
-    // change footer
-    var footer = document.getElementsByClassName('footer');
-
-    for (i = 0; i < header.length; i++) {
-      footer[i].style.backgroundColor = "rgba(177, 156, 217, 0.5)";
-      footer[i].classList.add('grid-container-4-dark');
+  if (json.length > 1){
+    for(var idx in json){
+      updateRow(dataTable, json[idx])
     }
   }
-  const startLight = function () {
-    // change bg color and text
-    document.body.style.backgroundColor = "#F7E3D4";
-    document.body.style.color = "#342E09";
-
-    // change header color
-    var header = document.getElementsByClassName('header')
-    for (i = 0; i < header.length; i++) {
-      header[i].style.backgroundColor = "#FC7307";
-    }
-    // change box colors
-    var intro = document.getElementById('intro');
-    intro.style.backgroundColor = "#F7E3D4";
-
-    // change footer
-    var footer = document.getElementsByClassName('footer');
-
-    for (i = 0; i < header.length; i++) {
-      footer[i].style.backgroundColor = "#342E09";
-      footer[i].classList.remove('grid-container-4-dark');
-    }
+  else{
+    updateRow(dataTable, json)
   }
+}
 
-  function activateDark() {
-    if (activated) {
-      startLight();
-      activated = false;
-    }
-    else {
-      startDark();
-      activated = true;
-    }
-  }
+const updateRow = function(dataTable, json) {
+  let row = dataTable.insertRow()
+
+  let make = row.insertCell(0)
+  let model = row.insertCell(1)
+  let year = row.insertCell(2)
+  let price = row.insertCell(3)
+  let priority = row.insertCell(4)
+
+  make.innerHTML = json.make
+  model.innerHTML = json.model
+  year.innerHTML = json.year
+  price.innerHTML = json.price
+  priority.innerHTML = json.priority
+}
+
+window.onload = function () {
+  const button = document.querySelector('button')
+  button.onclick = submit
+
+  fetch('/data')
+  .then(response => response.json())
+  .then(json => {
+    updateTable(json)
+  })
+}
