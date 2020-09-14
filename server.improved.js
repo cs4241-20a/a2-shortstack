@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -38,12 +34,32 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
+    const json = JSON.parse(dataString)
+    const cond = json.itemaction
+    switch(cond) {
+      case "add":
+        json.itemtotal = ((parseFloat(json.itemprice) * parseFloat(json.itemquantity)).toFixed(2)).toString()
+        appdata.push(json)
+        break;
+      case "delete":
+        appdata.pop()
+        break;
+      case "edit":
+        for(var i = 0; i < appdata.length; i++){
+          if(appdata[i].itemname == json.itemname){
+            appdata[i].itemprice = json.itemprice
+            appdata[i].itemquantity = json.itemquantity
+            appdata[i].itemtotal = ((parseFloat(appdata[i].itemprice) * parseFloat(appdata[i].itemquantity)).toFixed(2)).toString()
+          }
+        }
+        break;
+      default:
+        // code block
+    }
+    
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(appdata))
   })
 }
 
