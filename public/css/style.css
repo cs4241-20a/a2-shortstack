@@ -4,6 +4,21 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 3ch;
 	text-align: center;
+
+/*	// Background
+	background-position:  
+		top 0px left 0px,
+	    top 10px right 10px,
+	    bottom 10px right 10px,
+	    bottom 10px left 10px;*/
+
+	background-size: 100vw;
+
+	background-image: 
+	 	url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FFD6E8' d='M50.4,-52.4C62.9,-37.9,69.1,-18.9,67.8,-1.2C66.6,16.5,58,32.9,45.5,46.9C32.9,60.9,16.5,72.5,-1.5,74C-19.6,75.6,-39.1,67.1,-52.4,53.1C-65.7,39.1,-72.7,19.6,-70.2,2.6C-67.6,-14.5,-55.5,-28.9,-42.2,-43.4C-28.9,-57.9,-14.5,-72.5,2.2,-74.7C18.9,-77,37.9,-66.9,50.4,-52.4Z' transform='translate(350 90)' /%3E%3C/svg%3E"),
+	 	url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23D0E2FF' d='M50.4,-52.4C62.9,-37.9,69.1,-18.9,67.8,-1.2C66.6,16.5,58,32.9,45.5,46.9C32.9,60.9,16.5,72.5,-1.5,74C-19.6,75.6,-39.1,67.1,-52.4,53.1C-65.7,39.1,-72.7,19.6,-70.2,2.6C-67.6,-14.5,-55.5,-28.9,-42.2,-43.4C-28.9,-57.9,-14.5,-72.5,2.2,-74.7C18.9,-77,37.9,-66.9,50.4,-52.4Z' transform='translate(195 0)' /%3E%3C/svg%3E"),
+	 	url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23E8DAFF' d='M50.4,-52.4C62.9,-37.9,69.1,-18.9,67.8,-1.2C66.6,16.5,58,32.9,45.5,46.9C32.9,60.9,16.5,72.5,-1.5,74C-19.6,75.6,-39.1,67.1,-52.4,53.1C-65.7,39.1,-72.7,19.6,-70.2,2.6C-67.6,-14.5,-55.5,-28.9,-42.2,-43.4C-28.9,-57.9,-14.5,-72.5,2.2,-74.7C18.9,-77,37.9,-66.9,50.4,-52.4Z' transform='translate(150 200)' /%3E%3C/svg%3E"),
+	 	url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%239EF0F0' d='M68.5,-21C76.5,2.3,62.2,34.1,39.7,49.2C17.1,64.3,-13.6,62.7,-32.3,48.3C-50.9,33.8,-57.5,6.5,-50.1,-16C-42.7,-38.5,-21.3,-56.3,4.5,-57.7C30.3,-59.2,60.5,-44.3,68.5,-21Z' transform='translate(30 30)' /%3E%3C/svg%3E");
 }
 
 .container {
@@ -13,6 +28,7 @@ body {
 	align-items: center;
 	height: 100vh;
 }
+
 
 #left-block {
 	float: left;
@@ -36,7 +52,8 @@ body {
 	display: block;
 }
 
-.underlines {
+/* To get each character to be underlined, I borrowed the background line from https://codepen.io/thebabydino/pen/mRrPwB */
+.underlines { 
   display: block;
   margin: 2em auto;
   border: none;
@@ -59,4 +76,107 @@ body {
 .scoreNick {
 	margin-top: 1em;
 	font: 3ch monospace;
+}
+
+.butt {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 0 16px;
+    min-width: 64px;
+    height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    /*color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));*/
+    background-color: #F2F4F8;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+    line-height: 36px;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.butt::-moz-focus-inner {
+    border: none;
+}
+
+/* Overlay */
+.butt::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* Ripple */
+.butt::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    padding: 50%;
+    width: 32px; /* Safari */
+    height: 32px; /* Safari */
+    background-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity 1s, transform 0.5s;
+}
+
+/* Hover, Focus */
+.butt:hover,
+.butt:focus {
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.butt:hover::before {
+    opacity: 0.08;
+}
+
+.butt:focus::before {
+    opacity: 0.24;
+}
+
+.butt:hover:focus::before {
+    opacity: 0.3;
+}
+
+/* Active */
+.butt:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.butt:active::after {
+    opacity: 0.32;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0s;
+}
+
+/* Disabled */
+.butt:disabled {
+    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.12);
+    box-shadow: none;
+    cursor: initial;
+}
+
+.butt:disabled::before {
+    opacity: 0;
+}
+
+.butt:disabled::after {
+    opacity: 0;
 }

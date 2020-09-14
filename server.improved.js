@@ -17,10 +17,10 @@ const randomwords = ['size','pipe','show','toy','zipper','throne','baby','seat',
 'door','place','wing','fact','cherries','need','knee','ground','key','farm','direction','crayon','authority',
 'idea','cake','winter','copper','son','cactus','caption','road','slope','trouble','finger','comparison'];
 
-let scores = [{date: "2020-09-14T19:09:02.410Z", name: "mom", score: 250}, // filler scores
-              {date: "2020-09-14T19:09:45.849Z", name: "dad", score: 2},
-              {date: "2020-09-14T19:09:52.299Z", name: "lov", score: 4},
-              {date: "2020-09-14T19:09:55.471Z", name: "xxx", score: 420}],
+let scores = [{date: "2020-09-14T19:09:02.410Z", name: "MOM", score: 250}, // filler scores
+              {date: "2020-09-14T19:09:45.849Z", name: "DAD", score: 2},
+              {date: "2020-09-14T19:09:52.299Z", name: "LOV", score: 4},
+              {date: "2020-09-14T19:09:55.471Z", name: "XXX", score: 420}],
     currentScore = 0,
     currentWord = '';
 
@@ -60,7 +60,7 @@ const handleGet = function(request, response) {
     currentWord = randomwords[Math.floor(Math.random() * randomwords.length)];
 
     response.writeHead(200, {'Content-Type': 'text/plain' });
-    response.end((currentWord)); 
+    response.end(scramble(currentWord)); 
 
   } else if (request.url === '/getCurrScore') {
     response.writeHead(200, {'Content-Type': 'text/plain'});
@@ -91,17 +91,27 @@ const handlePost = function(request, response) {
       response.end((guess === currentWord).toString()); // sends the boolean in string format
     });
 
-  } else if(request.url === '/newScore'){
+  } else if (request.url === '/newScore'){
     request.on('end', () => {
       let scoreJSON = JSON.parse(dataString);
+
       scoreJSON.score = currentScore;
       scores.push(scoreJSON);
       currentScore = 0;
 
-      response.writeHead(200);
+      response.writeHead(200, "OK");
       response.end();
     });
 
+  } else if (request.url === '/hint'){
+    request.on('end', () => {
+      let hint = parseInt(dataString);
+      let ret = hint < currentWord.length ? currentWord[hint] : '';
+
+      response.writeHead(200,  "OK", {'Content-Type': 'text/plain' });
+      response.end(ret.toString());
+
+    });
   } else {
     response.writeHead(200);
     response.end();

@@ -1,4 +1,4 @@
-  const start = () => { // runs a lot of the functions necessary for the first time (scrambled word, enter in the input)
+  function start() { // runs a lot of the functions necessary for the first time (scrambled word, enter in the input)
   	newScrambled();
   	updateScores();
   	updateCurrentScore();
@@ -14,7 +14,22 @@
   };
 
 
-  const updateCurrentScore = () => {
+  function hint() {
+  	let inp = document.querySelector('#answer');
+
+  	fetch('/hint', {
+  		method: 'POST',
+  		body: inp.dataset.hint.length
+  	}).then((res) => {
+  		res.text().then(char => {
+  			inp.dataset.hint = inp.dataset.hint ? inp.dataset.hint + char : char;
+  			inp.value = inp.dataset.hint;
+  		});
+  	});
+  }
+
+
+  function updateCurrentScore() {
   	fetch('/getCurrScore', {
   		method: 'GET'
   	}).then((res) => {
@@ -25,7 +40,7 @@
   };
 
 
-  const updateScores = () => {
+  function updateScores() {
 	fetch('/getScores', {
   		method: 'GET'
   	}).then((res) => {
@@ -49,10 +64,10 @@
   };
 
 
-  const endGame = () => { // ends the game and sends score to the server
-  	let name = document.querySelector('#boardName').value;
+  function endGame() { // ends the game and sends score to the server
+  	let name = document.querySelector('#boardName').value ? document.querySelector('#boardName').value : '???';
   	let date = new Date();
-  	let scorejson = JSON.stringify({"date": date, "name": name, "score": 0});
+  	let scorejson = JSON.stringify({"date": date, "name": name.toUpperCase(), "score": 0});
 
   	fetch('/newScore', {
   		method: 'POST',
@@ -65,13 +80,15 @@
   };
 
 
-  const changeInputUnderlines = () => {  // Change all the css styling needed for the dynamic character underlines
+  function changeInputUnderlines() {  // Change all the css styling needed for the dynamic character underlines
   	let length = document.querySelector('#scrambledWord').innerText.length,
   		input = document.querySelector('#answer'),
   		charWidth = 1,
   		gap = 0.5 * charWidth,
   		totalWidth = length * (charWidth + gap);
 
+	input.value = '';
+	input.dataset.hint = '';
   	input.maxLength = length;
   	input.style.width = `${totalWidth}ch`;
   	input.style.letterSpacing = `${gap}ch`;
@@ -79,7 +96,7 @@
   };
 
 
-  const newScrambled = () => { // Changes the scrambled word to a new one from the server
+  function newScrambled() { // Changes the scrambled word to a new one from the server
   	document.querySelector('#scrambledWord').innerHTML = 'Loading...';
   	fetch('/currentWord', {
   		method: 'GET'
@@ -92,21 +109,22 @@
   };
 
 
-  const guessWord = (guess) => { // takes in a value and sends it to the server to see if its correct
+  function guessWord(guess) { // takes in a value and sends it to the server to see if its correct
   	data = JSON.stringify({'guess': guess});
   	fetch('/guess', {
   		method: 'POST',
   		body: data
   	}).then((res) => {
   		res.text().then((correct) => { // is either true or false to see if that was the correct word
+  			let scrambled = document.querySelector('#scrambledWord')
+  			let inp = document.querySelector('#answer');
+
   			if (correct === 'false') {
 
-  				document.querySelector('#scrambledWord').classList.add('incorrect');
-  				console.log(document.querySelector('#scrambledWord').classList);
-  				setTimeout(() => document.querySelector('#scrambledWord').classList.remove('incorrect'), 2500)
+  				scrambled.classList.add('incorrect');
+  				setTimeout(() => scrambled.classList.remove('incorrect'), 2500);
   			} else {
-				document.querySelector('#answer').value = '';
-				document.querySelector('#scrambledWord').classList.remove('incorrect')
+				scrambled.classList.remove('incorrect')
 				updateCurrentScore();
 				newScrambled();
   			}
@@ -115,7 +133,7 @@
   };
 
 
- const answerkey = () => { // prints the answer key
+ function answerkey() { // prints the answer key
  	let randomwords = ['size','pipe','show','toy','zipper','throne','baby','seat','river','ocean','spade',
 	'pump','cakes','skate','cat','vegetable','nut','furniture','tendency','car','sleet','truck','basket','writer',
 	'fish','rock','ants','border','experience','kitty','flesh','servant','hydrant','planes','week','office',
@@ -127,6 +145,6 @@
  	console.log(randomwords);
  }
 
-  window.onload = function() { // just runs start when page opens
+  window.onload = () => { // just runs start when page opens
     start();
   };

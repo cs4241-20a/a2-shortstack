@@ -11,7 +11,7 @@
     <div id="left-block" class='container'>
       <div id="scoreName" class="block">
         <p>Leaderboard name:</p>
-        <input id="boardName" type="text" class="underlines scoreNick" maxlength="3">
+        <input id="boardName" type="text" class="underlines scoreNick" maxlength="3" placeholder="???">
       </div>
       <div id="scores" class="block">
         Current: <span id="currScore">0</span><br>
@@ -19,8 +19,9 @@
         <div id="serverscores"></div>
       </div>
       <div id="scoreActions">
-        <button id="endgame" onclick="endGame()">End Game</button>
-        <button id="hint" onclick="hint()">If you need help</button>
+        <button id="endgame" class="butt" onclick="endGame()">End Game</button>
+        <br>
+        <button id="hint"  class="butt" onclick="hint()">If you need help</button>
       </div>
     </div>
     <div id="center-block" class='container'>
@@ -30,7 +31,7 @@
       </div>
       <div id="inputs">
         <form onsubmit="return false" autocomplete="off">
-          <input type='text' maxlength="7" id='answer' class="underlines" hint="0">
+          <input type='text' maxlength="7" id='answer' class="underlines" data-hint="">
         </form>
       </div>
     </div>
