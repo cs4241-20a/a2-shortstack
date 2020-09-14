@@ -1,1 +1,13 @@
 /*Style your own assignment! This is fun! */
+
+body {
+	background-image: url('Background.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+	background-size: cover;
+}
+
+label {
+	font-size: 30px;
+}

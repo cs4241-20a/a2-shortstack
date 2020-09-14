@@ -1,41 +1,80 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+
+<body>
+
+  <div class="leftside">
+    <h1>Current Race Entries:</h1>
+    <table id="current"></table>
+  </div>
+
+  <div class="rightside">
+    <h1>New Race Entry:</h1>
+
+    <form>
+      <label for="name">Name:</label>
+      <input id="name" placeholder="First, Last" type="text">
+      <br><br>
+
+      <label for="bikeyear">Bike Year:</label>
+      <input id="name" placeholder="XXXX" type="text">
+      <br><br>
+
+      <label for="bikebrand">Bike Brand:</label>
+      <select id="brand" name="brand">
+        <option value="honda">Honda</option>
+        <option value="husqvarna">Husqvarna</option>
+        <option value="kawasaki">Kawasaki</option>
+        <option value="ktm">KTM</option>
+        <option value="suzuki">Suzuki</option>
+        <option value="yamaha">Yamaha</option>
+      </select>
+      <br><br>
+
+      <label for="bikecc">Bike CC's:</label>
+      <input id="bikecc" placeholder="XXX" type="text">
+      <br><br>
+
+      <label for="class">Class:</label>
+      <select id="class" name="class">
+        <option value="50cc">50 cc</option>
+        <option value="65cc">65 cc</option>
+        <option value="85cc">85 cc</option>
+        <option value="supermini">Supermini</option>
+        <option value="youtha">Youth A</option>
+        <option value="youthb">Youth B</option>
+        <option value="youthc">Youth C</option>
+        <option value="250a">250 A</option>
+        <option value="250b">250 B</option>
+        <option value="250c">250 C</option>
+        <option value="450a">450 A</option>
+        <option value="450b">450 B</option>
+        <option value="450c">450 C</option>
+        <option value="opena">Open A</option>
+        <option value="openb">Open B</option>
+        <option value="openc">Open C</option>
+        <option value="25">25+ A/B/C</option>
+        <option value="30">30+ A/B/C</option>
+        <option value="40">40+ A/B/C</option>
+        <option value="45">45+ Open</option>
+        <option value="50">50+ Open</option>
+        <option value="55">55+ Open</option>
+        <option value="60">60+ Open</option>
+        <option value="Female">Female</option>
+      </select>
     </form>
-  </body>
-  <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+    <button id="add">Submit</button>
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+</body>
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+<script src = "/.js/scripts.js"></script>
 
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
