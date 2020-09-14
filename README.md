@@ -9,10 +9,16 @@ To use this app, enter in a product name and then enter the price of the product
 In the CSS, I used a large header and then used a table beneath that to hold all the list data. I used the Grandstander Light 300 text from Google Fonts and incorporated it in the CSS.
 The table is stretched to 80% of the screen and the input fields are right under them. The buttons are below everything. The CSS centers everything to make it look modern.
 
+To use the add button, the item name, item price and item quantity fields must be filled in.
+
+To use the delete previous item button, none of the fields need to be filled in.
+
+To use the edit button, an item name matching a previous one must be filled in the name and the updated price and quantity should be in the respective fields.
+
 
 ## Technical Achievements
 - **Tech Achievement 1**: The app is single page and updates its display after the data from the server side is sent back.
-- **Tech Achievement 2**: The ability to both add and delete data from the server side is functional in this project.
+- **Tech Achievement 2**: The ability to both add, edit and delete data from the server side is functional in this project.
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: N/A
