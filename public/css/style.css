@@ -5,3 +5,12 @@ body {
     font-family: "Lato";
     font-size: 22px;
 }
+h1{
+    text-align: center;
+    color: red;
+    border: red;
+    border-radius: 10px;
+    border: double;
+    padding-bottom: 5px;
+    
+}
