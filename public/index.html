@@ -1,74 +1,57 @@
 <!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-     <Style type-text/css>
-    	 body {
-        background-color: #blue;
-        color: #F58F47;
-        padding: 10px;
-        font-family: times, Arial ,  cursive;}
-      h1 {
-        background-color: #2B7BFC;
-       
-        color: #32E66E;
-        padding: inherit;}
-      p {
-        background-color: #FFF9AB;
-        padding: 5px;
-        margin: 0px; }
-
-        .button{
-        	background-color: #ffc767;
-        	color: blue;
-        }
-    
-	</Style>
-
-
-	<Style>
-        .btn{
-        	background-color: #ffc767;
-        	color: blue;
-        }
-    
-	</Style>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   
 
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button class="btn">submit</button>
-    </form>
+    <div class="box">
+    <div class="child">
+      <h1>Todo List</h1>
+    </div>
+    <div class="child">
+      <div class="inputSq">
+        <div>
+          <h3>Add an item</h3>
+        </div>
+        <div>
+          <form name="inputForm">
+            <input type="text" id="youtask" value="Task">
+            <input type="date" id="duedate" value="Due Date">
+            <button id="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="child">
+      <table id="taskTable">
+        <thead>
+          <tr>
+            <th colspan="4">Task List</th>
+          </tr>
+          <tr>
+            <th>Task</th>
+            <th>Date</th>
+            <th>Date Made</th>
+            <th>Completed</th>
+          </tr>
+        </thead>
+        <tbody id="TaskBody">
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <button id="delete">Delete all Completed Tasks?</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <script src="js/scripts.js"></script>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
