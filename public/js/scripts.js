@@ -1,31 +1,86 @@
-  const start = () => {
+  const start = () => { // runs a lot of the functions necessary for the first time (scrambled word, enter in the input)
   	newScrambled();
+  	updateScores();
+  	updateCurrentScore();
   	let inp = document.querySelector('#answer');
+
   	inp.addEventListener('keyup', (e) => {
   		event.preventDefault();
+
   		if (e.code === 'Enter') {
   			guessWord(inp.value);
   		}
   	});
   };
 
-  const changeInputUnderlines = () => {
+
+  const updateCurrentScore = () => {
+  	fetch('/getCurrScore', {
+  		method: 'GET'
+  	}).then((res) => {
+  		res.text().then(score => {
+  			document.querySelector('#currScore').innerHTML = score;
+  		});
+  	})
+  };
+
+
+  const updateScores = () => {
+	fetch('/getScores', {
+  		method: 'GET'
+  	}).then((res) => {
+  		res.text().then((scores) => {
+  			let insertDiv = document.querySelector('#serverscores');
+
+  			scores = JSON.parse(scores);
+  			scores = scores.sort((a, b) => parseInt(b.score) - parseInt(a.score));
+  			insertDiv.innerHTML = '';
+
+  			scores.forEach((score, i) => {
+  				if (i < 5){
+	  				let ele = document.createElement('div');
+
+	  				ele.innerHTML = `${score.name}: ${score.score}`;
+	  				insertDiv.appendChild(ele);
+  				}
+  			});
+  		});
+  	});
+  };
+
+
+  const endGame = () => { // ends the game and sends score to the server
+  	let name = document.querySelector('#boardName').value;
+  	let date = new Date();
+  	let scorejson = JSON.stringify({"date": date, "name": name, "score": 0});
+
+  	fetch('/newScore', {
+  		method: 'POST',
+  		body: scorejson
+  	}).then((res) => {
+  		updateScores();
+  		newScrambled();
+  		updateCurrentScore();
+  	});
+  };
+
+
+  const changeInputUnderlines = () => {  // Change all the css styling needed for the dynamic character underlines
   	let length = document.querySelector('#scrambledWord').innerText.length,
   		input = document.querySelector('#answer'),
   		charWidth = 1,
   		gap = 0.5 * charWidth,
   		totalWidth = length * (charWidth + gap);
-  	input.maxLength = length;
-  	input.style.width = totalWidth;
-  	input.style.letterSpacing = `${gap}ch`;
-  	console.log(totalWidth, length, document.querySelector('#scrambledWord').innerHTML);
-  	input.style.background = `repeating-linear-gradient(to right, black 0, black ${charWidth}ch, transparent 0, transparent ${charWidth + gap}ch) 0 100% / ${totalWidth - gap}ch 2px no-repeat`;
-  	// input.style.background = `repeating-linear-gradient(90deg, dimgrey 0, dimgrey ${charWidth}ch, transparent 0, transparent ${charWidth}ch + ${gap}ch) 0 100%/ ${totalWidth}ch - ${gap}ch 2px no-repeat;`;
-  	// input.style.background = 
-  	console.log('l', input.style.background, $('#answer').css('color', 'green'));
-  }
 
-  const newScrambled = () => {
+  	input.maxLength = length;
+  	input.style.width = `${totalWidth}ch`;
+  	input.style.letterSpacing = `${gap}ch`;
+  	input.style.background = `repeating-linear-gradient(to right, black 0, black ${charWidth}ch, transparent 0, transparent ${charWidth + gap}ch) 0 100% / ${totalWidth - gap}ch 2px no-repeat`;
+  };
+
+
+  const newScrambled = () => { // Changes the scrambled word to a new one from the server
+  	document.querySelector('#scrambledWord').innerHTML = 'Loading...';
   	fetch('/currentWord', {
   		method: 'GET'
   	}).then((res) => {
@@ -36,7 +91,8 @@
   	});
   };
 
-  const guessWord = (guess) => {
+
+  const guessWord = (guess) => { // takes in a value and sends it to the server to see if its correct
   	data = JSON.stringify({'guess': guess});
   	fetch('/guess', {
   		method: 'POST',
@@ -44,13 +100,14 @@
   	}).then((res) => {
   		res.text().then((correct) => { // is either true or false to see if that was the correct word
   			if (correct === 'false') {
+
   				document.querySelector('#scrambledWord').classList.add('incorrect');
   				console.log(document.querySelector('#scrambledWord').classList);
   				setTimeout(() => document.querySelector('#scrambledWord').classList.remove('incorrect'), 2500)
   			} else {
-				let score = document.querySelector('#currScore');
-				score.innerHTML = parseInt(score.innerHTML) + 1;
 				document.querySelector('#answer').value = '';
+				document.querySelector('#scrambledWord').classList.remove('incorrect')
+				updateCurrentScore();
 				newScrambled();
   			}
   		});
@@ -58,6 +115,18 @@
   };
 
 
-  window.onload = function() {
+ const answerkey = () => { // prints the answer key
+ 	let randomwords = ['size','pipe','show','toy','zipper','throne','baby','seat','river','ocean','spade',
+	'pump','cakes','skate','cat','vegetable','nut','furniture','tendency','car','sleet','truck','basket','writer',
+	'fish','rock','ants','border','experience','kitty','flesh','servant','hydrant','planes','week','office',
+	'dog','art','yak','distance','stocking','snails','playground','knot','curtain','wrench','daughter','seashore',
+	'side','channel','cow','surprise','team','partner','paper','leg','arch','produce','bell','language','hope',
+	'women','angle','cream','jar','respect','pigs','loaf','fly','time','uncle','move','earth','pies','flame',
+	'door','place','wing','fact','cherries','need','knee','ground','key','farm','direction','crayon','authority',
+	'idea','cake','winter','copper','son','cactus','caption','road','slope','trouble','finger','comparison'];
+ 	console.log(randomwords);
+ }
+
+  window.onload = function() { // just runs start when page opens
     start();
   };

@@ -9,9 +9,18 @@
   </head>
   <body>
     <div id="left-block" class='container'>
-      <div id="scores">
-        Current: <span id="currScore">60</span><br>
-        High: 69
+      <div id="scoreName" class="block">
+        <p>Leaderboard name:</p>
+        <input id="boardName" type="text" class="underlines scoreNick" maxlength="3">
+      </div>
+      <div id="scores" class="block">
+        Current: <span id="currScore">0</span><br>
+        <h5>Previous Scores</h5>
+        <div id="serverscores"></div>
+      </div>
+      <div id="scoreActions">
+        <button id="endgame" onclick="endGame()">End Game</button>
+        <button id="hint" onclick="hint()">If you need help</button>
       </div>
     </div>
     <div id="center-block" class='container'>
@@ -20,8 +29,8 @@
         <div id="scrambledWord"></div>
       </div>
       <div id="inputs">
-        <form onsubmit="return false">
-          <input type='text' maxlength="7" id='answer'>
+        <form onsubmit="return false" autocomplete="off">
+          <input type='text' maxlength="7" id='answer' class="underlines" hint="0">
         </form>
       </div>
     </div>

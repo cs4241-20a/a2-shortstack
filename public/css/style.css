@@ -3,26 +3,24 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 3ch;
+	text-align: center;
 }
 
 .container {
 	display: flex;
-}
-
-#left-block {
-	float: left;
-	height: 100vh;
-	width: 20vw;
-	justify-content: center;
-	align-items: center;
-}
-
-#center-block {
 	flex-flow: wrap column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
 }
+
+#left-block {
+	float: left;
+	width: 20vw;
+	justify-content: flex-start;
+}
+
+#center-block {}
 
 #scores {}
 
@@ -34,14 +32,17 @@ body {
 	font-size: 4ch;
 }
 
+.block {
+	display: block;
+}
 
-#answer {
+.underlines {
   display: block;
   margin: 2em auto;
   border: none;
   padding: 0;
-  width: 10.5ch;
-  /*background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1.5ch) 0 100% / 10ch 2px no-repeat;*/
+  width: 4.5ch;
+  background: repeating-linear-gradient(to right, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1.5ch) 0 100% / 4ch 2px no-repeat;
   letter-spacing: 0.5ch;
   font: 5ch monospace;
 }
@@ -50,12 +51,12 @@ body {
 	color: red;
 }
 
-.incorrect: focus {
-	color: red;
-}
-
-#answer:focus {
+.underlines:focus {
   outline: none;
   color: plum;
 }
 
+.scoreNick {
+	margin-top: 1em;
+	font: 3ch monospace;
+}
