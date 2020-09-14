@@ -1,12 +1,14 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "scripts": {
-    "start": "node server.improved.js"
-  },
-  "dependencies": {
-    "mime": "^2.4.6"
-  }
+"name": "",
+"version": "",
+"description": "",
+"author": "",
+"scripts": {
+  "start": "node server.improved.js",
+  "build": "npm run bundle; npm start;"
+},
+"dependencies": {
+  "pouchdb": "^7.1.1",
+  "mime": "^2.4.4"
+}
 }

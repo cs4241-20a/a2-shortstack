@@ -3,48 +3,32 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <script src="//cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
+    <script src="js/scripts.js"></script>
   </head>
   <body>
     <link rel="stylesheet" href="/css/style.css">
-    <h1 style="text-align:center">Fishing World Record Log</h1>
+    <h1 class="title">Fishing Log</h1>
     <form>
       <center>
-        <input type="text" id="anglername" value="angler name">
-        <input type="text" id="fishtype" value="your capture">
-      <input type="text" id="fishweight" value="weight in pounds">
+        <input type="text" id="anglername" placeholder="angler name">
+        <input type="text" id="fishtype" placeholder="your capture">
+      <input type="text" id="fishweight" placeholder="weight in pounds">
+      <input type="text" id="line" placeholder="line class">
       <br>
       <button id="submitBtn">submit</button>
       </center>
     </form>
+    <br>
+    <table id="table1" style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Fish Type</th>
+    <th>Line Class</th>
+    <th>Weight</th>
+    <th>Date Captured</th>
+    <th>Estimated Time (Hours)</th>
+  </tr>
+  </table>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-          json = { 
-                  anglername: document.querySelector('#anglername').value,
-                  fishtype: document.querySelector('#fishtype').value,
-                  fishweight: document.querySelector('#fishweight').value
-                 }
-          body = JSON.stringify( json )
-    fetch('/submit', {
-      method:'POST',
-      body
-    })
-    .then( function( response ) {
-      console.log(body);
-      
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>

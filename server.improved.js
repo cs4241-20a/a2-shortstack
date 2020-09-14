@@ -8,51 +8,47 @@ const http = require( 'http' ),
 
 
 
+var appdata = []
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
+    handleGet( request, response )
   }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    handlePost( request, response )
   }
 })
 
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+  const filename = dir + request.url.slice( 1 )
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }
-  // else if (request.url === '/submit' ) {
-  //   console.log("in server")
-  //   console.log(appdata)
-  // }
-  
+  else if( request.url === '/r' ) {
+    console.log("send DAta now");
+  }
   else{
     sendFile( response, filename )
   }
 }
-const appdata = []
 
 const handlePost = function( request, response ) {
-  console.log("In Function")
-   let dataString = ''
- request.on('data', function (data) {
-    dataString += data
-    console.log(data)
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data
   })
   request.on( 'end', function() {
-    console.log("in server")
-    console.log( dataString )
-
-    // ... do something with the data here!!!
-
+    console.log( JSON.parse( dataString ) )
+    appdata = appdata + dataString;
+    console.log(appdata);
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
 }
 
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+   const type = mime.getType( filename )
 
    fs.readFile( filename, function( err, content ) {
 
@@ -72,3 +68,5 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+server.listen( process.env.PORT || port )
