@@ -24,7 +24,16 @@
         based on our top-secret, proprietary, extremely accurate and not at all arbitrary pricing algorithms.
       </p>
 
-      <form action="" id="car_form">
+      <div class="alert alert-danger" v-if="showError">
+        It looks like your vehicle's data is incomplete. Please make sure the "Model" field is not empty
+        and that the "Mileage" field is a number greater than 0.
+      </div>
+
+      <div class="alert alert-success" v-if="showSuccess">
+        Successfully added your vehicle to the list of cars for auction!
+      </div>
+
+      <form id="car_form">
   
         <div class="form-row centered">
           <div class="form-group">
@@ -46,8 +55,13 @@
           <div class="form-group">
             <label for="yearPicker">Year</label>
             <select id="yearPicker" class="form-control">
-              <!-- Filled in programmatically because I do not want to copy-paste 50ish elements -->
+              <!-- Filled in programmatically when page loads -->
             </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mileage">Mileage</label>
+            <input type="text" id="mileage" class="form-control" placeholder="120000">
           </div>
 
           <div class="form-group">
@@ -68,104 +82,18 @@
             <img class="card-img-top" v-bind:src="imgPath(car.make)"  alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{ car.year }} {{ car.make }} {{ car.model }}</h5>
-              <p class="card-text">Price: {{ formatPrice(car.price) }} MPG: {{ car.mpg }}</p>
+              <p class="card-text">
+                Price: {{ formatPrice(car.price) }} <br>
+                Mileage: {{ car.mileage }} <br>
+                MPG: {{ car.mpg }} <br>
+              </p>
             </div>
           </div>
         </div>
       </div>
-
     </div>
+
+    <script src="js/scripts.js"></script>
+
   </body>
-  <script>
-
-  var app = new Vue({
-    el: "#app",
-    data: {
-      message: "Exotic Car Auctions",
-      cars: []
-    },
-    methods: {
-      imgPath(make) {
-        return `/images/${make.toLowerCase()}.jpg`
-      },
-      formatPrice(price) {
-        const formatter = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        });
-
-        // Get rid of cents by splitting price on "." and taking first token.
-        // Who cares about cents on a $250k car?
-        return formatter.format(price).split(".")[0];
-      }
-    }
-  });
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const make = document.getElementById("make");
-    const model = document.getElementById("model");
-    const year = document.getElementById("yearPicker");
-    const mpg = document.getElementById("mpg");
-    const json = {
-      make: make.value,
-      model: model.value,
-      year: year.value,
-      mpg: mpg.value
-    };
-
-    const body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( resp => receiveData(resp) );
-
-    return false
-  }
-
-  function receiveData(response) {
-    response.json()
-    .then(function(data) {
-      console.log(data);
-      app.cars = data;
-    })
-  }
-
-  window.onload = function() {
-    const button = document.getElementById("submitButton")
-    button.onclick = submit
-
-    // Programmatically add years to yearPicker select tag
-    const yearPicker = document.getElementById("yearPicker")
-    for(let i = 2020; i >= 1970; i--) {
-      var opt = document.createElement("option");
-      opt.value = i;
-      opt.innerHTML = i;
-      yearPicker.appendChild(opt);
-    }
-
-    // Programmatically add mpg choices
-    const mpg = document.getElementById("mpg")
-    // Realistically, none of these cars will ever reach 50mpg, but that's fine
-    for(let i = 1; i <= 50; i++) {
-      var opt = document.createElement("option");
-      opt.value = i;
-      opt.innerHTML = i;
-      mpg.appendChild(opt);
-    }
-
-
-    // Fetch existing state data from server
-    fetch('/results/', {
-      method: 'GET'
-    })
-    .then( resp => receiveData(resp) );
-    
-  }
-
-  </script>
 </html>

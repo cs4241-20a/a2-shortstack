@@ -2,11 +2,6 @@
 uses the classes already defined by Bootstrap. I do still make use of flexbox and the
 selectors as required by the project. */
 
-#banner {
-    display: flex;
-    justify-content: center;
-}
-
 #car_form {
     border: 1px solid lightgrey;
     border-radius: 1rem 3rem 1rem 1rem;

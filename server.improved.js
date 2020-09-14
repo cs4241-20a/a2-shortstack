@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'make': 'Bugatti', 'model': 'Veyron', 'year': 2005, 'price': 1200000, 'mpg': 15 },
-  { 'make': 'Lamborghini', 'model': 'Aventador', 'year': 2011, 'price': 300000,'mpg': 12 },
-  { 'make': 'Ferrari', 'model': '458', 'year': 2009, 'price': 175000, 'mpg': 14} 
+  { 'make': 'Bugatti', 'model': 'Veyron', 'year': 2005, 'price': 1200000, 'mileage': 10000, 'mpg': 15 },
+  { 'make': 'Lamborghini', 'model': 'Aventador', 'year': 2011, 'price': 300000, 'mileage': 25000, 'mpg': 12 },
+  { 'make': 'Ferrari', 'model': '458', 'year': 2009, 'price': 175000, 'mileage': 34000, 'mpg': 14} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -81,8 +81,12 @@ const handlePost = function( request, response ) {
     // Appreciation/depreciation with age. New cars depreciate for a few years, then begin to appreciate.
     let age = 2021 - parseInt(car.year);
 
-    // Wacky equation I came up with that decreases at first, but then increases to maximum value for cars from 1970 (50 years old).
+    // Adjust price based on age. This equation I came up with that decreases at first, but then increases to maximum value for cars from 1970 (50 years old).
     price = price + price * age * Math.sin(2 * Math.PI * age / 65 - Math.PI) / 100;
+
+    // Adjust price based on mileage. 10k miles -> 5% reduction in price.
+    // This equation is reasonable for reasonable mileages, anything <= 500,000.
+    price = price * Math.pow(0.95, (car.mileage / 10000))
 
     car.price = Math.trunc(price);
     console.log(car);
