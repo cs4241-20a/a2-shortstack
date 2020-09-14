@@ -1,1 +1,12 @@
 /*Style your own assignment! This is fun! */
+
+
+
+.grid-container {
+    display: grid;
+}
+
+.grid-item
+{
+    color: black;
+}
