@@ -1,1 +1,214 @@
-/*Style your own assignment! This is fun! */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100%;
+    background-color:  snow;
+}
+
+h1 {
+    margin: 5px;
+    padding: 30px;
+    font-family: 'Press Start 2P', 'sans-serif';
+    font-size: 50px;
+    color: deepskyblue;
+    text-align: center;
+}
+
+.input_div{
+    margin: 5px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.input_div .input{
+    padding: 1rem 1rem;
+    height: 50px;
+    outline: none;
+    border: 2px solid grey;
+    font-family: 'Press Start 2P', 'sans-serif';
+    background-color: white;
+    width: 450px;
+    font-size: 2rem;
+    margin: 1rem;
+    border-radius: 25px;
+}
+
+.addButton{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-color: deepskyblue;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+    margin: 0.25rem;
+}
+
+.addButton:hover{
+    opacity: 0.7;
+}
+
+.container{
+    width: 1500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2rem;
+    
+}
+
+
+pre{
+    background: none;
+    border: none;
+}
+
+.item{
+    height: 75px;
+    overflow: visible;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid grey;
+    border-radius: 1rem;
+}
+
+.item_input{
+    background: none;
+    outline: none;
+    color: deepskyblue;
+    padding-left: 1rem;
+    margin: 10px;
+    border: none;
+    border-bottom: 2px solid grey;
+    width: 350px;
+    font-size: 2rem;
+    font-family: 'Press Start 2P', 'sans-serif';
+}
+
+.editButton{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+    margin: 0.25rem;
+}
+
+.editButton:hover{
+    opacity: 0.7;
+}
+
+.removeButton{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+    margin: 0.25rem;
+}
+
+.removeButton:hover{
+    opacity: 0.7;
+}
+
+.dateButton{
+    font-family: 'Press Start 2P', 'sans-serif';
+    font-size: 2rem;
+    padding: 2rem;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-color: orange;
+    margin: 0.25rem;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.dateButton:hover{
+    opacity: 0.7;
+}
+
+
+.priorityButton{
+    font-family: 'Press Start 2P', 'sans-serif';
+    font-size: 2rem;
+    padding: 1rem;
+    justify-content: center;
+    justify-items: center;
+    height: 50px;
+    width: 175px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-color: cadetblue;
+    margin: 0.25rem;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.priority_selector{
+    padding-left: 1rem;
+    color: white;
+    background-color: darkslategrey;
+    border-radius: 15px;
+    margin: 0.5rem;
+}
+
+.date_selector{
+    padding-left: 1rem;
+    color: white;
+    background-color: purple;
+    border-radius: 15px;
+    margin: 0.5rem;
+}
+
+label{
+    font-family: 'Press Start 2P', 'sans-serif';
+    font-size: 2rem;
+    
+}
+
+.resultantDate{
+    font-family: 'Press Start 2P', 'sans-serif';
+    font-size: 2rem;
+    padding: 2rem;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-color: slategray;
+    margin: 0.25rem;
+    color: white;
+}
+
+#containerHeader{
+    font-family: 'Press Start 2P', 'sans-serif';
+    color: purple;
+    font-size: 2.2rem;
+}
