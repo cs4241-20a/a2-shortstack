@@ -44,15 +44,15 @@ const handlePost = function( request, response ) {
     console.log( dataString["priority"] )
     if (dataString["priority"] === "med_priority") {
       dataString["priority"] = "Medium Priority"
-      dataString["Message for you"] = "Finish your high priority tasks first and then get to this!"
+      dataString["message"] = "Finish your high priority tasks first and then get to this!"
     }
     if (dataString["priority"] === "high_priority") {
       dataString["priority"] = "High Priority"
-      dataString["Message for you"] = "Finish this task first!"
+      dataString["message"] = "Finish this task first!"
     }
     if (dataString["priority"] === "low_priority") {
       dataString["priority"] = "Low Priority"
-      dataString["Message for you"] = "You have some time, go watch some Netflix :)"
+      dataString["message"] = "You have some time, go watch some Netflix :)"
     }
     
     dataSet.push(dataString)
@@ -60,7 +60,7 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( dataString )
+    response.end( JSON.stringify(dataString) )
   })
 }
 

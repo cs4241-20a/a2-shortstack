@@ -24,11 +24,26 @@
       <label for="med_priority"> Low Priority </label><br /><br />
       <button>Submit</button>
     </form>
+
+    <table id="groceryTable">
+      <thead>
+        <tr>
+          <th>Work List</th>
+        </tr>
+        <tr>
+          <th>Task</th>
+          <th>Creation Date</th>
+          <th>Priority</th>
+          <th>Message For You</th>
+        </tr>
+      </thead>
+      <tbody id="taskBody"></tbody>
+    </table>
   </body>
   <script>
     function addRows(json) {
       //Find the table
-      const tableBody = document.getElementById("groceryBody");
+      const tableBody = document.getElementById("taskBody");
       //Insert a new row and then new cells
       let row = tableBody.insertRow(-1);
       let cell1 = row.insertCell(0);
@@ -37,10 +52,10 @@
       let cell4 = row.insertCell(3);
 
       //Fill those cells with the data gotten back from the server, this includes the new fields
-      cell1.innerHTML = jsonEntry.quantity;
-      cell2.innerHTML = jsonEntry.food;
-      cell3.innerHTML = jsonEntry.cal;
-      cell4.innerHTML = '<button class="checkButton">✓</button>';
+      cell1.innerHTML = jsonEntry.yourtask;
+      cell2.innerHTML = jsonEntry.date;
+      cell3.innerHTML = jsonEntry.priority;
+      cell4.innerHTML = jsonEntry.message;
     }
 
     const submit = function(e) {
@@ -59,7 +74,7 @@
         input2 = document.querySelector("#taskduedate"),
         input3 = displayRadioValue(),
         json1 = {
-          yourname: input1.value,
+          yourntask: input1.value,
           date: input2.value,
           priority: input3
         },
@@ -70,7 +85,7 @@
         body
       }).then(function(response) {
         // do something with the reponse
-        addRows(response);
+        addRows(response.json());
         console.log(response);
       });
 
