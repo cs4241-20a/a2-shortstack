@@ -38,3 +38,18 @@ h4 {
     align-content: center;
     padding-right: 5%;
 }
+
+.title-flex {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-content: center;
+    padding-left: 5%;
+}
+
+#highscores {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.5em;
+    border-collapse: collapse;
+    width: 100%;
+  }
