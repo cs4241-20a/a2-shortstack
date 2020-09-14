@@ -60,7 +60,7 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    console.log( dataString )
+    console.log( JSON.stringify(dataString) )
     response.end( JSON.stringify(dataString) )
   })
 }

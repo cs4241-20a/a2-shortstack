@@ -45,17 +45,17 @@
       //Find the table
       const tableBody = document.getElementById("taskBody");
       //Insert a new row and then new cells
-      let row = tableBody.insertRow(-1);
+      let row = tableBody.insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
       let cell3 = row.insertCell(2);
       let cell4 = row.insertCell(3);
 
       //Fill those cells with the data gotten back from the server, this includes the new fields
-      cell1.innerHTML = json.yourtask;
-      cell2.innerHTML = json.date;
-      cell3.innerHTML = json.priority;
-      cell4.innerHTML = json.message;
+      row.insertCell(0).innerHTML = json.yourtask;
+      row.insertCell(1).innerHTML = json.date;
+      row.insertCell(2).innerHTML = json.priority;
+      row.insertCell(3).innerHTML = json.message;
       console.log("got here")
     }
 
@@ -86,7 +86,7 @@
         body
       }).then(response => response.json())
     .then( function( response ) {
-        addRows(response);
+        addRows(response);})
       // }).then(function(response) {
       //   // do something with the reponse
       //   addRows(response);
