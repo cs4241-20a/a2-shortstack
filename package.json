@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Ryan Cirella",
+  "version": "1.01",
+  "description": "Assignment 2",
+  "author": "Ryan Cirella",
   "scripts": {
     "start": "node server.improved.js"
   },
