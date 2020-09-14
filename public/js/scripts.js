@@ -55,6 +55,18 @@ const submit = function( e ) {
                 console.log(allData);
             });
         }
+    
+    document.querySelector('#name').value = "Preferred Name";
+    document.querySelector('#mail').value = "Preferred Email";
+    document.querySelector('#date').value = "mm/dd/yyyy";
+    document.querySelector('#ftime').value = "--:--";
+    document.querySelector('#ttime').value = "--:--";
+    document.querySelector('#pro').checked = false;
+    document.querySelector('#grad').checked = false;
+    document.querySelector('#under').checked = false;
+    document.querySelector('#visit').checked = false;
+    document.querySelector('#exp').checked = false;
+    document.querySelector('#norm').checked = false;
     return false
 };
 
@@ -81,14 +93,15 @@ const mod = function (e) {
     document.querySelector('#date').value = obj.date;
     document.querySelector('#ftime').value = obj.ftime;
     document.querySelector('#ttime').value = obj.ttime;
-    for(let rad in document.getElementsByName('radio')){
-        rad.checked = false;
-    }
+  
+    document.querySelector('#pro').checked = false;
+    document.querySelector('#grad').checked = false;
+    document.querySelector('#under').checked = false;
+    document.querySelector('#visit').checked = false;
+    document.querySelector('#exp').checked = false;
+    document.querySelector('#norm').checked = false;
+  
     document.querySelector('#' + obj.title).checked = true;
-    for(let check in document.getElementsByName('checkbox')){
-        check.checked = false;
-    }
-
     if (obj.space === "both") {
         document.querySelector('#norm').checked = true;
         document.querySelector('#exp').checked = true;
