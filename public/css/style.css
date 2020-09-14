@@ -14,6 +14,10 @@ h1{
     margin-right: auto;
 }
 
-label{
+#lbl{
+    font-weight: bold;
+}
+
+.form-group{
     text-align: center;
 }

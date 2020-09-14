@@ -30,7 +30,6 @@ const submit = function (e) {
         return response.text();
       })
       .then ( function ( txt ){
-        console.log (txt);
         txt = JSON.parse(txt);     
         let table = document.querySelector("table");
         updateTable(table, txt);
@@ -48,11 +47,9 @@ const submit = function (e) {
       method: 'GET'
     })
       .then(function (response) {
-        console.log(response);
         return response.text();
       })
       .then ( function ( txt ){
-        console.log(txt);
         txt = JSON.parse(txt);        
         let table = document.querySelector("table");
         createTable(table, txt);
@@ -95,7 +92,6 @@ function updateTable(table, data) {
 * button onclick is also set to submit which sets off the POST request.
 */
 window.onload = function () {
-  console.log('debug');
     onLoad();
     const button = document.querySelector('button')
     button.onclick = submit

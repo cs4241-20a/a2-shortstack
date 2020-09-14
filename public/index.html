@@ -12,8 +12,8 @@
 
 <body>
 
-  <div class="jumbotron w-50 p-3 center bg-primary text-white">
-  <h1 class="display-4">My TODO List</h1>
+  <div class="jumbotron w-50 p-3 center bg-primary text-light">
+  <h1 class="display-4"><b>My TODO List</b></h1>
   <div class="d-flex justify-content-center">
     <table class="table table-striped table-dark">
       <thead>
@@ -29,21 +29,19 @@
   </div>
 
   <div class="jumbotron w-50 p-3 center bg-primary text-white">
-  <form action="">
+  <form>
     <div class="d-flex justify-content-center">
       <div class="form-group">
         <label for="taskName">Task Name:</label><br>
         <input type="text" id="taskName" name="taskName"><br>
       </div>
     </div>
-  
     <div class="d-flex justify-content-center">
       <div class="form-group">
-        <label for="priorty">Priorty:</label><br>
-        <input type="text" id="priority" name="priorty"><br>
+        <label id="lbl" for="priority">Priority:</label><br>
+        <input type="text" id="priority" name="priority"><br>
       </div>
     </div>
-
     <div class="d-flex justify-content-center">
       <button type="button" class="btn btn-light">Submit</button>
     </div>
