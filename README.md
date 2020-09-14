@@ -1,9 +1,10 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
+Assignment 2 - User Tech Review 
 ===
 
 Jonathan Dang: https://a2-jdang4.glitch.me
 
-For this assignment I used HTML/CSS and JavaScript to create a website that collects user reviews on phones, tablets, and laptops. The user would input in their own ratings for each of the categories asked and with those ratings the website would calculate and present the overall rating in a table.
+***User Tech Review*** is a website that allows users to assign their own ratings to either phones, tablets, or laptops. There are a total of 4 ratings in total; price, battery life, performance, and device feel. Each of these ratings are out of 5 stars and by submitting the ratings, the website would derive the overall rating of the user. This overall rating would be presented in a table that consists of all the other collected data that are residing in the server. In addition to adding a review, the user would also be able to modify and delete any reviews that are seen in the table.
+
 
 # Concepts that Application Demonstrates
 
