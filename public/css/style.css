@@ -1,3 +1,7 @@
+body{
+    background-image: url('../unsplash.jpg');
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: separate;
@@ -12,6 +16,7 @@ h1{
 .center{
     margin-left: auto;
     margin-right: auto;
+    margin-top: 25px;
 }
 
 #lbl{
@@ -19,5 +24,9 @@ h1{
 }
 
 .form-group{
+    text-align: center;
+}
+
+p{
     text-align: center;
 }

@@ -6,4 +6,6 @@ This is a simple web app made to keep track of a list of tasks that are due. The
 - **Tech Achievement 2**: I used moment js for the date formatting. This allows me to add a certain amount of days to the creation date in order to properly predict the required deadline.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: I decided to use bootstrap for the css portion of the web app. This allows a better look to my web app and allows better coloring and overall just better style. I included the css file via the internet.
+- **Design Achievement 1**: I decided to use bootstrap for the css portion of the web app. This allows a better look to my web app and allows better coloring and overall just better style. I included the css file via the internet. I also added a custom image that fit the color pallete of my web app.
+
+## NOTE: You may need to run `npm install` as moment is installed as an npm package and that's how the dates are generated.

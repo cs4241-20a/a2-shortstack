@@ -5,6 +5,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+/*
+* The first few tasks are hardcoded in this array and the dueDate is simply calculated by doing 10 - priority to come
+* up with the number of days it should be done by. 
+*/
 let tasks = [
   {taskName: "dishes", priority: "8", creationDate: "09/11/2020", dueDate: moment().add(2, 'days').format("MM/DD/YYYY")},
   {taskName: "laundry", priority: "4", creationDate: "09/12/2020", dueDate: moment().add(6, 'days').format("MM/DD/YYYY")},
