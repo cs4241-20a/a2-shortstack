@@ -1,1 +1,75 @@
 /*Style your own assignment! This is fun! */
+
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-Regular.ttf);
+}
+#canvas {
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    border:1px solid #c9b8c1;
+    background-color: #c9b8c1;
+
+    font-family: Montserrat;
+}
+
+body{
+    background-image: url('../images/backGif.gif');
+    background-size: cover;
+}
+
+h1{
+    font-family: Montserrat;
+    background-color: #c9b8c1;
+    text-align: center;
+}
+
+
+.buttonHolder{
+    position: absolute;
+    
+    z-index: 15;
+    top: 55%;
+    left: 50%;
+    margin: -50px 0 0 -100px;  
+}
+
+#yourname{
+    text-align: center; 
+    height: 20px;
+    width: 190px;
+    font-family: Montserrat;
+}
+
+#favColor{
+    text-align: center; 
+    height: 20px;
+    width: 190px;
+    font-family: Montserrat;
+}
+
+button{
+    height: 30px;
+    color: red;
+    background-color: #f1f1f1;
+    position: absolute;
+    left: 30%;
+    font-family: Montserrat;
+}
+
+table{
+    display: block;
+    margin-top: 20px;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#showName{
+    text-align: center; 
+}
+
