@@ -6,11 +6,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -29,21 +24,52 @@ const handleGet = function( request, response ) {
     sendFile( response, filename )
   }
 }
-
+let dataStorage = [],
+idCounter = 0
 const handlePost = function( request, response ) {
   let dataString = ''
-
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    //beautiful one-liner below handles what happens when something needs to be deleted from the server's DB
+    if(dataString.slice(0,3)=='DEL') for(let i=0; i<dataStorage.length; i++) {if(dataStorage[i].ID == dataString.substring(3)) dataStorage.splice(i, 1)}
+    else if(dataString!='GET') {
+    
+    const latestEntry = JSON.parse( dataString )
+    if(latestEntry.hasOwnProperty('ID')) {
+      let i
+      for (i = 0; i<dataStorage.length; i++) {
+        if (dataStorage[i].ID == latestEntry.ID) {
+          dataStorage[i].personname = latestEntry.personname
+          dataStorage[i].personbirthday = latestEntry.personbirthday
+          dataStorage[i].remindertime = latestEntry.remindertime
+          dataStorage[i].personage = latestEntry.personage
+          break
+        }
+      }
+    } else {
+      const date = new Date(),
+      month = date.getMonth(),
+      day = date.getDate(),
+      year = date.getFullYear(),
+      bmonth = latestEntry.personbirthday.slice(0,2),
+      bday = latestEntry.personbirthday.slice(3,5),
+      byear = latestEntry.personbirthday.slice(6,10)
+      let age = year - byear
+      if (month < bmonth) age--
+      else if(month == bmonth && day < bday) age--
+      latestEntry.personage = age
+      latestEntry.ID = idCounter++ //this is used for keeping track of the element for editing and deleting purposes.
+      dataStorage.push(latestEntry)
+    }
 
+  }
     // ... do something with the data here!!!
-
+    console.log(dataStorage)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(dataStorage))
   })
 }
 

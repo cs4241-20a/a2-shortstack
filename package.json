@@ -1,12 +1,12 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Birthday List",
+  "version": "1.0",
+  "description": "Birthday list! Add list of birthdays of friends and family.",
+  "author": "Luke Deratzou",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }

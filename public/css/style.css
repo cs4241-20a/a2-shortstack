@@ -1,1 +1,86 @@
 /*Style your own assignment! This is fun! */
+
+body {
+    background-color:#992B75;
+    font-family: 'Overpass', sans-serif;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:5% 88% 5%;
+    grid-gap:1%;
+    grid-template-rows:100%;
+}
+
+.boundary {
+    background-color:#992B75; 
+}
+
+.content {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background-color:#E6009B;
+}
+
+
+#header {
+    display:flex;
+    justify-content:center;
+    font-family: 'Righteous', cursive;
+    background-color:#992B75;
+    
+}
+
+#birthdayTable {
+    padding-left:100px;
+    font-family: 'Lora', serif;
+    color:#083B6E;
+    
+    /* #089599;*/
+    font-weight:bolder;
+}
+
+td,th {
+    width:75px;
+    padding:3px;
+    
+    background-color:#E6D679;
+    
+}
+
+.modify {
+    border:none;
+    background-color:#E6009B;
+    
+}
+.modify input {
+    visibility:hidden;
+    font-size:10px;
+}
+
+#card {
+    border-radius:5px;
+    font-family: 'Dancing Script', cursive;
+    visibility: hidden;
+    background-color:#17DFE6;
+    padding:15px;
+    width:90%;
+}
+
+#card p {
+    font-size:18px;
+}
+.cardSpan {
+    font-size:50px;
+    font-weight:bolder;
+}
+
+.cardYourName {
+    font-size:28px;
+    font-weight:bolder;
+}
+
+.button-styling {
+    text-align:right;
+}
