@@ -6,9 +6,9 @@ const http = require( 'http' ),
       port = 3000
 
 let tasks = [
-  {taskName: "dishes", priority: "8", creationDate: "9/11/2020", dueDate: moment().add(2, 'days').format("MM/DD/YYYY")},
-  {taskName: "laundry", priority: "4", creationDate: "9/11/2020", dueDate: moment().add(6, 'days').format("MM/DD/YYYY")},
-  {taskName: "homework", priority: "6", creationDate: "9/11/2020", dueDate: moment().add(4, 'days').format("MM/DD/YYYY")}
+  {taskName: "dishes", priority: "8", creationDate: "09/11/2020", dueDate: moment().add(2, 'days').format("MM/DD/YYYY")},
+  {taskName: "laundry", priority: "4", creationDate: "09/12/2020", dueDate: moment().add(6, 'days').format("MM/DD/YYYY")},
+  {taskName: "homework", priority: "6", creationDate: "09/13/2020", dueDate: moment().add(4, 'days').format("MM/DD/YYYY")}
 ];
 
 const server = http.createServer( function( request,response ) {
@@ -24,7 +24,11 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if (request.url === '/tasks'){
+    sendFile( response.end(JSON.stringify(tasks)), 'public/tasks.html')
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -39,13 +43,21 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     tasks.push(JSON.parse(dataString));
     let prior = JSON.parse(dataString).priority;
-    
+  
+    // This will calculate the current date using moment 
+    let month = moment().get('month') + 1;
+    let day = moment().get('date');
+    let year = moment().get('year');
+    let date = "0" + month + "/" + day + "/" + year;
+    tasks[tasks.length-1].creationDate = date;
+
+    // This will calculate the due date of the task based on the priority and the creation date.
     if (prior){
       tasks[tasks.length-1].dueDate = moment().add((10-prior), 'days').format("MM/DD/YYYY");
     }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(JSON.stringify(tasks));
+    response.end(JSON.stringify(tasks[tasks.length-1]));
   })
 }
 
