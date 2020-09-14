@@ -1,16 +1,21 @@
 <!doctype html>
+<link rel="stylesheet" href="\css\style.css">
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='task' value="Task">
-      <input type='text' id='DaysToFinish' value="How many days till due">
-      <button>submit</button>
+    <hr>
+    <form action="", id = "FORM">
+      <label id = "formFeild">Task</label>
+      <input type='text' id='task' value="">
+      <label id = "formFeild">How many days till due</label>
+      <input type='text' id='DaysToFinish' value="">
+      <button id = "submit">submit</button>
     </form>
-      <table id = "TODO list">
+    <hr>
+      <table id = "TODO">
         <tr>
         </tr>
       </table>
@@ -39,15 +44,15 @@
             console.log(data)
             if(data.dataBase === 'Bad Input'){
               console.log("Bad Inputs")
-              //send user message here
+              alert("Days till due has to be a number");
             }else{
               //clear the TODO list every time
-              var oldTable = document.getElementById("TODO list")
+              var oldTable = document.getElementById("TODO")
               oldTable.parentNode.removeChild(oldTable)
 
               //make new table
               var newTable =document.createElement("table")
-              newTable.setAttribute("id", "TODO list")
+              newTable.setAttribute("id", "TODO")
               document.body.appendChild(newTable)
 
               //make a header for the table
