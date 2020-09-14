@@ -1,23 +1,12 @@
 {
-  "name": "a2-shortstack",
-  "description": "Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  \r ===",
-  "author": "",
+  "name": "a2-joeswetz",
+  "version": "1.0",
+  "description": "FPS stat calculator",
+  "author": "Joe Swetz",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
     "mime": "^2.4.4"
-  },
-  "version": "1.0.0",
-  "main": "server.improved.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JoeSwetz/a2-shortstack.git"
-  },
-  "keywords": [],
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JoeSwetz/a2-shortstack/issues"
-  },
-  "homepage": "https://github.com/JoeSwetz/a2-shortstack#readme"
+  }
 }
