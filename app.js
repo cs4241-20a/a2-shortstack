@@ -34,7 +34,7 @@ app.use(mount('/', router.routes()));
 app.use(mount('/static', serve('./static')));
 
 async function index(ctx) {
-    await ctx.render('index', { data: data });
+    await ctx.render('index');
 }
 
 async function list(ctx) {
