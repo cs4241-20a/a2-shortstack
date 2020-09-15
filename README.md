@@ -11,7 +11,7 @@ Due to COVID-19, many labs now requires appointment or sign-in before physically
 - **Demonstration**: Form tag is used to present the submission form on the right side of the webpage, with checkbox, radio, textfield, date and time as input. Table tag is used to show the result within the memory. This page is validated using the link provided. CSS styling is completed with multiple selectors for class, elements and ids. Grid is utilized to split screen left and right. Two Google fonts are used: Cinzel and Cormorant. 
 
 ## Technical Achievements
-- **Tech Achievement 1**: A single-page app is created. Once the information is submitted on the left side of the webpage, the table on the right side would update with all data stored inside server. The data shown below is intentionally left inside the storage as a reference. ![Date](Capture.PNG)
+- **Tech Achievement 1**: A single-page app is created. Once the information is submitted on the left side of the webpage, the table on the right side would update with all data stored inside server. The data shown below is intentionally left inside the data memory as a reference. ![Data](Capture.PNG)
 - **Tech Achievements 2**: The functionality of adding, modifying or deleting data items residing in server's memory is achieved. Adding is completed with the 'submit' button; modifying and deleting can be achieved by the buttons shown beside each table entry.
 - **Tech Achievements 3**: Logics are implemented to prevent users booking an illegal date (previous days) or an illegal time ("From" time the same or later than "To" time).
 
