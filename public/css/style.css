@@ -1,1 +1,143 @@
-/*Style your own assignment! This is fun! */
+
+* {
+  font-family: 'Montserrat', sans-serif;;
+}
+
+body {
+  background-color: #E7F7D4;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-top: 50px;
+  font-weight: 700;
+  color: #7DAB44;
+  text-align: center;
+}
+
+p {
+  color: #091834;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.inputElements {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.list {
+  margin-top: 75px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  padding-right: 0px;
+}
+
+.deleteBtn {
+  background: #E7F7D4;
+  border-color: #448d76;
+  color: #448d76;
+  border-style: solid;
+  border-radius: 0px;
+  border-width: 2px;
+  font-size: 17.5px;
+  font-weight: 700;
+}
+
+#tasks {
+  text-align: left;
+  color: #448d76;
+  font-size: 17.5px;
+  font-weight: 700;
+}
+
+input {
+  background: #E7F7D4;
+  margin-right: 15px;
+  border-radius: 0px;
+  border-width: 1px;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  font-size: 20px;
+  min-width: 30;
+
+}
+
+button {
+  background: #E7F7D4;
+  border-color: #091834;
+  color: #091834;
+  margin-right: 15px;
+  border-radius: 0px;
+  border-width: 2px;
+  border-style: solid;
+  font-size: 20px;
+  font-weight: 700;
+  text-align-last: center;
+}
+
+select {
+  background: #E7F7D4;
+  margin-right: 15px;
+  border-radius: 0px;
+  border-width: 1px;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  font-size: 20px;
+  width: 50px;
+  text-align-last: center;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  min-width: 1200px;
+  border: 2px solid #3564BB;
+  align-self: center;
+  text-align: center;
+  align-content: center;
+}
+
+th{
+  text-align: left;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+  width: auto;
+  color: #3564BB;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+td {
+  max-width: 175px;
+  min-width: 100px;
+  word-wrap: break-word;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+th.priority{
+  width: 150px;
+}
+
+th.duedate{
+  width: 200px;
+}
+
+th.effort, th.delete{
+  width: 100px;
+}
