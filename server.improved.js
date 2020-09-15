@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 let dataSet = []
 
+=======
+>>>>>>> ce210995787b96b2dabee6acc9a54fe257cf4050
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -27,7 +30,11 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+<<<<<<< HEAD
   } else{
+=======
+  }else{
+>>>>>>> ce210995787b96b2dabee6acc9a54fe257cf4050
     sendFile( response, filename )
   }
 }
@@ -40,6 +47,7 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
+<<<<<<< HEAD
     dataString = JSON.parse(dataString)
     // console.log( dataString["priority"] )
     if (dataString["priority"] === "med_priority") {
@@ -60,6 +68,14 @@ const handlePost = function( request, response ) {
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end( JSON.stringify(dataString) )
+=======
+    console.log( JSON.parse( dataString ) )
+
+    // ... do something with the data here!!!
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end()
+>>>>>>> ce210995787b96b2dabee6acc9a54fe257cf4050
   })
 }
 
