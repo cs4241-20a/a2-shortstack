@@ -8,7 +8,9 @@
   </head>
   <h1>Camera List Boi</h1>
   <body>
-    List a new camera:
+    <div class="grid-container">
+    <div class="grid-item">
+      <h2>Add Listing</h2>
     <form action="">
       <ul>
         <li>
@@ -38,18 +40,11 @@
         </li>
       </ul>
     </form>
-
+  </div>
+<div class="grid-item">
+  <h2>Delete Listing</h2>
     <form action="">
-      <body>
-        Delete my Listing:
-      </body>
       <ul>
-        <li>
-          <input class="nameEntry" type='text' id='deletefirstname' value="First Name">
-        </li>
-        <li>
-          <input class="nameEntry" type='text' id='deletelastname' value="Last Name">
-        </li>
         <li>
           <input type="number" id='deletelistingnumber' value="Listing Number" min="0" required>
           <label for="deletelistingnumber">Listing Number</label>
@@ -59,10 +54,10 @@
         </li>
       </ul>
     </form>
+    </div>
+    <div class="grid-item">
+      <h2>Update Listing</h2>
     <form action="">
-      <body>
-        Update Listing
-      </body>
       <ul>
         <li>
           <input type='text' id='updatecameramake' value="Camera Make">
@@ -96,13 +91,15 @@
         </li>   
       </ul>
     </form>
+    </div>
+  </div>
+  <div class="grid-item">
+  <h2>Current Listings</h2>
     <form action="">
-      <body>
-        Show all Listings:
-      </body>
           <button id='listingsbutton'>Listings</button>
     </form>
     <div data-modal="results" id="dvTable"></div>
+    </div>
 
      
 

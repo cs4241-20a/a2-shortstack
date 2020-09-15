@@ -48,7 +48,7 @@ const submit = function( e ) {
       // do something with the reponse 
       console.log( response )
     })
-    getListings( e )
+    .then( setTimeout(() => { getListings( e );}, 500 ) )
 
     return false
   }
@@ -60,8 +60,7 @@ const submit = function( e ) {
           lastName = document.querySelector( '#deletelastname' ),
           id = document.querySelector( '#deletelistingnumber')
 
-          json = { firstname: firstName.value, 
-            lastname: lastName.value,
+          json = {
             id: id.value,
             delete: true },
           body = JSON.stringify( json ) 
@@ -73,7 +72,8 @@ const submit = function( e ) {
     .then( function( response ) {     
       console.log( response )
     })
-    getListings( e )
+    .then( setTimeout(() => { getListings( e );}, 500 ) )
+
 
     return false
   }
@@ -93,14 +93,14 @@ const submit = function( e ) {
         // let's create a dynamic table
         const numlistings = body.length + 1;
 
-            var table = document.createElement( "TABLE" );
-            table.border = "1";
+            var dataTable = document.createElement( "TABLE" );
+            dataTable.border = "10";
      
             // Calculate number of columns for this table
             var columnCount = Object.keys( body[0] ).length;
      
             // row for header - iterate through first element's keys to pull types
-            var row = table.insertRow( -1 );
+            var row = dataTable.insertRow( -1 );
             for ( var key in body[0] ) {
               if( key === "delete" ){
                 continue
@@ -112,7 +112,7 @@ const submit = function( e ) {
      
             // Iterate through appdata
             for (var i = 0; i < body.length; i++) {
-                row = table.insertRow( -1 );
+                row = dataTable.insertRow( -1 );
                 for ( var key in body[i] ) {
                   if( key === "delete" ){
                     continue
@@ -124,7 +124,8 @@ const submit = function( e ) {
      
             var dvTable = document.getElementById( "dvTable" );
             dvTable.innerHTML = "";
-            dvTable.appendChild( table );
+            dvTable.appendChild( dataTable );
+            console.log( "updated data displayed")
     } )
 
 
@@ -163,7 +164,7 @@ const submit = function( e ) {
     .then( function( response ) {   
       console.log( response )
     })
-    getListings( e )
+    .then( setTimeout(() => { getListings( e );}, 500 ) )
 
     return false
   }
