@@ -9,6 +9,11 @@ body {
     text-align:center
 }
 
+.grid-container {
+    display: grid;
+    justify-content: space-evenly;
+}
+
 input[Type = text]{
     font-family: Futura;
     border: 3px solid darkblue;
@@ -28,7 +33,9 @@ input[Type = text]{
     cursor: pointer;
 }
 
+
 table, th, td {
+    font-family: Futura;
     border: 3px solid darkblue;
     border-collapse: collapse;
     background: white;

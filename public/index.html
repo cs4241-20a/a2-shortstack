@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
@@ -7,20 +8,26 @@
     <script src="js/scripts.js"></script>
   </head>
   <body>
+  <div class="grid-container">
+    <div class="grid-item">
     <link rel="stylesheet" href="/css/style.css">
     <h1 class="title">Fishing Log</h1>
     <audio id="myAudio">
       <source src="FishOn.mp3" type="audio/mp3">
     </audio>
+    </div>
     <form>
+      <div  id ="c1" class="grid-item">
         <input type="text" id="anglername" placeholder="angler name">
         <input type="text" id="fishtype" placeholder="your capture">
       <input type="text" id="fishweight" placeholder="weight in pounds">
       <input type="text" id="line" placeholder="line class">
       <br>
       <button id="submitBtn">submit</button>
+      </div>
     </form>
     <br>
+    <div class="grid-item">
     <table id="table1" style="width:100%">
   <tr>
     <th>Name</th>
@@ -31,5 +38,7 @@
     <th>Estimated Time (Hours)</th>
   </tr>
   </table>
+    </div>
+  </div>
   </body>
 </html>

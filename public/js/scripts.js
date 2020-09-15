@@ -19,6 +19,7 @@ const submit = function( e ) {
     lineclass: document.querySelector('#line').value
   }
 
+
   if(json.anglername === "" || json.fishtype === "" || json.fishweight === "" || json.lineclass === ""){
       window.alert('All of the fields must be filled');
         return false;
@@ -28,7 +29,7 @@ const submit = function( e ) {
       return false;
   }
 
-  window.alert('Successfully Recorded');
+  window.alert('Successfully Recorded  Put Your Sound Up For a Full Experience');
     playAudio();
   body = JSON.stringify(json)
   fetch('/submit', {
