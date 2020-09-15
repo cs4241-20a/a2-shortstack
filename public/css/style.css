@@ -28,6 +28,14 @@ h4 {
     margin-top: 10px;
 }
 
+input {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+button {
+  font-family: 'Noto Sans', sans-serif;
+}
+
 .my-buttons {
     font-family: 'Noto Sans', sans-serif;
 }
