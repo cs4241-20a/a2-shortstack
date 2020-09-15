@@ -13,9 +13,33 @@ const addBook = function(book) {
   newTime.innerHTML = book.hours;
 };
 
+// Function to validate the user inputs
+const validate = function() {
+  const title = document.querySelector("#title"),
+        pages = document.querySelector("#pages");
+  
+  if (title.value == '') {
+    alert('Book title cannot be blank.')
+    return false
+  }
+  
+  if (pages.value < 1) {
+    alert('Page # cannot be zero.')
+    return false
+  }
+  
+  return true
+}
+
 const submit = function(e) {
   // prevent default form action from being carried out
   e.preventDefault();
+  
+  // Checks if inputs are valid and 
+  // does not submit them if they are
+  if (!validate()) {
+    return false
+  }
 
   // Creates a new JSON entry with the title and pages user
   // input info
