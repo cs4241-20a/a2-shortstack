@@ -52,7 +52,7 @@ const handlePost = function( request, response ) {
     }
     if (dataString["priority"] === "low_priority") {
       dataString["priority"] = "Low"
-      dataString["message"] = "Make sure you finish this task but also take out some time for yourself :D"
+      dataString["message"] = "Make sure you finish this task but also take out some time for :)"
     }
     
     dataSet.push(dataString)
