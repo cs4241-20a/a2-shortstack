@@ -28,3 +28,13 @@ table, th{
 #low {
   color: green;
 }
+
+.headers{
+  font-weight: bold;
+}
+
+.submit{
+  background: white;
+  font-weight: bold;
+  color: black;
+}
