@@ -1,10 +1,11 @@
 // Add some Javascript code here, to run on the front end.
-var clickcount = 0;
-document.getElementById('clickbtn').style.display="none";
-document.getElementsByClassName('postgame').style.display="none";
-
 console.log("Welcome to assignment 2!")
 
+var clickcount = 0;
+var highscores = [ //default highscores
+  {place: 1, name: "Mr. Insano", cps: 73.3, clicks: 2200},
+  {place: 2, name: "Cui2", cps: 2, clicks: 60}
+]
 
 const submit = function( e ) {
     // prevent default form action from being carried out
@@ -30,7 +31,10 @@ const submit = function( e ) {
   function start() {
     document.getElementById('clickbtn').style.display="block";
     document.getElementById('startbtn').style.display="none";
-    setTimeout(end(), 3000)
+    const p = new Promise(function(resolve, reject) { 
+      setTimeout(resolve, 3000) //after 3 seconds...
+    })
+    .then(end()) //run end() function
   }
 
   //increments number of clicks by 1 per click.
@@ -51,10 +55,27 @@ const submit = function( e ) {
     alert("You've run out of time!");
   }
 
-  
+  function generateTableHeader(table) {
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+
+    for (let key of data) {
+      let th = document.createElement('th');
+      let text = document.createTextNode(key);
+      th.appendChild(text);
+      row.appendChild(th);
+    }
+  }
+
+  let table = document.querySelector('table');
+  generateTableHeader(table);
+
+
 
 
   window.onload = function() {
+    document.getElementById('clickbtn').style.display="none";
+    document.getElementsByClassName('postgame').style.display="none";
     const button = document.querySelector( 'button' )
     button.onclick = submit
   }
