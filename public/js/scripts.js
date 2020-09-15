@@ -89,9 +89,10 @@ function handle_csv(){
      * a file using fetch. It essentially says to download the response,
      * get the blob with the file data, create a URL to it, and then create
      * an <a> element that, when clicked, downloads the object at the URL,
-     * which is our file. The code between lines 95-99 comes from this source.
-     * The original post used arrow shorthand notation but I changed cause I
-     * didn't like it :)
+     * which is our file. The code between lines 101-111 comes from this source,
+     * and the comments that start with "OA" are comments from the original post
+     * by that Original Author. The original post used arrow shorthand notation
+     * but I changed cause I didn't like it :)
      *
      * https://stackoverflow.com/questions/32545632/how-can-i-download-a-file-using-window-fetch
      */
@@ -103,9 +104,9 @@ function handle_csv(){
                     let a = document.createElement("a");
                     a.href = window.URL.createObjectURL(blob);
                     a.download = "stats.csv";
-                    document.body.appendChild(a);//Author put this because it's needed for firefox
+                    document.body.appendChild(a);// OA: we need to append the element to the dom -> otherwise it will not work in firefox
                     a.click();
-                    a.remove();
+                    a.remove();// OA: afterwards we remove the element again
                 });
     });
 
