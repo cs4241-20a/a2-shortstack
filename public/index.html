@@ -7,14 +7,16 @@
     <script src="js/scripts.js"></script>
   </head>
   <body>
+    <div>
     <h1 font-weight: bold;>Welcome to Speed Clicker</h1>
 
     <p id="WelcomeText">
       This is a webpage for Jordan Stoessel's Assignment 2. After hitting the <strong>start</strong> button you will be timed for 30 seconds to click as fast as you can. Your results will be displayed within the <strong>leaderboard</strong>. Try to get the high score! 
     </p>
+  </div>
 
     <div>
-      <button class="playbtn" id='startbtn' onclick="start()">Start</button>
+      <input type="button" class="playbtn" id='startbtn' onclick="start()" value="Start"></input>
     </div>
 
     <a class="poststart" id="clickbtn" onclick="add()"><img src="button.png"></a>
@@ -29,7 +31,7 @@
           Please input your name:
         </p>
         <input type='text' id='yourname' class='postgame' value="">
-        <button id='submitbtn' class='postgame'>Submit</button>
+        <input type="button" id='submitbtn' class='postgame' onclick="submit()" value="Submit"></input>
       </form>
     </div>
 
