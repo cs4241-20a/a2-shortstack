@@ -33,7 +33,9 @@ table, th, td {
     border-collapse: collapse;
     background: white;
 }
-
+form{
+    text-align: center;
+}
 th, td {
     font-family: Futura ;
     padding: 15px;
