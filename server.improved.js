@@ -14,55 +14,96 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+// List of users that have entered guesses
+let activeUsers = []
+let magicNumber = Math.floor((Math.random() * 10000) + 1).toString();
+console.log(magicNumber)
+
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if (request.url === '/table') {
+    response.end(JSON.stringify(activeUsers))
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
-let guesses = []
 const handlePost = function( request, response ) {
 
   request.on( 'data', function( data ) {
     const dataObject = JSON.parse(data)
-    const totalItems = guesses.length
 
-    for (let i = 0; i < guesses.length; i++) {
+    for (let i = 0; i < activeUsers.length; i++) {
 
-      if (dataObject.username === guesses[i].username) {
+      if (dataObject.username === activeUsers[i].username) {
+
+        if (activeUsers[i].win) {
+          return
+        }
+
         if (dataObject.remove) {
-          console.log("deleting entry")
-          guesses.splice(i, 1)
+          activeUsers.splice(i, 1)
           return
         }
         else {
-          guesses[i].guess = dataObject.guess
-          guesses[i].attempts++
+          let status = generateStatus(dataObject.guess)
+
+          activeUsers[i].guess = dataObject.guess
+          activeUsers[i].status = status
+          activeUsers[i].attempts++
+          activeUsers[i].timestamp = dataObject.timestamp
+
+          if (status === "Winner!") {
+            activeUsers[i].win = true;
+            activeUsers[i].guess = "*****" //Hidden from other players
+          }
           return
         }
       }
     }
 
-    let newStoredGuess = {
-      username: dataObject.username,
-      guess: dataObject.guess,
-      status: "",
-      attempts: 0,
-      date: ""
-    }
+    if (!dataObject.remove) {
 
-    guesses.push(newStoredGuess)
+      let newStoredGuess = {
+        win: false,
+        username: dataObject.username,
+        guess: dataObject.guess,
+        status: generateStatus(dataObject.guess),
+        attempts: 1,
+        timestamp: dataObject.timestamp
+      }
+
+      if (newStoredGuess.status === "Winner!") {
+        newStoredGuess.win = true;
+        newStoredGuess.guess = "*****" //Hidden from other players
+      }
+
+      activeUsers.push(newStoredGuess)
+    }
   })
 
   request.on( 'end', function() {
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(JSON.stringify(guesses))
+    response.end(JSON.stringify(activeUsers))
   })
+}
+
+function generateStatus(guess) {
+  if (guess === magicNumber) {
+    return "Winner!"
+  }
+  if ( guess < magicNumber) {
+    return "Too Low"
+  }
+  if ( guess > magicNumber) {
+    return "Too High"
+  }
 }
 
 const sendFile = function( response, filename ) {
