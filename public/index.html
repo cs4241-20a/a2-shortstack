@@ -16,10 +16,10 @@
   </div>
 
     <div>
-      <input type="button" class="playbtn" id='startbtn' onclick="start()" value="Start"></input>
+      <input type="button" class="playbtn" id='startbtn' onclick="startClicked()" value="Start"></input>
     </div>
 
-    <a class="poststart" id="clickbtn" onclick="add()"><img src="button.png"></a>
+    <a class="poststart" id="clickbtn" onclick="addClicked()"><img src="button.png"></a>
     
     <div>
       <p id='currentclicks' class='poststart'>0 Points</p>
@@ -31,7 +31,7 @@
           Please input your name:
         </p>
         <input type='text' id='yourname' name='yourname' class='postgame' value="">
-        <input type="button" id='submitbtn' class='postgame' action="/submit" onclick="submit()" value="Submit"></input>
+        <input type="button" id='submitbtn' class='postgame' method="POST" action="/submit" onclick="submitClicked()" value="Submit"></input>
       </form>
     </div>
 

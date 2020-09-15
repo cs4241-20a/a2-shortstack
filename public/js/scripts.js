@@ -4,7 +4,7 @@ console.log("Welcome to assignment 2!")
 var clickcount = 0;
 
 //when start button is clicked swap visibilities and start 30 second timer.
-function start() {
+function startClicked() {
   console.log("Game started!");
   document.getElementById('startbtn').style.display = "none";
   document.getElementById('currentclicks').innerHTML = "Click the button to start earning points!";
@@ -17,7 +17,7 @@ function start() {
 
 
 //increments number of clicks by 1 per click.
-function add() {
+function addClicked() {
   clickcount += 1;
   document.getElementById('currentclicks').innerHTML = clickcount + " Points";
 }
@@ -47,66 +47,44 @@ function end() {
   }
 }
 
-function submit() {
-  if (document.getElementById('yourname').value === "") {
-    alert("Please don't leave the name blank");
+
+
+
+ function submitClicked() {
+   if (document.getElementById('yourname').value === "") {
+     alert("Please don't leave the name blank");
+   } else {
+
+    const submit = function(e) {
+      //prevent default form action from being carried out
+      e.preventDefault();
+    
+      let name = document.getElementById('yourname').value;
+      let clicks = clickcount;
+    
+      let json = {
+        name: name,
+        clicks: clicks
+      }
+    
+      let body = JSON.stringify(json);
+    
+      fetch('/submit', {
+        method: 'POST',
+        body
+      })
+      .then(function(response) {
+        response.json().then(function(data) {
+          console.log(data)
+        });
+      })
+    
+      return false;
+    }
+
+   }
   }
-  else {
-    newinfo = [];
-    // prevent default form action from being carried out
-    //preventDefault()
 
-    let inputname = document.getElementById('yourname').value;
-    //define data to be turned into json for server
-    let data = {inputname, clickcount};
-    var options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-
-      //convert to JSON
-      body: JSON.stringify(data)
-    };
-
-    //get server response
-     fetch('/submit', options)
-    //   .then(function (response) {
-    //     // do something with the reponse 
-    //     console.log("Fetched");
-    //     console.log(response);
-    //   })
-    return false
-  }
-}
-
-// function generateTableHeader(table) {
-//   let thead = table.createTHead();
-//   let row = thead.insertRow();
-
-//   for (let key of data) {
-//     let th = document.createElement('th');
-//     let text = document.createTextNode(key);
-//     th.appendChild(text);
-//     row.appendChild(th);
-//   }
-// }
-
-// let table = document.querySelector('table');
-// let data = Object.keys(highscores[0]);
-// generateTableHeader(table, data);
-
-
-// function generateTable(table, data) {
-//   for (let element of data) {
-//     let row = table.insertRow();
-//     for (key in element) {
-//       let cell = row.insertCell();
-//       let text = document.createTextNode(element[key]);
-//       cell.appendChild(text);
-//     }
-//   }
-// }
 
 
 
@@ -118,5 +96,5 @@ window.onload = function () {
   document.getElementById('yourname').style.display = "none";
   document.getElementById('submitbtn').style.display = "none";
   const button = document.getElementById('submitbtn')
-  button.onclick = submit
+  button.onclick = submitClicked
 }
