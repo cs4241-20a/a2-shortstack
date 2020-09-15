@@ -1,41 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
+<head>
+    <meta charset="UTF-8">
+    <title>Messenger</title>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <br><br>
+        <b-container>
+            <b-jumbotron
+                    header="Messenger" lead="Ephemeral Messenger Application">
+                <p class="my-4">
+                    This web software allows you to create expiring messages to share with others, and view
+                    messages others have made.
+                </p>
+                <b-button block v-b-modal.create>Create New Message</b-button>
+                <br>
+                <b-list-group v-if="messages.length !== 0">
+                    <b-list-group-item v-for="message in messages"
+                                       v-if="message != null && Date.parse(message.expires) > Date.now()"
+                                       :key="message.data">
+                        Message: '<code>{{ message.data }}</code>'
+                        <br>
+                        Expires: {{ new Date(message.expires).toLocaleString() }}
+                        <br>
+                        <div style="text-align: right">
+                            <b-button variant="outline-info" @click="start_edit_message(message.id)">Edit</b-button>
+                            <b-button variant="outline-danger" @click="delete_message(message.id)">Delete</b-button>
+                        </div>
+                    </b-list-group-item>
+                </b-list-group>
+                <p v-else>No Messages on Server</p>
+            </b-jumbotron>
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+            <b-modal
+                    id="create" title="New Message" modal-ok="Create" modal-cancel="Cancel"
+                    @ok="new_message">
+                <b-form-group
+                        description="What is the content of the message?"
+                        label="Message">
+                    <b-form-input v-model="new_message_data"></b-form-input>
+                </b-form-group>
+                <b-form-group
+                        description="What is the secrecy level of the message?"
+                        label="Message">
+                    <b-form-radio-group v-model="new_message_secrecy">
+                        <b-form-radio value="1">Not Very Secret</b-form-radio>
+                        <b-form-radio value="2">Secret</b-form-radio>
+                        <b-form-radio value="3">Very Secret</b-form-radio>
+                    </b-form-radio-group>
+                </b-form-group>
+            </b-modal>
 
-    return false
-  }
+            <b-modal
+                    id="edit" title="Edit Message" model-ok="Edit" model-cancel="Cancel"
+                    @ok="edit_message">
+                <b-form-group description="What should the new content of the message be?"
+                              label="Message">
+                    <b-form-input v-model="edit_message_data"></b-form-input>
+                </b-form-group>
+            </b-modal>
+        </b-container>
+    </div>
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
+    <script>
+        window.app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    new_message_data: '',
+                    new_message_secrecy: '1',
+                    messages: [],
+                    edit_message_id: 0,
+                    edit_message_data: '',
+                };
+            },
+            methods: {
+                new_message() {
+                    fetch("/create", {
+                        method: 'POST', body: JSON.stringify({
+                            data: this.new_message_data,
+                            secrecy: this.new_message_secrecy,
+                        })
+                    }).then(() => this.update_messages());
+                },
+                start_edit_message(id) {
+                    this.edit_message_id = id;
+                    this.$bvModal.show('edit');
+                },
+                edit_message() {
+                    fetch("/edit", {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            index: this.edit_message_id,
+                            data: this.edit_message_data,
+                        }),
+                    }).then(() => this.update_messages());
+                },
+                delete_message(id) {
+                    console.log(id);
+                    fetch("/remove", {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            index: id,
+                        }),
+                    }).then(() => this.update_messages());
+                },
+                update_messages() {
+                    fetch("/messages")
+                        .then(res => res.json())
+                        .then(data => this.messages = data);
+                }
+            },
+            created() {
+                this.update_messages();
+            },
+        });
+    </script>
+</body>
 </html>
