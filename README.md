@@ -3,11 +3,11 @@ Saniya Syeda
 
 Link: <https://a2-ssyeda422.glitch.me/>
 
+
 ## Which Bob Ross Painting Are You?
 This application is a short quiz to determine which Bob Ross painting represents you best. The CSS grid layout was used for formatting the quiz. To get your result, answer the quiz questions and click "Get Results!"
 
-
-## Technical Achievements
+### Technical Achievements
 - **Calculating Quiz Results**: This app takes in the input from the user's quiz results and then based on this input, will tally up points for each answer; for example, if the user answers "Ocean" for one of the questions, the tally for the painting labeled "beach" go up by one. There are four different Bob Ross Paintings a user could receive as a result, so the painting that has the highest tally at the end will be the result. This was a challenge in terms of being able to read through the JSON as an array and creating switch statements for each question. Another challenge was being able to access the results in my scripts.js file and creating switch statements for those as well. Both the scripts.js and server maintain a counter to keep track of the array index with each new submit by the user.
 
 ### Design/Evaluation Achievements
