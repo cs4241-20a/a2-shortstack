@@ -10,9 +10,8 @@
     <h1>
       Your Work Advisor
     </h1>
-    <section class="flexbox">
     <form action="">
-      <label for="yourtask" class="headers"> Task </label><br />
+<!--       <label for="yourtask" class="headers"> Task </label><br />
       <input
         type="text"
         id="yourtask"
@@ -45,9 +44,46 @@
         <label for="priority3" id="low"> Low Priority </label><br /><br />
       </p>
       <button class="submit">Add Task</button>
-    </form>
+ -->
+      <ul class="wrapper">
+    <li class="form-row">
+      <label for="yourtask">Task</label>
+      <input type="text" id="yourtask">
+    </li>
+    <li class="form-row">
+      <label for="taskduedate">Due Date and Time</label>
+      <input type="datetime-local" id="taskduedate">
+    </li>
+    <li class="form-row">
+      <label>Priority</label>
+      <input
+          type="radio"
+          id="priority1"
+          name="priority"
+          value="high_priority"
+        />
+        <label for="priority1" id="high"> High Priority </label><br />
+        <input
+          type="radio"
+          id="priority2"
+          name="priority"
+          value="med_priority"
+        />
+        <label for="priority2" id="med"> Medium Priority </label><br />
+        <input
+          type="radio"
+          id="priority3"
+          name="priority"
+          value="low_priority"
+        />
+        <label for="priority3" id="low"> Low Priority </label><br /><br />
+    </li>
+    <li class="form-row">
+      <button type="submit">Submit</button>
+    </li>
+  </ul>    </form>
 
-      </section>    <br />
+   <br />
 
     <table id="toDoTable">
       <tr>

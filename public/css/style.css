@@ -1,17 +1,18 @@
 /*Style your own assignment! This is fun! */
 body {
   background-color: lightgrey;
-  font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
 }
 
-table, th{
+table,
+th {
   border: 1px solid black;
   background-color: white;
   width: 800px;
 }
 
-h1{
-  font-family: 'Lobster', cursive;
+h1 {
+  font-family: "Lobster", cursive;
 }
 
 #taskBody {
@@ -19,7 +20,7 @@ h1{
 }
 
 #high {
-  color:red;
+  color: red;
 }
 
 #med {
@@ -30,23 +31,38 @@ h1{
   color: green;
 }
 
-.headers{
+.headers {
   font-weight: bold;
 }
 
-.submit{
+.submit {
   background: white;
   font-weight: bold;
   color: black;
-  font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
 }
 
-.toDoTable{
-  grid-template-columns: 40px 50px auto 50px 40px;
+
+.wrapper {
+  background-color: white;
+  padding: 50px;
 }
 
-.flexbox{
-   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+.form-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+}
+
+.form-row > label {
+  padding: 0.5em 1em 0.5em 0;
+  flex: 1;
+}
+
+.form-row > input {
+  flex: 2;
+}
+
+button {
+  font-family: "Bebas Neue", cursive;
 }
