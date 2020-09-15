@@ -1,5 +1,8 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 
+Website: https://a2-clay-ol.glitch.me
+
+
 ## Your Web Application Title: Camera List Boi
 This project allows users to list a description of a camera for sale in a manner similar to Craigslist (No purchasing directly through the website). The user is presented with three ajacent boxes: Add Listing, Delete Listing, Update Listing, with a 4th box present below: Current Listings. To add a listiing, the user must fill in the listed fields - this is true for any of actions other than displaying current listings. 
 
