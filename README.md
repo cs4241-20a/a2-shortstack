@@ -5,6 +5,8 @@ you've lost (calculations are pretty imprecise).
 
 For CSS, I used FlexBox, CSS Grid and Table to display the results
 
+Glitch URL - https://a2-ivaneroshenko.glitch.me/
+
 ## Technical Achievements
 - **Tech Achievement 1**: I've made it such that the Client side 
                           always displays up-to-date information from the server. 
