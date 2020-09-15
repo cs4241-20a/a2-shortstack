@@ -11,8 +11,8 @@
     <form action="">
       <label for="priority"> Task </label><br />
       <input type="text" id="yourtask" value="Enter your task here" /><br /><br />
-      <label for="priority"> Creation Date </label><br />
-      <input type="date" id="taskduedate" value="date" /><br /><br />
+      <label for="priority"> Due Date </label><br />
+      <input type="datetime-local" id="taskduedate" value="date" /><br /><br />
       <label for="priority"> Priority </label><br />
       <input
         type="radio"
@@ -37,8 +37,7 @@
         </tr>
       <tbody id="taskBody"></tbody>
     </table>
-  </body>
-  <script>
+    <script>
     function addRows(json) {
       //Find the table
       const tableBody = document.getElementById("taskBody");
@@ -94,4 +93,5 @@
       button.onclick = submit;
     };
   </script>
+  </body>
 </html>
