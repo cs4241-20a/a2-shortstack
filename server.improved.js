@@ -6,13 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appData = [
-  { 'number': 0, 'firstName': "A", 'lastName': "Baker", 'goals':  0, 'assists': 0, 'points': 0 },
-  { 'number': 3, 'firstName': "C", 'lastName': "Davis", 'goals':  0, 'assists': 0, 'points': 0 },
-  { 'number': 64, 'firstName': "E", 'lastName': "Fontaine", 'goals':  0, 'assists': 0, 'points': 0 },
-  { 'number': 38, 'firstName': "G", 'lastName': "Hart", 'goals':  0, 'assists': 0, 'points': 0 },
-  { 'number': 7, 'firstName': "I", 'lastName': "Johnson", 'goals':  0, 'assists': 0, 'points': 0 }
-]
+const appData = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -28,9 +22,8 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   } else if(request.url === '/appData'){
-    response.writeHeader( 200, {'Content-Type': 'text/plain' })
+    response.writeHead( 200, {'Content-Type': 'application/json' })
     response.end( JSON.stringify( appData ) )
-    response.end()
   } else{
     sendFile( response, filename )
   }
@@ -45,18 +38,10 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     // console.log( JSON.parse( dataString ) )
-
-    const data = JSON.parse(dataString)
-    let date = new Date(Date.now())
-    console.log(getCurrentDayAndTime())
-    let time = getCurrentDayAndTime()
-    appdata.push({ 'title': data['title'], 'author': data['author'], 'comment': data['comment'], 'time': time })
-    console.log(data['title'])
-    console.log("App Data: " + JSON.stringify(appdata))
-    console.log("Data: " + dataString)
+    appData.push(dataString)
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( JSON.stringify( dataString ) )
+    response.end( dataString )
   })
 }
 
