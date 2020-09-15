@@ -32,25 +32,24 @@ input{
     font-weight: 400;
     font-size: 16px;
 }
+/*.split{*/
+/*    height: 100%;*/
+/*    position: fixed;*/
+/*    z-index: 1;*/
+/*    overflow-x: hidden;*/
+/*    padding-top: 20px;*/
+/*    border-collapse: separate;*/
+/*}*/
 .split{
-    height: 100%;
-    position: fixed;
-    z-index: 1;
-    overflow-x: hidden;
-    padding-top: 20px;
-    border-collapse: separate;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: auto auto;
 }
 .left{
-    left: 0;
-    width: 37%;
     background-color: #DBAE76;
     margin-left: 10px;
-    margin-right: 10px;
-    border-right: white solid 10px;
 }
 .right{
-    right: 0;
-    width: 60%;
     background-color: #DA8367;
     padding-left: 20px;
     padding-right: 10px;
@@ -89,5 +88,5 @@ p{
     text-align: center;
 }
 #title, #space{
-  text-align: "center";
+  text-align: center;
 }
