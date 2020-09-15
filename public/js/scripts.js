@@ -2,16 +2,10 @@
 console.log("Welcome to assignment 2!")
 
 var clickcount = 0;
-var highscores = [ //default highscores
-  { name: "Mr. Insano", cps: 73.3, clicks: 2200 },
-  { name: "Cui2", cps: 2, clicks: 60 }
-]
-
-
 
 //when start button is clicked swap visibilities and start 30 second timer.
 function start() {
-  console.log("Clicked!");
+  console.log("Game started!");
   document.getElementById('startbtn').style.display = "none";
   document.getElementById('currentclicks').innerHTML = "Click the button to start earning points!";
   var classes = document.getElementsByClassName('poststart');
@@ -55,26 +49,33 @@ function end() {
 
 function submit() {
   if (document.getElementById('yourname').value === "") {
-    console.log("BLANKED");
     alert("Please don't leave the name blank");
   }
   else {
-    const submit = function (e) {
-      // prevent default form action from being carried out
-      e.preventDefault()
+    newinfo = [];
+    // prevent default form action from being carried out
+    //preventDefault()
 
-      const input = document.querySelector('#yourname'),
-        json = { yourname: input.value },
-        body = JSON.stringify(json)
-      fetch('/submit', {
-        method: 'POST',
-        body
+    let inputname = document.getElementById('yourname').value;
+    //define data to be turned into json for server
+    let data = {inputname, clickcount};
+    var options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      //convert to JSON
+      body: JSON.stringify(data)
+    };
+
+    //get server response
+    fetch('/submit', options)
+      .then(function (response) {
+        // do something with the reponse 
+        console.log("Fetched");
+        console.log(response);
       })
-        .then(function (response) {
-          // do something with the reponse 
-          console.log(response)
-        })
-    }
     return false
   }
 }
