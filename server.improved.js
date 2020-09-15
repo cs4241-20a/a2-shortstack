@@ -28,13 +28,38 @@ let guesses = []
 const handlePost = function( request, response ) {
 
   request.on( 'data', function( data ) {
-      guesses.push(JSON.parse(data))
+    const dataObject = JSON.parse(data)
+    const totalItems = guesses.length
+
+    for (let i = 0; i < guesses.length; i++) {
+
+      if (dataObject.username === guesses[i].username) {
+        if (dataObject.remove) {
+          console.log("deleting entry")
+          guesses.splice(i, 1)
+          return
+        }
+        else {
+          guesses[i].guess = dataObject.guess
+          guesses[i].attempts++
+          return
+        }
+      }
+    }
+
+    let newStoredGuess = {
+      username: dataObject.username,
+      guess: dataObject.guess,
+      status: "",
+      attempts: 0,
+      date: ""
+    }
+
+    guesses.push(newStoredGuess)
   })
 
   request.on( 'end', function() {
-    //console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end(JSON.stringify(guesses))
   })
