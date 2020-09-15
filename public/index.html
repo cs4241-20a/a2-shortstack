@@ -51,10 +51,9 @@
 
    <br />
 
-    <table id="toDoTable">
+    <table 
       <tr>
-        <th>CCreationDate</th>
-        <th>Task</th>
+        <        <th>Task</th>
         <th>Priority</th>
         <th>Advice</th>
       </tr>
@@ -62,9 +61,7 @@
     </table>
     <script>
       function addRows(json) {
-        //Find the table
         const tableBody = document.getElementById("taskBody");
-        //Insert a new row and then new cells
         let row = tableBody.insertRow(0);
         let ccll1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
