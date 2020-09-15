@@ -26,22 +26,21 @@ HTML:
 - All pages should [validate](https://validator.w3.org)
 
 CSS:
-- CSS styling of the primary visual elements in the application
 - Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
+    - Element selectors --Good
+    - ID selectors -- Good
+    - Class selectors --NOT WORKING
 - CSS positioning and styling of the primary visual elements in the application:
-    - Use of either a CSS grid or flexbox for layout
-    - Rules defining fonts for all text used; no default fonts! Be sure to use a web safe font or a font from a web service like [Google Fonts](http://fonts.google.com/)
+    - Use of either a CSS grid or flexbox for layout --NOT WORKING
+    - Rules defining fonts for all text used; no default fonts! Be sure to use a web safe font or a font from a web service like [Google Fonts](http://fonts.google.com/) --Good
 
-- CSS defined in a maintainable, readable form, in external stylesheets 
+- CSS defined in a maintainable, readable form, in external stylesheets -- Good
 
 JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
+- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository. -- ???
 
 Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
+- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository. -- ???
 
 Deliverables
 ---
