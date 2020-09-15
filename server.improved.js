@@ -141,6 +141,11 @@ const calculateResult = function (vehicle, weather) {
 
   let temp_per = (temp - temp_min) / temp_range;
 
+  // avoid divide by zero
+  temp_per = temp_per <= 0.0 ? 1.0 : temp_per;
+
+  console.log(temp_per);
+
   temp_per *= 100.0;
 
   let tire_humidity_val = tire_dict[vehicle.ttype];
