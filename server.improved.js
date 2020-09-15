@@ -4,13 +4,12 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3000
+      port = 3000,
+      dayjs = require('dayjs'),
+      localizedFormat = require('dayjs/plugin/localizedFormat')
+dayjs.extend(localizedFormat)
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+var appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,26 +24,82 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if( request.url === '/results') {
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(appdata))
+  }
+  else if( request.url === '/result') {
+
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
   let dataString = ''
+  let statusCode = 200
 
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    dataString = JSON.parse(dataString)
 
-    // ... do something with the data here!!!
+    if(request.url === '/delete'){
+      statusCode = manageData('/delete', dataString)
+    }
+    else if(request.url === '/edit'){
+      statusCode = manageData('/edit', dataString)
+    }
+    else {
+      statusCode = manageData('/submit', dataString)
+    }
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.writeHead( statusCode, "OK", {'Content-Type': 'text/plain' })
   })
+}
+
+const manageData = function( url, data ) {
+  if(url === '/submit'){
+    if(!validateISBN(data)) return 405
+    if(data.currentPage !== "" && data.overallPage !== "") {
+      const progress = (data.currentPage / data.overallPage) * 100
+      data.progress = `${progress.toPrecision(2)}%`
+    } else {
+      data.progress = '-'
+    }
+    data.createdAt = dayjs().format('lll') 
+    data.updatedAt = dayjs().format('lll')
+    appdata.push(data)
+    return 200
+  }
+  else if(url === '/delete'){
+    appdata = appdata.filter(book => book.isbn !== data[0].isbn)
+    return 200
+  }
+
+  else if(url === '/edit' ){
+    if(data.currentPage !== "" && data.overallPage !== "") {
+      const progress = (data.currentPage / data.overallPage) * 100
+      data.progress = `${progress.toPrecision(2)}%`
+    } else {
+      data.progress = '-'
+    }
+    data.updatedAt = dayjs().format('lll') 
+    appdata = appdata.filter(book => book.isbn !== data.isbn)
+    appdata.push(data)
+    return 200
+  }
+}
+
+function validateISBN(book) {
+  const targetISBN = book.isbn
+  const duplicate = appdata.filter(book => book.isbn === targetISBN)
+
+  return targetISBN !== '' && duplicate.length === 0 
 }
 
 const sendFile = function( response, filename ) {

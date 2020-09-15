@@ -1,41 +1,85 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@200;300;700&display=swap" rel="stylesheet">
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
+    <div class="container">
+      <div id="navbar">
+        <h1 id="logo"><i class="fas fa-book-open"></i> MyReadingList</h1>
+        <span id="links">
+          <a href="#content">Add Books</a>
+          <a href="#book-table">Book List</a>
+        </span>
+      </div>
+      <div id="content">
+        <h1>My<span>Reading</span>List</h1>
+        <p id="header-text">What are you reading now?</p>
+        <div id="book-form">
+          <form>
+            <span class="form-field">
+              <label for="book-title">Title</label>
+              <input type='text' name="book-title" id='book-title' value="" placeholder="Enter the book title">
+            </span>
+            <span class="form-field">
+              <label for="book-author">Author</label>
+              <input type='text' name="book-author" id='book-author' value="" placeholder="Enter the author's name">
+            </span>
+            <span class="form-field">
+              <label for="book-isbn">ISBN#</label>
+              <input type='text' name="book-isbn" id='book-isbn' value="" placeholder="Enter the book ISBN#">
+            </span>
+            <div class="form-field" id="genre-checkboxes">
+              <label>Book Genre(s): </label> <br />
+              <span class="genre-checkbox"><input type="checkbox" name="genre" value="nonfiction" id="nonfiction"> Nonfiction </span>
+              <span class="genre-checkbox"><input type="checkbox" name="genre" value="adventure" id="adventure"> Action and adventure</span>
+              <span class="genre-checkbox"><input type="checkbox" name="genre" value="children" id="children"> Children's </span>
+              <span class="genre-checkbox"><input type="checkbox" name="genre" value="drama" id="drama"> Drama </span>
+              <span class="genre-checkbox"><input type="checkbox" name="genre" value="poetry" id="poetry"> Poetry </span>
+              <span class="genre-checkbox"><input type="checkbox" name="genre" value="romance" id="romance"> Romance </span>
+              <span class="genre-checkbox"><input type="checkbox" name="genre" value="others" id="others"> Others (Please enter below, seperate by ,)</span>
+              <input type="text" id="other-genre" disabled> <p class="error" id="other-genre-err">
+            </div>          
+            <span class="form-field" id="progress">
+              Reading Progress:  
+              <input type='text' name="current-page" id='current-page' value="" placeholder="I'm on page">
+              /
+              <input type='text' name="overall-page" id='overall-page' value="" placeholder="# of pages">
+            </span>
+            <span class="rating form-field">
+              Rate this book: 
+              <button class="star-button" value="1"><i class="far fa-star" ></i><span class="tooltip-text">didn't like it</span></button>
+              <button class="star-button" value="2"><i class="far fa-star" ></i><span class="tooltip-text">it was okay</span></button>
+              <button class="star-button" value="3"><i class="far fa-star" ></i><span class="tooltip-text">liked it</span></button>
+              <button class="star-button" value="4"><i class="far fa-star" ></i><span class="tooltip-text">really liked it</span></button>
+              <button class="star-button" value="5"><i class="far fa-star" ></i><span class="tooltip-text">it was amazing</span></button>
+            </span>
+            <span class="form-field" id="book-copy">I have a copy of this book <input type="radio" name="have-copy" value="true"> Yes <input type="radio" name="have-copy" value="false"> No </span>
+            <button id="submit" class="submit">Add to my book list</button>
+          </form>
+        </div> <!-- id="book-form" -->
+        <div id="book-table">
+          <h1 id="book-shelf">Book Shelf</h1>
+          <table>
+            <thead>
+              <tr>
+                <th><span>Title</span></th>
+                <th><span>Author</span></th>
+                <th><span>ISBN#</span></th>
+                <th><span>Rating</span></th>
+                <th><span>Current Progess</span></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="book-list"></tbody>
+        </table>
+      </div> <!-- id="book-list" -->
+    </div> <!-- class="content" -->  
+  </div> <!-- class="container" -->
+  <script src="./js/scripts.js"></script>
+</body>
 </html>

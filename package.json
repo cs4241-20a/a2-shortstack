@@ -1,12 +1,14 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-shortstack",
+  "version": "1.0.0",
+  "description": "A book list records necessary book info. Supports add, delete, and edit.",
+  "author": "Xiaoyue Lyu",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node server.improved.js",
+    "dev": "nodemon server.improved.js"
   },
   "dependencies": {
+    "dayjs": "^1.8.35",
     "mime": "^2.4.4"
   }
 }

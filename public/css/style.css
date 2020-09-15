@@ -1,1 +1,162 @@
 /*Style your own assignment! This is fun! */
+
+* {
+    margin: 0;
+    font-family: 'Grandstander', cursive;
+}
+
+*:focus {
+	outline: none;
+}
+
+.container {
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+#navbar {
+    position: fixed;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    width: 100vw;
+    padding: 5px 30px;
+}
+
+#logo {
+    font-family: 'Grandstander', cursive;
+    padding: 0 0 0 300px;
+}
+
+#links{
+    display: flex;
+    align-items: center;
+}
+
+#links a {
+    padding: 0 40px 0 40px;
+    text-decoration: none;
+}
+
+#content {
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content form {
+    display: flex;
+    flex-direction: column;
+}
+
+#book-form {
+    height: 90vh;
+}
+
+.form-field {
+    margin: 0.5em;
+}
+
+input {
+    border-color: transparent;
+}
+
+#book-title, #book-author, 
+#book-isbn, #other-genre {
+    display: block;
+    width: 314px;
+    margin-top: 5px;
+    height: 2.5em;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.genre-checkbox {
+    display: block;
+    padding: 0.25em 1em;
+}
+
+#other-genre {
+    margin: 0 1em;
+}
+
+#progress, #book-copy {
+    padding: 10px 0;
+}
+
+#progress input {
+    width: 85px;
+    border-radius: 10px;
+    height: 1.5em;
+    padding-left: 10px;
+}
+
+#progress input:first-child {
+    margin-left: 10px;
+}
+
+.star-button, [class*="star-btn"]{
+    background-color: transparent;
+    border: transparent;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    font-size: 1em;
+}
+
+.star-button:first-child {
+    margin-left: 10px;
+}
+
+.star-button:hover, .star-btn:hover {
+    cursor: pointer;
+}
+
+.fa-star {
+    color: orange;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 140px;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+
+.star-button:hover .tooltip-text {
+    visibility: visible;
+}
+
+table {
+    padding: 20px;
+    width: 50vw;
+}
+
+table tr {
+    line-height: 2em;
+}
+
+table td {
+    text-align: center;
+}
+
+.current-page, .overall-page {
+    width: 50px;
+    margin: auto;
+}
+
+
+#submit {
+    margin: 30px 0;
+    padding: 0;
+    font-family: 'Grandstander', cursive;
+    font-weight: 700;
+    font-size: large;
+    height: 2.5em;
+    border-radius: 30px;
+}
