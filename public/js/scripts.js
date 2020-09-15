@@ -100,19 +100,15 @@ const submit = function( e ) {
     })
     .then( response => response.json() )
     .then( function(body) {
+        if( body.length === 0 ){
+          return false
+        }
         const numlistings = body.length + 1;
         console.log( "Number of Listings: " + numlistings )
-        let price1 = body[0].price,
-            price2 = body[1].price;
-            console.log(price1);
-            console.log(price2);
-
-            var customers = new Array();
-            customers.push(["Customer Id", "Name", "Country"]);
-            customers.push([1, "John Hammond", "United States"]);
-            customers.push([2, "Mudassar Khan", "India"]);
-            customers.push([3, "Suzanne Mathews", "France"]);
-            customers.push([4, "Robert Schidner", "Russia"]);
+        // let price1 = body[0].price,
+        //     price2 = body[1].price;
+        //     console.log(price1);
+        //     console.log(price2);
      
             //Create a HTML Table element.
             var table = document.createElement("TABLE");
@@ -124,16 +120,21 @@ const submit = function( e ) {
             //Add the header row.
             var row = table.insertRow(-1);
             for ( var key in body[0]) {
+              if( key === "delete" ){
+                continue
+              }
                 var headerCell = document.createElement("TH");
-                console.log( key )
                 headerCell.innerHTML = key;
                 row.appendChild(headerCell);
             }
      
             //Add the data rows.
-            for (var i = 1; i < body.length; i++) {
+            for (var i = 0; i < body.length; i++) {
                 row = table.insertRow(-1);
                 for (var key in body[i]) {
+                  if( key === "delete" ){
+                    continue
+                  }
                     var cell = row.insertCell(-1);
                     cell.innerHTML = body[i][key];
                 }

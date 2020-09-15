@@ -8,7 +8,11 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = []
+const appdata = [
+  { firstname: "Joe", lastname: "Bonchon", cameramake: "Canon", cameramodel: "A-1", cameraformat: "35mm", price: 150, conditon: 76, bargain: false, delete: false, id: 1 },
+  { firstname: "Pongo", lastname: "Pwaga", cameramake: "Nikon", cameramodel: "FTn", cameraformat: "35mm", price: 95, conditon: 90, bargain: true, delete: false, id: 2 },
+  { firstname: "Toe", lastname: "Progle", cameramake: "Yashica", cameramodel: "Mat124G", cameraformat: "6x6", price: 50, conditon: 100, bargain: true, delete: false, id: 3 }
+]
 
 // server creation
 const server = http.createServer( function( request,response ) {
@@ -82,12 +86,12 @@ const handlePost = function( request, response ) {
       var isBargain = true
 
 
-      if( incomingData.price > 1 && incomingData.condition < 10 ) {
-        console.log( "This is stupid" )
+      if( ( incomingData.price > incomingData.condition ) && incomingData.condition < 50 ) {
         isBargain = false
       }
       incomingData[bargain] = isBargain
 
+      // let's assign an ID to this listing
       incomingData["id"] = appdata.length + 1
 
       appdata.push( incomingData )
