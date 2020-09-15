@@ -7,14 +7,14 @@ const http = require("http"),
   port = 3000;
 
 const appdata = [
-  { route: "test", time: "7:00", distance: 1, pace: "7:00" },
-  { route: "test", time: "14:00", distance: 2, pace: "7:00" },
-  { route: "test", time: "21:00", distance: 3, pace: "7:00" },
+  { route: "test", time: 7, distance: 1, fitness: 7 },
+  { route: "test", time: 14, distance: 2, fitness: 14 },
+  { route: "test", time: 21, distance: 3, fitness: 21 },
 ];
 
-const calculatePace = function(time, distance){
-  
-}
+const calculateFitness = function (record) {
+  record.fitness = record.time*record.distance;
+};
 
 const server = http.createServer(function (request, response) {
   if (request.method === "GET") {
@@ -35,23 +35,32 @@ const handleGet = function (request, response) {
 };
 
 const handlePost = function (request, response) {
-  let dataString = "";
+  if (request.url === "/submit") {
+    //if not loading just table, process new record
+    let dataAsString = "";
+    request.on("data", function (dataBuffer) {
+      dataAsString += dataBuffer;
+    });
+    //parse data buffer as string
 
-  request.on("data", function (data) {
-    dataString += data;
-  });
+    request.on("end", function () {
+      var newRecord = JSON.parse(dataAsString); //get new record json
+      calculateFitness(newRecord); //calculate fitness on newRecord (field already present just null)
 
-  request.on("end", function () {
-    var newRecord = JSON.parse(dataString);
-    var newRecord = calculatePace();
+      appdata.push(newRecord); //put record data into "database"
+    });
+  }
+  /*
+  always send table after post
+  any non "/submit" POST request just loads the table
+  ex. "/load"
+  */
+  sendTable(response);
+};
 
-    appdata.push(newRecord);
-
-    // ... do something with the data here!!!
-
-    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-    response.end();
-  });
+const sendTable = function (response) {
+  response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+  response.end(JSON.stringify(appdata));
 };
 
 const sendFile = function (response, filename) {

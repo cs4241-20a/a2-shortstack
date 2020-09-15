@@ -1,6 +1,7 @@
-const loadTable = function(jsonData){
-
-}
+const loadTable = function (responseData) {
+  var jsonData = JSON.parse(responseData);
+  console.log(jsonData);
+};
 
 const submit = function (e) {
   // prevent default form action from being carried out
@@ -13,7 +14,7 @@ const submit = function (e) {
       route: inputRoute.value,
       time: inputTime.value,
       distance: inputDistance.value,
-      pace: "",
+      fitness: 0,
     },
     body = JSON.stringify(json);
 
@@ -22,7 +23,7 @@ const submit = function (e) {
     body,
   }).then(function (response) {
     // do something with the reponse
-    loadTable(JSON.parse(response))
+    loadTable(response);
   });
 
   return false;
