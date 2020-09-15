@@ -14,7 +14,7 @@ Jonathan Dang: https://a2-jdang4.glitch.me
 - Recieved no Error or Warning messages when validating website
 
 ## CSS
-- Made use of the flexbox to help layout my website
+- Made use of the flexbox to help layout my website. They were mainly used in the input layout column where I was able to make the proper placements when using the flex display.
 - Added various styling rules to Element, ID, and Class selectors 
 - Defined all the styling rules in the style.css file under the css directory
 
@@ -28,4 +28,10 @@ Jonathan Dang: https://a2-jdang4.glitch.me
 - **Tech Achievement 1**: Able to make my webpage to be only using one site that is able to provide forms for the users to submit data and also always showing the current state of the server-side data.
 
 - **Tech Achievement 2**: Implemented application to allow the users to add, modify, and delete data items residing in the server's memeory.
+
+# Design Achievements
+
+- **Google Font Text**: For some of my headers I used Google Fonts to add a more visual display of the texts. One of my headers used a Shrikhand font and another used a Fjalla On font. 
+
+- **Color Scheme**: By utilizing the color wheel from color.adobe.com, I was able to get unique colors that I thought blended well with each other and made the page more visually appealing.
 
