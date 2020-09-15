@@ -16,7 +16,7 @@ User was asked to add two different cars to the list.
 
 - **Thinkaloud #2**:
 User was asked to add two different cars to the list.
-1. Last Name
-2. Problems
-3. Surprising Comments
-4. Potential Changes
+1. Last Name: Owuor
+2. Problems: No problems encountered
+3. Surprising Comments: Wanted error messages when invalid year was input.
+4. Potential Changes: Add error messages when invalid entry entered.
