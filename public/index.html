@@ -1,60 +1,59 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-    <div class="header">
-      <H1>HANDY-DANDY RUNNING TRACKER</H1>
+<div class="header">
+  <H1>HANDY-DANDY RUNNING TRACKER</H1>
+</div>
+
+<div class="content-container">
+
+  <div class="to-do-list">
+    <div class="list-item" ></div>
+  </div>
+
+  <div class="grid">
+    <div class="form-container">
+      <form action="">
+
+        <label for="id">Enter unique id</label>
+        <input type='number' id='id' placeholder="Only if you want to update/delete entry">
+
+        <label for="miles">How many miles?</label>
+        <input type='number' id='miles' class="number-selector" min="0">
+
+        <label for="speed">How fast in mph?</label>
+        <input type="number" id='speed' class="number-selector" min="0">
+
+        <label for="notes">Any notes or reflexion on that thing you did?</label>
+        <input type='text' id='notes' placeholder="Enter notes">
+
+        <button id="add">Add Entry</button>
+        <button id="update">Update Entry</button>
+        <button id="delete">Delete Entry</button>
+      </form>
     </div>
-
-    <div class="content-container">
-
-      <div class="to-do-list">
-        <div class="list-item" ></div>
-      </div>
-
-      <div class="grid">
-        <div class="form-container">
-          <form action="">
-
-            <label for="id">Enter unique id</label>
-            <input type='number' id='id' placeholder="Only if you want to update/delete entry">
-
-            <label for="miles">How many miles?</label>
-            <input type='number' id='miles' class="number-selector" min="0">
-
-            <label for="speed">How fast in mph?</label>
-            <input type="number" id='speed' class="number-selector" min="0">
-
-            <label for="notes">Any notes or reflexion on that thing you did?</label>
-            <input type='text' id='notes' placeholder="Enter notes">
-
-            <button id="add">Add Entry</button>
-            <button id="update">Update Entry</button>
-            <button id="delete">Delete Entry</button>
-          </form>
-        </div>
-        <div></div>
-        <div class="results-container">
-          <table id="res-table">
-              <tr>
-                <th>Id</th>
-                <th>Miles</th>
-                <th>Speed (mph)</th>
-                <th>Notes</th>
-                <th>Calories burnt</th>
-              </tr>
-          </table>
-        </div>
-      </div>
+    <div></div>
+    <div class="results-container">
+      <table id="res-table">
+        <tr>
+          <th>Id</th>
+          <th>Miles</th>
+          <th>Speed (mph)</th>
+          <th>Notes</th>
+          <th>Calories burnt</th>
+        </tr>
+      </table>
     </div>
-  </body>
-  <script src="js/scripts.js">
-  </script>
+  </div>
+</div>
+<script src="js/scripts.js"></script>
+</body>
 </html>
