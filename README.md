@@ -1,6 +1,6 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 
-Website: https://a2-clay-ol.glitch.me
+Website: https://a2-clay-oshiro-leavitt.glitch.me
 
 
 ## Your Web Application Title: Camera List Boi
