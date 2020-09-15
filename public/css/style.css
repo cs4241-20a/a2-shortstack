@@ -1,37 +1,46 @@
 body {
-  background-color: #32C6DB;
+    background-image: url("/background.jpg");
+    background-color: #32C6DB;
 }
+
 .title{
-  font-family: cursive;
-  font-size: 30px;
-  text-align:center
+    font-family: Futura;
+    font-size: 30px;
+    text-align:center
 }
+
 input[Type = text]{
-  border: none;
-  padding: 16px 32px;
-  margin: 4px 2px;
-  cursor: pointer;
-  }/*Style your own assignment! This is fun! */
+    font-family: Futura;
+    border: 3px solid darkblue;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+}/*Style your own assignment! This is fun! */
 
 #submitBtn{
- background-color: #359ddb;
- border: none;
- color: white;
- padding: 16px 32px;
- text-decoration: none;
- margin: 4px 2px;
- cursor: pointer;
+    font-family: Futura;
+    background-color: #359ddb;
+    border: 3px solid darkblue;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 4px;
+    cursor: pointer;
 }
 
 table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+    border: 3px solid darkblue;
+    border-collapse: collapse;
+    background: white;
 }
+
 th, td {
-  padding: 15px;
-  text-align: left;
+    font-family: Futura ;
+    padding: 15px;
+    text-align: left;
 }
+
 #t01 {
-  width: 100%;
-  background-color: #f1f1c1;
+    width: 100%;
+    background-color: #f1f1c1;
 }
