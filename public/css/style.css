@@ -17,4 +17,12 @@ li{
     display:flex;
     justify-content:center;
     font-family:'Patrick Hand';
+    margin:20px;
+}
+p{
+    margin-right:10px;
+    margin-block-start:0px;
+}
+b{
+    margin-right:5px;
 }
