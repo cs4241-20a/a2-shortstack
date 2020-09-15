@@ -44,3 +44,9 @@ h1{
 .toDoTable{
   grid-template-columns: 40px 50px auto 50px 40px;
 }
+
+.flexbox{
+   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
