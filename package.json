@@ -1,8 +1,8 @@
 {
-  "name": "Birthday List",
-  "version": "1.0",
-  "description": "Birthday list! Add list of birthdays of friends and family.",
-  "author": "Luke Deratzou",
+  "name": "",
+  "version": "",
+  "description": "",
+  "author": "",
   "scripts": {
     "start": "node server.improved.js"
   },
