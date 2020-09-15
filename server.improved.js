@@ -7,7 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 //Format: { "id": 0, "kills": 0, "assists": 0, "deaths": 0, "kd_ratio": 0, "ad_ratio": 0 },
-const appdata = [];
+let appdata = [];
 const DECIMAL_PRECISION = 2;
 
 let id = 1;//Unique IDs to indicate rows to modify or delete
@@ -51,6 +51,8 @@ const handleGet = function( request, response ) {
         sendTable(response);
     }else if(request.url === "/csv"){
         sendCSV(response);
+    }else if(request.url === "/clear"){
+        clearStats(response);
     }else{
         sendFile(response, filename);
     }
@@ -211,6 +213,18 @@ const deleteItem = function(data){
     }
     //Entry if given ID not found.
     return false;
+}
+
+const clearStats = function(response){
+    appdata = [];
+    numEntries = 0;
+    totalKills = 0;
+    totalAssists = 0;
+    totalDeaths = 0;
+    avgKills = 0;
+    avgAssists = 0;
+    avgDeaths = 0;
+    sendTable(response);
 }
 
 /**

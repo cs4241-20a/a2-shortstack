@@ -82,8 +82,11 @@
                 </tbody>
             </table>
 
-            <!-- Lets user download all table data as a .csv file -->
-            <button id="download_button" type="button" onclick="handle_csv()">Download as CSV</button>
+            <div class="button_container">
+                <!-- Lets user download all table data as a .csv file -->
+                <button id="download_button" type="button" onclick="handle_csv()">Download as CSV</button>
+                <button id="clear_button" type="button" onclick="handle_clear()">Clear Stats</button>
+            </div>
 
             <!-- Table for displaying all stats from each game -->
             <table class="app-item" id="results_list">

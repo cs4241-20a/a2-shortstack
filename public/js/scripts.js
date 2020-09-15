@@ -92,6 +92,19 @@ function handle_delete(){
     return false;
 }
 
+function handle_clear(){
+    fetch( '/clear', {
+        method:'GET',
+    }).then(function( response ) {
+        if(response.status === 200){
+            updateResults(response);
+            return true;
+        }
+    });
+
+    return false;
+}
+
 /**
  * Send a /results API HTTP request to retrieve all the current
  * stats stored in the server. The updated stats are then displayed
@@ -177,7 +190,7 @@ function updateResults(response){
         //a table in JS: https://www.w3schools.com/jsref/met_table_insertrow.asp
         let numRows = data.numRows;
         let rows = data.rows;
-        for(let i = 0; i < numRows; i++){
+        for (let i = 0; i < numRows; i++) {
             let newRow = newBody.insertRow(i);
             newRow.insertCell(0).innerHTML = `${rows[i].id}`;
             newRow.insertCell(1).innerHTML = `${rows[i].kills}`;
