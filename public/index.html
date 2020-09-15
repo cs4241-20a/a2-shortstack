@@ -4,6 +4,7 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/scripts.js"></script>
   </head>
   <body>
     <h1 font-weight: bold;>Welcome to Speed Clicker</h1>
@@ -13,13 +14,13 @@
     </p>
 
     <div>
-      <button class="playbtn" id='startbtn' onclick="click()">Start</button>
+      <button class="playbtn" id='startbtn' onclick="start()">Start</button>
     </div>
 
-    <a href=# class="playbtn" onclick="add()"><img src="button.png"></a>
+    <a href=# class="playbtn" id="clickbtn" onclick="add()"><img src="button.png"></a>
     
     <div>
-      <p id='clicks' class='poststart'>0 Points</p>
+      <p id='currentclicks' class='poststart'>0 Points</p>
     </div>
 
     <div>
@@ -28,7 +29,7 @@
           Please input your name:
         </p>
         <input type='text' id='yourname' class='postgame' value="">
-        <button class='postgame'>Submit</button>
+        <button id='submitbtn' class='postgame'>Submit</button>
       </form>
     </div>
 
