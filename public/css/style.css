@@ -3,10 +3,6 @@ body {
   background-color: mistyrose;
 }
 
-button {
-  background-color: white;
-}
-
 table, th{
   border: 1px solid black;
   background-color: white;
@@ -37,4 +33,8 @@ table, th{
   background: white;
   font-weight: bold;
   color: black;
+}
+
+.toDoTable{
+  display: flex;
 }
