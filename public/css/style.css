@@ -4,6 +4,7 @@
     margin: 10px;
     border-color: black;
     border-style: solid;
+    border-width: thin;
     justify-content: center;
     text-align: center;
 }
@@ -22,6 +23,27 @@
 #submitBtn{
     font-family: 'Roboto', sans-serif;
     font-size: large;
+    background-color: #6392ae;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 5px
+}
+
+.delBtns{
+    background-color: #ff6961;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: medium;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 5px
 }
 
 #task, #weeks{
@@ -37,17 +59,26 @@
 .habitName{
     margin: 0;
     text-align: center;
+    font-size: x-large;
 }
+
+
 body{
     font-family: 'Roboto', sans-serif;
 }
 
 table{
     font-size: x-large;
+    cursor: pointer;
 }
 td{
     padding: 2px;
+    height: 35px;
+    width: 35px;
 }
 tr{
     padding:2px
+}
+th{
+    font-size: medium;
 }

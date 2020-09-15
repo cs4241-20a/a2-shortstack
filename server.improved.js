@@ -6,15 +6,7 @@ const http = require('http'),
     dir = 'public/',
     port = 3000
 
-const appdata = [
-    {
-        'habit_name': 'exercise',
-        'startDate': "08/14/2020",
-        'weeks': 4,
-        'days': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        'longest_streak': 0
-    }
-]
+
 
 const server = http.createServer(function (request, response) {
     if (request.method === 'GET') {
@@ -32,16 +24,16 @@ const handleGet = function (request, response) {
         sendFile(response, filename)
     }
 }
-let dataStorage = []
-//dataStorage.push(appdata.toString())
+let dataStorage = ['{"habit_name": "exercise", "startDate": "09/12/2020", "weeks": 4, "weekday":6, "days": [["-","-","O","X","#","#","#"],["#","#","#","#","#","#","#"],["#","#","#","#","#","#","#"],["#","#","#","#","#","#","#"]]}']
+
 const handlePost = function (request, response) {
-    console.log(request.url)
     if (request.url === '/submit') {
         request.on('data', function (data) {
             let newdata = JSON.parse(data)
+            newdata.weekday = (new Date(newdata.startDate)).getDay()
             let days = []
             for (let i = 0; i < newdata.weeks; i++) {
-                days[i] = new Array(7).fill("O")
+                days[i] = new Array(7).fill("#")
             }
             newdata.days = days
             dataStorage.push(JSON.stringify(newdata))
@@ -54,8 +46,23 @@ const handlePost = function (request, response) {
       })
 
     } else if (request.url === '/edit') {
-      request.on('data', function (data) {})
-     
+      request.on('data', function (data) {
+          let newdata = JSON.parse(data)
+          let newVal = ""
+          if(newdata.val === "#"){
+              newVal = "O"
+          }else if(newdata.val === "O"){
+              newVal = "X"
+          }else if(newdata.val === "X"){
+              newVal = "-"
+          }else{
+              newVal =  "#"
+          }
+          let habit = JSON.parse(dataStorage[newdata.habit])
+          habit.days[newdata.row][newdata.col]=newVal
+          dataStorage[newdata.habit] = JSON.stringify(habit)
+      })
+    }else{ request.on('data', function (data) {})
     }
     request.on('end', function () {
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
