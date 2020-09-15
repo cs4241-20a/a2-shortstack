@@ -36,5 +36,5 @@ table, th{
 }
 
 .toDoTable{
-  display: flex;
+  grid-template-columns: 40px 50px auto 50px 40px;
 }
