@@ -20,7 +20,7 @@
         <h1 id="header-title" name="top">My<span>Reading</span>List</h1>
         <p id="header-text">What are you reading now?</p>
         <div id="book-form">
-          <form action="">
+          <form>
             <span class="form-field">
               <label for="book-title">Title</label>
               <input type='text' name="book-title" id='book-title' value="" placeholder="Enter the book title">
@@ -34,7 +34,7 @@
               <input type='text' name="book-isbn" id='book-isbn' value="" placeholder="Enter the book ISBN#">
             </span>
             <div class="form-field" id="genre-checkboxes">
-              <label for="book-genre">Book Genre(s): </label> <br />
+              <label>Book Genre(s): </label> <br />
               <span class="genre-checkbox"><input type="checkbox" name="genre" value="nonfiction" id="nonfiction"> Nonfiction </span>
               <span class="genre-checkbox"><input type="checkbox" name="genre" value="adventure" id="adventure"> Action and adventure</span>
               <span class="genre-checkbox"><input type="checkbox" name="genre" value="children" id="children"> Children's </span>
@@ -59,7 +59,7 @@
               <button class="star-button" value="5"><i class="far fa-star" ></i><span class="tooltip-text">it was amazing</span></button>
             </span>
             <span class="form-field" id="book-copy">I have a copy of this book <input type="radio" name="have-copy" value="true"> Yes <input type="radio" name="have-copy" value="false"> No </span>
-            <button id="submit-button">Add to my book list</button>
+            <button id="submit" class="submit">Add to my book list</button>
           </form>
         </div> <!-- id="book-form" -->
         <div id="book-table">
@@ -75,30 +75,7 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody id="book-list">
-            <tr>
-              <td>Life of Pi</td>
-              <td>Yann Martel</td>
-              <td>0770430074</td>
-              <td>
-                <span id="rating-table">
-                  <button class="star-btn" value="1"><i class="far fa-star" ></i><span class="tooltip-text">didn't like it</span></button>
-                  <button class="star-btn" value="2"><i class="far fa-star" ></i><span class="tooltip-text">it was okay</span></button>
-                  <button class="star-btn" value="3"><i class="far fa-star" ></i><span class="tooltip-text">liked it</span></button>
-                  <button class="star-btn" value="4"><i class="far fa-star" ></i><span class="tooltip-text">really liked it</span></button>
-                  <button class="star-btn" value="5"><i class="far fa-star" ></i><span class="tooltip-text">it was amazing</span></button>
-                </span>
-              </td>
-              <td>
-                <span>
-                <input type='text' name="current-page" class='current-page' value="">
-                /
-                <input type='text' name="overall-page" class='overall-page' value="">
-              </span>
-            </td>
-              <td><button id="edit"><i class="far fa-edit"></i></button> <button id="delete"><i class="fas fa-trash-alt"></i></button></td>
-            </tr>
-          </tbody>
+            <tbody id="book-list"></tbody>
         </table>
       </div> <!-- id="book-list" -->
     </div> <!-- class="content" -->  

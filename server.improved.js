@@ -39,6 +39,7 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
+  let statusCode = 200
 
   request.on( 'data', function( data ) {
       dataString += data 
@@ -48,21 +49,22 @@ const handlePost = function( request, response ) {
     dataString = JSON.parse(dataString)
 
     if(request.url === '/delete'){
-      manageData('/delete', dataString)
+      statusCode = manageData('/delete', dataString)
     }
     else if(request.url === '/edit'){
-      manageData('/edit', dataString)
+      statusCode = manageData('/edit', dataString)
     }
     else {
-      manageData('/submit', dataString)
+      statusCode = manageData('/submit', dataString)
     }
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.writeHead( statusCode, "OK", {'Content-Type': 'text/plain' })
   })
 }
 
 const manageData = function( url, data ) {
   if(url === '/submit'){
+    if(!validateISBN(data)) return 405
     if(data.currentPage !== "" && data.overallPage !== "") {
       const progress = (data.currentPage / data.overallPage) * 100
       data.progress = `${progress.toPrecision(2)}%`
@@ -91,6 +93,13 @@ const manageData = function( url, data ) {
     appdata.push(data)
     return 200
   }
+}
+
+function validateISBN(book) {
+  const targetISBN = book.isbn
+  const duplicate = appdata.filter(book => book.isbn === targetISBN)
+
+  return targetISBN !== '' && duplicate.length === 0 
 }
 
 const sendFile = function( response, filename ) {
