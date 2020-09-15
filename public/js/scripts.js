@@ -3,8 +3,8 @@ console.log("Welcome to assignment 2!")
 
 var clickcount = 0;
 var highscores = [ //default highscores
-  {place: 1, name: "Mr. Insano", cps: 73.3, clicks: 2200},
-  {place: 2, name: "Cui2", cps: 2, clicks: 60}
+  {name: "Mr. Insano", cps: 73.3, clicks: 2200},
+  {name: "Cui2", cps: 2, clicks: 60}
 ]
 
 const submit = function( e ) {
@@ -31,7 +31,7 @@ const submit = function( e ) {
   function start() {
     document.getElementById('clickbtn').style.display="block";
     document.getElementById('startbtn').style.display="none";
-    const p = new Promise(function(resolve, reject) { 
+    const p = new Promise(function(resolve) { 
       setTimeout(resolve, 3000) //after 3 seconds...
     })
     .then(end()) //run end() function
@@ -86,11 +86,11 @@ const submit = function( e ) {
 
 
   window.onload = function() {
-    document.getElementById('clickbtn').style.display="none";
-    document.getElementById('currentclicks').style.display="none";
-    document.getElementById('inputname').style.display="none";
-    document.getElementById('yourname').style.display="none";
-    document.getElementById('submitbtn').style.display="none";
+    // document.getElementById('clickbtn').style.display="none";
+    // document.getElementById('currentclicks').style.display="none";
+    // document.getElementById('inputname').style.display="none";
+    // document.getElementById('yourname').style.display="none";
+    // document.getElementById('submitbtn').style.display="none";
     const button = document.querySelector( 'button' )
     button.onclick = submit
   }

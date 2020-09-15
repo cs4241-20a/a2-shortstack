@@ -7,7 +7,8 @@ body {
     color: rgba(0, 0, 0, 0.8);
     padding: 1px;
 }
-h1{
+
+h1 {
     text-align: center;
     color: red;
     border: red;
@@ -15,6 +16,7 @@ h1{
     border: double;
     padding-bottom: 5px;
 }
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -22,7 +24,17 @@ table, th, td {
     padding: 5px;
     align-items: center;
 }
+
 .playbtn {
+    justify-content: center;
     align-self: center;
 }
 
+.poststart {
+    justify-content: center;
+}
+
+#submitbtn {
+    color: red;
+    background-color: black;
+}
