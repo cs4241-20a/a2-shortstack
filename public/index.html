@@ -107,187 +107,26 @@
       </body>
           <button id='listingsbutton'>Listings</button>
     </form>
+    <table>
+      <tr>
+        <th>Camera Make</th>
+        <th>Camera Model</th>
+        <th>Camera Format</th>
+        <th>Price (Dollars)</th>
+        <th>Camera Condition (%)</th>
+        <th>Lister First Name</th>
+        <th>Lister Last Name</th>
+        <th>Listing ID</th>
+      </tr>
+    </table>
+
+    <div id="dvTable"></div>
 
      
 
   </body>
   <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    // requires 3 parts
-    // set action to blank 
-    // preventDefault() called
-    // function must return false
-
-    e.preventDefault()
-
-    // document represents current HTML document
-    const firstName = document.querySelector( '#firstname' ),
-          lastName = document.querySelector( '#lastname' ),
-          cameraMake = document.querySelector( '#cameramake' ),
-          cameraModel = document.querySelector( '#cameramodel' ),
-          cameraFormat = document.querySelector( '#cameraformat' ),
-          price = document.querySelector( '#price' ),
-          condition = document.querySelector( '#condition' )
-          json = { firstname: firstName.value, 
-            lastname: lastName.value, 
-            cameramake: cameraMake.value,
-            cameramodel: cameraModel.value, 
-            cameraformat: cameraFormat.value,
-            price: price.value,
-            condition: condition.value,
-            delete: false},
-          body = JSON.stringify( json ) // passed to fetch
-
-    // Fetch is type of JS 'promise'
-    // type of asynchronous function - prevents blocking main thread
-    // important for JS as it usually is single-threaded
-
-
-
-    fetch( '/submit', {
-      method:'POST',
-      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
-    })
-    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  const deleteListing = function( e ) {
-    // prevent default form action from being carried out
-    // requires 3 parts
-    // set action to blank 
-    // preventDefault() called
-    // function must return false
-
-    e.preventDefault()
-
-    // document represents current HTML document
-    const firstName = document.querySelector( '#deletefirstname' ),
-          lastName = document.querySelector( '#deletelastname' ),
-          id = document.querySelector( '#deletelistingnumber')
-
-          json = { firstname: firstName.value, 
-            lastname: lastName.value,
-            id: id.value,
-            delete: true },
-          body = JSON.stringify( json ) // passed to fetch
-
-    // Fetch is type of JS 'promise'
-    // type of asynchronous function - prevents blocking main thread
-    // important for JS as it usually is single-threaded
-
-
-
-    fetch( '/data', {
-      method:'POST',
-      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
-    })
-    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  const getListings = function( e ) {
-    // prevent default form action from being carried out
-    // requires 3 parts
-    // set action to blank 
-    // preventDefault() called
-    // function must return false
-
-    e.preventDefault()
-
-    // document represents current HTML document
-    const firstName = document.querySelector( '#firstname' ),
-          lastName = document.querySelector( '#lastname' ),
-          cameraMake = document.querySelector( '#cameramake' ),
-          cameraModel = document.querySelector( '#cameramodel' ),
-          cameraFormat = document.querySelector( '#cameraformat' ),
-          price = document.querySelector( '#price' ),
-          condition = document.querySelector( '#condition' )
-          json = { firstname: firstName.value, 
-            lastname: lastName.value, 
-            cameramake: cameraMake.value,
-            cameramodel: cameraModel.value, 
-            cameraformat: cameraFormat.value,
-            price: price.value,
-            condition: condition.value,
-            delete: false},
-          body = JSON.stringify( json ) // passed to fetch
-
-    // Fetch is type of JS 'promise'
-    // type of asynchronous function - prevents blocking main thread
-    // important for JS as it usually is single-threaded
-
-
-
-    fetch( '/data', {
-      method:'GET',
-      //body // this variable has the same name as the property, so the : is omitted - same as writing body: body
-    })
-    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  const updateListing = function( e ) {
-    // prevent default form action from being carried out
-    // requires 3 parts
-    // set action to blank 
-    // preventDefault() called
-    // function must return false
-
-    e.preventDefault()
-
-    // document represents current HTML document
-    const firstName = document.querySelector( '#updatefirstname' ),
-          lastName = document.querySelector( '#updatelastname' ),
-          cameraMake = document.querySelector( '#updatecameramake' ),
-          cameraModel = document.querySelector( '#updatecameramodel' ),
-          cameraFormat = document.querySelector( '#updatecameraformat' ),
-          price = document.querySelector( '#updateprice' ),
-          condition = document.querySelector( '#updatecondition' ),
-          id = document.querySelector( '#listingnumber')
-          json = { firstname: firstName.value, 
-            lastname: lastName.value, 
-            cameramake: cameraMake.value,
-            cameramodel: cameraModel.value, 
-            cameraformat: cameraFormat.value,
-            price: price.value,
-            condition: condition.value,
-            id: id.value,
-            delete: false},
-          body = JSON.stringify( json ) // passed to fetch
-          console.log( body)
-
-    // Fetch is type of JS 'promise'
-    // type of asynchronous function - prevents blocking main thread
-    // important for JS as it usually is single-threaded
-
-
-
-    fetch( '/submit', {
-      method:'POST',
-      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
-    })
-    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
 
   // assigns window.onload to a function
   window.onload = function() {

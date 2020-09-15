@@ -1,3 +1,5 @@
+const { stringify } = require('querystring')
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -6,11 +8,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = []
 
 // server creation
 const server = http.createServer( function( request,response ) {
@@ -23,11 +21,16 @@ const server = http.createServer( function( request,response ) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-
+  console.log( filename )
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+    console.log( "sending webpage" )
+  } else if( filename === "public/appdata" ){
+    sendData( response, appdata )
+    console.log( "sending appdata:" + JSON.stringify( appdata ) )
   }else{
     sendFile( response, filename )
+    console.log( "sending the following file: " + filename )
   }
 }
 
@@ -91,7 +94,6 @@ const handlePost = function( request, response ) {
 
   }
 }
-  console.log( appdata )
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -100,6 +102,7 @@ const handlePost = function( request, response ) {
 }
 
 const sendFile = function( response, filename ) {
+
    const type = mime.getType( filename ) 
 
    fs.readFile( filename, function( err, content ) {
@@ -119,6 +122,18 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+const sendData = function( response, dataname ) {
+
+  transmitdata = JSON.stringify( dataname )
+  console.log( transmitdata )
+
+      // status code: https://httpstatuses.com
+      response.writeHeader( 200, { 'Content-Type': "text/plain" })
+    
+      response.write( transmitdata )
+      response.end()
 }
 
 server.listen( process.env.PORT || port )
