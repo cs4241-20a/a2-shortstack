@@ -3,39 +3,75 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <script src="js/scripts.js" defer></script>
+    <link rel="stylesheet" href="css/style.css"/>
   </head>
+  <h1>
+    WHICH BOB ROSS PAINTING ARE YOU?
+  </h1>
+  <h2>Find your inner Bob Ross with this quiz!</h2>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <form name="quizResults" id="quizResults" class="grid-container" action="/">
+      <p>
+      <label class="questionText" for="name">What is your name?</label><br>
+      <input type="text" id="yourname"><br>
+      </p>
+      <p>
+      <label class="questionText" for="pickColor">Pick a fancy color:</label><br>
+      <input type="radio" id="ivory" name="color" value="ivory">
+      <label for="ivory">Ivory</label>
+      <input type="radio" id="mauve" name="color" value="mauve">
+      <label for="mauve">Mauve</label>
+      <input type="radio" id="cobalt" name="color" value="cobalt">
+      <label for="cobalt">Cobalt</label>
+      <input type="radio" id="ebony" name="color" value="ebony">
+      <label for="ebony">Ebony</label><br>
+      </p>
+      <p>
+      <label class="questionText" for="quote">Pick a Bob Ross quote:</label><br>
+      <input type="radio" id="q1" name="quote" value="q1">
+      <label for="q1">“Water’s like me. It’s lazy. Boy, it always looks for the easiest way to do things.”</label><br>
+      <input type="radio" id="q2" name="quote" value="q2">
+      <label for="q2">“We don’t make mistakes. We just have happy accidents.”</label><br>
+      <input type="radio" id="q3" name="quote" value="q3">
+      <label for="q3">“Gotta give him a friend. Like I always say, ‘Everyone needs a friend.’”</label><br>
+      <input type="radio" id="q4" name="quote" value="q4">
+      <label for="q4">“However you think it should be, that’s exactly how it should be.”</label><br>
+      </p>
+      <p>
+      <label class="questionText" for="place">Pick a scenic landscape:</label><br>
+      <input type="radio" id="mountain" name="place" value="mountain">
+      <label for="mountain">Mountains</label>
+      <input type="radio" id="ocean" name="place" value="ocean">
+      <label for="ocean">Ocean</label>
+      <input type="radio" id="forest" name="place" value="forest">
+      <label for="forest">Forest</label>
+      <input type="radio" id="waterfall" name="place" value="waterfall">
+      <label for="waterfall">Waterfall</label><br>
+      </p>
+      <p>
+      <label class="questionText" for="season">Favorite season?</label><br>
+      <input type="radio" id="winter" name="season" value="winter">
+      <label for="winter">Winter</label>
+      <input type="radio" id="fall" name="season" value="fall">
+      <label for="fall">Fall</label>
+      <input type="radio" id="spring" name="season" value="spring">
+      <label for="spring">Spring</label>
+      <input type="radio" id="summer" name="season" value="summer">
+      <label for="summer">Summer</label><br>
+      </p>
+      <p>
+      <button id="getResult">GET RESULTS!</button>
+      </p>
+      
+    <a href="https://a2-ssyeda422.glitch.me/results.html" class="button" target="_blank">See Previous Quiz Results</a>
+      
     </form>
+    <div class="imageResults">
+      <img src="https://cdn.glitch.com/f4cd6d1a-e85f-45e5-9d32-7230e54ac5c2%2Fwaterfall.JPG?v=1600047430978" id="waterfallResult">
+      <img src="https://cdn.glitch.com/f4cd6d1a-e85f-45e5-9d32-7230e54ac5c2%2Flake.jpg?v=1600047448017" id="lakeResult">
+      <img src="https://cdn.glitch.com/f4cd6d1a-e85f-45e5-9d32-7230e54ac5c2%2Fspring.jpg?v=1600047451938" id="springResult">
+      <img src="https://cdn.glitch.com/f4cd6d1a-e85f-45e5-9d32-7230e54ac5c2%2Fbeach.jpg?v=1600047455960" id="beachResult">
+    </div>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
