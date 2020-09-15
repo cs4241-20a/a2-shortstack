@@ -6,12 +6,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -30,20 +24,19 @@ const handleGet = function( request, response ) {
   }
 }
 
+let guesses = []
 const handlePost = function( request, response ) {
-  let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      guesses.push(JSON.parse(data))
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    //console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
-
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(guesses))
   })
 }
 
