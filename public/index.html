@@ -1,41 +1,300 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
+<head>
+    <title>ByeokJae Galbi</title>
     <meta charset="utf-8">
-  </head>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <script>
+        //adds a new order
+        const add = function (e) {
+            e.preventDefault();
+
+            const newOrder = {
+                name: document.getElementById('name').value,
+                food: document.getElementById('food').value,
+                quantity: document.querySelector('input[name="qty"]:checked').value,
+                drinks: document.querySelector('input[name="drinks"]:checked').value
+            };
+
+            if (validation(newOrder.name, newOrder.food)) {
+                const body = JSON.stringify(newOrder);
+
+                fetch('/submit', {
+                    method: 'POST',
+                    body
+                }).then(function (response) {
+                    document.getElementById('confirmation').style.display = "Order Confirmed BITCH";
+                    document.getElementById('orders').style.display = 'Food Ordered BITCH';
+                    resetForm();
+                });
+            }
+
+            return false;
+        };
+
+        //delete exisitng order
+        const deleteOrder = function (num) {
+            const orderNum = { OrderNum: num };
+            const body = JSON.stringify(orderNum);
+            fetch('/delete', {
+                method: 'POST',
+                body
+            });
+            fetchOrders();
+        };
+
+        //update order
+        const update = function (e) {
+            e.preventDefault();
+            const updatedAlready = {
+                num: document.getElementById('update_order').dataset.index,
+                name: document.getElementById('updateName').value,
+                food: document.getElementById('updateFood').value,
+                quantity: document.querySelector('input[name="updateQty]: checked').value,
+                drinks: document.querySelector('input[name=updateDrinks]:checked').value
+            };
+
+            if (validation(updatedAlready.name, updatedAlready.food)) {
+                const body = JSON.stringify(updatedAlready);
+                fetch('/update', {
+                    method: 'POST',
+                    body
+                }).then(function () {
+                    viewOrder();
+                });
+            }
+
+            return false;
+        };
+
+        //fetch the given order
+        const fetchOrders = async function () {
+            try {
+                const resp = await fetch('/orders', { method: 'GET' });
+                const data = await resp.json();
+                const orders = data.data;
+
+                let htmlDiv = document.getElementById('orders');
+
+                htmlDiv.innerHTML = '<tr>\n' +
+                    '                <th>Name</th>\n' +
+                    '                <th>Food</th>\n' +
+                    '                <th>Quantity</th>\n' +
+                    '                <th>Drinks</th>\n' +
+                    '                <th>Price</th>\n' +
+                    '                </tr>';
+
+                for (let i = 0; i < orders.length; i++) {
+                    const order = orders[i];
+                    const textOrder = JSON.stringify(orders[i]);
+                    let newRow = '<tr>\n';
+                    newRow += ('<td> ${order.name} </td>\n');
+                    newRow += ('<td> ${order.food} </td>\n');
+                    newRow += ('<td> ${order.quantity} </td>\n');
+                    newRow += ('<td> ${order.drinks} </td>\n');
+                    newRow += ('<td> ${order.price} </td>\n');
+                    newRow += ('<td> <button id = "updateButton-${i}" class = "tbButton" style = "font-size: 8px" onclick = "viewUpdate(${i})" data-string = ' + encodeURIComponent(textOrder) + '> Edit </button> </td>\n');
+                    newRow += ('<td> <button id = "deleteButton-${i}" class = tbButton style = "fonxt-size: 8px" onclick = "deleteOrder(${i})"> Delete</button> </td>\n');
+                    newRow += '</tr>';
+                    htmlDiv.innerHTML += newRow;
+                }
+            } catch (error) {
+                console.log(error);
+            }
+
+            return false;
+        };
+
+        const resetForm = function () {
+            document.getElementById('name').value = '';
+            document.getElementById('food').value = '';
+            document.getElementById('200g').checked = 'true';
+            document.getElementById('id_coke').checked = 'true';
+        };
+
+        const validation = function (name, food) {
+            if (name === '') {
+                document.getElementById('error').style.display = "block";
+                document.getElementById('error').focus();
+                return false;
+            }
+            else if (food === '') {
+                document.getElementById('error').style.display = "block";
+                document.getElementById('error').focus();
+                return false;
+            }
+            else {
+                document.getElementById('error').style.display = 'block';
+                return true;
+            }
+        }
+
+
+        const viewForm = function () {
+            document.getElementById('error').style.display = "none";
+            document.getElementById('order_table').style.display = "none";
+            document.getElementById('order_update').style.display = "none";
+            document.getElementById('confirmation').style.display = "none";
+            documnet.getElementById('order').style.display = "block";
+            resetForm();
+        };
+
+        const viewOrder = function () {
+            document.getElementById('error').style.display = "none";
+            document.getElementById('order_table').style.display = "Order Confirmed BITCH";
+            document.getElementById('order_update').style.display = "none";
+            document.getElementById('confirmation').style.display = "none";
+            documnet.getElementById('order').style.display = "none";
+            fetchOrders();
+            return false;
+        };
+
+        const viewUpdate = function (num) {
+            let orderUpdate = decodeURIComponent(document.getElementById('updateButton-${num}').dataset.string);
+            orderUpdate = JSON.parse(orderUpdate);
+            document.getElementById('order_table').style.display = "none";
+            document.getElementById('order_update').style.display = "block";
+
+            //load
+            document.getElementById('update_order').dataset.index = num;
+            document.getElementById('updateName').value = orderUpdate.name;
+            document.getElementById('updateFood').value = orderUpdate.food;
+            //for meat
+            orderUpdate.quantity ? document.getElementById('200g').checked == true : document.getElementById('400g').checked == true;
+            //for drinks
+            orderUpdate.drinks ? document.getElementById('id_coke').checked == true : document.getElementById('id_soju').checked == true;
+            return false;
+        };
+
+
+        window.onload = function () {
+            const submitButton = document.getElementById('submit-btn');
+            submitButton.onclick = add();
+
+            const checkLink = document.getElementById('check_link');
+            checkLink.onclick = viewOrder();
+
+            const OrderLink = document.getElementById('order_link');
+            orderLink.onclick = viewForm();
+
+            const cancelButton = document.getElementById('cancel_order');
+            cancelButton.onclick = viewOrder();
+
+            const updateButton = document.getElementById('update_order');
+            updateButton.onclick = update();
+
+            const newButton = document.getElementById('add_order');
+            newButton.onclick = viewForm();
+        };
+
+    </script>
+
+</head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+      <div class="main">
+          <header>
+              <img src="assets/mainlogo.gif" id="mainlogo" alt="main logo of restuarant">
+              <div class="main_text">
+                  <h1>ByeokJae Galbi</h1>
+                  <h2>The best Korean BBQ in the world</h2>
+              </div>
+          </header>
+          <main>
+              <div class ="main_panel">
+                  <nav class="links">
+                      <a id="order-link" aria-label="Order from">Order Here</a>
+                      <a id="check-link" aria-label="Check from">Check Order</a>
+                  </nav>
+              </div>
+              <div id="error">
+                  <i class="fa fa-exclamation-circle"></i>
+                      Please complete the form dawg.
+              </div>
+          </main>
+      </div>
+      <div id="order">
+          <h3>Order your food</h3>
+          <form action="">
+              <div class="order_input">
+                  <label for ="name" class="form_label">Your Name</label>
+                  <input type="text" id="name" required />  
+              </div>
+
+              <div class="order_input text_input">
+                  <label for="food" class="form_label">Type your order</label>
+                  <textarea id="food" required></textarea>
+              </div>
+
+              <div class="order_input" role="radiogroup" aria-label="Quantity">
+                  <p class="form_label" id="qty_label">How many?</p>
+                  <input type="radio" role="radio" checked id="200g" name="qty_beef" value="200" />
+                  <label for="200g">200g</label>
+                  <input type="radio" role="radio" checked id="400g" name="qty_beef" value="400" />
+                  <label for="400g">400g</label>
+              </div>
+
+              <div class="order_input" role="radiogroup" aria-label="Drinks">
+                  <p class="form_label">Any Drinks?</p>
+                  <input type="radio" role="radio" id="id_coke" name="coke" value="20" />
+                  <label for="id_coke">Coke</label>
+                  <input type="radio" role="radio" id="id_soju" name="soju" value="22" />
+                  <label for="id_soju">Soju</label>
+              </div>
+
+              <div id="submit">
+                  <button>Place Order</button>
+              </div>
+          </form>
+      </div>
+
+      <div id="confirmation">
+          <h3>Order Success </h3>
+          <!-- Image of Success-->
+          <img src="assets/confirm.png" id="confirmed" alt="order confirmed!">
+          <button id="add_order">Place Additional Orders</button>
+      </div>
+
+      <div id="order_table">
+          <h3>Food orders</h3>
+          <table id="orders"></table>
+      </div>
+
+      <!--Update Order Received-->
+      <div id="order_update">
+          <h3>Update Your Order</h3>
+          <form action="">
+              <div class="order_input">
+                  <label for="updateName" class="form_label">Your Name</label>
+                  <input type="text" id="updateName" required/>
+              </div>
+              
+              <div class="order_input">
+                  <label for="updateFood" class="form_label">Your Order</label>
+                  <input type="text" id="updateFood" required />
+              </div>
+
+              <div class="order_input" role="radiogroup" aria-label="parts-of-Quantity">
+                  <p class="form_label">How much meat?</p>
+                  <input type="radio" role="radio" id="200g" name="updateQty" value="200" />
+                  <label for="200g" id="200g">200g</label>
+                  <input type="radio" role="radio" id="400g" name="updateQty" value="400" />
+                  <label for="400g" id="400g">400g</label>
+              </div>
+
+              <div class="order_input" role="radio" aria-label="Drinks">
+                  <p class="form_label">What drinks?</p>
+                  <input type="radio" role="radio" id="id_coke" name="updateDrinks" value="20" />
+                  <label for="id_coke">Coke</label>
+                  <input type="radio" role="radio" id="id_soju" name="updateDrinks" value="22" />
+                  <label for="id_coke">Soju</label>
+              </div>
+
+              <div id="update_confirmation">
+                  <button id="cancel_order">Cancel</button>
+                  <button id="update_order">Update</button>
+              </div>
+          </form>
+      </div>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
