@@ -1,12 +1,17 @@
 /*Style your own assignment! This is fun! */
 body {
   background-color: mistyrose;
+  font-family: 'Bebas Neue', cursive;
 }
 
 table, th{
   border: 1px solid black;
   background-color: white;
   width: 800px;
+}
+
+h1{
+  font-family: 'Lobster', cursive;
 }
 
 #taskBody {
@@ -33,6 +38,7 @@ table, th{
   background: white;
   font-weight: bold;
   color: black;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .toDoTable{
