@@ -1,10 +1,10 @@
 ## My Reading List
 A simple application allows user to add books to their reading list. Supports modify and delete.
 
-To view the project on glitch, go to https://glitch.com/~a2-xiaoyuelyu.
+To view the project on glitch, go to https://a2-xiaoyuelyu.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Created a single-page app that both provides a form for users to submit data.
+- **Tech Achievement 1**: Created a single-page app that both provides a form for users to submit data, page is validated.
 - **Tech Achievement 2**: Server-side data can be found on /results.
 - **Tech Achievement 3**: Data are also shown on the page.
 - **Tech Achievement 4**: Application supports ADD, EDIT, and DELETE data from server.
