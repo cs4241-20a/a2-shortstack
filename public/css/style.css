@@ -1,1 +1,132 @@
-/*Style your own assignment! This is fun! */
+body {
+  background-color: #AEE6F2;
+  font-family: 'Ubuntu', sans-serif;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+  color: black;
+}
+label{
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin:5px;
+}
+button{
+  background-color: #78BFA5;
+  border-color: black;
+  box-shadow: none;
+  border-style: solid;
+  outline: none;
+  font-size: 17px;
+  border-radius: 5px;
+}
+.deleteButton{
+  background-color: red;
+}
+button:hover{
+  background-color: #F2CB57;
+}
+input{
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  text-align: center;
+  width: 250px;
+  margin-top: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: inherit;
+  flex-direction: column;
+  border-color: #8a9294;
+  box-shadow: none;
+  border-style: solid;
+  border-radius: 20px;
+}
+input:focus{
+  background-color: inherit;
+  box-shadow: none;
+  border-style: solid;
+  border-color: blue;
+  border-radius: 20px;
+  outline: none;
+}
+input:hover{
+  border-color: blue;
+}
+h1 {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+}
+form {
+  font-family: 'Ubuntu', sans-serif;
+  align-items: flex-start;
+}
+h2{
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+}
+p {
+  color: black;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+}
+ul {
+  list-style-type: square;
+  display: table;
+  margin: 0 auto;
+  color: black;
+}
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 25%;
+}
+select {
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  text-align: center;
+  width: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5px;
+  flex-direction: column;
+  background-color: inherit;
+  outline: none;
+}
+select:focus{
+  border-color: blue;
+  outline: none;
+}
+td,th {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+table {
+  border-collapse: separate;
+  border-spacing: lem;
+  width: 100%;
+}
+td input {
+
+}
+td select{
+
+}
+
+td:last-child{
+  display: flex;
+  flex-direction: row;
+}
+tr:nth-child(odd) td {
+
+}
