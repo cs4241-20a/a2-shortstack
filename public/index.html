@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8" />
   </head>
@@ -17,19 +17,31 @@
         value="Enter your task here"
       /><br /><br />
       <label for="taskduedate"> Due Date </label><br />
-      <input type="datetime-local" id="taskduedate"/><br />
-      <p> Priority <br>
-      <input
-        type="radio"
-        id="priority1"
-        name="priority"
-        value="high_priority"
-      />
-      <label for="priority1"> High Priority </label><br />
-      <input type="radio" id="priority2" name="priority" value="med_priority" />
-      <label for="priority2"> Medium Priority </label><br />
-      <input type="radio" id="priority3" name="priority" value="low_priority" />
-      <label for="priority3"> Low Priority </label><br /><br /></p>
+      <input type="datetime-local" id="taskduedate" /><br />
+      <p>
+        Priority <br />
+        <input
+          type="radio"
+          id="priority1"
+          name="priority"
+          value="high_priority"
+        />
+        <label for="priority1" id="high"> High Priority </label><br />
+        <input
+          type="radio"
+          id="priority2"
+          name="priority"
+          value="med_priority"
+        />
+        <label for="priority2" id="med"> Medium Priority </label><br />
+        <input
+          type="radio"
+          id="priority3"
+          name="priority"
+          value="low_priority"
+        />
+        <label for="priority3" id="low"> Low Priority </label><br /><br />
+      </p>
       <button>Add Task</button>
     </form>
     <br />

@@ -12,3 +12,19 @@ table, th{
   background-color: white;
   width: 800px;
 }
+
+#taskBody {
+  text-align: center;
+}
+
+#high {
+  color:red;
+}
+
+#med {
+  color: blue;
+}
+
+#low {
+  color: green;
+}
