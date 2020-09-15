@@ -56,11 +56,9 @@ const handlePost = function( request, response ) {
     }
     
     dataSet.push(dataString)
-    // console.log(dataSet)
-    // ... do something with the data here!!!
-
+    console.log(dataSet)
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    console.log( JSON.stringify(dataString) )
     response.end( JSON.stringify(dataString) )
   })
 }
