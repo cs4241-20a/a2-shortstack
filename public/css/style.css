@@ -4,6 +4,9 @@
 body {
     font-family: "Lato";
     font-size: 22px;
+    color: rgba(0, 0, 0, 0.8);
+    letter-spacing: -0.003em;
+    padding: 70px;
 }
 h1{
     text-align: center;
@@ -12,5 +15,11 @@ h1{
     border-radius: 10px;
     border: double;
     padding-bottom: 5px;
-    
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 20px;
+    padding: 5px;
+    align-items: center;
 }

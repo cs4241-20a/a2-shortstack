@@ -9,7 +9,7 @@
     <h1 font-weight: bold;>Welcome to Speed Clicker</h1>
 
     <p id="WelcomeText">
-      This is a webpage for Jordan Stoessel's Assignment 2. After hitting the <strong>start</strong> button you will be timed for 30 seconds to click as many times as you want. Your results will be displayed within the <strong>leaderboard</strong>. Try to get the high score! 
+      This is a webpage for Jordan Stoessel's Assignment 2. After hitting the <strong>start</strong> button you will be timed for 30 seconds to click as fast as you can. Your results will be displayed within the <strong>leaderboard</strong>. Try to get the high score! 
       <br>
       <br>
     </p>
@@ -18,14 +18,35 @@
       <button id='startbtn' onclick=click()>Start</button>
     </div>
     <div>
-      <p id='points'>0 Points</p>
+      <p id='clicks' class='poststart'>0 Points</p>
     </div>
     <form action="">
-      <p class='nameregister'>
+      <p class='postgame'>
         Please input your name:
       </p>
-      <input type='text' id='yourname' class='nameregister' value="">
-      <button class='nameregister'>Submit</button>
+      <input type='text' id='yourname' class='postgame' value="">
+      <button class='postgame'>Submit</button>
     </form>
+
+    <table style="width:auto" id='highscores'>
+    <tr>
+      <th>Placing</th>
+      <th>Player Name</th>
+      <th>Clicks Per Second</th>
+      <th>Total Clicks</th>
+    </tr>
+    <tr>
+      <td>#1</td>
+      <td>Mr. Insano</td>
+      <td>73.3</td>
+      <td>2,200</td>
+    </tr>
+    <tr>
+      <td>#2</td>
+      <td>Cui2</td>
+      <td>2</td>
+      <td>60</td>
+    </tr>
+    </table>
   </body>
 </html>
