@@ -55,27 +55,42 @@ const submit = function( e ) {
     alert("You've run out of time!");
   }
 
-  function generateTableHeader(table) {
-    let thead = table.createTHead();
-    let row = thead.insertRow();
+  // function generateTableHeader(table) {
+  //   let thead = table.createTHead();
+  //   let row = thead.insertRow();
 
-    for (let key of data) {
-      let th = document.createElement('th');
-      let text = document.createTextNode(key);
-      th.appendChild(text);
-      row.appendChild(th);
-    }
-  }
+  //   for (let key of data) {
+  //     let th = document.createElement('th');
+  //     let text = document.createTextNode(key);
+  //     th.appendChild(text);
+  //     row.appendChild(th);
+  //   }
+  // }
 
-  let table = document.querySelector('table');
-  generateTableHeader(table);
+  // let table = document.querySelector('table');
+  // let data = Object.keys(highscores[0]);
+  // generateTableHeader(table, data);
 
+
+  // function generateTable(table, data) {
+  //   for (let element of data) {
+  //     let row = table.insertRow();
+  //     for (key in element) {
+  //       let cell = row.insertCell();
+  //       let text = document.createTextNode(element[key]);
+  //       cell.appendChild(text);
+  //     }
+  //   }
+  // }
 
 
 
   window.onload = function() {
     document.getElementById('clickbtn').style.display="none";
-    document.getElementsByClassName('postgame').style.display="none";
+    document.getElementById('currentclicks').style.display="none";
+    document.getElementById('inputname').style.display="none";
+    document.getElementById('yourname').style.display="none";
+    document.getElementById('submitbtn').style.display="none";
     const button = document.querySelector( 'button' )
     button.onclick = submit
   }
