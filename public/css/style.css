@@ -1,1 +1,20 @@
 /*Style your own assignment! This is fun! */
+body{
+    background-color:#ffebef;
+}
+h1,h2{
+    display:flex;
+    justify-content:center;
+    font-family:'Quicksand';
+    color:blue;
+}
+input,button,form{
+    display:flex;
+    justify-content:center;
+    font-family:'Patrick Hand';
+}
+li{
+    display:flex;
+    justify-content:center;
+    font-family:'Patrick Hand';
+}
