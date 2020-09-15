@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "mmtolbert-a2-todo-list",
+  "version": "1.0",
+  "description": "To-do List",
+  "author": "Matt Tolbert",
   "scripts": {
     "start": "node server.improved.js"
   },
