@@ -3,91 +3,92 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-    <link href="/CSS/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
     <script src="js/scripts.js"></script>
   </head>
-  <h1>Camera List Boi</h1>
   <body>
+    <h1>Camera List Boi</h1>
     <div class="grid-container">
     <div class="grid-item">
       <h2>Add Listing</h2>
-    <form action="">
+    <form>
       <ul>
         <li>
-          <input type='text' id='cameramake' value="Camera Make">
+          <input type="text" id="cameramake" value="Camera Make">
         </li>
         <li>
-          <input type='text' id='cameramodel' value="Camera Model">
+          <input type="text" id="cameramodel" value="Camera Model">
         </li>
         <li>
-          <input type='text' id='cameraformat' value="Camera format">
+          <input type="text" id="cameraformat" value="Camera format">
         </li>
         <li>
-          <input type='number' id='price' value="Listing Price" min="1" required>
+          <input type="number" id="price" min="1" required>
           <label for="price">Please Enter Price in Dollars</label>
         </li>
         <li>
-          <input type="number" id='condition' value="Camera Condition" min="0" max="100" required>
+          <input type="number" id="condition" min="0" max="100" required>
           <label for="condition">Please Enter Condition as a Percent</label>
         </li>
         <li>
-          <input class="nameEntry" type='text' id='firstname' value="First Name">
+          <input class="nameEntry" type="text" id="firstname" value="First Name">
         </li>
         <li>
-          <input class="nameEntry" type='text' id='lastname' value="Last Name">
+          <input class="nameEntry" type="text" id="lastname" value="Last Name">
         </li>
-          <button id='submitbutton'>submit</button>
+        <li>
+          <button id="submitbutton">submit</button>
         </li>
       </ul>
     </form>
   </div>
 <div class="grid-item">
   <h2>Delete Listing</h2>
-    <form action="">
+    <form>
       <ul>
         <li>
-          <input type="number" id='deletelistingnumber' value="Listing Number" min="0" required>
+          <input type="number" id="deletelistingnumber" min="0" required>
           <label for="deletelistingnumber">Listing Number</label>
         </li> 
         <li>
-          <button id='deletebutton'>delete</button>
+          <button id="deletebutton">delete</button>
         </li>
       </ul>
     </form>
     </div>
     <div class="grid-item">
       <h2>Update Listing</h2>
-    <form action="">
+    <form>
       <ul>
         <li>
-          <input type='text' id='updatecameramake' value="Camera Make">
+          <input type="text" id="updatecameramake" value="Camera Make">
         </li>
         <li>
-          <input type='text' id='updatecameramodel' value="Camera Model">
+          <input type="text" id="updatecameramodel" value="Camera Model">
         </li>
         <li>
-          <input type='text' id='updatecameraformat' value="Camera format">
+          <input type="text" id="updatecameraformat" value="Camera format">
         </li>
         <li>
-          <input type='number' id='updateprice' value="Listing Price" min="1" required>
+          <input type="number" id="updateprice" min="1" required>
           <label for="price">Please Enter Price in Dollars</label>
         </li>
         <li>
-          <input type="number" id='updatecondition' value="Camera Condition" min="0" max="100" required>
+          <input type="number" id="updatecondition" min="0" max="100" required>
           <label for="condition">Please Enter Condition as a Percent</label>
         </li>
         <li>
-          <input type="number" id='listingnumber' value="Listing Number" min="0" required>
+          <input type="number" id="listingnumber" min="0" required>
           <label for="listingnumber">Listing Number</label>
         </li> 
         <li>
-          <input class="nameEntry" type='text' id='updatefirstname' value="First Name">
+          <input class="nameEntry" type="text" id="updatefirstname" value="First Name">
         </li>
         <li>
-          <input class="nameEntry" type='text' id='updatelastname' value="Last Name">
+          <input class="nameEntry" type="text" id="updatelastname" value="Last Name">
         </li>    
         <li>
-          <button id='updatebutton'>Update</button>
+          <button id="updatebutton">Update</button>
         </li>   
       </ul>
     </form>
@@ -95,15 +96,13 @@
   </div>
   <div class="grid-item">
   <h2>Current Listings</h2>
-    <form action="">
+    <form>
           <button id='listingsbutton'>Listings</button>
     </form>
     <div data-modal="results" id="dvTable"></div>
     </div>
 
-     
-
-  </body>
+    
   <script>
 
 
@@ -121,4 +120,5 @@
     updateButton.onclick = updateListing
   }
   </script>
+    </body>
 </html>
