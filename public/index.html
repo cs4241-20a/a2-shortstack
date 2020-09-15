@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="public/css/style.css" />
   </head>
   <body style="background-color:#454745">
-    <form action="">
+    <form>
       <input type="text" class="something" id="task" value="Task" />
       <button class="something" id="btn">submit</button>
     </form>
@@ -16,8 +16,7 @@
     <div class="flex-container" id="fbox">
       <div>Finished Tasks</div>
     </div>
-  </body>
-  <script>
+    <script>
     const submit = function(e) {
       // prevent default form action from being carried out
       e.preventDefault();
@@ -38,12 +37,12 @@
           document.getElementById("myUL").innerHTML +=
             "<li>" + obj.task + "</li>";
 
-          var myNodelist = document.getElementsByTagName("LI");
+          var list = document.getElementsByTagName("LI");
           var span = document.createElement("SPAN");
-          var txt = document.createTextNode("\u00D7");
+          var x = document.createTextNode("\u00D7");
           span.className = "close";
-          span.appendChild(txt);
-          myNodelist[myNodelist.length - 1].appendChild(span);
+          span.appendChild(x);
+          list[list.length - 1].appendChild(span);
 
           var close = document.getElementsByClassName("close");
           var i;
@@ -79,4 +78,6 @@
       false
     );
   </script>
+  </body>
+  
 </html>

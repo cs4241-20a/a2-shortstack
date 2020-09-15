@@ -84,19 +84,10 @@ Sample Readme (delete the above when you're ready to submit, and modify the belo
 ---
 
 ## Your Web Application Title
-I made a simple to-do list. The user enters a task. Once the task is entered they can delete it or complete it. Once they complete it when they delete it it will be deemed "finished". I use a flexbox to display the finished tasks and a list to display the current to-do tasks.
+Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
 
 ## Technical Achievements
-- **Tech Achievement 1**: In the server I add a date to the task. However I could not get the date to show up before I ran out of time with this assignment so it only exists in the backend.
+- **Tech Achievement 1**: Using a combination of...
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 
-I don't really know anyone in this class so I used two of my other CS friends as testers
-
-Elie: Elie found my program really easy to use, he was able to add and finish tasks without any problem. 
-He was confused as to why you have to delete a task for it to be completed. I went over this and if I wanted to keep the "finished" tasks this is the only way that would work without any other problems occurring.
-
-JunBin: Junbin also found my program incredible simple. He added and finished tasks without any problem.
-He suggested maybe switching the 'X' to some other character when a task is complete which is a good idea for next time, maybe changing it to a checkmark is a good solution.
-
-
