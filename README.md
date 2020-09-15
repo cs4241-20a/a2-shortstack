@@ -17,12 +17,12 @@ Due to COVID-19, many labs now requires appointment or sign-in before physically
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Each student was asked to accomplish an appointment with her information. Student Chen and Ying have provided helpful feedback to my webpage.
-Student one feedback:
+- Student one feedback:
 1. Chen. 
 2. She believed that the pop-up for Modify button can be more obvious for users to read. Otherwise, users may not notice about the automatically filled information. Instead, user might thought it's been deleted.
 3. Actually, the pop-up was intentionally made to inform user that his/her information will be auto-filled and the data in table will be deleted. However, it is likely that the pop-up is still unclear to some users as they might ignore the words and direcetly hit 'OK'.
 4. I would like to change the size and font of the pop-up to be more obvious, maybe change to a window pop-up at the middle of the webpage.
-Student two feedback:
+- Student two feedback:
 1. Ying.
 2. She believed that it would be more convenient if the pre-filled text in "Name" and "Email" field can automatically be deleted when user enter their information.
 3. I was surprised that the comments they had were all very detailed points. These points might be neglected by developers, but noticeable for users.
