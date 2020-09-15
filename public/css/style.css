@@ -1,1 +1,92 @@
 /*Style your own assignment! This is fun! */
+h1{
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 40px;
+    background-color: #F0B289;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+h2{
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 32px;
+}
+button{
+    background-color: #FAC65F;
+    font-family: 'Cormorant', serif;
+    font-weight: 400;
+    font-size: 26px;
+}
+p, table, fieldset{
+    font-family: 'Cormorant', serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+input{
+    font-family: 'Cormorant', serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+/*.split{*/
+/*    height: 100%;*/
+/*    position: fixed;*/
+/*    z-index: 1;*/
+/*    overflow-x: hidden;*/
+/*    padding-top: 20px;*/
+/*    border-collapse: separate;*/
+/*}*/
+.split{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: auto auto;
+}
+.left{
+    background-color: #DBAE76;
+    margin-left: 10px;
+}
+.right{
+    background-color: #DA8367;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+fieldset{
+    width: 50%;
+    border-color: #FF6E5E;
+    alignment: center;
+    margin: auto;
+    padding: 0 0 0 0;
+}
+ul{
+    list-style-type: none;
+    alignment: left;
+}
+table{
+    border-collapse: collapse;
+}
+table,th,td{
+    border: 1px solid #FAC65F;
+    text-align: center;
+}
+th,td{
+    width: 110px;
+    vertical-align: middle;
+}
+label{
+    padding-right: 10px;
+}
+#name, #mail, #date, #ftime, #ttime{
+    width: 200px;
+}
+p{
+    text-align: center;
+}
+#title, #space{
+  text-align: center;
+}
