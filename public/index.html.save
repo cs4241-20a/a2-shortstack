@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>
+      Your Work Advisor
+    </h1>
+    <form action="">
+      <ul class="wrapper">
+        <li class="form-row">
+          <label for="yourtask">Task</label>
+          <input type="text" id="yourtask" />
+        </li>
+        <li class="form-row">
+          <label for="taskduedate">Due Date and Time</label>
+          <input type="datetime-local" id="taskduedate" />
+        </li>
+        <li class="form-row">
+          <label>Priority</label>
+          <input
+            type="radio"
+            id="priority1"
+            name="priority"
+            value="high_priority"
+          />
+          <label for="priority1" id="high"> High Priority </label><br />
+          <input
+            type="radio"
+            id="priority2"
+            name="priority"
+            value="med_priority"
+          />
+          <label for="priority2" id="med"> Medium Priority </label><br />
+          <input
+            type="radio"
+            id="priority3"
+            name="priority"
+            value="low_priority"
+          />
+          <label for="priority3" id="low"> Low Priority </label><br /><br />
+        </li>
+        <li class="form-row">
+          <button class="submit">Add Task</button>
+        </li>
+      </ul>
+    </form>
+    <br />
+
+    <table id="toDoTable">
+      <tr>
+        <th>Due Date</th>
+        <th>Task</th>
+        <th>Priority</th>
+        <th>Advice</th>
+      </tr>
+      <tbody id="taskBody"></tbody>
+    </table>
+    <script>
+      function updateTable(json) {
+        const tableBody = document.getElementById("taskBody");
+        let update = tableBody.insertRow(0);
+
+        update.insertCell(0).innerHTML = json.date;
+        update.insertCell(1).innerHTML = json.yourtask;
+        update.insertCell(2).innerHTML = json.priority;
+        update.insertCell(3).innerHTML = json.message;
+      }
+
+      const submit = function(e) {
+        // prevent default form action from being carried out
+        e.preventDefault();
+
+        function displayRadioValue() {
+          var ele = document.getElementsByName("priority");
+
+          for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) return ele[i].value;
+          }
+        }
+
+        const input1 = document.querySelector("#yourtask"),
+          input2 = document.querySelector("#taskduedate"),
+          input3 = displayRadioValue(),
+          json1 = {
+            yourtask: input1.value,
+            date: input2.value,
+            priority: input3
+          },
+          body = JSON.stringify(json1);
+
+        fetch("/submit", {
+          method: "POST",
+          body
+        })
+          .then(response => response.json())
+          .then(function(response) {
+            updateTable(response);
+          });
+
+        return false;
+      };
+
+      window.onload = function() {
+        const button = document.querySelector("button");
+        button.onclick = submit;
+      };
+    </script>
+  </body>
+=======
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <form action="">
+      <input type='text' id='yourname' value="your name here">
+      <button>submit</button>
+    </form>
+  
