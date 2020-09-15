@@ -1,1 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans");
+
+body {
+  background-color: #122A2E;
+  font-family: "Josefin Sans";
+  text-align: left;
+}
+
+a{
+  color: white;
+}
+img {
+  position: absolute;
+  margin-top: 0px;
+  margin-right: 0px;
+}
+
+.questionText {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#lakeResult {
+  visibility: hidden;
+  z-index: 1;
+  max-width: 75%;
+  max-height: 75%;
+  right: 1%;
+  top: 17%;
+}
+
+#beachResult {
+  visibility: hidden;
+  z-index: 2;
+  max-width: 80%;
+  max-height: 80%;
+  right: 11%;
+  top: 17%;
+}
+
+
+
+#springResult {
+  visibility: hidden;
+  z-index: 3;
+  max-width: 80%;
+  max-height: 80%;
+  right: 1%;
+  top: 17%;
+}
+
+#waterfallResult {
+  visibility: hidden;
+  z-index: 4;
+  margin-right: 0px;
+  max-width: 80%;
+  max-height: 80%;
+  right: 10%;
+  top: 17%;
+}
+
+.grid-container {
+  display: inline-grid;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  float: left;
+  color: white;
+}
+
+h1 {
+  color: #EBECF2;
+  font-size: 35px;
+  margin: 0;
+  text-align: center;
+}
+
+button {
+  font-family: "Josefin Sans";
+  width: 150px;
+  height: 30px;
+  background-color: #E0F6F5;
+}
+
+h2 {
+  margin: 0;
+  color: #E0F6F5;
+  text-align: center;
+}
 /*Style your own assignment! This is fun! */
