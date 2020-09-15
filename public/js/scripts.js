@@ -42,6 +42,7 @@ const submit = function( e ) {
     }
 
     window.onload = function() {
+      document.getElementById('date').valueAsDate = new Date();
       const button = document.querySelector( 'button' )
       button.onclick = submit
       submit();
