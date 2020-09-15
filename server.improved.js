@@ -9,9 +9,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { firstname: "Joe", lastname: "Bonchon", cameramake: "Canon", cameramodel: "A-1", cameraformat: "35mm", price: 150, conditon: 76, bargain: false, delete: false, id: 1 },
-  { firstname: "Pongo", lastname: "Pwaga", cameramake: "Nikon", cameramodel: "FTn", cameraformat: "35mm", price: 95, conditon: 90, bargain: true, delete: false, id: 2 },
-  { firstname: "Toe", lastname: "Progle", cameramake: "Yashica", cameramodel: "Mat124G", cameraformat: "6x6", price: 50, conditon: 100, bargain: true, delete: false, id: 3 }
+  { firstname: "Joe", lastname: "Bonchon", cameramake: "Canon", cameramodel: "A-1", cameraformat: "35mm", price: 150, condition: 76, bargain: false, delete: false, id: 1 },
+  { firstname: "Pongo", lastname: "Pwaga", cameramake: "Nikon", cameramodel: "FTn", cameraformat: "35mm", price: 95, condition: 90, bargain: true, delete: false, id: 2 },
+  { firstname: "Toe", lastname: "Progle", cameramake: "Yashica", cameramodel: "Mat124G", cameraformat: "6x6", price: 50, condition: 100, bargain: true, delete: false, id: 3 }
 ]
 
 // server creation
@@ -25,7 +25,6 @@ const server = http.createServer( function( request,response ) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-  console.log( filename )
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
     console.log( "sending webpage" )
@@ -44,7 +43,6 @@ const handlePost = function( request, response ) {
   request.on( 'data', function( data ) {
       dataString += data 
   })
-  const bargain = 'bargain'
   request.on( 'end', function() {
 
     incomingData = JSON.parse( dataString )
@@ -52,7 +50,6 @@ const handlePost = function( request, response ) {
 
     // delete by ID
     if( incomingData.delete === true ){
-      console.log( "deleting entry" )
       incomingData.id = parseInt( incomingData.id )
       for( var i = 0; i< appdata.length; i++ ) {
         if( incomingData.id === appdata[i].id ) {
@@ -67,10 +64,10 @@ const handlePost = function( request, response ) {
     // convert prices and conditions to ints
     incomingData.price = parseInt( incomingData.price )
     incomingData.condition = parseInt( incomingData.condition )
-
+    // let's check if it's a good bargain
+    incomingData.bargain = isBargain( incomingData )
     // the data has an ID and was not deleted so it must be an update
     if( incomingData.id != null ) {
-      console.log( "updating entry" )
       incomingData.id = parseInt( incomingData.id )
       for( var i = 0; i< appdata.length; i++ ) {
         if( incomingData.id === appdata[i].id ) {
@@ -82,28 +79,18 @@ const handlePost = function( request, response ) {
     }
     else
     {
-      // let's add a new element to the list and determine if this is a good bargain.
-      incomingData.price = parseInt( incomingData.price )
-      incomingData.condition = parseInt( incomingData.condition )
-      var isBargain = true
-
-
-      if( ( incomingData.price > incomingData.condition ) && incomingData.condition < 50 ) {
-        isBargain = false
-      }
-      incomingData[bargain] = isBargain
 
       // let's assign an ID to this listing
       // first let's check if there are any gaps in the IDs
 
       if( appdata[appdata.length - 1].id === appdata.length ){
         // the last ID and length matches!
-        incomingData["id"] = appdata.length + 1
+        incomingData.id = appdata.length + 1
         appdata.push( incomingData )
       }else{
         for( var i = 0; i < appdata.length; i++ ){
           if( appdata[i].id != i + 1 ){
-            incomingData["id"] = i + 1
+            incomingData.id = i + 1
             appdata.splice( i, 0, incomingData )
             break
           }
@@ -118,7 +105,14 @@ const handlePost = function( request, response ) {
     response.end()
   })
 }
+const isBargain = function( listing ) {
+  var bargain = true
+  if( ( listing.price > listing.condition ) && listing.condition < 50 ) {
+    bargain = false
+  }
+  return bargain
 
+}
 const sendFile = function( response, filename ) {
 
    const type = mime.getType( filename ) 
@@ -145,7 +139,6 @@ const sendFile = function( response, filename ) {
 const sendData = function( response, dataname ) {
 
   transmitdata = JSON.stringify( dataname )
-  console.log( transmitdata )
 
       // status code: https://httpstatuses.com
       response.writeHeader( 200, { 'Content-Type': "text/plain" })

@@ -5,13 +5,8 @@
     <meta charset="utf-8">
     <link href="/CSS/style.css" rel="stylesheet" type="text/css" />
     <script src="js/scripts.js"></script>
-    <!--selector example-->
-    <style>
-      .btn {
-        background-color:red
-      }
-    </style>
   </head>
+  <h1>Camera List Boi</h1>
   <body>
     List a new camera:
     <form action="">
@@ -34,10 +29,10 @@
           <label for="condition">Please Enter Condition as a Percent</label>
         </li>
         <li>
-          <input type='text' id='firstname' value="First Name">
+          <input class="nameEntry" type='text' id='firstname' value="First Name">
         </li>
         <li>
-          <input type='text' id='lastname' value="Last Name">
+          <input class="nameEntry" type='text' id='lastname' value="Last Name">
         </li>
           <button id='submitbutton'>submit</button>
         </li>
@@ -50,10 +45,10 @@
       </body>
       <ul>
         <li>
-          <input type='text' id='deletefirstname' value="First Name">
+          <input class="nameEntry" type='text' id='deletefirstname' value="First Name">
         </li>
         <li>
-          <input type='text' id='deletelastname' value="Last Name">
+          <input class="nameEntry" type='text' id='deletelastname' value="Last Name">
         </li>
         <li>
           <input type="number" id='deletelistingnumber' value="Listing Number" min="0" required>
@@ -91,10 +86,10 @@
           <label for="listingnumber">Listing Number</label>
         </li> 
         <li>
-          <input type='text' id='updatefirstname' value="First Name">
+          <input class="nameEntry" type='text' id='updatefirstname' value="First Name">
         </li>
         <li>
-          <input type='text' id='updatelastname' value="Last Name">
+          <input class="nameEntry" type='text' id='updatelastname' value="Last Name">
         </li>    
         <li>
           <button id='updatebutton'>Update</button>
@@ -107,7 +102,7 @@
       </body>
           <button id='listingsbutton'>Listings</button>
     </form>
-    <div id="dvTable"></div>
+    <div data-modal="results" id="dvTable"></div>
 
      
 
@@ -117,6 +112,7 @@
 
   // assigns window.onload to a function
   window.onload = function() {
+    
     const submitButton = document.getElementById( 'submitbutton' )
     const deleteButton = document.getElementById( 'deletebutton' )
     const listingsButton = document.getElementById( 'listingsbutton' )

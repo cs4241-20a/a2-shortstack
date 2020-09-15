@@ -84,10 +84,10 @@ Sample Readme (delete the above when you're ready to submit, and modify the belo
 ---
 
 ## Your Web Application Title
-Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
+This project allows users to list a description of a camera for sale in a manner similar to Craigslist (No purchasing directly through the website). 
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
+- **Tech Achievement 1**: Add/delete/modify/display methods for the server's data are all included with respective forms on the webpage. 
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 

@@ -32,7 +32,9 @@ const submit = function( e ) {
             cameraformat: cameraFormat.value,
             price: price.value,
             condition: condition.value,
-            delete: false},
+            delete: false,
+            bargain: false,
+            id: null},
           body = JSON.stringify( json ) // passed to fetch
 
     // Fetch is type of JS 'promise'
@@ -46,6 +48,7 @@ const submit = function( e ) {
       // do something with the reponse 
       console.log( response )
     })
+    getListings( e )
 
     return false
   }
@@ -53,7 +56,6 @@ const submit = function( e ) {
   const deleteListing = function( e ) {
     e.preventDefault()
 
-    // document represents current HTML document
     const firstName = document.querySelector( '#deletefirstname' ),
           lastName = document.querySelector( '#deletelastname' ),
           id = document.querySelector( '#deletelistingnumber')
@@ -62,16 +64,16 @@ const submit = function( e ) {
             lastname: lastName.value,
             id: id.value,
             delete: true },
-          body = JSON.stringify( json ) // passed to fetch
+          body = JSON.stringify( json ) 
 
     fetch( '/data', {
       method:'POST',
-      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
+      body 
     })
-    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
-      // do something with the reponse 
+    .then( function( response ) {     
       console.log( response )
     })
+    getListings( e )
 
     return false
   }
@@ -90,7 +92,6 @@ const submit = function( e ) {
         }
         // let's create a dynamic table
         const numlistings = body.length + 1;
-        console.log( "Number of Listings: " + numlistings )
 
             var table = document.createElement( "TABLE" );
             table.border = "1";
@@ -150,25 +151,19 @@ const submit = function( e ) {
             cameraformat: cameraFormat.value,
             price: price.value,
             condition: condition.value,
-            id: id.value,
-            delete: false},
+            delete: false,
+            bargain: false,
+            id: id.value},
           body = JSON.stringify( json ) // passed to fetch
-          console.log( body )
-
-    // Fetch is type of JS 'promise'
-    // type of asynchronous function - prevents blocking main thread
-    // important for JS as it usually is single-threaded
-
-
 
     fetch( '/update', {
       method:'POST',
-      body // this variable has the same name as the property, so the : is omitted - same as writing body: body
+      body 
     })
-    .then( function( response ) {     // fetch this document and *then* run this callback function on the server response
-      // do something with the reponse 
+    .then( function( response ) {   
       console.log( response )
     })
+    getListings( e )
 
     return false
   }

@@ -5,6 +5,8 @@ body {
     color: #187BFF;
     font-size: 1.2em;
     font-family: 'IBM Plex Sans', sans-serif;
+    display:grid;
+    grid-gap: 110px 100px;
 }
 h1 {
     color: #0C89E8;
@@ -17,11 +19,6 @@ h2 {
 h3 {
     font-size: 2em;
 }
-table {
-    color: #0DF7FF;
-    text-align: center;
-    font-size: 1.5em;
-}
 th {
     color: #0CC3E8;
     font-size: 1.75em;
@@ -30,9 +27,34 @@ p {
     font-size: 1.25em;
 }
 
+input {
+    font-size: 1em;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+button {
+    font-size: 2em;
+    font-family: 'IBM Plex Sans', sans-serif;
+    border: 2px solid #4CAF50;
+    
+}
+
 li {
-    font-size: 1.5em;
+    font-size: 1em;
 }
 img {
     width: 1080px;
+}
+
+#deletebutton {
+    border: 2px solid red;
+}
+#updatebutton {
+    border: 2px solid gold
+}
+.nameEntry {
+    font-size: 1em;
+}
+
+[data-modal="results"] {
+    font-size: 1.5em;
 }
