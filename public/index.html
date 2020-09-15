@@ -4,7 +4,6 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
   </head>
   <body>
@@ -14,19 +13,22 @@
         <input id="boardName" type="text" class="underlines scoreNick" maxlength="3" placeholder="???">
       </div>
       <div id="scores" class="block">
-        Current: <span id="currScore">0</span><br>
-        <h5>Previous Scores</h5>
-        <table id="serverscores"></table>
+        Current: <span id="currScore">0</span>
+        <div>
+          <br>
+          <strong>Previous Scores</strong>
+          <table id="serverscores"></table>
+        </div>
       </div>
       <div id="scoreActions">
         <button id="endgame" class="butt" onclick="endGame()">End Game</button>
-        <button id="hint"  class="butt" onclick="hint()">If you need help</button>
+        <button id="hint"  class="butt" onclick="hint()">Cheats</button>
         <button id="delete"  class="butt" onclick="deleteEverything()">Delete Everything</button>
       </div>
     </div>
     <div id="center-block" class='container'>
       <div id="scrambled">
-        <h2>Unscramble the Words!</h2>
+        <h2>Unscramble!</h2>
         <div id="scrambledWord"></div>
       </div>
       <div id="inputs">

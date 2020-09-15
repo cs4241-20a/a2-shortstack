@@ -30,7 +30,9 @@ body {
 
 #center-block {}
 
-#scores {}
+#serverscores {
+	margin: auto;
+}
 
 #scrambled  {
 	text-align: center;
@@ -78,7 +80,7 @@ body {
     box-sizing: border-box;
     border: none;
     border-radius: 4px;
-    margin: 10px;
+    margin: 15px 10px 10px 10px;
     padding: 0 16px;
     min-width: 64px;
     height: 36px;
