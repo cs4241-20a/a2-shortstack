@@ -1,1 +1,64 @@
 /*Style your own assignment! This is fun! */
+
+body {
+    background-color: #fafafa;
+    color: #187BFF;
+    font-family: 'IBM Plex Sans', sans-serif;
+
+}
+h1 {
+    color: #0C89E8;
+    font-size: 3em;
+    text-align: center;
+}
+h2 {
+    color: #00B2FF;
+    font-size: 2em;
+}
+
+input {
+    font-size: 1em;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+button {
+    font-size: 1.5em;
+    font-family: 'IBM Plex Sans', sans-serif;
+    border: 2px solid #4CAF50;
+    
+}
+
+li {
+    font-size: 1em;
+    list-style-type: none;
+}
+img {
+    width: 1080px;
+}
+
+#deletebutton {
+    border: 2px solid red;
+}
+#updatebutton {
+    border: 2px solid gold
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    grid-gap: 50px;
+}
+
+.grid-item {
+    border: 1px solid black;
+    text-align: center;
+    align-content: center;
+}
+.nameEntry {
+    font-size: 1em;
+}
+
+[data-modal="results"] {
+    font-size: 1.5em;
+    text-align: center;
+}

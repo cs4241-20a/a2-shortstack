@@ -3,39 +3,122 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/scripts.js"></script>
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <h1>Camera List Boi</h1>
+    <div class="grid-container">
+    <div class="grid-item">
+      <h2>Add Listing</h2>
+    <form>
+      <ul>
+        <li>
+          <input type="text" id="cameramake" value="Camera Make">
+        </li>
+        <li>
+          <input type="text" id="cameramodel" value="Camera Model">
+        </li>
+        <li>
+          <input type="text" id="cameraformat" value="Camera format">
+        </li>
+        <li>
+          <input type="number" id="price" min="1" required>
+          <label for="price">Please Enter Price in Dollars</label>
+        </li>
+        <li>
+          <input type="number" id="condition" min="0" max="100" required>
+          <label for="condition">Please Enter Condition as a Percent</label>
+        </li>
+        <li>
+          <input class="nameEntry" type="text" id="firstname" value="First Name">
+        </li>
+        <li>
+          <input class="nameEntry" type="text" id="lastname" value="Last Name">
+        </li>
+        <li>
+          <button id="submitbutton">submit</button>
+        </li>
+      </ul>
     </form>
-  </body>
+  </div>
+<div class="grid-item">
+  <h2>Delete Listing</h2>
+    <form>
+      <ul>
+        <li>
+          <input type="number" id="deletelistingnumber" min="0" required>
+          <label for="deletelistingnumber">Listing Number</label>
+        </li> 
+        <li>
+          <button id="deletebutton">delete</button>
+        </li>
+      </ul>
+    </form>
+    </div>
+    <div class="grid-item">
+      <h2>Update Listing</h2>
+    <form>
+      <ul>
+        <li>
+          <input type="text" id="updatecameramake" value="Camera Make">
+        </li>
+        <li>
+          <input type="text" id="updatecameramodel" value="Camera Model">
+        </li>
+        <li>
+          <input type="text" id="updatecameraformat" value="Camera format">
+        </li>
+        <li>
+          <input type="number" id="updateprice" min="1" required>
+          <label for="price">Please Enter Price in Dollars</label>
+        </li>
+        <li>
+          <input type="number" id="updatecondition" min="0" max="100" required>
+          <label for="condition">Please Enter Condition as a Percent</label>
+        </li>
+        <li>
+          <input type="number" id="listingnumber" min="0" required>
+          <label for="listingnumber">Listing Number</label>
+        </li> 
+        <li>
+          <input class="nameEntry" type="text" id="updatefirstname" value="First Name">
+        </li>
+        <li>
+          <input class="nameEntry" type="text" id="updatelastname" value="Last Name">
+        </li>    
+        <li>
+          <button id="updatebutton">Update</button>
+        </li>   
+      </ul>
+    </form>
+    </div>
+  </div>
+  <div class="grid-item">
+  <h2>Current Listings</h2>
+    <form>
+          <button id='listingsbutton'>Listings</button>
+    </form>
+    <div data-modal="results" id="dvTable"></div>
+    </div>
+
+    
   <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
+  // assigns window.onload to a function
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+    
+    const submitButton = document.getElementById( 'submitbutton' )
+    const deleteButton = document.getElementById( 'deletebutton' )
+    const listingsButton = document.getElementById( 'listingsbutton' )
+    const updateButton = document.getElementById( 'updatebutton' )
+    // when this button is clicked, call submit for the button that was found in this document
+    submitButton.onclick = submit
+    deleteButton.onclick = deleteListing
+    listingsButton.onclick = getListings
+    updateButton.onclick = updateListing
   }
-
   </script>
+    </body>
 </html>
