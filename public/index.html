@@ -11,40 +11,6 @@
       Your Work Advisor
     </h1>
     <form action="">
-<!--       <label for="yourtask" class="headers"> Task </label><br />
-      <input
-        type="text"
-        id="yourtask"
-        value="Enter your task here"
-      /><br /><br />
-      <label for="taskduedate" class="headers"> Due Date </label><br />
-      <input type="datetime-local" id="taskduedate"/><br />
-      <p class="headers">
-        Priority <br />
-        <input
-          type="radio"
-          id="priority1"
-          name="priority"
-          value="high_priority"
-        />
-        <label for="priority1" id="high"> High Priority </label><br />
-        <input
-          type="radio"
-          id="priority2"
-          name="priority"
-          value="med_priority"
-        />
-        <label for="priority2" id="med"> Medium Priority </label><br />
-        <input
-          type="radio"
-          id="priority3"
-          name="priority"
-          value="low_priority"
-        />
-        <label for="priority3" id="low"> Low Priority </label><br /><br />
-      </p>
-      <button class="submit">Add Task</button>
- -->
       <ul class="wrapper">
     <li class="form-row">
       <label for="yourtask">Task</label>
@@ -79,7 +45,7 @@
         <label for="priority3" id="low"> Low Priority </label><br /><br />
     </li>
     <li class="form-row">
-      <button type="submit">Submit</button>
+      <button type="submit" class="submit">Create task</button>
     </li>
   </ul>    </form>
 
@@ -87,7 +53,7 @@
 
     <table id="toDoTable">
       <tr>
-        <th>Creation Date</th>
+        <th>CCreationDate</th>
         <th>Task</th>
         <th>Priority</th>
         <th>Advice</th>
@@ -100,7 +66,7 @@
         const tableBody = document.getElementById("taskBody");
         //Insert a new row and then new cells
         let row = tableBody.insertRow(0);
-        let cell1 = row.insertCell(0);
+        let ccll1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
         let cell3 = row.insertCell(2);
         let cell4 = row.insertCell(3);

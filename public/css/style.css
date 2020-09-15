@@ -40,12 +40,13 @@ h1 {
   font-weight: bold;
   color: black;
   font-family: "Bebas Neue", cursive;
+  font-size: 150%;
 }
 
 
 .wrapper {
   background-color: white;
-  padding: 50px;
+  padding: 20px;
 }
 
 .form-row {
@@ -60,9 +61,5 @@ h1 {
 }
 
 .form-row > input {
-  flex: 2;
-}
-
-button {
-  font-family: "Bebas Neue", cursive;
+  flex: 5;
 }
