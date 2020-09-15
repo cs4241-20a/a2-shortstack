@@ -5,41 +5,30 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
     <script src="//cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
-    <script src="js/base.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/scripts.js"></script>
   </head>
   <body>
     <h1>Student Course Registration</h1><br>
     <div class="v_line"></div>
     <br><br>
     <div class="container">
-    <form action="" method="post">
-      <input type='text' id='name' value="your name here"><br><br>
-      <input type='text' id="major" value="your major here"><br><br>
-      <input type="text" id="course" value="course ID"> <br><br>
-      <button onclick="">submit</button>
+    <form id="form">
+      <input type='text' id='name' placeholder="your name here"><br><br>
+      <input type='text' id="major" placeholder="your major here"><br><br>
+      <input type="text" id="course" placeholder="course ID"> <br><br>
+      <button>Submit</button>
     </form>
     </div>
     <br><br>
     <div class="v_line"></div>
     <br><br>
-    <label for="students">Select a student:</label>
-    <select name="students" id="students">
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="opel">Opel</option>
-      <option value="audi">Audi</option>
-    </select>
-    <br><br>
     <div class="table_container">
-  <table>
+  <table id="registration">
     <tr>
+      <th>ID</th>
       <th>Student</th>
       <th>Major</th>
-    </tr>
-    <tr>
-      <td>CS3516</td>
-      <td>A 2019</td>
+      <th>Course</th>
     </tr>
   </table>
     </div>

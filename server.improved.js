@@ -1,3 +1,8 @@
+let PouchDb = require('pouchdb');
+
+let db = new PouchDb('my_db');
+let entry_id = 0
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -5,12 +10,6 @@ const http = require( 'http' ),
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
-
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -39,11 +38,22 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    const json = JSON.parse(dataString)
+    entry_id++;
+    let entry = { id : entry_id }
+    const new_entry = {
+        "_id": JSON.stringify(entry_id),
+        "name": JSON.stringify(json.name),
+        "major": JSON.stringify(json.major),
+        "course": JSON.stringify(json.course),
+    };
 
-    // ... do something with the data here!!!
+    // back up data locally
+    db.put(new_entry);
+
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(entry))
   })
 }
 

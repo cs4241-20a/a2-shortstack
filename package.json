@@ -8,7 +8,7 @@
     "build": "npm run bundle; npm start;"
   },
   "dependencies": {
-    "mime": "^2.4.4",
+    "mime": "^2.4.6",
     "pouchdb": "^7.1.1"
   }
 }
