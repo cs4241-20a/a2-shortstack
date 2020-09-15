@@ -70,12 +70,12 @@ function submit() {
     };
 
     //get server response
-    fetch('/submit', options)
-      .then(function (response) {
-        // do something with the reponse 
-        console.log("Fetched");
-        console.log(response);
-      })
+     fetch('/submit', options)
+    //   .then(function (response) {
+    //     // do something with the reponse 
+    //     console.log("Fetched");
+    //     console.log(response);
+    //   })
     return false
   }
 }

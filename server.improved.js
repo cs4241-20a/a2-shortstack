@@ -7,11 +7,19 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3000;
+      port = 3000,
+      express = require('express'),
+      app = express();
+      //bodyParser = require('body-parser');
+      app.listen(3000, () => console.log('listening at port 3000'));
+      app.use(express.static('public'));
+      //app.use(bodyParser.json());
+      //app.use(bodyParser.urlencoded());
 
-const app = express();
-app.listen(3000, () => console.log('listening at port 3000'));
-app.use(express.static('public'));
+
+
+
+
 
 const scoreboard = [
   {name: "Mr. Insano", cps: 5, clicks: 150},
