@@ -23,6 +23,7 @@ CSS:
 - External stylesheet
 - The elements of the table and form are positioned using centered column flexboxes
 - Font is Sans-Serif from Google Fonts
+- Hover effects for the input boxes as well as the buttons
 
 JavaScript:
 - Utilized JavaScript in order to fetch/store data to/from the server as well as to send requests to delete a specific task.
