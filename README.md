@@ -17,7 +17,7 @@ Task: submit your catch
 2. Some of the fields were confusing to him becauase he didnt have any fishing experince 
 3. The field types were not clear ex: which should be numbers which not
 4. Make some input type clarifications
-
+-----------------------------------------------------------------------
 1. morales 
 2. she didnt like the colors
 3. the types of the fields are confusing, and when the pop shows up does not say which ones should be numbers 
