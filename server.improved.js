@@ -1,72 +1,80 @@
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+const http = require("http"),
+  fs = require("fs"),
+  // IMPORTANT: you must run `npm install` in the directory for this assignment
+  // to install the mime library used in the following line of code
+  mime = require("mime"),
+  dir = "public/",
+  port = 3000;
+var d = new Date()
+var Task1 = {type:"Sample Task", Date:d};
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
-const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+const server = http.createServer(function(request, response) {
+  if (request.method === "GET") {
+    handleGet(request, response);
+  } else if (request.method === "POST") {
+    handlePost(request, response);
   }
-})
+});
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
-
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  }else{
-    sendFile( response, filename )
+const handleGet = function(request, response) {
+  switch (request.url) {
+    case "/":
+      sendFile(response, "public/index.html");
+      break;
+    case "/public/index.html":
+      sendFile(response, "public/index.html");
+      break;
+    case "/public/css/style.css":
+      sendFile(response, "public/css/style.css");
+      break;
+    case "/public/js/scripts.js":
+      sendFile(response, "public/js/scripts.js");
+      break;
+    default:
+      response.end("404 Error: File Not Found");
   }
-}
+};
 
-const handlePost = function( request, response ) {
-  let dataString = ''
+let taskStorage = [];
+taskStorage.push(Task1);
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+const handlePost = function(request, response) {
+  let newDate = new Date()
+  
+  let dataString = "";
+  request.on("data", function(data) {
+    dataString = data;
+    let newTask = {type:String(data), Date:newDate};
+    taskStorage.push(newTask);
+  });
+
+  request.on("end", function() {
+    //console.log( JSON.parse( dataStorage ) )
 
     // ... do something with the data here!!!
+    if (!(dataString === "")) {
+      response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+      response.end(dataString);
+    }
+  });
+};
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
-}
+const sendFile = function(response, filename) {
+  const type = mime.getType(filename);
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+  fs.readFile(filename, function(err, content) {
+    // if the error = null, then we've loaded the file successfully
+    if (err === null) {
+      // status code: https://httpstatuses.com
+      response.writeHeader(200, { "Content-Type": type });
+      response.end(content);
+    } else {
+      // file not found, error code 404
+      response.writeHeader(404);
+      response.end("404 Error: File Not Found");
+    }
+  });
+};
 
-   fs.readFile( filename, function( err, content ) {
-
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
-
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
-
-     }else{
-
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
-
-     }
-   })
-}
-
-server.listen( process.env.PORT || port )
+server.listen(process.env.PORT || port);
