@@ -48,39 +48,41 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
 
     incomingData = JSON.parse( dataString )
+    // let's determine what type of request we're dealing with
 
+    // delete by ID
     if( incomingData.delete === true ){
       console.log( "deleting entry" )
       incomingData.id = parseInt( incomingData.id )
       for( var i = 0; i< appdata.length; i++ ) {
-        //  console.log( "incomingData:" + incomingData + "Listing:" + appdata[i])
         if( incomingData.id === appdata[i].id ) {
           appdata.splice( i, 1 )
           console.log( "Removed Listing with ID: " + incomingData.id )
+          break
         }
       }
     }
+
     else {
     // convert prices and conditions to ints
     incomingData.price = parseInt( incomingData.price )
     incomingData.condition = parseInt( incomingData.condition )
-    console.log( incomingData )
 
-    // the data has an ID, so it is either an update listing or delete request
+    // the data has an ID and was not deleted so it must be an update
     if( incomingData.id != null ) {
       console.log( "updating entry" )
       incomingData.id = parseInt( incomingData.id )
       for( var i = 0; i< appdata.length; i++ ) {
-        //  console.log( "incomingData:" + incomingData + "Listing:" + appdata[i])
         if( incomingData.id === appdata[i].id ) {
           appdata[i] = incomingData
           console.log( "Updated Listing" )
+          break
         }
       }
     }
     else
     {
-      // is this camera a good bargin?
+      // let's add a new element to the list and determine if this is a good bargain.
       incomingData.price = parseInt( incomingData.price )
       incomingData.condition = parseInt( incomingData.condition )
       var isBargain = true
@@ -92,9 +94,21 @@ const handlePost = function( request, response ) {
       incomingData[bargain] = isBargain
 
       // let's assign an ID to this listing
-      incomingData["id"] = appdata.length + 1
+      // first let's check if there are any gaps in the IDs
 
-      appdata.push( incomingData )
+      if( appdata[appdata.length - 1].id === appdata.length ){
+        // the last ID and length matches!
+        incomingData["id"] = appdata.length + 1
+        appdata.push( incomingData )
+      }else{
+        for( var i = 0; i < appdata.length; i++ ){
+          if( appdata[i].id != i + 1 ){
+            incomingData["id"] = i + 1
+            appdata.splice( i, 0, incomingData )
+            break
+          }
+        }
+      }
 
   }
 }

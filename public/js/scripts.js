@@ -38,9 +38,6 @@ const submit = function( e ) {
     // Fetch is type of JS 'promise'
     // type of asynchronous function - prevents blocking main thread
     // important for JS as it usually is single-threaded
-
-
-
     fetch( '/submit', {
       method:'POST',
       body // this variable has the same name as the property, so the : is omitted - same as writing body: body
@@ -54,12 +51,6 @@ const submit = function( e ) {
   }
 
   const deleteListing = function( e ) {
-    // prevent default form action from being carried out
-    // requires 3 parts
-    // set action to blank 
-    // preventDefault() called
-    // function must return false
-
     e.preventDefault()
 
     // document represents current HTML document
@@ -72,12 +63,6 @@ const submit = function( e ) {
             id: id.value,
             delete: true },
           body = JSON.stringify( json ) // passed to fetch
-
-    // Fetch is type of JS 'promise'
-    // type of asynchronous function - prevents blocking main thread
-    // important for JS as it usually is single-threaded
-
-
 
     fetch( '/data', {
       method:'POST',
@@ -103,46 +88,42 @@ const submit = function( e ) {
         if( body.length === 0 ){
           return false
         }
+        // let's create a dynamic table
         const numlistings = body.length + 1;
         console.log( "Number of Listings: " + numlistings )
-        // let price1 = body[0].price,
-        //     price2 = body[1].price;
-        //     console.log(price1);
-        //     console.log(price2);
-     
-            //Create a HTML Table element.
-            var table = document.createElement("TABLE");
+
+            var table = document.createElement( "TABLE" );
             table.border = "1";
      
-            //Get the count of columns.
+            // Calculate number of columns for this table
             var columnCount = Object.keys( body[0] ).length;
      
-            //Add the header row.
-            var row = table.insertRow(-1);
-            for ( var key in body[0]) {
+            // row for header - iterate through first element's keys to pull types
+            var row = table.insertRow( -1 );
+            for ( var key in body[0] ) {
               if( key === "delete" ){
                 continue
               }
                 var headerCell = document.createElement("TH");
                 headerCell.innerHTML = key;
-                row.appendChild(headerCell);
+                row.appendChild( headerCell );
             }
      
-            //Add the data rows.
+            // Iterate through appdata
             for (var i = 0; i < body.length; i++) {
-                row = table.insertRow(-1);
-                for (var key in body[i]) {
+                row = table.insertRow( -1 );
+                for ( var key in body[i] ) {
                   if( key === "delete" ){
                     continue
                   }
-                    var cell = row.insertCell(-1);
+                    var cell = row.insertCell( -1 );
                     cell.innerHTML = body[i][key];
                 }
             }
      
-            var dvTable = document.getElementById("dvTable");
+            var dvTable = document.getElementById( "dvTable" );
             dvTable.innerHTML = "";
-            dvTable.appendChild(table);
+            dvTable.appendChild( table );
     } )
 
 
