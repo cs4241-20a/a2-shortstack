@@ -38,12 +38,12 @@ const handleGet = function(request, response) {
 let taskStorage = [];
 taskStorage.push(Task1);
 
+
 const handlePost = function(request, response) {
   let newDate = new Date()
   
   let dataString = "";
   request.on("data", function(data) {
-    //dataStorage.push(String(data));
     dataString = data;
     let newTask = {type:String(data), Date:newDate};
     taskStorage.push(newTask);
