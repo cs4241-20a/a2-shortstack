@@ -30,20 +30,28 @@ const handleGet = function( request, response ) {
   }
 }
 
+let dataStorage = []
 const handlePost = function( request, response ) {
-  let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+    var a = JSON.parse(data)
+    console.log(a.yourname)
+    var obj = JSON.stringify(a)
+      dataStorage.push(obj) 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    //var a = JSON.parse (dataStorage)
+    //console.log(a.yourname);
+    //console.log( JSON.parse( dataStorage ) )
+    for (i = 0; i < dataStorage.length; i++){
+      console.log(JSON.parse(dataStorage[i]))
+    }
 
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(dataStorage))
   })
 }
 

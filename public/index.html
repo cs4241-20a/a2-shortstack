@@ -6,7 +6,9 @@
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
+      <input type='text' id='yourname' value="">
+      <input type='text' id='yoursex' value="">
+      <input type='text' id='yourgender' value="">
       <button>submit</button>
     </form>
   </body>
@@ -17,7 +19,9 @@
     e.preventDefault()
 
     const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+          input1 = document.querySelector( '#yoursex' ),
+          input2 = document.querySelector( '#yourgender' ),
+          json = { yourname: input.value, yoursex: input1.value, yourgender:input2.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -26,7 +30,12 @@
     })
     .then( function( response ) {
       // do something with the reponse 
-      console.log( response )
+      //console.log(response.text())
+      return ( response.text() )
+    })
+
+    .then(function(txt){
+      //console.log(txt)
     })
 
     return false
