@@ -1,5 +1,8 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
+
+ https://seungho715-a2-shortstack-3.glitch.me/
+
 ## Rec Center Work Schedule for Chris
 This is a page that keeps track of shifts in WPI recreational center. The page uses the CSS grid layout using the table tags. I attempted to make the app be able to add, delete, and update. In the process, I have used flex-box, flex-direction, and other tools I have used. For this project, I decided to use only flex-direction. I used flex-direction so in future when I have to add more cells, it will be more organized and easier. 
 
@@ -15,5 +18,5 @@ This is a page that keeps track of shifts in WPI recreational center. The page u
 - **Design Achievement 2**: 
 1) Last Name: Gold
 2) Problems: No particular problem encountered.
-3) Surprising Comment: Wants error messages to pop up better. Add the ability to delete and update in future. Also the size of the image is a bit too big. 
+3) Surprising Comment: Wants error messages to pop up better. Also the size of the image is a bit too big. 
 4) Potential Solutions: Change the size of the image, create error messages to pop up whenever wrong fields are entered. 
