@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-stephenlucas",
+  "version": "2.5",
+  "description": "a doto list that tracks due datas and the dates it was made",
+  "author": "Stephen Lucas",
   "scripts": {
     "start": "node server.improved.js"
   },

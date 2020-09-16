@@ -1,14 +1,10 @@
 // Add some Javascript code here, to run on the front end.
 
-console.log("Welcome to assignment 2!")
-
-// Add some Javascript code here, to run on the front end.
-
 console.log("Welcome to assignment 2!");
 
 //cahnge if task is completed of not. when makred as combleted, task will be removed.
 function finishTask(e) {
-  console.log('start finishing task');
+  console.log("start finishing task");
   //Get the table row that is the parent's parent
   let tr = e.target.parentElement.parentElement;
   //Swap Completed or not
@@ -22,41 +18,42 @@ function finishTask(e) {
 }
 
 //send data to server
-  const submit = function(e) {
-    console.log('start submit');
-    // prevent default form action
-    e.preventDefault();
+const submit = function(e) {
+  console.log("start submit");
+  // prevent default form action
+  e.preventDefault();
 
-    //Valid input?
-    if (!validateInput()) {
-      return false;
-    }
-
-    let json = {};
-    const input = document.forms["inputForm"].getElementsByTagName("input");
-
-    //convert input into json
-    for (let index = 0; index < input.length; index++) {
-      const element = input[index];
-      json[element["id"]] = element["value"];
-    }
-    const body = JSON.stringify(json);
-
-    fetch("/submit", {
-      method: "POST",
-      body
-    })
-      .then(response => response.json())
-      .then(function(response) {
-        addRows(response);
-      });
-
+  //Valid input?
+  if (!validateInput()) {
     return false;
-  };
+  }
+
+  let json = {};
+  //const input = document.forms["inputForm"].getElementsByTagName("input");
+  const input = document.querySelector("#myinput");
+
+  //convert input into json
+  for (let index = 0; index < input.length; index++) {
+    const element = input[index];
+    json[element["id"]] = element["value"];
+  }
+  const body = JSON.stringify(json);
+
+  fetch("/submit", {
+    method: "POST",
+    body
+  })
+    .then(response => response.json())
+    .then(function(response) {
+      addRows(response);
+    });
+
+  return false;
+};
 
 //Delete a row of task form the table and server
 function deleteRows(e) {
-  console.log('start delet row');
+  console.log("start delet row");
   //Find all taskeds  marked as comleted
   let toDelete = document.getElementsByClassName("Completed");
   let len = toDelete.length;
@@ -80,18 +77,18 @@ function deleteRows(e) {
 
 //Handles the click action
 const handleButton = function(e) {
-  console.log('handle button');
+  console.log("handle button");
   //Ignores if you click on anything but a button
   if (e.target.tagName === "BUTTON") {
     //Route the button press to the correct function
     if (e.target.id === "submit") {
-      console.log('submit');
+      console.log("submit");
       submit(e);
     } else if (e.target.className === "checkButton") {
-      console.log('finish task');
+      console.log("finish task");
       finishTask(e);
     } else if (e.target.id === "delete") {
-      console.log('delite row');
+      console.log("delite row");
       deleteRows(e);
     }
   }
@@ -99,7 +96,7 @@ const handleButton = function(e) {
 
 //Takes a json object and adds it to the table as a row
 function addRows(jsonEntry) {
-  console.log('addrows');
+  console.log("addrows");
   //Find the table
   const tableBody = document.getElementById("TaskBody");
   //Insert a new cell and row
@@ -118,23 +115,20 @@ function addRows(jsonEntry) {
 
 //Validates the input
 function validateInput() {
-  console.log('validateInput');
+  console.log("validateInput");
   const inputTask = document.getElementById("task").value;
   console.log(inputTask);
   // change.....
-  
+
   const inputdd = document.getElementById("dDate").value;
   console.log(inputdd); // confirm if date?
-  
-  
+
   /*const regex = /^[A-Za-z ]+$/;
   if (!inputdd.match(regex)) {
     alert("Item must not contain numbers of symbols");
     return false;
   }*/
   return true;
-
-  
 
   window.onload = function() {
     document.addEventListener("click", handleButton, false);
