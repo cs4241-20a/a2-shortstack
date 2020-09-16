@@ -1,12 +1,12 @@
 {
   "name": "",
-  "version": "",
+  "version": "1",
   "description": "",
-  "author": "",
+  "author": "Edward Philippo",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }

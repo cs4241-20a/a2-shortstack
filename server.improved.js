@@ -31,19 +31,18 @@ const handleGet = function( request, response ) {
 }
 
 const handlePost = function( request, response ) {
-  let dataString = ''
+  let dataString = "default string"
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += JSON.parse( data ) 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end( dataString )
   })
 }
 
