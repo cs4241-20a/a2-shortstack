@@ -15,7 +15,7 @@ const addPlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/submit', {
+  fetch( '/addPlayer', {
     method:'POST',
     body 
   })
@@ -24,7 +24,7 @@ const addPlayer = function( e ) {
   })
   .then( function(txt){
       console.log(txt)
-      addRoster(JSON.parse(txt))
+      addRoster( JSON.parse(txt) )
   })
 
   return false
@@ -45,7 +45,7 @@ const deletePlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/submit', {
+  fetch( '/addPlayer', {
     method:'POST',
     body 
   })
@@ -75,7 +75,7 @@ const editPlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/submit', {
+  fetch( '/addPlayer', {
     method:'POST',
     body 
   })
