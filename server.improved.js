@@ -1,3 +1,5 @@
+let dataSet = []
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -6,11 +8,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,7 +22,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else{
     sendFile( response, filename )
   }
 }
@@ -38,12 +35,25 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
+    dataString = JSON.parse(dataString)
+    if (dataString["priority"] === "med_priority") {
+      dataString["priority"] = "Medium"
+      dataString["message"] = "Finish your high priority tasks first and then get to this!"
+    }
+    if (dataString["priority"] === "high_priority") {
+      dataString["priority"] = "High"
+      dataString["message"] = "Finish this task first!"
+    }
+    if (dataString["priority"] === "low_priority") {
+      dataString["priority"] = "Low"
+      dataString["message"] = "Make sure you finish this task but also take out some time for yourself :D"
+    }
+    
+    dataSet.push(dataString)
+    console.log(dataSet)
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end( JSON.stringify(dataString) )
   })
 }
 

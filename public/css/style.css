@@ -1,1 +1,65 @@
-/*Style your own assignment! This is fun! */
+
+body {
+  background-color: lightgrey;
+  font-family: "Bebas Neue", cursive;
+}
+
+table,
+th, td {
+  border: 1px solid black;
+  background-color: white;
+  width: 800px;
+}
+
+h1 {
+  font-family: "Lobster", cursive;
+}
+
+#taskBody {
+  text-align: center;
+}
+
+#high {
+  color: red;
+}
+
+#med {
+  color: blue;
+}
+
+#low {
+  color: green;
+}
+
+.headers {
+  font-weight: bold;
+}
+
+.submit {
+  background: white;
+  font-weight: bold;
+  color: black;
+  font-family: "Bebas Neue", cursive;
+  font-size: 150%;
+}
+
+
+.wrapper {
+  background-color: white;
+  padding: 20px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+}
+
+.form-row > label {
+  padding: 0.5em 1em 0.5em 0;
+  flex: 1;
+}
+
+.form-row > input {
+  flex: 5;
+}
