@@ -1,1 +1,94 @@
-/*Style your own assignment! This is fun! */
+body {
+  background-image: url("https://cdn.glitch.com/c314981b-a3af-4d3a-8287-dddb757dfba5%2FBackground.JPG?v=1600217071512");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-size: cover;
+  display: flex;
+}
+.split {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  padding: 40px;
+  z-index: 1;
+  overflow-x: hidden;
+}
+.left {
+  left: 60;
+  width: 25%;
+}
+.left2{
+  margin-top: 40px;
+  left: 160;
+  width: 25%;
+}
+.right {
+  right: 0;
+  width: 43%;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 50px;
+  margin-top: -30px;
+}
+
+p {
+  text-align: left;
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px;
+  margin-bottom: 3px;
+}
+
+#name {
+  width: 200px;
+}
+
+#bikenumber {
+  width: 125px;
+}
+
+input {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+}
+
+label {
+  padding-right: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+}
+
+button {
+  background-color: grey;
+  font-family: 'Oswald', sans-serif;
+  text-align: center;
+  font-size: 26px;
+}
+.button2 {
+  background-color: white;
+  font-family: 'Oswald', sans-serif;
+  text-align: center;
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+table {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+  height: 50px;
+  width: 110px;
+  vertical-align: middle;
+}
