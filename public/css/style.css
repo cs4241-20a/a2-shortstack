@@ -17,6 +17,7 @@ h3{
 }
 input{
     font-size:15px;
+    font-family:'Patrick Hand';
 }
 #form{
     display:flex;
@@ -28,6 +29,7 @@ button{
     background-color:#fcf7de;
     border-radius: 10px;
     font-size:15px;
+    font-family:'Patrick Hand';
 }
 button:hover{
     background-color:#f9eca7;
