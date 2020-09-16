@@ -1,10 +1,10 @@
-import * as THREE from "https://unpkg.com/three@0.120.1/build/three.module.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.120.1/build/three.module.js";
 
-import { GLTFLoader } from "https://unpkg.com/three@0.120.1/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.120.1/examples/jsm/loaders/GLTFLoader.min.js";
 
-import { AnimationMixer } from "https://unpkg.com/three@0.120.1/src/animation/AnimationMixer.js";
+import { AnimationMixer } from "https://cdn.jsdelivr.net/npm/three@0.120.1/src/animation/AnimationMixer.min.js";
 
-import { RGBELoader } from "https://unpkg.com/three@0.120.1/examples/jsm/loaders/RGBELoader.js";
+import { RGBELoader } from "https://cdn.jsdelivr.net/npm/three@0.120.1/examples/jsm/loaders/RGBELoader.min.js";
 
 let drawingSurface, copySIZE;
 
