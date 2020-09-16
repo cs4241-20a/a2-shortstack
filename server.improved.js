@@ -43,7 +43,6 @@ const handlePost = function( request, response ) {
     const json = JSON.parse(dataString);
     // this request is an order
     if (json.type === "order") {
-      console.log("obtained order");
       const orderNum = appdata.length === 0? 1 : appdata[appdata.length - 1].orderNum + 1;
       appdata.push({orderNum: orderNum, color: json.color, quantity: json.quantity})
     }
@@ -52,7 +51,6 @@ const handlePost = function( request, response ) {
       let orderNum = json.orderNum;
       let i;
       for (i = 0; i < appdata.length; i++) {
-        console.log(appdata[i].orderNum);
         if (appdata[i].orderNum.toString() === orderNum) {
           appdata = appdata.splice(0, i).concat(appdata.splice(i + 1, appdata.length));
         }
@@ -62,7 +60,6 @@ const handlePost = function( request, response ) {
       // this is an invalid request
       console.log("invalid json");
     }
-    console.log(appdata);
     // ... do something with the data here!!!
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
     response.end(JSON.stringify(appdata));
