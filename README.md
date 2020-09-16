@@ -2,7 +2,7 @@
 Basic Two-tier Web Application using HTML/CSS/JS and Node.js
 
 App Name: __Tagteam Marathon__
-Site: __[a2-mastouis.glitch.me](https://a2-mastouis.glitch.me/)__
+Site: __[a2-mastlouis.glitch.me](https://a2-mastlouis.glitch.me/)__
 
 1. [Matthew St. Louis - Assignment 2:  Short Stack](#matthew-st-louis---assignment-2-short-stack)
    1. [Core Assignment](#core-assignment)
