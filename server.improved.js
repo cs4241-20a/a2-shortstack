@@ -37,8 +37,8 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    const json = JSON.parse(dataString)
-    const action = json.playerAction
+    const json = JSON.parse( dataString )
+    const action = json.action
     switch(action){
       case "add":
        appData.push(json)
