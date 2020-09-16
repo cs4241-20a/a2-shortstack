@@ -1,4 +1,3 @@
-console.log("Server initialized!");
 const http = require('http'),
   fs = require('fs'),
   // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -13,6 +12,7 @@ const scoreboard = [
 ]
 
 const server = http.createServer(function (request, response) {
+  //console.log("Creating server..", response.method);
   if (request.method === 'GET') {
     handleGet(request, response)
   } else if (request.method === 'POST') {
@@ -24,16 +24,24 @@ const server = http.createServer(function (request, response) {
 const handleGet = function (request, response) {
   const filename = dir + request.url.slice(1)
 
-  if (request.url === '/') {
-    sendFile(response, 'public/index.html')
-  } else {
-    sendFile(response, filename)
+  switch(request.url) {
+    case '/':
+      sendFile(response, 'public/index.html');
+      break;
+    
+    case '/data':
+      //data request
+      break;
+    
+    default:
+      sendFile(response, filename);
+      break;
   }
 }
 
 const handlePost = function (request, response) {
   console.log("Post received");
-  let dataString = ''
+  let dataString = '';
 
   request.on('data', function (data) {
     dataString += data
@@ -45,7 +53,6 @@ const handlePost = function (request, response) {
       case '/submit':
         let userScore = JSON.parse(dataString); //parse passed in data to be read
         let cps = (parseInt(userScore.clicks) / 30); //get clicks per second by dividing total clicks by 30 seconds.
-
         let newUser = {
           "name": userScore.name,
           "cps": cps,
@@ -55,7 +62,7 @@ const handlePost = function (request, response) {
         scoreboard.push(newUser);
 
         response.writeHead(200, "OK", { 'Content-Type': 'text/plain' });
-        response.end();
+        response.end(newUser);
 
         break;
 
