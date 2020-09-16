@@ -4,7 +4,7 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3001
+      port = 3000
 
 
 const appdata = [

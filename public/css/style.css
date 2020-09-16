@@ -26,7 +26,8 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    
+    display: grid;
+    justify-content: center;
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 25px;
   }
@@ -34,7 +35,7 @@ input[type=text], select {
   #submit {
     width: 100%;
     background-color: #4CAF50;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -42,11 +43,15 @@ input[type=text], select {
     cursor: pointer;
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 25px;
+    display: grid;
+    justify-content: center;
   }
   input[type=submit]:hover {
     background-color: #45a049;
   }
   #formFeild{
+    display: grid;
+    justify-content: flex-start;
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 25px;
     letter-spacing: -1.2px;
