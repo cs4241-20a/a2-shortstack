@@ -2,6 +2,6 @@ const express = require('express')
 var router = express.Router()
 
 router.get('/', function (req, res) {
-  res.render('home')
+  res.render('home', { title: 'Glitch Drive' })
 })
 module.exports = router

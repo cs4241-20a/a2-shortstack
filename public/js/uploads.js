@@ -25,7 +25,7 @@ const entries = document.querySelectorAll('.panel')
 entries.forEach(entry => {
   const id = entry.id.split('-')[0]
   const delete_btn = document.getElementById(`${id}-delete`)
-  const file_name = entry.getAttribute('filename')
+  const file_name = entry.getAttribute('title')
   delete_btn.addEventListener('click', function () {
     request_delete(id, file_name)
   })

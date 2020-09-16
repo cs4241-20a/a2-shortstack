@@ -79,7 +79,7 @@ router.get('/', function (req, res) {
       })
       entries.push(entry)
     })
-    res.render('uploads', { entries: entries })
+    res.render('uploads', { entries: entries, title: 'Uploads - Glitch Drive' })
   }).catch(err => {
     res.send('Error: ' + err)
   })

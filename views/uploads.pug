@@ -8,12 +8,10 @@ mixin display(item)
     - mt = item.mime_type.slice(0, item.mime_type.indexOf('/'))
     case mt
       when 'audio'
-        audio(id=id controls controlsList="nodownload")
+        audio(id=id controls)
           source(src=item.download_path)
       when 'video'
-        video.embed-responsive-item(id=id controls controlsList="nodownload")
-          meta(name='viewport' content='width=device-width, initial-scale=1.0')
-          source(src=item.download_path)
+        video.embed-responsive-item(id=id controls src=item.download_path)
       when 'image'
         img(id=id src=item.download_path alt=item.file_name)
       default
@@ -35,7 +33,7 @@ mixin display-table(item)
 
 block append body
   each entry in entries
-    .panel(id=`${entry.id}-panel` filename=entry.file_name)
+    .panel(id=`${entry.id}-panel` title=entry.file_name)
       .panel-heading
         .container
           .row
@@ -52,8 +50,6 @@ block append body
                   button.btn.btn-danger.icon-right(id=`${entry.id}-delete`)
                     | Delete 
                     +icon('remove')
-        
-        b
       .panel-body.container
           .row
             .col.col-md-8.display
