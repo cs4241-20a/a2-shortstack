@@ -10,7 +10,7 @@ function main() {
             return response.text();
         })
         .then( function ( txt ) {
-            updateTable( JSON.parse(txt) );
+            updateTables( JSON.parse(txt) );
         })
 
     const submit = function( e ) {
@@ -18,10 +18,10 @@ function main() {
         e.preventDefault();
 
         // code snippet for timestamp from: https://phoenixnap.com/kb/how-to-get-the-current-date-and-time-javascript
-        var today = new Date();
-        var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date+' '+time;
+        let today = new Date();
+        let date = (today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate());
+        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        let dateTime = date+' '+time;
 
         const username = document.querySelector( '#username' );
         if (username.value === "") {
@@ -48,7 +48,7 @@ function main() {
             })
             .then( function ( txt ) {
                 const responseArray = JSON.parse(txt);
-                updateTable( responseArray );
+                updateTables( responseArray );
             })
 
         return false;
@@ -74,26 +74,68 @@ function main() {
             })
             .then( function ( txt ) {
                 const responseArray = JSON.parse(txt);
-                updateTable( responseArray );
+                updateTables( responseArray );
             })
 
         return false;
     }
 
-    function updateTable( responseArray ) {
-        const updatedTableBody = document.createElement("tbody");
-        updatedTableBody.setAttribute("id", "activeUsersList");
+    function updateTables( responseArray ) {
+
+        const updatedUserList = document.createElement("tbody");
+        updatedUserList.setAttribute("id", "activeUsersList");
+
+        const updatedRankingsList = document.createElement("tbody");
+        updatedRankingsList.setAttribute("id", "rankingsList");
+
+        let rankings = []
 
         for (let i = 0; i < responseArray.length; i++) {
-            let row = updatedTableBody.insertRow(i);
-            row.insertCell(0).innerText = responseArray[i].username;
-            row.insertCell(1).innerText = responseArray[i].guess;
-            row.insertCell(2).innerText = responseArray[i].status;
-            row.insertCell(3).innerText = responseArray[i].attempts;
-            row.insertCell(4).innerText = responseArray[i].timestamp;
+            let userRow = updatedUserList.insertRow(i);
+            userRow.insertCell(0).innerText = responseArray[i].username;
+            userRow.insertCell(1).innerText = responseArray[i].guess;
+            userRow.insertCell(2).innerText = responseArray[i].status;
+            userRow.insertCell(3).innerText = responseArray[i].attempts;
+            userRow.insertCell(4).innerText = responseArray[i].timestamp;
+
+            if (responseArray[i].win){
+
+                let placed = false;
+
+                for (let j = 0; j < rankings.length; j++) {
+
+                    // if attempts are equal, timestamp is tiebreaker
+                    if (responseArray[i].attempts > rankings[j].attempts
+                        || responseArray[i].attempts === rankings[j].attempts &&
+                        (new Date(responseArray[i].timestamp).getTime() > new Date(rankings[j].timestamp).getTime())) {
+
+                        rankings.splice(j, 0, responseArray[i]);
+                        placed = true;
+                        break;
+                    }
+                }
+
+                if (!placed) {
+                    rankings.push(responseArray[i]);
+                }
+            }
         }
-        const currentTable = document.getElementById("activeUsersTable");
-        currentTable.replaceChild(updatedTableBody, document.getElementById("activeUsersList"));
+
+        rankings.reverse();
+
+        for (let k = 0; k < rankings.length; k++) {
+            let rankingsRow = updatedRankingsList.insertRow(k);
+            rankingsRow.insertCell(0).innerText = (k + 1).toString();
+            rankingsRow.insertCell(1).innerText = rankings[k].username;
+            rankingsRow.insertCell(2).innerText = rankings[k].attempts;
+            rankingsRow.insertCell(3).innerText = rankings[k].timestamp;
+        }
+
+        const currentUserTable = document.getElementById("activeUsersTable");
+        currentUserTable.replaceChild(updatedUserList, document.getElementById("activeUsersList"));
+
+        const currentRankingsTable = document.getElementById("rankingsTable");
+        currentRankingsTable.replaceChild(updatedRankingsList, document.getElementById("rankingsList"));
     }
 
 

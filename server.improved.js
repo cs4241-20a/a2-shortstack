@@ -16,7 +16,7 @@ const server = http.createServer( function( request,response ) {
 
 // List of users that have entered guesses
 let activeUsers = []
-let magicNumber = Math.floor((Math.random() * 10000) + 1).toString();
+let magicNumber = Math.floor((Math.random() * 10000) + 1);
 console.log(magicNumber)
 
 const handleGet = function( request, response ) {
@@ -95,13 +95,16 @@ const handlePost = function( request, response ) {
 }
 
 function generateStatus(guess) {
-  if (guess === magicNumber) {
+
+  let guessAsInt = parseInt(guess, 10)
+
+  if (guessAsInt === magicNumber) {
     return "Winner!"
   }
-  if ( guess < magicNumber) {
+  if ( guessAsInt < magicNumber) {
     return "Too Low"
   }
-  if ( guess > magicNumber) {
+  if ( guessAsInt > magicNumber) {
     return "Too High"
   }
 }
