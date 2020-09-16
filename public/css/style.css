@@ -149,7 +149,9 @@ table, th, tr, td{
     padding:0.2em;
 }
 
+
 a{
+    color: #479761;
     text-decoration: none;
 }
 

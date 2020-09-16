@@ -99,7 +99,7 @@ function populateTable(appData) {
             <td>${data.artist_name}</td>
             <td>${data.born}</td>
             <td>${data.birthplace}</td>
-            <td><a href="https://www.google.com/search?q=${data.coords.lat}%2C+${data.coords.lng}">${data.coords.lat.toFixed(2)} : ${data.coords.lng.toFixed(2)}</td>
+            <td><a href="https://www.google.com/search?q=${data.coords.lat}%2C+${data.coords.lng}">(${data.coords.lat.toFixed(2)}, ${data.coords.lng.toFixed(2)})</td>
             <td>${data.died}</td>
             <th>${data.age.toFixed(0)}</th>
             <td>${data.genre}</td>
