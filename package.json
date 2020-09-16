@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Reading List",
+  "version": "1.0",
+  "description": "Makes a book list with the reading times of all the books",
+  "author": "Brittany Henriques",
   "scripts": {
     "start": "node server.improved.js"
   },
