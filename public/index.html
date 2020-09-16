@@ -2,40 +2,37 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div class="header">
+      <h2>To-Do List and Task Manager</h2>
+      <div class="input">
+        <input type='text' class="task" placeholder="Add Task...">
+        <p id="datePara">Begin Date:</p>
+        <input type="date" class="dueDate">
+        <p id="selPara">Priority:</p>
+        <select class="selPriority" name="priority">
+          <option class="low" value=2> Low</option>
+          <option class="medium" value=1>Medium</option>
+          <option class="high" value=0>High</option>
+        </select>
+        <button class="submitButton">Submit</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="codes"> 
+        <p>Color Codes:</p>
+      <p id="colorRule">Yellow: Begin Date</p>
+      <p id="colorRule">Purple: Hours Left Till Due</p>
+      <p id="colorRule">Blue: Calculated Due Date Based On Priority</p>
+      </div>
+    </div>
+    <script type="text/javascript"  src="./js/scripts.js"></script> 
+    
+  
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
