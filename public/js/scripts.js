@@ -1,8 +1,3 @@
-// Add some Javascript code here, to run on the front end.
-
-console.log("Welcome to assignment 2!")
-
-
 const submit = function(e) {
     // prevent default form action from being carried out
     e.preventDefault()
@@ -50,9 +45,6 @@ function deleteTheRow(r) {
 
 //adds new row to table with newest task
 function newElement(response) {
-
-    console.log("calling response from inside newElt: " + response)
-    console.log("this the deadline within newElt: " + response.deadline)
 
     var table = document.getElementById("todo-list");
     var newitem = document.querySelector("#newitem").value;

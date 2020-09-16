@@ -6,16 +6,9 @@ const http = require('http'),
     dir = 'public/',
     port = 3000
 
-const appdata = [
-    { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-    { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-    { 'model': 'ford', 'year': 1987, 'mpg': 14 }
-]
-
 const appdata1 = []
 
 const server = http.createServer(function(request, response) {
-    console.log("hi im in the server")
     if (request.method === 'GET') {
         handleGet(request, response)
     } else if (request.method === 'POST') {
@@ -35,13 +28,11 @@ const handleGet = function(request, response) {
 
 const handlePost = function(request, response) {
 
-    console.log("hi this is the start of handlePost function");
-    var task
+    var task;
 
     request.on('data', function(data) {
         task = JSON.parse(data)
         appdata1.push(task)
-        console.log(appdata1)
 
     })
 
@@ -49,30 +40,21 @@ const handlePost = function(request, response) {
         var ds = task
         const priority = ds.priority;
         const assigneddate = ds.assigneddate;
-        console.log("priority: " + priority + "   " + "assigned-date: " + assigneddate);
 
         ds.deadline = ds.assigneddate;
 
         for (var i = 0; i < appdata1.length; i++) {
-            console.log("This is the assigned date" + ds.assigneddate)
-            console.log(typeof ds.assigneddate);
 
             var parts = ds.assigneddate.split('-');
-            console.log(typeof parts[2])
             var mydate = new Date(parts[0], parts[1] - 1, (parseInt(parts[2]) + parseInt(ds.priority)));
-            console.log(mydate.toDateString());
-
-
             ds.deadline = mydate.toDateString();
         }
 
-        console.log(ds);
 
-        stringDS = JSON.stringify(ds);
+        var stringDS = JSON.stringify(ds);
 
 
         appdata1[appdata1.length] = stringDS;
-        console.log(appdata1);
 
         response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
         response.end(JSON.stringify(appdata1))
@@ -102,5 +84,3 @@ const sendFile = function(response, filename) {
 }
 
 server.listen(process.env.PORT || port)
-
-console.log('Node.js web server at port 3000 is running..')

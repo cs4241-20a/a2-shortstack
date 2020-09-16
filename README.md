@@ -1,5 +1,6 @@
 
-## To-do List
+##To-do List
+By Haley Hauptfeld
 Project Summary: My application is a to-do list that adds data to an array on the backend. Users input their task, the level of priority that task has, and the date that it was assigned. Then, the program generates a new field called deadline, that tells the user what day they need to accomplish the task by based upon the level of priority they gave the task.
 
 ## Baseline Requirements
@@ -29,15 +30,27 @@ I use the following element selectors: 'body', 'th', 'td', 'form'
 I use the following ID selector: '#todo-list'
 I use the following class selector: '.header'
 
+I used a CSS flexbox for the layout of my entire webpage.
+I used the Google Font, Quicksand, to style all the text I used.
+My CSS is written in a stylesheet that is separate from my HTML file.
+
 - **JavaScript**:
+I wrote some front-end JavaSCript to fetch the get/fetch the data that is passed when 'submit' is clicked
 - **Node.js**:
+I have an HTTP server in my file, 'server.improved.js'.
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
+- **Tech Achievement**: I created a single-page app that provides both a form for users to submit data and always shows the current state of the server-side data. The user can submit data, and the server responds by sending back the updated data that includes the derived field, 'deadline'. The client updates the data display.
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Tested user interface with one other student in the class
-Provide the last name of each student you conduct the evaluation with.
+
+I gave the user a task of entering three tasks in a to-do list, with three different priorities, but all of them have the same assignment date.
+
+Provide the last name of each student you conduct the evaluation with: Jicha
 What problems did the user have with your design?
+The user did not seem to have any problems with my design. They might have been a little surprised by my cholor scheme, but they were able to complete the given task.
 What comments did they make that surprised you?
+They didn't really make any comments that surprised. The user liked that there was an example fo what to put inside the input box for the task.
 What would you change about the interface based on their feedback?
+I would probably change my color scheme so it's a little easier on people's eyes when they use the application.
