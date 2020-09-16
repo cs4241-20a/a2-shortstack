@@ -12,22 +12,17 @@ HTML:
 - All pages should [validate](https://validator.w3.org)
 
 
-Deliverables
----
-Do the following to complete this assignment and acheive a base grade of 85%:
 
-1. Fork the starting project code (make sure to fork the 2020 repo!). This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
 3. Test your project to make sure that when someone goes to your main page, it displays correctly.
 4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the README to the specifications below.
+
 7. Create and submit a Pull Request to the original repo. Label the pull request as follows: a2-gitusername-firstname-lastname
 
 ---
 
 ## Speed Clicker
-This is my project game for assignment 2. The game is a challenge to see how fast you can click under a self-defined amount of time. The main aspect is determining the clicks per second where the top winner will be placed as #1. The main challenge is to try and beat the incredible "Mr. Insano"... or you can cheat by deleting him for the leaderboard. Note: "Mr. Insano"'s stats are based on "Dylan Allred"'s record on "Recordsetter". 
+This is my project game for assignment 2. The game is a challenge to see how fast you can click under a self-defined amount of time. The main aspect is determining the clicks per second where the top winner will be placed as #1. The main challenge is to try and beat the incredible "Mr. Insano". 
+Note: "Mr. Insano"'s stats are based on "Dylan Allred"'s record on "Recordsetter". 
 
 The CSS positioning technique that was used was justifying content to the center such that everything is easier to see. 
 
