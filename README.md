@@ -19,6 +19,6 @@ To use the app, just fill out a fight's name, total damage, and time (in minutes
     4. Based on Nina's feedback, I would add in text labels next to the input fields to indicate their purpose. I would also add code to ensure that the maximum number of seconds a user could enter would be 59.
   - **Test 2**
     1. Joe Swetz
-    2. 
-    3. 
-    4. 
+    2. Joe had little issues with the app's design. He was also a more frequent gamer than Nina, so perhaps his previous experience helped him use the app.
+    3. I didn't have any surprises from Joe.
+    4. Based on his feedback, I would just do the same as I would have done after Nina's feedback: add descriptive text labels next to the fields in the input form.
