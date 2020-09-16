@@ -1,7 +1,7 @@
 {
-  "name": "mmtolbert-a2-todo-list",
+  "name": "a2-mmtolbert-matt-tolbert",
   "version": "1.0",
-  "description": "To-do List",
+  "description": "Golf Club Tracker",
   "author": "Matt Tolbert",
   "scripts": {
     "start": "node server.improved.js"

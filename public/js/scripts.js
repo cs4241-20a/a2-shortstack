@@ -44,7 +44,7 @@ const submit = function( e ) {
       body 
     })
     .then( function(response) {
-        return response.json();  // wait on response
+        return response.json();  // wait on response from server (solves asynchronous issue)
     })
     .then(function( array ) {
         displayGolfBag(array)    // update golf bag table
