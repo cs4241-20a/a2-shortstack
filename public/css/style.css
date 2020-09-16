@@ -1,1 +1,7 @@
-/*Style your own assignment! This is fun! */
+.widget-right {
+  box-shadow: none !important;
+}
+
+#openweathermap-widget-15 {
+  z-index: 0;
+}

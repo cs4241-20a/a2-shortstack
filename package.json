@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "simcar",
+  "version": "1.0.0",
+  "description": "a mssrg",
+  "author": "Robear Mankaryous",
   "scripts": {
     "start": "node server.improved.js"
   },
