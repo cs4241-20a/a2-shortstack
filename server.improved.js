@@ -7,9 +7,6 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -19,13 +16,17 @@ const server = http.createServer( function( request,response ) {
     handlePost( request, response ) 
   }
 })
-
+ 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }else if(request.url === "/getFunctions")
+  {
+    response.end(JSON.stringify(appdata));
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -37,21 +38,27 @@ const handlePost = function( request, response ) {
       dataString += data 
   })
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+  request.on( 'end', function() { 
+    var functionObject = JSON.parse(dataString);
+    if(functionObject)
+    {
+      appdata.unshift(functionObject);    
+    }
+    
+    console.log( "adding function: "+JSON.parse( dataString ) +"\n")
 
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
-}
+    response.end(JSON.stringify(functionObject));
+  }) 
+}   
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
 
    fs.readFile( filename, function( err, content ) {
-
+ 
      // if the error = null, then we've loaded the file successfully
      if( err === null ) {
 

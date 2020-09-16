@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-nparker2020-noah-parker",
+  "version": "v0.1",
+  "description": "nparker AT wpi.edu's submission for assignment a2",
+  "author": "Noah Parker",
   "scripts": {
     "start": "node server.improved.js"
   },
