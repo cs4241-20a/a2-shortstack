@@ -26,7 +26,7 @@ const addPlayer = function( e ) {
       console.log(txt)
       //addRoster( JSON.parse('{ "playerAction": "add", "number": 1, "firstName": "K", "lastName": "Hart", "goals": 0, "assists": 0}') )
       //txt.forEach( element => addRoster( JSON.parse( element ) ) )
-      addRoster( JSON.parse( txt ) )
+      addRoster( txt )
   })
 
   return false
