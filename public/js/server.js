@@ -81,7 +81,7 @@ function handlePost(req, res) {
 
     req.on('end', () => {
 
-        //Convert strimg to JSON       
+        //Convert string to JSON
         myData = JSON.parse(myData)
         //Access firs key in  JSON to so we can handle data
         let firstKey = Object.keys(myData)[0]
@@ -146,9 +146,6 @@ const sendFile = function (response, filename) {
 
 
 
-const client = new googleMaps.Client({});
-
-
 /**
  * calculateAge -calculate age based on death date or current date
  * @param born
@@ -167,6 +164,8 @@ function calculateAge(born, died) {
     return (seconds * SEC_TO_DAYS) / DAYS_IN_YEAR
 }
 
+
+const client = new googleMaps.Client({});
 /**
  * getGeoPromise -return promise to geographic coordinates
  * @param myData
