@@ -21,6 +21,9 @@ const server = http.createServer(function (request, response) {
   else if (request.method === 'DELETE') {
     handleDelete(request, response)
   }
+  else if(request.method === 'PUT') {
+    handlePut(request, response)
+  }
 })
 
 const handleGet = function (request, response) {
@@ -68,12 +71,25 @@ const handleDelete = function (request, response) {
 
   request.on('end', function () {
     let id = dataJson.id
-    console.log(id)
-
     const idx = appdata.map(d=>d.id.toString()).indexOf(id.toString())
+    appdata.splice(idx, 1);
+    sendData(response)
+  })
+}
 
-    const deleted = appdata.splice(idx, 1);
-    console.log(deleted)
+const handlePut = function (request, response) {
+  let dataJson = null
+
+  request.on('data', function (data) {
+    dataJson = JSON.parse(data)
+    console.log(dataJson)
+  })
+
+  request.on('end', function () {
+    let id = dataJson.id
+    const idx = appdata.map(d=>d.id.toString()).indexOf(id.toString())
+    appdata.splice(idx, 1); // delete old entry
+    appdata.splice(idx, 1, dataJson); // add modifed entry
     sendData(response)
   })
 }

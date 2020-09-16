@@ -37,14 +37,14 @@ const submit = function (e) {
 
 const updateTable = function (json) {
   let dataTable = document.getElementById('data-table')
-  
+
   for (var idx in json) {
     createEntry(dataTable, json[idx])
   }
 }
 
-const createEntry = function (dataTable, json) {
-  let row = dataTable.insertRow()
+const createEntry = function (dataTable, json, rowPos = -1) {
+  let row = dataTable.insertRow(rowPos)
 
   let make = row.insertCell(0)
   let model = row.insertCell(1)
@@ -77,21 +77,13 @@ const createEntry = function (dataTable, json) {
 }
 
 const deleteItem = function () {
-  // get the id from the row and delete from appdata and table; table should
-  // just be deleteRow
-  const json =
-  {
-    id: this.id
-  }
+  const json = { id: this.id }
   const body = JSON.stringify(json)
 
   fetch('/delete', {
     method: 'DELETE',
     body
-  }).then(response => response.json())
-    .then(json => {
-      console.log(JSON.stringify(json))
-    })
+  })
 
   // delete selected row from table 
   var i = this.parentNode.parentNode.rowIndex;
@@ -101,10 +93,36 @@ const deleteItem = function () {
 }
 
 const saveItem = function () {
-  // if changes made
+  let datatable = document.getElementById("data-table")
+  var i = this.parentNode.parentNode.rowIndex;
+  var row = datatable.rows[i]
+
+  const json = {
+    make: row.cells[0].innerHTML,
+    model: row.cells[1].innerHTML,
+    year: row.cells[2].innerHTML,
+    price: row.cells[3].innerHTML,
+    priority: row.cells[4].innerHTML,
+    id: this.id
+  }  
+  console.log(json)
+  const body = JSON.stringify(json)
+
+  fetch('/put', {
+    method: 'PUT',
+    body
+  }).then(response => response.json())
+    .then(json => {
+      console.log(JSON.stringify(json))
+    })
+
+  // delete selected row from table 
+  document.getElementById("data-table").deleteRow(i); 
+
+  // create a new row at specified position
+  createEntry(document.getElementById('data-table'), json, i)
   alert("Saved entry.")
 }
-
 window.onload = function () {
   const button = document.querySelector('button')
   button.onclick = submit
