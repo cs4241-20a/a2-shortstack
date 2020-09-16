@@ -153,7 +153,7 @@ function buildTable(newScoreboard) {
     '<th>Clicks Per Second</th>\n' +
     '<th>Total Clicks</th>\n' +
     '<th>Seconds</th>\n' +
-    '<th>Time (H:min)</th>\n' +
+    '<th>Input Time (H:min)</th>\n' +
     '</tr>\n';
 
   //for populating the scoreboard with scores.
