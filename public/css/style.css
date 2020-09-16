@@ -1,232 +1,88 @@
-/*Style your own assignment! This is fun! */
+/*
+Color Wheel:
+A: (Blue)   #0011A8
+B: (Blue)   #1930FF
+C: (Base)   #0119F5
+D: (Yellow) #A88300
+E: (Yellow) #F5BF00
+*/
 
-header {
-    position: relative;
-    background-color: mediumvioletred;
-    float: left;
-    width: 30%;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-}
-
-main{
-    display: flex;
-    align-items: center;
-    width: 20%;
-    flex-direction: column;
-}
-
-body{
-    margin: 5px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-}
-
-h1{
-    font-family: 'Times New Roman', Times, serif;
-    font-style:italic;
-    font-size: 60px;
-    font-size: 5vw;
-    margin-top: 20px;
-    margin-bottom: 1px;
-    text-align: center;
-}
-
-h2{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-style: oblique;
-    font-size: 30px;
-    font-size: 2vw;
-    text-align: center;
-}
-
-h3{
-    font-family: 'Times New Roman', Times, serif;
-    font-style: normal;
-    font-size: 30px;
-    font-size: 2vw;
-    margin-top: 1px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-form{
-    float: left;
-    width: 100%;
-}
-
-th, td{
-    border-bottom: 1px solid;
-    padding: 5px;
-}
-
-table{
-    display: block;
-    overflow: auto;
-    white-space: nowrap;
-}
-
-label{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    font-size: 1.5vw;
-    margin-right: 25px;
+body {
+    background-color: lightseagreen;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
 }
 
 button {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    font-size: 1.5vw;
-    transition-duration: 0.6s;
-    background-color: white;
-    padding: 12px; 
-    border-radius: 4px;
-    border: 2px solid; 
+    font-family:'Times New Roman', Times, serif;
+    font-size: 1em;
 }
 
-#error {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    font-size: 1.5vw;
-    display: none;
-    color: red;
-    padding: 20px; 
-    text-align: center;
-    border: 1px align;
-    width: 40%;
-}
-
-button:hover{
-    background-color: black;
-    color: white;
-}
-
-.main{
-    display: flex;
-    width: 100%;
-}
-
-#main_pic{
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.main_text{
-    color: white;
-    width: 80%;
-    position: absolute;
-    top: 8px;
-}
-
-.main_panel{
-    display: flex;
-    flex-direction: column;
-    height: 10%;
-    text-align: right;
-    margin-top: 20px;
-    justify-content: center;
-    white-space: nowrap;
-}
-
-.links a {
-    display: inline;
-    margin-left: 20px;
-}
-
-.links a:hover{
-    color: gray;
-}
-
-#order-input{
-    display: block;
-    width: 80%;
-}
-
-#order_table{
-    font-family: 'Raleway', sanseirf;
-    font-size: 1vw;
-    display: none;
-    width: 90%;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-#confirmation{
-    display: none;
-    flex-direction: column;
-    height: 50%;
-    width: 80%;
-    align-items: center;
-}
-
-#order_update{
-    display: none;
-    width: 80%;
-}
-
-.order_input {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.order_input .text_input{
-    display: flex;
-    flex-direction: column;
-}
-
-.form_label{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 25px;
-    font-size: 2vw;
-    margin-top: 10px;
-    margin-bottom: 7px;
-}
-
-[type = "text"], textarea{
-    width: 80%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid;
-    border-radius: 2px;
-    resize: vertical;
+input {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
-    font-size: 1.5vw;
+    font-size: 1em;
 }
 
-#submit, update_confirmation{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 25px;
+#mainForm {
+    display: grid;
+    gap: 10px;
     align-items: center;
+    justify-items: center;
+    grid-auto-flow: row;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-#cancel-order{
-    background-color: white;
-    color: aquamarine;
-    margin-right: 20px;
-    border: 2px solid;
+    #mainForm > input {
+        text-align: center;
+    }
+
+    #mainForm > button:hover {
+        background-color: mediumvioletred;
+    }
+
+#resultsTable {
+    font-size: large;
+    width: 80%;
+    border-collapse: collapse;
+    border-top: 10px;
+    border-bottom: 5px;
 }
 
-#cancel-order:hover{
-    background-color: indianred;
+#resultsTable, th, td {
+    border: 2px solid lightgreen;
+    border-top: none;
+    padding: 20px;
+}
+
+.grid-container {
+    display: inline-block;
+    text-align: center;
+    background: lightgreen;
+    display: grid;
+    gap: 1px;
+    grid-template-areas: 'header header header header header' 'left content content content content';
+}
+
+.header {
+    grid-area: header;
+}
+
+.left {
+    grid-area: left;
+}
+
+.content {
+    grid-area: content;
+}
+
+.grid-container > div {
+    text-align: center;
+    background-color: deepskyblue;
+    padding: 20px 0;
+}
+
+#mainlogo {
+    width: 50%;
+    height: 50%;
     color: white;
-    border: 2px solid;
-}
-
-#add_order{
-    background-color: lightseagreen;
-    color: white;
-    border: 2px solid;
-    align-self: flex-end;
-}
-
-table button{
-    padding: 5px 7px;
-    width: 100%;
 }
