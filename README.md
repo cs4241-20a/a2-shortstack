@@ -5,7 +5,7 @@ My project is a habit tracker. It's a tool that allows to track progress on a ha
 When a grid is created it will be blank (all fields are grey) and the first cell in the grid represent today (highlighted with a grey border).
 User can track their progress on their goal by clicking on a cell. Click on a grey cell will result in the cell turing green (action done today), 
 click on a green cell will make the cell red with represents a failure to complete the action. A click on a red cell makes the cell yellow which is 
-meant to represnts days on which an action didn't need to be completed (if a user wants to only do the action few times a week). Finally, 
+meant to represents days on which an action didn't need to be completed (if a user wants to only do the action few times a week). Finally, 
 a click on a yellow block will result the cell to come back to status quo (grey). 
 
 ## Base requirements 

@@ -37,7 +37,6 @@ const handlePost = function (request, response) {
             }
             newdata.days = days
             dataStorage.push(JSON.stringify(newdata))
-            console.log(dataStorage)
         })
     } else if (request.url === '/delete') {
       request.on('data', function (data) {
