@@ -65,7 +65,18 @@ const handlePost = function( request, response ) {
 
     // if the item is not a new item (has an order number), alter the fields and delete it
     if(lastItem.orderNumber !== undefined){
-      console.log("hello sunshine");
+      // look for the item with the same order number, and alter the fields
+      let i;
+      for( i = 0; i < index; i++){
+      
+        if(dataStorage[i].orderNumber === parseInt(lastItem.orderNumber)){
+          dataStorage[i].orderItem = lastItem.orderItem;
+          dataStorage[i].orderDetails = lastItem.orderDetails;
+        }
+      }
+      // delete the new item used to alter the old one
+      dataStorage.splice(index, 1);
+
     } else {
         // give the item a unique order number
         if(nextId === undefined){
