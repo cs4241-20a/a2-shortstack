@@ -58,7 +58,11 @@ const handlePost = function( request, response ) {
       //Send a quick response back that things are good
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
-      console.log(appdata);
+    //if the key allData is in there just get all the data and send it back
+    } else if ("allData" in data) {
+      response.writeHead( 200, "OK", {'Content-Type': 'application/json' });
+      response.write(JSON.stringify(appdata));
+      response.end();
     } else {
       //URL to be used to query the api
       const qurl = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&dataType=Branded&pageSize=1&query=";
@@ -87,7 +91,6 @@ const handlePost = function( request, response ) {
       .then(function() {
         //Add the new data to the array and write back a response with the now complete object
         appdata.push(data);
-        console.log(appdata);
 
         response.writeHead( 200, "OK", {'Content-Type': 'application/json' });
         response.end(JSON.stringify(data));

@@ -1,5 +1,21 @@
 "use strict";
 
+//Function to get all the items on load of the page
+function getAllItems() {
+    const body = JSON.stringify({allData: 1})
+    fetch( '/submit', {
+        method:'POST',
+        body 
+    })
+    .then(response => response.json())
+    .then( function( response ) {
+        for (let index = 0; index < response.length; index++) {
+            const element = response[index];
+            addRows(element);
+        }
+    })
+}
+
 //Function for marking an item off your list
 //If the item is not marked purchased then it will mark it purchased and then change its text
 //If the item is marked purchased then it will remove that mark
@@ -126,5 +142,6 @@ const submit = function( e ) {
 
 //When the page loads stick the click listener on there to handle all the buttons/clicks
 window.onload = function() {
+    getAllItems();
     document.addEventListener("click", handleButton, false);
 }
