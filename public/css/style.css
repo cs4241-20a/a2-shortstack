@@ -2,6 +2,11 @@ body {
   background-color: #dbc791;
 }
 
+image {
+  display: block;
+  position: relative;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -10,6 +15,11 @@ body {
 input {
   display: block;
   margin-bottom: 10px;
+  font-family: "Goudy Bookletter 1911", serif;
+}
+
+button {
+  font-family: "Kumbh Sans", sans-serif;
 }
 
 th,
@@ -17,20 +27,13 @@ td {
   padding: 7px 10px 10px 10px;
 }
 
-td {
-  border-spacing: 10px 10px;
-}
-
 th {
   text-transform: uppercase;
   border-bottom: 2px solid #000000;
   text-align: left;
+  font-family: "Goudy Bookletter 1911", serif;
 }
 
-tr:even {
-  background-color: #a88568;
-}
-
-tr:odd {
-  background-color: #d6b48b;
+tr {
+  font-family: "Kumbh Sans", sans-serif;
 }
