@@ -82,13 +82,11 @@ const handlePut = function (request, response) {
 
   request.on('data', function (data) {
     dataJson = JSON.parse(data)
-    console.log(dataJson)
   })
 
   request.on('end', function () {
     let id = dataJson.id
     const idx = appdata.map(d=>d.id.toString()).indexOf(id.toString())
-    appdata.splice(idx, 1); // delete old entry
     appdata.splice(idx, 1, dataJson); // add modifed entry
     sendData(response)
   })

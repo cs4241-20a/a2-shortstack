@@ -54,6 +54,12 @@ const createEntry = function (dataTable, json, rowPos = -1) {
   let del = row.insertCell(5)
   let save = row.insertCell(6)
 
+  make.contentEditable = "true"
+  model.contentEditable = "true"
+  year.contentEditable = "true"
+  price.contentEditable = "true"
+  priority.contentEditable = "true"
+
   // make buttons
   var delBtn = document.createElement("button")
   delBtn.innerHTML = "Delete"
@@ -67,6 +73,7 @@ const createEntry = function (dataTable, json, rowPos = -1) {
   saveBtn.className = 'save-btn'
   saveBtn.id = json.id
 
+  // data displayed
   make.innerHTML = json.make
   model.innerHTML = json.model
   year.innerHTML = json.year
@@ -105,7 +112,6 @@ const saveItem = function () {
     priority: row.cells[4].innerHTML,
     id: this.id
   }  
-  console.log(json)
   const body = JSON.stringify(json)
 
   fetch('/put', {
