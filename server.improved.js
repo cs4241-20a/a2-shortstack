@@ -6,10 +6,9 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+var golfbag = [
+  { 'manufacturer': 'Ping', 'model': 'G410', 'type': 'Driver', 'loft': 9.5, 'distance': 280, 'ballSpeed': 160, 'swingSpeed': 106.7},
+  { 'manufacturer': 'Taylormade', 'model': 'Rocketballz', 'type': '3 Wood', 'loft': 15, 'distance': 260, 'ballSpeed': 148, 'swingSpeed': 99},
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,7 +24,12 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if ( request.url == '/golfbag') {
+    response.writeHead(200, "OK", {'Content-Type': 'application/json'})
+    response.end(JSON.stringify(golfbag))
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -38,12 +42,26 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    var newClub = JSON.parse(dataString);
+    console.log( newClub );
+    // do server side calculation
+    newClub.ballSpeed = (newClub.distance / 1.75).toFixed(1);
+    newClub.swingSpeed = (newClub.ballSpeed / 1.5).toFixed(1);
+    // update golfbag array
+    golfbag.push(newClub);
+    // sort golfbag by club distance
+    golfbag.sort(function(a , b) {
+      if (a.distance < b.distance) {
+        return 1;
+      }
+      if (a.distance > b.distance) {
+        return -1;
+      }
+      return 0;
+    })
+    // return updated array
+    response.writeHead(200, "OK", {'Content-Type': 'application/json'})
+    response.end(JSON.stringify(golfbag))
   })
 }
 

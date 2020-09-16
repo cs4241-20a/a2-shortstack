@@ -1,1 +1,88 @@
 /*Style your own assignment! This is fun! */
+
+/* font family import */
+@import url('https://fonts.googleapis.com/css?family=Grandstander');
+
+/*
+    Abode Color (color.adobe.com/create/color-wheel)
+    Black/Red Monochromatic (matches my driver ;) )
+    A - #470D09  used
+    B - #D05E55  used
+    C - #C72418  used
+    D - #4D4D4D  
+    E - #941A12  used
+*/
+
+body {
+    text-align: center;
+    background-color: #D05E55;
+    color: white;
+    font-family: 'Grandstander';
+}
+
+h1 {
+    background-color: inherit;
+    color: inherit;
+    font-family: inherit;
+}
+
+div {
+    padding: 10px;
+}
+
+h2 {
+    background-color: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-style: italic;
+}
+
+.inputForm {
+    background-color: #470D09;
+    padding: 25px;
+    border: 25px;
+}
+
+input {
+    background-color: #C72418;
+    font-size: large;
+    padding: 5px;
+    color: white;
+    font-family: inherit;
+}
+
+button {
+    padding: 5px;
+    font-size: large;
+    background-color: white;
+    color: #C72418;
+    font-family: inherit;
+    font-weight: bolder;
+}
+
+.grid-container { 
+    background-color: #941A12;
+    background-size: cover;
+    color: white;
+    display: grid;
+    justify-content: center;
+    align-content: start;
+    grid-template-columns: 'golfBag golfBag golfBag golfBag golfBag golfBag golfBag';
+}
+
+.golfBag {
+    grid-area: golfBag;
+    width: 100%;
+}
+
+#clubs {
+    font-size: large;
+    padding: 5px;
+}
+
+th, td {
+    border: 2px solid #470D09;
+    font-size: large;
+    padding: 10px;
+}
+
