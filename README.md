@@ -1,6 +1,6 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
-Ann Jicha https://a1-ahjicha.glitch.me
+Ann Jicha https://ahjicha-a2-shortstack-3.glitch.me/
 
 This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality. 
 
