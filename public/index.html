@@ -9,15 +9,30 @@
     <h1>Raymond's Initiative Tracker</h1>
     <form action="">
       <label>Creature name</label>
-      <input type="text" id="name" value="creature name"><br />
-      <label>Initiative #</label>
-      <input type="number" id="initiative" value="0"><br />
+      <input type="text" id="name" value=""><br />
+      <label>Hit Points</label>
+      <input type="number" id="hp" value="0"><br />
+      <label>Armor Class</label>
+      <input type="number" id="ac" value="0"><br />
+      <label>Roll?</label>
+      <input type="checkbox" id="roll" onclick="switchRoll()">
+      <div id="initbonusBox" style="display: none">
+        <label>Initiative Bonus</label>
+        <input type="number" id="initbonus" value="0"><br />
+      </div>
+      <div id="initiativeBox">
+        <label>Initiative</label>
+        <input type="number" id="initiative" value="0"><br />
+      </div>
+
       <button>submit</button>
     </form>
     <table class="list">
       <thead>
         <th class="name">Name</th>
         <th class="num">Initiative</th>
+        <th class="hp">HP</th>
+        <th class="ac">AC</th>
       </thead>
       <tbody id="creatures"></tbody>
     </table>

@@ -6,9 +6,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+var id = 1
 // Storage, storing players from highest -> lowest initiative
 const appdata = [
-  { 'name': 'Drathaniel', 'num': '10'}
+  { 'name': 'Drathaniel', 'num': '10', 'ac': '13', 'hp': '37', 'id': 0}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -32,7 +33,6 @@ const handleGet = function( request, response ) {
   
   }
   else{
-    console.log("hi")
     sendFile( response, filename )
   }
 }
@@ -48,6 +48,46 @@ const handlePost = function( request, response ) {
     //console.log( JSON.parse( dataString ) )
 
     json = JSON.parse( dataString)
+
+    // delete
+    if(json.hasOwnProperty('delete')) {
+      appdata.splice(appdata.findIndex(x => x.id.toString() === json.id.toString()), 1);
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.write(JSON.stringify(appdata))
+      response.end()
+      return false;
+    }
+    // move
+    if(json.hasOwnProperty('movedir')) {
+      var oldpos = appdata.findIndex(x => x.id.toString() === json.id.toString())
+      var newpos = oldpos + parseInt(json.movedir)
+      // If they try to move outside the bounds, return
+      if( newpos < 0 || newpos >= appdata.length) {
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.write(JSON.stringify(appdata))
+        response.end()
+        return false;
+      }
+
+      var start = appdata[oldpos]
+      var end = appdata[newpos]
+      // If it would mess up order refuse
+      if(parseInt(start['num']) !== parseInt(end['num'])) {
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.write(JSON.stringify(appdata))
+        response.end()
+        return false;
+      }
+      array_move(oldpos, newpos)
+      //console.log(appdata)
+
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.write(JSON.stringify(appdata))
+      response.end()
+      return false;
+    }
+
+    json['id'] = id++
     console.log(json)
     
     var pos = determineOrder( parseInt(json.num))
@@ -93,5 +133,15 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+function array_move( old_index, new_index) {
+    if (new_index >= appdata.length) {
+        var k = new_index - appdata.length + 1;
+        while (k--) {
+            appdata.push(undefined);
+        }
+    }
+    appdata.splice(new_index, 0, appdata.splice(old_index, 1)[0]);
+};
 
 server.listen( process.env.PORT || port )
