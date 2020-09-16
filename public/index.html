@@ -10,7 +10,7 @@
 
 <body>
   <div>
-    <h1 font-weight: bold;>Welcome to Speed Clicker</h1>
+    <h1>Welcome to Speed Clicker</h1>
 
     <p id="WelcomeText">
       This is a webpage for Jordan Stoessel's Assignment 2. After hitting the <strong>start</strong> button you will be
@@ -21,8 +21,8 @@
 
   <div class="center">
     <input type='text' id='customseconds' name='cusseconds' value="">
-    <input type="button" id='startbtn' onclick="startClicked()" value="Start"></input>
-    <a class="poststart" id="clickbtn" onclick="addClicked()"><img src="button.png"></a>
+    <input type="button" id='startbtn' onclick="startClicked()" value="Start">
+    <a class="poststart" id="clickbtn" onclick="addClicked()"><img alt="Click Here" src="button.png"></a>
   </div>
 
   <div class="center">
@@ -30,13 +30,13 @@
   </div>
 
   <div class="center">
-    <form action="">
+    <form>
       <p id="inputname" class="postgame">
         Please input your name:
       </p>
       <div class="center">
         <input type='text' id='yourname' name='yourname' class='postgame' value="">
-        <button id='submitbtn' class='postgame' method="POST" action="/submit">Submit</button>
+        <button id='submitbtn' class='postgame'>Submit</button>
       </div>
     </form>
   </div>
@@ -73,9 +73,8 @@
 
   <div id="deling" class="center">
     <input type='text' id='delname' name='delname' value="">
-    <button id='delbtn' method="POST" action="/delete">Delete Name</button>
+    <button id='delbtn'>Delete Name</button>
   </div>
-
 </body>
 
 </html>
