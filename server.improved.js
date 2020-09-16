@@ -43,27 +43,27 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log(JSON.parse(dataString));
-    // const json = JSON.parse(dataString);
+    const json = JSON.parse(dataString);
     // this request is an order
-    // console.log(json.orderNum);
-    // if (json.numberOfItems === 2) {
-    //   const orderNum = appdata.length === 0? 1 : appdata[-1].orderNum + 1;
-    //   appdata.push({orderNum: orderNum, color: json.color, quantity: json.quantity})
-    // }
-    // // this request is a fulfillment
-    // else if (json.numberOfItems === 1) {
-    //   const orderNum = json.orderNum;
-    //   let i;
-    //   for (i = 0; i < appdata.length; i++) {
-    //     if (appdata[i].orderNum === orderNum) {
-    //       appdata = appdata.slice(0, i).concat(appdata.slice(i + 1, appdata.length));
-    //     }
-    //   }
-    // }
-    // else {
-    //   // this is an invalid request
-    //   console.log("invalid json");
-    // }
+    console.log(json.orderNum);
+    if (json.numberOfItems === 2) {
+      const orderNum = appdata.length === 0? 1 : appdata[-1].orderNum + 1;
+      appdata.push({orderNum: orderNum, color: json.color, quantity: json.quantity})
+    }
+    // this request is a fulfillment
+    else if (json.numberOfItems === 1) {
+      const orderNum = json.orderNum;
+      let i;
+      for (i = 0; i < appdata.length; i++) {
+        if (appdata[i].orderNum === orderNum) {
+          appdata = appdata.slice(0, i).concat(appdata.slice(i + 1, appdata.length));
+        }
+      }
+    }
+    else {
+      // this is an invalid request
+      console.log("invalid json");
+    }
 
     // ... do something with the data here!!!
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });

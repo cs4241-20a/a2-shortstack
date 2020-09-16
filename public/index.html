@@ -10,19 +10,19 @@
       <table id="orders">
       </table>
       <input type="number" id="orderNum" placeholder="Order number">
-      <button id="admin">Fulfill</button>
+      <button id="fulfill">Fulfill</button>
     </form>
   <br>
-<!--  <form action="">-->
-<!--    &lt;!&ndash; Order Form &ndash;&gt;-->
-<!--    <select id="color">-->
-<!--      <option value="Blue">Blue</option>-->
-<!--      <option value = "Red">Red</option>-->
-<!--      <option value = "Green">Green</option>-->
-<!--    </select>-->
-<!--    <input type="number" id="quantity" placeholder="Quantity">-->
-<!--    <button id="fulfill" onClick="submitOrder()">Buy now</button>-->
-<!--  </form>-->
+  <form action="">
+    <!-- Order Form -->
+    <select id="color">
+      <option value="Blue">Blue</option>
+      <option value = "Red">Red</option>
+      <option value = "Green">Green</option>
+    </select>
+    <input type="number" id="quantity" placeholder="Quantity">
+    <button id="order">Buy now</button>
+  </form>
   </body>
   <script>
 
@@ -30,8 +30,8 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const color = document.getElementById( '#color' ),
-            quantity = document.getElementById('#quantity'),
+    const color = document.getElementById( 'color' ),
+            quantity = document.getElementById('quantity'),
           json = { color: color.value, quantity: quantity.value},
           body = JSON.stringify( json );
     console.log("Submitting order");
@@ -41,7 +41,7 @@
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
+      // do something with the response
       console.log( response )
     })
 
@@ -70,10 +70,10 @@
   };
 
   window.onload = function() {
-    // const orderButton = document.getElementById( '#order' ),
-            const fulfillButton = document.querySelector('button');
+    const orderButton = document.getElementById( 'order' );
+            const fulfillButton = document.getElementById('fulfill');
             fulfillButton.onclick = fulfillOrder;
-    //         orderButton.onclick = submitOrder;
+            orderButton.onclick = submitOrder;
   }
 
   </script>
