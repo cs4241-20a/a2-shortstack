@@ -49,10 +49,7 @@ const handlePost = function( request, response ) {
     }
     // this request is a fulfillment
     else if (json.type === "fulfill") {
-      console.log("obtained fulfillment");
       let orderNum = json.orderNum;
-      console.log(orderNum);
-      console.log(typeof orderNum);
       let i;
       for (i = 0; i < appdata.length; i++) {
         console.log(appdata[i].orderNum);
