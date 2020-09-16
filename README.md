@@ -1,7 +1,5 @@
 # Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 
-===
-
 ## Online Grocery List
 
 I created an interactive online grocery list using a two tier web stack composed of a website with javascript and a server running node.js. The user will input a quantity and item and then submit it to the server. The server will query an api to get the calories of the item (I question the full accuracy of these caloric numbers but for now am just trusting the api) and then return the full item back to the client while storing a copy of the item in the server. The user can then check items off when they have been purchased and delete all purchased items at once. There is no explicit results functionality as this is a single-page app that always updates the shown data to be in sync with the server. For CSS positioning I used a flexbox set to column direction to make my website nicely centered and spaced.  
