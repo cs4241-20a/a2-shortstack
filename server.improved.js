@@ -1,5 +1,5 @@
 const http = require('http');
-  fs = require('fs'),
+fs = require('fs'),
   // IMPORTANT: you must run `npm install` in the directory for this assignment
   // to install the mime library used in the following line of code
   mime = require('mime'),
@@ -7,8 +7,8 @@ const http = require('http');
   port = 3000
 
 let scoreboard = [
-  { name: "Mr. Insano", cps: 105.1, clicks: 1051, seconds: 10, time: 7987989869},
-  { name: "Matthew", cps: 5.4, clicks: 54, seconds: 10, time: 7987097986986}
+  { name: "Mr. Insano", cps: 105.1, clicks: 1051, seconds: 10, time: 7987989869 },
+  { name: "Matthew", cps: 5.4, clicks: 54, seconds: 10, time: 7987097986986 }
 ]
 
 const server = http.createServer(function (request, response) {
@@ -24,15 +24,16 @@ const server = http.createServer(function (request, response) {
 const handleGet = function (request, response) {
   const filename = dir + request.url.slice(1)
 
-  switch(request.url) {
+  switch (request.url) {
     case '/':
       sendFile(response, 'public/index.html');
       break;
-    
-    case '/data':
-      //data request
+
+    case '/data': //get data for building initial table
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' });
+      response.end(JSON.stringify(scoreboard));
       break;
-    
+
     default:
       sendFile(response, filename);
       break;
@@ -66,7 +67,7 @@ const handlePost = function (request, response) {
         console.log("New user recorded: \n" + newUser);
         console.log("Sending new scoreboard: \n" + JSON.stringify(scoreboard));
 
-        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.writeHead(200, "OK", { 'Content-Type': 'text/plain' });
         response.end(JSON.stringify(scoreboard));
         break;
 
@@ -74,7 +75,7 @@ const handlePost = function (request, response) {
         let delName = JSON.parse(dataString).name; //parse passed data for deletion
         scoreboard = scoreboard.filter(data => data.name !== delName);
 
-        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.writeHead(200, "OK", { 'Content-Type': 'text/plain' });
         response.end(JSON.stringify(scoreboard));
         break;
 

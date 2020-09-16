@@ -179,6 +179,24 @@ function buildTable(newScoreboard) {
   console.log("Table populated: \n" + table.innerHTML);
 }
 
+//get the table data for generating the table on load.
+function initializeTable(){
+  fetch('/data', {
+    method: 'GET'
+  })
+    .then(function (response) {
+      //response
+      response.json().then(function (data) {
+        //data
+        console.log("Data Response:", response);
+        console.log("Returned data: ", data);
+
+        buildTable(data);
+      })
+    })
+
+  return false;
+}
 
 window.onload = function () {
   const button = document.getElementById('submitbtn');
@@ -191,5 +209,6 @@ window.onload = function () {
   document.getElementById('inputname').style.display = "none";
   document.getElementById('yourname').style.display = "none";
   document.getElementById('submitbtn').style.display = "none";
+  initializeTable();
   console.log("Loaded!");
 }

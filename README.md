@@ -30,6 +30,9 @@ The webpage is a single-page app which needs no reloading to showcase updates fr
   - **Tech Achievement 4**:  
   The hardest techinical achievement (I think) was generating the table and getting it to format correctly. The first table is pre-defined in the server and every modification causes a new generation within the client-side javascript file. This was difficult because it took a lot of careful planning to understand where each data type had to go to appear in the correct column/row. 
 
+    - **Tech Achievement 5**:  
+  The table is now completely self-generating within the back-end and front-end. Before the table was premade, but now it is generated when the webpage is initialized such that other people's scores will be seen on load. This was done using the GET method and modifying the options within the fetch command.
+
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 
 Custom made click button was added as a png to show where to click quickly and easily. Mostly static design to work with most resolution sizes (centered as well). Alerts were made to prevent most strange requests and also alert users of game-related happenings. It wasn't necessarily hard to implement, but it took careful planning to try and make sure the alerts didn't allow for game breaking bugs. 
