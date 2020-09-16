@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="css\style.css">
-    <script type="text/javascript" src="js\scripts.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/scripts.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Grandstander&family=Lato&display=swap" rel="stylesheet">
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
-
+<body>
   <div class = "title">
     <div class = "title_text">
       <h1>Grocery Manager</h1>
@@ -15,12 +15,12 @@
   </div>
 
 
-  <body>
-    <div class = container>
-    <h2>
-    <form action="">
+  
+    <div class = "container">
+    <div class = "theForm">
+    <form action="#">
       <label for= "item">Item name:</label><br>
-      <input type='text' id='item' value="Bananas"><br>
+      <input type="text" id='item' value="Bananas"><br>
       <label for= "amount">Amount:</label><br>
       <input type='text' id='amount' value="5"><br>
       <label for= "price">Price:</label><br>
@@ -46,8 +46,8 @@
     </form>
     <!-- <button id ='calculateTotal'>Calculate Total</button>
     <div class = 'totalOutput'>$ </div> -->
-  </h2>
-  <h3>
+  </div>
+  <div class = "theList">
     Your List:
     <br><br><br><br>
     Produce:
@@ -81,9 +81,8 @@
     <br>
     Other:
     <ul class = "otherList"></ul>
-  </h3>
   </div>
-  </body>
+  </div>
 
 
 
@@ -178,4 +177,5 @@
   }
 
   </script>
+  </body>
 </html>
