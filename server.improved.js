@@ -59,7 +59,7 @@ const handlePost = function( request, response ) {
     }
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( dataString )
+    response.end( JSON.stringify(appData) )
   })
 }
 
