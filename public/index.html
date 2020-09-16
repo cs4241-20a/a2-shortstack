@@ -2,13 +2,26 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <h1>Registration</h1>
+    <form action="" method="POST">
+      <label for="yourname">Name:</label>
+      <input type='text' id='yourname' placeholder="your name here">
+      <label for="dateofbirth">Date of Birth:</label>
+      <input type='text' id='dateofbirth' placeholder="00 00 0000">
+      <label for="gender">Gender:</label>
+      <input type='text' id='gender' placeholder="Male, Female">
+      <button>Submit</button>
     </form>
+    <label for="flex-box">Registered:</label>
+    <ul class="flex-box">
+      <li class="flex-item">Nikhil Chintada</li>
+      <li class="flex-item">Nikhil Chintada</li>
+      <li class="flex-item">Nikhil Chintada</li>
+    </ul>
   </body>
   <script>
 
@@ -20,14 +33,26 @@
           json = { yourname: input.value },
           body = JSON.stringify( json )
 
+    const input2 = document.querySelector( '#dateofbirth' ),
+          json2 = { dateofbirth: input2.value },
+          body2 = JSON.stringify( json2 )
+
+    //var fields = 
+
     fetch( '/submit', {
-      method:'POST',
-      body 
+         method:'POST',
+         body
     })
     .then( function( response ) {
-      // do something with the reponse 
+      // do something with the reponse
       console.log( response )
     })
+
+    /*
+    const input3 = document.querySelector( '#gender' ),
+          json3 = { yourname: input3.value },
+          body3 = JSON.stringify( json3 )
+    */
 
     return false
   }
