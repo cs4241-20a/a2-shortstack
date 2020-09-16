@@ -1,0 +1,37 @@
+Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
+===
+
+Due: September 16th, by 11:59 PM.
+
+
+## Inside my Refrigerator
+By: Alexa Freglette
+
+This project can be used to keep track of food items and distinguish where to place them in your refrigerator. 
+The derived field is placement, which is determined by how much a perosn enjoys an item as well as the size of the item. 
+For styling i wanted to create a site that was playful and colors that are similar to the blues and grays of refrgerators.
+I kept this in mind when picking out my colors and Google fonts. 
+CSS positioning techniqes I used include padding, flex, grid, margin, and text-align. 
+To use the application make sure to fill out all of the fields. 
+
+## Technical Achievements
+- **Tech Achievement 1**: 
+Created a single-app page that form for users to submit data that always shows the current state of the server-side data.
+
+
+
+### Design/Evaluation Achievements
+- **Design Achievement 1**: 
+1. Provide the last name of each student you conduct the evaluation with.
+2. What problems did the user have with your design?
+3. What comments did they make that surprised you?
+4. What would you change about the interface based on their feedback?
+
+Student A
+  1) Galli
+  2) Jenna said that the design was simiple and easy to follow, she did not have any problems with the design.
+  3) Jenna made a comment about what would happen if the user wanted to keep track of an item that wasn't supposed to be refrigerated and I had not preiously thought of this. 
+  4) I think I would want to expand this project in the future to contain more places to store items, such as a pantry.
+  
+Student B
+  2) Simoneau 
