@@ -24,7 +24,7 @@ const addPlayer = function( e ) {
   })
   .then( function(txt){
       console.log(txt)
-      updateRoster(table, JSON.parse(txt))
+      addRoster(table, JSON.parse(txt))
   })
 
   return false
@@ -54,7 +54,7 @@ const deletePlayer = function( e ) {
   })
   .then( function(txt){
       console.log(txt)
-      deletePlayer()
+      deleteRoster()
   })
 
   return false
@@ -84,7 +84,7 @@ const editPlayer = function( e ) {
   })
   .then( function(txt){
       console.log(txt)
-      editPlayer(txt)
+      editRoster(txt)
   })
 
   return false
@@ -92,7 +92,8 @@ const editPlayer = function( e ) {
 
 let numRows = 1
 
-const updateRoster = function(table, data){
+function addRoster = function(data){
+    var table = document.getElementById("resultTable")
     var newRow = table.insertRow(-1);
     var numberCell = newRow.insertCell(0);
     var firstNameCell = newRow.insertCell(1);
@@ -108,16 +109,16 @@ const updateRoster = function(table, data){
     numRows++
 }
 
-function deletePlayer(){
+function deleteRoster(){
   console.log("Deleting last player")
   if(numRows !== 1){
-    document.getElementById("resultTable").deleteRow(-1)
+    document.getElementById("resultTable").deleteRow(-1);
     numRows--
   }
   return false
 }
 
-function editPlayer(array){
+function editRoster(array){
   for(var r = 0; r < array.length; r++){
     var table = documenet.getElementById("resultTable")
     table.rows[r+1].cells[0].innerHTML = array[r].number
