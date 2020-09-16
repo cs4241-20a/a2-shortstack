@@ -39,7 +39,6 @@ CSS:
 
 JavaScript:
 - At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
 Node.js:
 - An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
 
