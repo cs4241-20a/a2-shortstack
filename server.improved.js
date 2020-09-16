@@ -38,8 +38,8 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     const json = JSON.parse(dataString)
-    const condition = json.playerAction
-    switch(condition){
+    const action = json.playerAction
+    switch(action){
       case "add":
        appData.push(json)
        break;
@@ -48,16 +48,14 @@ const handlePost = function( request, response ) {
         break;
       case "edit":
         for(var i = 0; i < appData.length; i++){
-          if(appData[i].number == json.number){
-            appData[i].firstName = json.firstName
-            appData[i].lastName = json.lastName
+          if(appData[i].number == json.number && appData[i].firstName == json.firstName && appData[i].lastName == json.lastName){
             appData[i].goals += json.goals
             appData[i].assists += json.assists
           }
         }
         break;
       default:
-        break;
+        
     }
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })

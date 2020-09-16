@@ -119,7 +119,7 @@ function deletePlayer(){
 
 function editPlayer(array){
   for(var r = 0; r < array.length; r++){
-    var table = documenet.getElementById("resultsTable")
+    var table = documenet.getElementById("resultTable")
     table.rows[r+1].cells[0].innerHTML = array[r].number
     table.rows[r+1].cells[1].innerHTML = array[r].firstName
     table.rows[r+1].cells[2].innerHTML = array[r].lastName
@@ -132,7 +132,7 @@ function editPlayer(array){
 
 window.onload = function() {
   const addButton = document.querySelector( '#add' )
-  button.onclick = addPlayer
+  addButton.onclick = addPlayer
 
   const deleteButton = document.querySelector( '#delete' )
   deleteButton.onclick = deletePlayer
