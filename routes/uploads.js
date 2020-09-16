@@ -50,8 +50,8 @@ router.post('/delete/:id', async function (req, res) {
   }
 
   // If user cancels operation
-  if (key === undefined) {
-    res.status(400).send()
+  if (key === null) {
+    res.status(204).send()
     return
   }
 

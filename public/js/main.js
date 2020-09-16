@@ -1,5 +1,5 @@
 /* eslint-disable snakecasejs/snakecasejs */
-const main = function () {
+const ping_capacity = function () {
   const TOTAL_CAPACITY = 200000000.0
   const meter = document.getElementById('capacity')
   const meter_text = document.getElementById('capacity-text')
@@ -18,4 +18,4 @@ const main = function () {
   xhr.send(null)
 }
 
-window.onload = main
+ping_capacity()

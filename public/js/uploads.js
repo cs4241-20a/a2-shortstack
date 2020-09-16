@@ -11,6 +11,7 @@ const request_delete = function (id, name) {
     if (xhr.readyState === 4 && String(xhr.status).startsWith('2')) {
       const el = document.getElementById(`${id}-panel`)
       el.remove()
+      ping_capacity()
     } else {
       const response = xhr.responseText
       alert(`Error: ${response}`)

@@ -58,13 +58,10 @@ Upload.addHook('beforeCreate', (instance, options) => {
 })
 Upload.addHook('beforeDestroy', (instance, options) => {
   fs.unlinkSync(instance.upload_path)
+  Upload.capacity -= instance.size
 })
-Upload.addHook('afterCreate', 'afterDestroy', (instance, options) => {
-  Upload.get_capacity().then(query => {
-    Upload.capacity = query.capacity
-  }).catch(err => {
-    console.error(`Failed to get capacity: ${err}`)
-  })
+Upload.addHook('afterCreate', (instance, options) => {
+  Upload.capacity += instance.size
 })
 
 Upload.check_key = async function (id, key) {
