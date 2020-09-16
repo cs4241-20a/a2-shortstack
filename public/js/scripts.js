@@ -73,6 +73,7 @@ const submit = function (e) {
     body
   })
     .then(function (response) {
+      console.log("fetched done. Response now");
       console.log(response);
       //do something with response
       //restartGame();

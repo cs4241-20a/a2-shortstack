@@ -48,7 +48,6 @@ const handlePost = function (request, response) {
   })
 
   request.on('end', function () {
-    console.log("Something found!");
     switch (request.url) {
       case '/submit':
         let userScore = JSON.parse(dataString); //parse passed in data to be read
@@ -60,9 +59,10 @@ const handlePost = function (request, response) {
         }
 
         scoreboard.push(newUser);
+        console.log("New user recorded");
 
-        response.writeHead(200, "OK", { 'Content-Type': 'text/plain' });
-        response.end(newUser);
+        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.end(JSON.stringify(scoreboard));
 
         break;
 
