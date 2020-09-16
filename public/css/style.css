@@ -1,12 +1,3 @@
-/*
-Color Wheel:
-A: (Blue)   #0011A8
-B: (Blue)   #1930FF
-C: (Base)   #0119F5
-D: (Yellow) #A88300
-E: (Yellow) #F5BF00
-*/
-
 body {
     background-color: lightseagreen;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -40,21 +31,21 @@ input {
         background-color: mediumvioletred;
     }
 
-#resultsTable {
-    font-size: large;
-    width: 80%;
+#workTable {
+    font-size: xx-large;
+    width: 100%;
     border-collapse: collapse;
     border-top: 10px;
     border-bottom: 5px;
 }
 
-#resultsTable, th, td {
+#workTable, th, td {
     border: 2px solid lightgreen;
     border-top: none;
     padding: 20px;
 }
 
-.grid-container {
+.main {
     display: inline-block;
     text-align: center;
     background: lightgreen;
@@ -75,7 +66,7 @@ input {
     grid-area: content;
 }
 
-.grid-container > div {
+.main > div {
     text-align: center;
     background-color: deepskyblue;
     padding: 20px 0;

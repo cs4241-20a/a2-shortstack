@@ -4,34 +4,31 @@
 <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-          rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" />
     <script src="js/scripts.js"></script>
 </head>
 
 <body>
-    <div class="grid-container">
+    <div class="main">
         <div class="header">
-            <h1>Gym Schedule for Chris</h1>
+            <h1>Gym Work Schedule for Chris</h1>
             <img src="assets/mainlogo.jpg" id="mainlogo">
         </div>
         <div class="left">
             <form id="mainForm">
-                <input type='text' id='worker' placeholder="Put Worker Name">
-                <input type='text' id='class' placeholder="Class of">
-                <input type='text' id='startTime' placeholder="Start Time of Work">
-                <input type='text' id='endTime' placeholder="End Time of Work">
+                <input type="text" id="worker" placeholder="Put Worker Name">
+                <input type="text" id="startTime" placeholder="Start Time of Work">
+                <input type="text" id="endTime" placeholder="End Time of Work">
                 <button>Submit</button>
             </form>
         </div>
         <div class="content">
-            <table id="resultsTable">
+            <table id="workTable">
                 <tr>
                     <th>worker</th>
-                    <th>class</th>
                     <th>startTime</th>
                     <th>endTime</th>
+                    <th>workTime</th>
                 </tr>
             </table>
         </div>
