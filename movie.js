@@ -16,8 +16,13 @@ module.exports = function (name, seen) {
         imdb.searchMovies(
             name,
             function (movies) {
-                state.url = "https://www.imdb.com/title/" + movies[0].id;
-                console.log(state.url);
+                if (movies[0]) {
+                    state.url = "https://www.imdb.com/title/" + movies[0].id;
+                    console.log(state.url);
+                } else {
+                    state.url = "https://www.imdb.com/";
+                    console.log("no url");
+                }
             },
             function (error) {
                 console.error(error);
@@ -25,7 +30,12 @@ module.exports = function (name, seen) {
         );
     }
 
+    function updateSeen(seen) {
+        state.seen = seen;
+    }
+
     return {
         getState,
+        updateSeen,
     };
 };

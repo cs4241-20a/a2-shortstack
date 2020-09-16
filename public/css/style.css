@@ -1,1 +1,38 @@
 /*Style your own assignment! This is fun! */
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+table {
+    background-color: #c1eeec;
+}
+#movie {
+    background-color: cornflowerblue;
+}
+.btn {
+    background-color: aquamarine;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 3;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(30px, auto);
+}
+.one {
+    grid-column: 2;
+    grid-row: 1;
+}
+.two {
+    grid-column: 2;
+    grid-row: 2;
+}
+.three {
+    grid-column: 2;
+    grid-row: 3;
+}

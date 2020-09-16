@@ -9,6 +9,7 @@ module.exports = function () {
             movies.set(data.movie, Movie(data.movie, data.seen));
         } else {
             console.log("Known movie:", data.movie);
+            movies.get(data.movie).updateSeen(data.seen);
         }
     }
 
