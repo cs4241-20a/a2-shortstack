@@ -6,11 +6,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = [];
+let maxDPS = 0.0;
+let avgDPS = 0.0;
+let sumDPS = 0.0;
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -38,12 +37,15 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    let json = JSON.parse( dataString );
+    console.log(json);
+    
+    
+    dataString = processData(json);
+    
+    console.log(appdata);
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    response.end(dataString);
   })
 }
 
@@ -68,5 +70,66 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+
+// Processes a piece of data in the form of a JSON string.
+function processData(data){
+  appdata.push(data)
+  //console.log(appdata)
+  console.log(data)
+  
+  const min = data.minutes, sec = data.seconds, name = data.fightname, dmg = data.damage;
+  
+  // format time into a single string
+  let totalTime = (min * 60) + sec * 1; // total seconds elapsed
+  let timeFormat = ":";
+  
+  if(!min || min === 0){
+    timeFormat = "00:";
+  }
+  
+  if(!sec){
+    timeFormat += "00";
+  }
+  else if(sec < 10 && sec !== "00"){ 
+    // add a padding zero if seconds are less than 10
+    if(sec === 0 ){ // double equal signs also catch "undefined" case
+      timeFormat += "0";
+    }
+    timeFormat += "0";
+  }
+  let timeString = min + timeFormat + sec;
+  
+  // derived fields!
+  const totalDPS = dmg / totalTime; // damage per second
+  sumDPS += totalDPS;
+  
+  if(totalDPS >= maxDPS){
+    maxDPS = totalDPS;
+  }
+  
+  avgDPS = getAvgDPS();
+  
+  // construct JSON to return from the server
+  let newJSON = {
+    fightname : name,
+    duration : timeString,
+    damage: dmg,
+    DPS : totalDPS,
+    maxDPS: maxDPS,
+    avgDPS: avgDPS
+  }
+  newJSON = JSON.stringify(newJSON);
+  
+  return newJSON;
+}
+
+function getAvgDPS(){
+  let avg = sumDPS / appdata.length;
+  console.log("avg = " + avg);
+  return avg;
+}
+
+
 
 server.listen( process.env.PORT || port )
