@@ -1,5 +1,5 @@
 
-##To-do List
+## To-do List
 By Haley Hauptfeld
 Project Summary: My application is a to-do list that adds data to an array on the backend. Users input their task, the level of priority that task has, and the date that it was assigned. Then, the program generates a new field called deadline, that tells the user what day they need to accomplish the task by based upon the level of priority they gave the task.
 
