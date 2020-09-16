@@ -1,12 +1,13 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "musician-database",
+  "version": "1.0.0",
+  "description": "Plot musician information on a google map",
+  "author": "Jacob Pelrah",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node public/js/server.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "@googlemaps/google-maps-services-js": "^3.1.6",
+    "mime": "^2.4.6"
   }
 }
