@@ -1,5 +1,6 @@
 
 ## Assigment 2 - Short Stack: To-Do list web application
+
 This project aims to be a to-do list for students, where they can input a task and the amount of hours it will take to complete it. The server will save the date it was created and the priority of the task. 
 
 This application allows for students to keep track of their tasks and time commitments, regardless of how many times they open or close the tab. This is achieved by saving the tasks in a JSON file. 
@@ -8,7 +9,9 @@ This application addresses the problem, but in its current state it cannot allow
 
 For future work, further fields for the tasks would be implemented, such as the class that each task is for. Further ways of modifying the already existing data would also allow the user to persolize their to-do list.
 
-https://alvaradoblancouribe-a2-shortstack.glitch.me/
+![recording](/to-do.gif)
+
+https://a2-isabelalvaradoblancouribe.glitch.me/
 
 ## Technical Achievements
 - **Tech Achievement 1**: 
