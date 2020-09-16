@@ -57,26 +57,25 @@ function end() {
 //   }
 // }
 
-const submitName = function (e) {
+const submit = function (e) {
   //prevent default form action from being carried out
   e.preventDefault();
 
   const userScore = {
     name: document.getElementById('yourname').value,
-    clicks: clickcount,
-    seconds: seconds
+    clicks: clickcount
   }
 
   const body = JSON.stringify(userScore);
-  const options = {
-    method: 'POST',
-    body
-  }
 
-  fetch('/submit', options)
+  fetch('/submit', {
+    method:'POST',
+    body
+  })
     .then(function (response) {
+      console.log(response);
       //do something with response
-      restartGame();
+      //restartGame();
     })
 
   return false;
@@ -91,12 +90,15 @@ function restartGame(){
 //generate a table for displaying under score
 function buildTable(name, cps, clicks) {
   let table = document.getElementById('scoretable');
+  //for building the scoreboard header for the table
   table.innerHTML = 
   '<tr>\n' +
   '<th>Player Name</th>\n' +
   '<th>Clicks Per Second</th>\n' +
   '<th>Total Clicks</th>\n' +
   '</tr>';
+
+  //for populating the scoreboard with scores.
   for (let i = 0; i < scoreboard.length; i++) {
     const userScore = scoreboard[i];
   }
@@ -104,12 +106,12 @@ function buildTable(name, cps, clicks) {
 
 
 window.onload = function () {
-  console.log("Loaded!");
+  const button = document.getElementById('submitbtn')
+  button.onclick = submit
   document.getElementById('clickbtn').style.display = "none";
   document.getElementById('currentclicks').style.display = "none";
   document.getElementById('inputname').style.display = "none";
   document.getElementById('yourname').style.display = "none";
   document.getElementById('submitbtn').style.display = "none";
-  const button = document.getElementById('submitbtn')
-  button.onclick = submitName
+  console.log("Loaded!");
 }

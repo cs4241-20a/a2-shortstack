@@ -50,7 +50,6 @@ const handlePost = function (request, response) {
           "name": userScore.name,
           "cps": cps,
           "clicks": userScore.clicks,
-          "seconds": seconds
         }
 
         scoreboard.push(newUser);
