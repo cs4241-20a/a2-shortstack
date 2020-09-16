@@ -3,6 +3,7 @@
   <head>
     <title>Cursed Cats</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/baseStyles.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/utility.css" />
     <script src="js/index.js"></script>
@@ -13,9 +14,16 @@
     </nav>
     <main>
       <h2 class="u_txt--white u_txt--hdg2 c_catInfo">Welcome to the Cursed Cat Wiki, Feel Free to Browse the Cats or Add Your Own</h2>
-      <section class="c_catList">
+      <section id="featuredCats">
         <h3 class="u_txt--white u_txt--hdg3 c_catList__heading">Our Current Cats</h3>
-        <!-- Cats Go Here -->
+        <p id="loadingMessage" class="u_txt--white">The cats are currently loading</p> 
+        <aside class="c_catList" id="catList">
+          <!-- Cats Go Here -->
+        </aside>
+        <h3 class="u_txt--white u_txt--hdg3 c_catList__heading" id="userCatHeading">Other People's Cats!</h3>
+        <aside class="c_catList c_catList--userCatList" id="userCatList">
+          <!-- Cats Go Here -->
+        </aside>
       </section>
       <!-- <section>
         <header>

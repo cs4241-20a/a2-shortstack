@@ -19,7 +19,7 @@
     font-weight: 400;
 }
 
-.u_txt--hdg3 {
+.u_txt--hdg3, .u_txt--hdg4 {
     margin: 0;
     font-weight: bold;
 }
