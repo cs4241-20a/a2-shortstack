@@ -7,7 +7,7 @@ const submit = function (e) {
         startinput = document.querySelector('#starttime'),
         endinput = document.querySelector('#endtime'),
         table = document.querySelector('#resultsTable'),
-        json = { workername: nameinput.value, starttime: startinput.value, endtime: endinput.value, worktime: (endinput.value - startinput.value), payment: (12.75 * (endinput.value - startinput.value) * 0.9) },
+        json = { workername: nameinput.value, starttime: startinput.value, endtime: endinput.value, worktime: (endinput.value - startinput.value), payment: (12.75 * (endinput.value - startinput.value)) },
         body = JSON.stringify(json);
 
     //check if inputs are empty
