@@ -79,7 +79,11 @@ const readAPICall = function(request, response) {
     case "deleteCat":
       //Post
     case "newCat":
-      //Post
+      request.on('data', function(data) {
+        console.log(data.toString())
+      })
+      response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+      response.end(JSON.stringify({"data": "skrt"}))
     default:
       response.writeHead( 403, "Forbidden", {'Content-Type': 'application/json' })
       response.end(JSON.stringify({error: "Not a valid API call"}))

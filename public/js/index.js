@@ -8,28 +8,41 @@ let loadingMessage
 let userCatList
 let userCatListHeading
 let cats 
+let submitButton
 
 //Enabling Use-Strict Mode
 'use-strict'
 
-const submit = function( e ) {
+const uploadCat = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const catName = document.querySelector('#name'),
+          catDescription = document.querySelector('#description'),
+          catImage = document.querySelector('#picture') 
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+    console.log(catName.value)
+    console.log(catDescription.value)
+    console.log(catImage.files[0])
+    let formData = new FormData()
 
-    return false
+    if(!catImage.files[0]){
+        console.log("A file must be provided for upload")
+    }
+    else {
+        formData.append('catName', catName.value)
+        formData.append('catDescription', catDescription.value)
+        formData.append('catImage', catImage.files[0].stream())
+        fetch(catNewRoute, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => {
+            console.log(error)
+        })
+    } 
 }
 
 window.onload = function() {
@@ -37,11 +50,10 @@ window.onload = function() {
     loadingMessage = document.getElementById("loadingMessage")
     userCatListHeading = document.getElementById("userCatHeading")
     userCatList = document.getElementById("userCatList")
-    // const button = document.querySelector( 'button' )
-    // button.onclick = submit
-    const apiUrl = "/api/cats"
+    submitButton = document.getElementById("formSubmitButton")
+    submitButton.onclick = uploadCat
 
-    fetch(apiUrl)
+    fetch(catIndexRoute)
     .then(response => response.json())
     .then(cats => {
         loadCats(cats)
@@ -88,16 +100,16 @@ const createCatCard = (cat, catList, includeButton) => {
    catCardDescription.innerText = cat.description   
 
    catCardInformation.appendChild(catCardDescription)
-   if(includeButton){
-    const catCardButton = document.createElement("button")
-    catCardButton.className = "c_catList__secondaryButton"
-    catCardButton.innerText = "Update Cat"
-    catCardButton.id = `${cat.name}`
-    catCardButton.onclick = () => {
-        updateCatButton(catCardButton.id)
-    }
-    catCardInformation.appendChild(catCardButton)
-   }
+//    if(includeButton){
+//     const catCardButton = document.createElement("button")
+//     catCardButton.className = "c_catList__secondaryButton"
+//     catCardButton.innerText = "Update Cat"
+//     catCardButton.id = `${cat.name}`
+//     catCardButton.onclick = () => {
+//         updateCatButton(catCardButton.id)
+//     }
+//     catCardInformation.appendChild(catCardButton)
+//    }
    catCardHeader.appendChild(catCardName)
    catCard.appendChild(catCardImage)
    catCard.appendChild(catCardHeader)
@@ -114,10 +126,10 @@ const createUserCatList = (cats) => {
     })
 }  
 
-const updateCatButton = (name) => {
-    console.log(findCatByName(name))
-}
+// const updateCatButton = (name) => {
+//     console.log(findCatByName(name))
+// }
 
-const findCatByName = (name) => {
-    return cats.user_cats.filter((cat) => cat.name === name)
-}
+// const findCatByName = (name) => {
+//     return cats.user_cats.filter((cat) => cat.name === name)
+// }

@@ -25,22 +25,55 @@
           <!-- Cats Go Here -->
         </aside>
       </section>
-      <!-- <section>
-        <header>
-          <h3 class="u_txt--white u_txt--hdg3">
+      <section class="c_newCatFormSection">
+        <header class="c_newCatFormSection__header">
+          <h3 class="u_txt u_txt--hdg3">
             Add a New Cat to the List
           </h3>
         </header>
-        <form>
-          <label for="catName" class="u_txt--white">
-            Cat Name
+        <p class="u_txt">An image is required for a new cat entry to be made</p>
+        <form class="c_newCatFormSection__form" action="">
+          <label 
+            for="name" 
+            class="u_txt c_newCatForm__label"
+          >
+            Cat Name:
           </label>
           <input
-            class="c_catForm__catName" 
-            id="catName"
+            class="c_catForm__catName c_newCatForm__input" 
+            id="name"
           />
+          <label
+            for="description"
+            class="u_txt c_newCatForm__label"
+          >
+            Description of Your Cat:
+          </label>
+          <textarea
+            class="c_newCatForm__input c_newCatForm__textArea"
+            id="description"
+            placeholder="A smelly cat"
+          ></textarea>
+          <label
+            class="u_txt c_newCatForm__label"
+            for="picture"
+          >
+            Upload Your Cat's Picture:
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            id="picture"
+            class="c_newCatForm__input"
+          />
+          <button
+            class="c_catList__primaryButton"
+            id="formSubmitButton"
+          >
+            Upload the Cat
+          </button>
         </form>
-      </section> -->
+      </section>
     </main>
     <footer class="c_footer">
       <section class="c_footer__information">

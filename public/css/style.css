@@ -1,3 +1,8 @@
+.c_header {
+    padding: 0.5rem 1rem;
+    background-color: var(--header-background);
+}
+
 .c_catInfo {
     text-align: center;
     margin-bottom: 3rem;
@@ -41,7 +46,7 @@
 }
 
 .c_catCard:not(:first-child) {
-    margin-left: -140px;
+    margin-left: -120px;
 }
 
 .c_catCard__catImage {
@@ -98,9 +103,26 @@
     cursor: pointer;
 }
 
-.c_header {
-    padding: 0.5rem 1rem;
-    background-color: var(--header-background);
+.c_newCatFormSection {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.c_newCatFormSection__header {
+    margin-bottom: 1rem;
+}
+
+.c_newCatFormSection__form {
+    display: grid;
+    grid-template-rows: 1fr 1fr min-content;
+    grid-template-columns: 1fr 1fr;
+}
+
+.c_newCatForm__input {
+    font-family: sans-serif;
+    padding: 0.5rem;
+    height: min-content;
 }
 
 .c_footer {
@@ -114,4 +136,19 @@
 
 .c_footer__information {
     padding: 1rem;
+}
+
+@media(max-width: 500px) {
+    .c_newCatFormSection__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+   .c_newCatForm__label {
+        margin-bottom: 0;
+    }
+
+    input {
+        margin-bottom: 1rem;
+    }
 }
