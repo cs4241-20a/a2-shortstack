@@ -1,3 +1,8 @@
+/**
+ * submit -submit POST request
+ * @param e
+ * @returns {boolean}
+ */
 const submit = function (e) {
     // prevent default form action from being carried out
     e.preventDefault()
@@ -5,11 +10,12 @@ const submit = function (e) {
 
     let data = {}
     let body
+    //Get all input selectors
     const all_inputs = document.querySelectorAll('input')
     all_inputs.forEach(x => data[x.name] = x.value)
+    //Convert JSON to string
     body = JSON.stringify(data)
-
-
+    //Make request then populate table
     fetch('/submit', {
         method: 'POST',
         body
@@ -23,39 +29,49 @@ const submit = function (e) {
     return false
 }
 
+/**
+ * deleteEntry -delete table entry by POST request
+ * @param e
+ */
 const deleteEntry = function (e) {
     // prevent default form action from being carried out
     e.preventDefault()
 
+
     const delete_input = document.querySelector('#delete_input')
     let body = JSON.stringify({remove: delete_input.value})
 
+    //Make POST req and populate modified data
     fetch('/submit', {method: 'POST', body}).then(function (response) {
         response.text().then((appData) => {
             populateTable(appData)
         })
     })
-
 }
 
+
 window.onload = function () {
+    //Get reference to buttons
     const deleteButton = document.querySelector('#delete_button')
     deleteButton.onclick = deleteEntry
 
     const button = document.querySelector('button')
     button.onclick = submit
 
-    //Fetch the data from server
+    //When the window is loaded, fetch the data from server and populate table
     let body = JSON.stringify({send_data: true})
     fetch('/submit', {method: 'POST', body}).then(function (response) {
         response.text().then((appData) => {
             populateTable(appData)
         })
-
     })
 }
 
 
+/**
+ * populateTable -populate table with data from the server
+ * @param appData
+ */
 function populateTable(appData) {
     //Insert Data here
     const recordsSection = document.querySelector('#musician_records')
