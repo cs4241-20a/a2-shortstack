@@ -46,6 +46,7 @@ const handlePost = function( request, response ) {
       case "edit":
         for(var i = 0; i < appData.length; i++){
           if(appData[i].number == json.number && appData[i].firstName == json.firstName && appData[i].lastName == json.lastName) {
+            console.log("editting player's stats")
             appData[i].goals += json.goals
             appData[i].assists += json.assists
           }
@@ -56,7 +57,7 @@ const handlePost = function( request, response ) {
     }
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( JSON.stringify(appData) )
+    response.end( JSON.stringify( dataString ) )
   })
 }
 

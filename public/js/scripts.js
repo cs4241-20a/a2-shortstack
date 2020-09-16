@@ -12,7 +12,7 @@ const addPlayer = function( e ) {
         goalsInput = document.querySelector( '#goals' ),
         assistsInput = document.querySelector( '#assists' ),
         
-        json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
+        json = { 'playerAction': action, 'number': numberInput.value, 'firstName': firstNameInput.value, 'lastName': lastNameInput.value, 'goals': goalsInput.value, 'assists': assistsInput.value },
         body = JSON.stringify( json );
 
   fetch( '/addPlayer', {
@@ -24,9 +24,8 @@ const addPlayer = function( e ) {
   })
   .then( function(txt){
       console.log(txt)
-      //addRoster( JSON.parse('{ "playerAction": "add", "number": 1, "firstName": "K", "lastName": "Hart", "goals": 0, "assists": 0}') )
       //txt.forEach( element => addRoster( JSON.parse( element ) ) )
-      addRoster( txt )
+      addRoster( txt[0] ) 
   })
 
   return false
@@ -44,7 +43,7 @@ const deletePlayer = function( e ) {
         goalsInput = document.querySelector( '#goals' ),
         assistsInput = document.querySelector( '#assists' ),
         
-        json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
+        json = { 'playerAction': action, 'number': numberInput.value, 'firstName': firstNameInput.value, 'lastName': lastNameInput.value, 'goals': goalsInput.value, 'assists': assistsInput.value },
         body = JSON.stringify( json );
 
   fetch( '/deletePlayer', {
@@ -74,7 +73,7 @@ const editPlayer = function( e ) {
         goalsInput = document.querySelector( '#goals' ),
         assistsInput = document.querySelector( '#assists' ),
         
-        json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
+        json = { 'playerAction': action, 'number': numberInput.value, 'firstName': firstNameInput.value, 'lastName': lastNameInput.value, 'goals': goalsInput.value, 'assists': assistsInput.value },
         body = JSON.stringify( json );
 
   fetch( '/editPlayer', {
@@ -84,7 +83,7 @@ const editPlayer = function( e ) {
   .then( function( response ) {
     return response.json()
   })
-  .then( function(txt){
+  .then( function(txt) {
       console.log(txt)
       editRoster(txt)
   })
@@ -113,7 +112,7 @@ function addRoster(data){
 
 function deleteRoster(){
   console.log("Deleting last player")
-  if(numRows !== 1){
+  if(numRows > 1){
     document.getElementById( "resultTable" ).deleteRow(-1);
     numRows--
   }
@@ -122,7 +121,7 @@ function deleteRoster(){
 
 function editRoster(array){
   for(var r = 0; r < array.length; r++){
-    var table = documenet.getElementById( "resultTable" )
+    var table = document.getElementById( "resultTable" )
     table.rows[r+1].cells[0].innerHTML = array[r].number
     table.rows[r+1].cells[1].innerHTML = array[r].firstName
     table.rows[r+1].cells[2].innerHTML = array[r].lastName
@@ -142,13 +141,6 @@ window.onload = function() {
   const editButton = document.querySelector( '#edit' )
   editButton.onclick = editPlayer
 
-  /* const table = document.querySelector( '#resultTable' )
-  fetch( '/appData' )
-  .then( function( response ){
-      return response.json()
-  })
-  .then( function( array ){
-      console.log( array );
-      array.forEach( element => updateRoster( table, JSON.parse( element ) ) )
-  }) */
+  window.localStorage.clear()
+
 }
