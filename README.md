@@ -12,4 +12,10 @@ For CSS, I used FlexBox, CSS Grid and Table to display the results
                           calculates derived data, updates database and responds with the derived data and then I update the client accordingly.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: None
+- **Design Achievement 1**:
+    - Adrianna Staszewska
+    - Adrianna pointed out that the data fields should be cleared after submitting an entry
+    - Adrianna commented that the id field should be actually used or hidden completely when adding new entries, since the id is generated on back-end
+    - I would have separate forms for Create, Update, Delete with only relevant data to each one
+                            
+
