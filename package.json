@@ -1,12 +1,12 @@
 {
-  "name": "",
+  "name": "Inside My Refrigerator",
   "version": "",
-  "description": "",
-  "author": "",
+  "description": "a tool used to aid in keeping track of and storing food items in your refrigerator!",
+  "author": "Alexa Freglette",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }

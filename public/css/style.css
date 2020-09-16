@@ -1,1 +1,81 @@
-/*Style your own assignment! This is fun! */
+
+body{
+  grid-template-rows: auto;
+  background-color: #A4B7BB;
+  font-size: 20px;
+  text-align: center;
+  display:grid;
+  font-family: 'Source Code Pro', monospace;
+  color:  #35262D;
+
+}
+
+h1{
+    color: #E8ECED;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Grandstander', cursive;
+    background-color: #76A7B0;
+    padding: 30px;
+
+}
+
+form{
+    flex-flow: row wrap
+    padding: 40px;
+    margin: 10px;
+    font-size: 20px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 20px;
+
+}
+input[type=text],input[type=date] {
+    width: 10%;
+    padding: 8px 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+
+
+  }
+input[type=number] {
+    width: 5%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+
+
+  }
+
+option[type=value]{
+  font-famly: "Times New Roman";
+}
+table{
+  font-family: 'Source Code Pro', monospace;
+  text-align: center;
+  width:70%; 
+  margin-left:15%; 
+  margin-right:15%;
+  align-items: center; 
+  justify-content: center; 
+}
+
+table td, table th {  
+
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even){
+  background-color: #f2f2f2;}
+
+table tr:hover {background-color: 
+  #76A0B0;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #35262D;
+  color: #FFFBFF;
+}
