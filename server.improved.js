@@ -6,9 +6,9 @@ const http = require('http'),
   dir = 'public/',
   port = 3000
 
-const scoreboard = [
-  { name: "Mr. Insano", cps: 5, clicks: 150, seconds: 30, time: 7987989869},
-  { name: "Cui2", cps: 2, clicks: 60, seconds: 30, time: 7987097986986}
+let scoreboard = [
+  { name: "Mr. Insano", cps: 105.1, clicks: 1051, seconds: 10, time: 7987989869},
+  { name: "Matthew", cps: 2, clicks: 60, seconds: 30, time: 7987097986986}
 ]
 
 const server = http.createServer(function (request, response) {
@@ -71,7 +71,11 @@ const handlePost = function (request, response) {
         break;
 
       case '/delete':
-        //delete user with name from scoreboard list.
+        let delName = JSON.parse(dataString).name; //parse passed data for deletion
+        scoreboard = scoreboard.filter(data => data.name !== delName);
+
+        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.end(JSON.stringify(scoreboard));
         break;
 
       case '/modify':

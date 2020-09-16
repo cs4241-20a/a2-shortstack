@@ -2,19 +2,25 @@
 console.log("Welcome to assignment 2!")
 
 var clickcount = 0;
-const seconds = 1;
+let seconds = 0;
 
 
 //when start button is clicked swap visibilities and start 30 second timer.
 function startClicked() {
-  console.log("Game started!");
-  document.getElementById('startbtn').style.display = "none";
-  document.getElementById('currentclicks').innerHTML = "Click the button to start earning points!";
-  var classes = document.getElementsByClassName('poststart');
-  for (var i = 0; i < classes.length; i++) {
-    classes[i].style.display = "block";
+  seconds = document.getElementById('customseconds').value;
+  if (seconds > 0) {
+    console.log("Game started!");
+    document.getElementById('customseconds').style.display = "none";
+    document.getElementById('startbtn').style.display = "none";
+    document.getElementById('currentclicks').innerHTML = "Click the button to start earning points!";
+    var classes = document.getElementsByClassName('poststart');
+    for (var i = 0; i < classes.length; i++) {
+      classes[i].style.display = "block";
+    }
+    setTimeout(end, seconds * 1000); //after 3 seconds...
+  } else {
+    alert("Please give seconds greater than 0");
   }
-  setTimeout(end, seconds * 1000); //after 3 seconds...
 }
 
 
@@ -75,12 +81,38 @@ const submit = function (e) {
         //data
         console.log("Submit Response:", response);
         console.log("Returned data: ", data);
-        let newScoreboard = data;
-        //console.log("Should be Mr. Insano: \n" + newScoreboard[0].name);
-        //console.log("Should be 3" + newScoreboard.length);
         restartGame();
 
-        buildTable(newScoreboard);
+        buildTable(data);
+      })
+    })
+
+  return false;
+}
+
+const deleteName = function (e) {
+  //prevent default form action from being carried out
+  e.preventDefault();
+
+  const delName = {
+    name: document.getElementById('delname').value
+  }
+
+  const body = JSON.stringify(delName);
+
+  fetch('/delete', {
+    method: 'POST',
+    body
+  })
+    .then(function (response) {
+      //response
+      response.json().then(function (data) {
+        //data
+        console.log("Delete Response:", response);
+        console.log("Returned data: ", data);
+
+        buildTable(data);
+        document.getElementById('delname').value = "";
       })
     })
 
@@ -92,12 +124,15 @@ function restartGame() {
   console.log("Restarting game...");
   clickcount = 0;
 
-  document.getElementById('yourname').innerText = "";
+  
+  document.getElementById('yourname').value = "";
   document.getElementById('currentclicks').style.display = "none";
   document.getElementById('inputname').style.display = "none";
   document.getElementById('yourname').style.display = "none";
   document.getElementById('submitbtn').style.display = "none";
   document.getElementById('startbtn').style.display = "block";
+  document.getElementById('customseconds').style.display = "block";
+  document.getElementById('customseconds').value = "Please input seconds here";
 }
 
 //generate a table for displaying under score
@@ -143,8 +178,11 @@ function buildTable(newScoreboard) {
 
 
 window.onload = function () {
-  const button = document.getElementById('submitbtn')
-  button.onclick = submit
+  const button = document.getElementById('submitbtn');
+  button.onclick = submit;
+  const delbutton = document.getElementById('delbtn');
+  delbutton.onclick = deleteName;
+  document.getElementById('customseconds').value = "Please input seconds here";
   document.getElementById('clickbtn').style.display = "none";
   document.getElementById('currentclicks').style.display = "none";
   document.getElementById('inputname').style.display = "none";

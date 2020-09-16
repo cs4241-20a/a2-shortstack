@@ -20,6 +20,7 @@
   </div>
 
   <div class="center">
+    <input type='text' id='customseconds' name='cusseconds' value="">
     <input type="button" id='startbtn' onclick="startClicked()" value="Start"></input>
     <a class="poststart" id="clickbtn" onclick="addClicked()"><img src="button.png"></a>
   </div>
@@ -68,6 +69,11 @@
       </tr>
 
     </table>
+  </div>
+
+  <div id="deling" class="center">
+    <input type='text' id='delname' name='delname' value="">
+    <button id='delbtn' method="POST" action="/delete">Delete Name</button>
   </div>
 
 </body>

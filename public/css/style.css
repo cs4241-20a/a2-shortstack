@@ -25,6 +25,10 @@ table, th, td {
     align-items: center;
 }
 
+input {
+    margin: 0px;
+}
+
 .center {
     justify-content: center;
     display:flex;
@@ -39,6 +43,9 @@ table, th, td {
     background-color: black;
 }
 
-input {
-    margin: 0px;
+#deling {
+    margin-top: 5px;
+}
+#deling button {
+    color:red;
 }
