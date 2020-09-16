@@ -50,11 +50,14 @@ const handlePost = function( request, response ) {
     // this request is a fulfillment
     else if (json.type === "fulfill") {
       console.log("obtained fulfillment");
-      const orderNum = json.orderNum;
+      let orderNum = json.orderNum;
+      console.log(orderNum);
+      console.log(typeof orderNum);
       let i;
       for (i = 0; i < appdata.length; i++) {
-        if (appdata[i].orderNum === orderNum) {
-          appdata = appdata.slice(0, i).concat(appdata.slice(i + 1, appdata.length));
+        console.log(appdata[i].orderNum);
+        if (appdata[i].orderNum.toString() === orderNum) {
+          appdata = appdata.splice(0, i).concat(appdata.splice(i + 1, appdata.length));
         }
       }
     }
@@ -62,10 +65,10 @@ const handlePost = function( request, response ) {
       // this is an invalid request
       console.log("invalid json");
     }
-
+    console.log(appdata);
     // ... do something with the data here!!!
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    response.end()
+    response.end(JSON.stringify(appdata));
   })
 };
 

@@ -42,7 +42,10 @@
     })
     .then( function( response ) {
       // do something with the response
-      console.log( response )
+      return response.text();
+    }).then( function(txt) {
+      console.log(txt);
+      return false;
     })
 
     return false
@@ -62,9 +65,12 @@
       body
     })
             .then( function( response ) {
-              // do something with the reponse
-              console.log( response )
-            })
+              // do something with the response
+              return response.text();
+            }).then( function(txt) {
+      console.log(txt);
+      return false;
+    })
 
     return false
   };
