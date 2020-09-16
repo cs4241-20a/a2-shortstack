@@ -3,39 +3,66 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- https://www.w3schools.com/css/css_rwd_viewport.asp -->
+    <link rel="stylesheet" href="css/style.css"/>
+    <!-- https://www.w3schools.com/CSS/css_howto.asp -->
+    <script src="js/scripts.js"></script>
+    <!-- https://www.w3schools.com/Js/js_whereto.asp -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Raleway&display=swap" rel="stylesheet">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div id="wrapper">
+      <h1>Tagteam Marathon</h1>
+      <h2>About</h2>
+      <p>Welcome to Tagteam Marathon! </p>
+      <p>Tagteam Marathon is an app that helps you track how far your team has run. No matter where you are or how fast you're going, you can help your team run a collective marathon.</p>
+      <h2>Completed Runs</h2>
+      <table id="runs-table">
+        <tr>
+          <th>Runner</th>
+          <th>Location</th>
+          <th>Distance (miles)</th>
+          <th>Time (minutes)</th>
+          <th>Speed (miles/hour)</th>
+        </tr>
+      </table>
+      <div id="stats">
+        <p>Total Distance (miles):</p> <p id="total-distance"></p>
+        <p>Marathons Run:</p> <p id="num-marathons"></p>
+      </div>
+
+      <h2>New Run</h2>
+      <form id="new-run-form" action="">
+
+        <label>Your Name</label>
+        <input type="text" id="input-name" placeholder="ex. Jane Doe">
+
+        <label>Location</label>
+        <input type="text" id="input-location" placeholder="ex. Bancroft Tower">
+
+        <label>Distance (miles)</label>
+        <input type="number" id="input-distance" placeholder="ex. 2.75" min="0">
+
+        <label>Time (minutes)</label>
+        <input type="number" id="input-time" placeholder="ex. 30" min="0">
+
+        <button id="form-submit" type="submit">Submit Run</button>
+      </form>
+      <h2>Edit Runs</h2>
+      <table id="edit-runs-table">
+        <tr>
+          <th>Runner</th>
+          <th>Location</th>
+          <th>Distance (miles)</th>
+          <th>Time (minutes)</th>
+          <th>Speed (miles/hour)</th>
+          <th>Delete Run</th>
+        </tr>
+      </table>
+      <div class="full-width">
+        <button id="submit-edits" type="button">Submit Edits</button>
+      </div>
+    </div>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
