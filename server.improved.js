@@ -6,11 +6,8 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = []
+
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -34,16 +31,46 @@ const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
+      //console.log(appdata)
   })
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    let data = JSON.parse( dataString )
 
-    // ... do something with the data here!!!
+    var ageVal = 0
+    var dob = data.dateofbirth
+    //console.log(dob)
+    var splitDob = dob.split("/")
+    var month = splitDob[0]
+    var day = splitDob[1]
+    var year = splitDob[2]
+    var today = new Date();
+    if ((today.getMonth() + 1) > month) {
+      ageVal =  today.getFullYear() - year
+    }
+    else if((today.getMonth() + 1) == month) {
+      if(today.getDate() > day) {
+        ageVal = today.getFullYear() - year
+      }
+      else if(today.getDate() < day) {
+        ageVal = today.getFullYear() - year - 1
+      }
+      else{
+        ageVal = today.getFullYear() - year
+      }
+    }
+    else if((today.getMonth() + 1) < month){
+      ageVal = today.getFullYear() - year - 1
+    }
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    data["age"] = ageVal
+
+    appdata.push(data)
+
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(data))
   })
 }
 
@@ -54,17 +81,14 @@ const sendFile = function( response, filename ) {
 
      // if the error = null, then we've loaded the file successfully
      if( err === null ) {
-
        // status code: https://httpstatuses.com
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
-
-     }else{
-
+     }
+     else{
        // file not found, error code 404
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
-
      }
    })
 }
