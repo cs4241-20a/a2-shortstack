@@ -22,6 +22,7 @@ table, th, td {
 }
 
 table {
+    visibility: hidden;
     width: 90%;
     font-size: 18px;
     text-align: right;
@@ -94,6 +95,7 @@ table.table-center {
     margin: 15px;
     margin-bottom: 28px;
 }
+
 
 #top-container {
     width: 100%;

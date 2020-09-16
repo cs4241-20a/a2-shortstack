@@ -51,6 +51,8 @@ function generateBody(action) {
 
 
 function performFetch(name, body) {
+    let table = document.getElementById('table');
+    table.style.visibility = "visible";
     // fetching data from the input entries
     // POST used to send to server
     fetch( name, {
@@ -171,6 +173,10 @@ window.onload = function() {
     fetch('/reviews') // using fetch to GET the reviews array in server
     .then(response => response.json())
     .then(data => {
+        if (data.length != 0) {
+            let table = document.getElementById('table');
+            table.style.visibility = "visible";
+        }
         createTable(data)
         
     })

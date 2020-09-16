@@ -1,7 +1,7 @@
 Assignment 2 - User Tech Review 
 ===
 
-Jonathan Dang: https://a2-jdang4.glitch.me
+Jonathan Dang: https://a2-jonathan-dang.glitch.me
 
 ***User Tech Review*** is a website that allows users to assign their own ratings to either phones, tablets, or laptops. There are a total of 4 ratings in total; price, battery life, performance, and device feel. Each of these ratings are out of 5 stars and by submitting the ratings, the website would derive the overall rating of the user. This overall rating would be presented in a table that consists of all the other collected data that are residing in the server. In addition to adding a review, the user would also be able to modify and delete any reviews that are seen in the table.
 
