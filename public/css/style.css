@@ -2,20 +2,35 @@
 /* color scheme: */
 
 /* element selector */
-h1, h2, h3, h4, h5 {
-    color:pink;
+h1, p {
+    color:rgb(221, 116, 133);
     font-family: "Artifika";
     text-align: center;
 }
 
+/* class selector */
+.ordertable {
+    background-color: pink;
+}
+h2 {
+    color:pink;
+    font-family: "Artifika";
+}
+h3, h4, h5 {
+    color:pink;
+    font-family: "Artifika";
+    text-align: left;
+ }
 /* id selector */
 .prompt {
     background-color: pink;
     font-family: "Lora";
 }
 
-li {
-    font-family: "Lora";
+li, ul {
+    font-family: "Artifika";
+    justify-content: right;
+    color: rgb(221, 116, 133);
 }
 
 button {
@@ -30,14 +45,5 @@ table, th, td {
 body {
     display: flex;
     flex-direction: column;
+    background-color: cornsilk;
 }
-/* TODO: ID selectors */ 
-
-/* TODO: Element Selectors */
-
-/* TODO: Class Selectors */
-
-/* TODO: CSS Grid or Flexbot Layout */
-
-
-/* TODO: Define all fonts with Google Fonts */

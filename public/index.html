@@ -9,16 +9,14 @@
     <script src="js/scripts.js"></script>
   </head>
   <body>
-    <h1>WELCOME TO LOCAL ICE CREAM SHOP EMPLOYEE FORM!</h1>
-    <h3>
-      We are happy you are here! please place your order below. If you would
-      like to see all the orders we are working on right now, and change your
-      order, please select the button at the bottom of the screen.
-    </h3>
+    <h1>WELCOME, EMPLOYEE!</h1>
+    <h2>
+      We are happy to have working at our local ice cream shop! Please use the form below to place orders for our customers.
+    </h2>
 
-    <h1>
+    <h3>
       OUR MENU
-    </h1>
+    </h3>
     <ul>
       <li>
         Chocolate
@@ -47,9 +45,9 @@
       Create an Order!
     </h3>
     <form class="ordersForm">
-      <input type="text" class="prompt" id="orderItem" value="your title here" />
-      <input type="text" class="prompt" id="orderDetails" value="your details here" />
-      <input type="number" class="prompt" id="orderCost" step="0.01" min="0.01" value="0.01" />
+      <input type="text" class="prompt" id="orderItem" placeholder="flavor" />
+      <input type="text" class="prompt" id="orderDetails" placeholder="any details (allergies, etc)" />
+      <input type="number" class="prompt" id="orderCost" step="1" min="1" placeholder="number of scoops" />
       <button class="submitBtn">submit</button>
     </form>
     <br>
@@ -57,12 +55,12 @@
       Change an Order
     </h3>
     <h5>
-      If the customer would like to change their order, please ask them for their order number and make the necessary changes.
+      If the customer would like to change their order, please ask them for their order number and enter in the new flavor and details.
     </h5>
     <form class="alterOrdersForm">
-      <input type="text" class="prompt" id="newOrderNumber" value="Order Number" />
-      <input type="text" class="prompt" id="newOrderItem" value="Order Item" />
-      <input type="text" class="prompt" id="newOrderDetails" value="Order Details" />
+      <input type="text" class="prompt" id="newOrderNumber" placeholder="order number" />
+      <input type="text" class="prompt" id="newOrderItem" placeholder="flavor" />
+      <input type="text" class="prompt" id="newOrderDetails" placeholder="details" />
       <button class="changeBtn">change order</button>
     </form>
 
@@ -71,21 +69,21 @@
       Complete an Order
     </h3>
     <h5>
-      Before giving the customer their order, please enter the order number here to mark the order number as completed. 
+      Before giving the customer their order, please enter the order number here to mark the order as completed. 
     </h5>
     <form class="deleteOrdersForm">
-      <input type="text" class="prompt" id="deleteOrderNumber" value="Order Number" />
+      <input type="text" class="prompt" id="deleteOrderNumber" placeholder="order number" />
       <button class="deleteBtn">delete order</button>
     </form>
 
     <h1>CURRENT ORDERS</h1>
-    <table id="currentTasks">
+    <table class="ordertable" id="currentTasks">
       <tr>
         <td>Order Number</td>
-        <td>Order Item</td>
+        <td>Order Flavor</td>
         <td>Details</td>
-        <td>Item Cost</td>
-        <td>Total Cost</td>
+        <td>Number of Scoops</td>
+        <td>Total Cost (Dollars)</td>
       </tr>
     </table>
   </body>
