@@ -1,0 +1,113 @@
+* {
+  font-family: "Noto Sans", sans-serif; }
+
+.flex-outer li,
+.flex-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1 0 auto; }
+
+.flex-outer > li > label,
+.flex-outer li p {
+  flex: 1;
+  max-width: 500px;
+  padding-right: 1em; }
+
+.flex-outer > li > label + * {
+  flex: 1 0 50em;
+  padding-right: 5em; }
+
+.flex-inner {
+  flex: 1 0 10em;
+  padding-right: 5em; }
+
+.flex-outer li button {
+  padding: 8px 16px;
+  margin-left: 10em;
+  border: none;
+  border-radius: 2px; }
+
+.flex-inner li {
+  width: 100px; }
+
+.flex-inner {
+  justify-content: space-between; }
+
+body {
+  background-color: #0b132b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  flex-basis: 0; }
+
+section {
+  background-color: #4e6766;
+  border-radius: 2px;
+  border: none;
+  margin: 2em;
+  padding: 2em;
+  max-width: 110em;
+  box-sizing: border-box;
+  width: 60%; }
+
+section * {
+  box-sizing: border-box; }
+
+form {
+  max-width: 80em; }
+
+.posts {
+  max-width: 100%; }
+
+table {
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 640px;
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td,
+th {
+  border: 1px solid transparent;
+  /* No more visible border */
+  height: 30px;
+  transition: all 0.3s;
+  /* Simple transition for hover effect */ }
+
+th {
+  background: #e09f3e;
+  /* Darken header a bit */
+  font-weight: bold;
+  color: #0b132b; }
+
+td {
+  background: #e09f3e;
+  text-align: center; }
+
+tr:nth-child(even) td {
+  background: #cce3de;
+  color: #0b132b; }
+
+tr:nth-child(odd) td {
+  background: #c2c2c2;
+  color: #0b132b; }
+
+tr td:hover {
+  background: #666;
+  color: #fff; }
+
+table {
+  width: 100%;
+  height: 100%; }
+
+button {
+  background-color: #c2c2c2;
+  color: #0b132b; }
+
+button:hover {
+  color: white; }
+
+body {
+  color: white; }
