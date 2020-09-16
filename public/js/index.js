@@ -32,7 +32,7 @@ const uploadCat = function( e ) {
     else {
         formData.append('catName', catName.value)
         formData.append('catDescription', catDescription.value)
-        formData.append('catImage', catImage.files[0].stream())
+        formData.append('catImage', catImage.files[0])
         fetch(catNewRoute, {
             method: 'POST',
             body: formData

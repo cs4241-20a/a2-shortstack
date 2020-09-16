@@ -1,6 +1,7 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       mime = require( 'mime' ),
+      formidable = require('formidable'),
       dir  = 'public/',
       port = 3000,
       dbLocation = dir + 'assets/cats.json',
@@ -56,6 +57,12 @@ const loadCacheFile = (fileName) => {
 loadCacheFile(dbLocation)
 loadCacheFile(indexFile)
 
+//TODO: Open json file
+//TODO: Write image into db
+//TODO: Update JSON file
+//TODO: Send new json file
+//todo: parse response on fe
+
 const server = http.createServer( function( request,response ) {
   if(request.url.includes('api')){
     readAPICall(request, response);
@@ -79,8 +86,10 @@ const readAPICall = function(request, response) {
     case "deleteCat":
       //Post
     case "newCat":
-      request.on('data', function(data) {
-        console.log(data.toString())
+      let form = new formidable();
+      form.parse(request, function(err, fields, files) {
+        console.log(fields);
+        console.log(files)
       })
       response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
       response.end(JSON.stringify({"data": "skrt"}))
