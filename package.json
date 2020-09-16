@@ -1,12 +1,31 @@
 {
-  "name": "",
+  "name": "glitch-drive",
   "version": "",
   "description": "",
-  "author": "",
+  "author": "Bryce Corbitt",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node app.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "get-folder-size": "^2.0.1",
+    "mime": "^2.4.4",
+    "multer": "^1.4.2",
+    "pug": "^3.0.0",
+    "pug-bootstrap": "^0.0.16",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-snakecasejs": "^2.2.0",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }

@@ -1,0 +1,34 @@
+extends layout
+
+block append body
+	.jumbotron
+		.container
+			h1 Glitch Drive 
+				+icon("folder-open")
+			blockquote.blockquote.text-center
+				p "It's like Google Drive but with less functionality, no account system, and a 
+					a(href="https://glitch.happyfox.com/kb/article/17-what-are-the-technical-restrictions-for-glitch-projects/") 200MB storage limit
+					|*."
+				footer.blockquote-footer Bryce Corbitt
+			h6 *200MB including the source code. Also filesize != size on disk, which is how Glitch measures it.
+	.container
+		.row
+			.col-centered
+				h2.text-center File Upload Form
+				form#uploadForm.align-self-center(method="post" action="/uploads", enctype="multipart/form-data")
+					.form-group
+						label.required(for='nameInput') Your Name
+						input#nameInput.form-control.required(name='uploader' type='text' autocomplete='off' placeholder='Because we use the honor system to verify who uploads what' required)
+					.form-group
+						label(for='keyInput') File Deletion Key
+						input#keyInput.form-control(name='key' type='password' placeholder='Something I won\'t guess easily' autocomplete='off')
+						small#keyHelp.form-text.text-muted You'll need this if you want to prevent others from deleting your file! If you don't care, just leave it blank.
+					.form-group
+						label.required(for='fileInput') Upload your file!
+						input#fileInput.required(name='file' type='file' required)
+					br
+					button.btn.btn-primary.btn-lg(type='submit') Submit
+		.col-md-12.text-center
+			a#view-btn.btn.btn-success.center(href="/uploads") Browse Uploaded Files 
+				+icon("cloud-download")
+				

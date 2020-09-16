@@ -1,0 +1,25 @@
+block append body
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        button.collapsed.navbar-toggle(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-9' aria-expanded='false')
+          span.sr-only Toggle navigation
+          span.icon-barW
+        a.navbar-brand(href='/') a2-brycecorbitt
+      #bs-example-navbar-collapse-9.collapse.navbar-collapse.jam
+        ul.nav.navbar-nav
+          li
+            .container-fluid(style='padding-right: 30px;')
+              .div(style='float: left; min-width: 200px;')
+                meter#capacity(min='0.0' max='1.0' low='.35', optimum='0', high='.7', value='0' style="width: 90%; height: 20px;")
+              .div(style='float: right; text-align: center;')
+                p#capacity-text 0/200MB used (100% available)
+          li
+            button#jam-button.btn.btn-primary Let's Jam
+          li
+            img#jam-pic.nav-item(src='/res/catjam.png' alt='Cat JAM')
+          li
+            p#jam-title Örfaz - Home Run (Desmeon Remix)
+            audio#jam-song(loop src="/res/home_run.mp3")
+block append scripts
+  script(src="/js/jam.js")
