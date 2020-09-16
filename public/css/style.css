@@ -1,1 +1,120 @@
-/*Style your own assignment! This is fun! */
+body {
+  width: 50%;
+  margin: 100px auto;
+  background-color: lightgray;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 33% 66%;
+  width: 900px;
+}
+
+.calendar-base {
+  width: 600px;
+  height: 500px;
+  border-radius: 0px 20px 20px 0px;
+  background-color: white;
+  color: black;
+  display: grid;
+}
+
+.right-events {
+  color: black,
+  align-self: center;
+}
+
+.calendar-left {
+  width: 300px;
+  height: 500px;
+  border-radius: 20px 0px 0px 20px;
+  background-color: #06a47c;
+  z-index: 1;
+  color: white;
+  display: grid;
+  grid-template-rows: 3fr 1fr 4fr 1fr;
+}
+
+.num-date {
+  font-size: 150px;
+  margin: 0 auto;
+  font-weight: 700;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+.day {
+  width: 50%;
+  margin: 0px auto;
+  font-size: 30px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.current-events {
+  font-size: 15px;
+  margin-left: 20px;
+  font-family: "Merriweather", sans-serif, bold;
+  display: grid;
+  overflow: hidden;
+}
+
+.subtitle {
+  font-weight: bold;
+}
+
+.todoList {
+  font-size: 13px;
+  overflow-y: scroll;
+}
+
+.create-event {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 25px;
+  display: grid;
+  grid-template-columns: 60% 40%
+}
+
+.event-line {
+  width: 90%;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: dotted;
+  background-color: #06a47c;
+  font-family: "Lato", sans-serif;
+}
+
+.no-outline:focus {
+  outline: none;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #E0FFFF;
+  font-family: "Lato", sans-serif;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #E0FFFF;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #E0FFFF;
+}
+
+.submit {
+  z-index: 2;
+  background: linear-gradient(to right, #E0FFFF 0%, #FFFACD 100%);
+  border-radius: 200px;
+  text-align: center;
+  color: black;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  align-self: center;
+}
