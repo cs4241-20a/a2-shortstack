@@ -1,1 +1,15 @@
 /*Style your own assignment! This is fun! */
+
+body{
+  background-color: lightblue;
+  font-family: calibri;
+  letter-spacing: 5px;
+}
+label{
+  font-family: impact;
+}
+button{
+  font-family: calibri;
+  color: white;
+  background-color: black;
+}
