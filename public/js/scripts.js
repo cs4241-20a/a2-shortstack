@@ -35,7 +35,16 @@ function calcPrio(fdate, sdate) {
 }
 function checkDateForm(str) {
   if (str.match("^[-0-9]")) {
-    return true;
+    var check = str.split("-");
+    console.log(check[2]);
+    if (check[2].length == 4 && check[2] <= 9999) {
+      if (check[0] - 1 <= 12) {
+        if (check[1] <= 31) {
+          return true;
+        }
+      }
+    }
+    return false;
   } else {
     return false;
   }
@@ -209,7 +218,7 @@ const submit = function(e) {
   });
 
   clearInput();
-
+  //location.reload();
   return false;
 };
 
