@@ -1,1 +1,36 @@
-/*Style your own assignment! This is fun! */
+body {
+  background-color: #dbc791;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+th,
+td {
+  padding: 7px 10px 10px 10px;
+}
+
+td {
+  border-spacing: 10px 10px;
+}
+
+th {
+  text-transform: uppercase;
+  border-bottom: 2px solid #000000;
+  text-align: left;
+}
+
+tr:even {
+  background-color: #a88568;
+}
+
+tr:odd {
+  background-color: #d6b48b;
+}
