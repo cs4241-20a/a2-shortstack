@@ -1,0 +1,10 @@
+extends ../node_modules/pug-bootstrap/_bootstrap
+block append head
+	link(rel='stylesheet', href='css/styles.css', type='text/css' )
+
+block body
+	body
+		include ./navbar.pug
+
+block append scripts
+	script(src='/js/main.js')

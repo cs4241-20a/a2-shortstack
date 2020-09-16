@@ -1,0 +1,94 @@
+/*Style your own assignment! This is fun! */
+nav.navbar{
+	color: white;
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+label.required:after
+{
+    color: red;
+    content: " *";
+}
+
+#uploadForm {
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+.jam {
+	float: right;
+}
+
+.jam audio {
+	display: "none";
+}
+
+#jam-pic {
+	height: 50px;
+}
+
+#jam-button{
+	margin-right: 40px;
+}
+
+#view-btn {
+	font-size: 3em;
+	margin: 10%;
+}
+
+.panel {
+	border: none;
+}
+.panel-body {
+	border-bottom: none;
+}
+
+.panel .display video {
+	max-width: 100%;
+	min-height: 30%;
+	object-fit: contain;
+	vertical-align: middle;
+}
+
+.panel .panel-heading {
+	color: #ffffff;
+	background-color: #333333;
+	border-color: #333333;
+	border-radius: 0;
+}
+
+.panel .display img {
+	width: auto;
+	min-height: 221px;
+	max-height: 400px;
+}
+
+.panel .display {
+	display: inline-flex;
+  align-items: center;
+}
+
+.panel .btn.icon-right .glyphicon{
+	margin-left: 5px;
+}
+
+.panel .btn.icon-left .glyphicon{
+	margin-right: 5px;
+}
+
+.panel .panel-body > .row {
+	display: flex;
+}
+.nav li {
+	padding-top: 10px;
+}
+
+@media screen and (max-width: 767px){
+	.panel .btn{
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+}
+

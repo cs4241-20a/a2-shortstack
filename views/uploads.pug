@@ -1,0 +1,65 @@
+extends layout
+
+mixin display(item)
+  - id = `${item.id}-display`
+  if !item.mime_type
+    img(id=id src='/res/file_icon.png' alt=item.file_name)
+  else
+    - mt = item.mime_type.slice(0, item.mime_type.indexOf('/'))
+    case mt
+      when 'audio'
+        audio(id=id controls controlsList="nodownload")
+          source(src=item.download_path)
+      when 'video'
+        video.embed-responsive-item(id=id controls controlsList="nodownload")
+          meta(name='viewport' content='width=device-width, initial-scale=1.0')
+          source(src=item.download_path)
+      when 'image'
+        img(id=id src=item.download_path alt=item.file_name)
+      default
+        img(id=id src='/res/file_icon.png' alt=item.file_name)
+
+
+
+mixin display-table(item)
+  - tbl_columns = {'id': 'Id', 'mime_type': 'Mimetype', 'size_formatted': 'Size', 'quota_percentage': '% of Total Space', 'created_at': 'Upload Timestamp'}
+  table.table.table-borderless
+    caption #{item.uploader}: #{item.file_name}
+    each val, key in tbl_columns
+      tr
+        th(scope="row") #{val}
+        td(id=`${item.id}-${key}`) #{item[key]}
+
+
+
+
+block append body
+  each entry in entries
+    .panel(id=`${entry.id}-panel` filename=entry.file_name)
+      .panel-heading
+        .container
+          .row
+            .col-xs-8.col-sm-8.col-md-6.col-lg-6
+              h3.panel-title #{entry.file_name}
+              h6 Uploader: #{entry.uploader}
+            .col-xs-4.col-sm-4.col-md-6.col-lg-6
+              .row
+                .col-3.col-xs-auto.col-sm-6
+                  a.btn.btn-primary.icon-right(id=`${entry.id}-download` href=entry.download_path download=entry.file_name)
+                    | Download 
+                    +icon('download-alt')
+                .col-3.col-xs-auto.col-sm-6
+                  button.btn.btn-danger.icon-right(id=`${entry.id}-delete`)
+                    | Delete 
+                    +icon('remove')
+        
+        b
+      .panel-body.container
+          .row
+            .col.col-md-8.display
+              +display(entry)
+            .col.col-md-4
+              +display-table(entry)
+block append scripts
+  script(src='/js/uploads.js')
+      
