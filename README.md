@@ -32,7 +32,7 @@ JavaScript:
 Node.js
 - HTTP server now delivers application data to be rendered in html as well as files
 
-http://a2-hctrautz.glitch.me
+https://a2-hctrautz.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: My application is rendered all on one page, stores data until each restart, and allows users to add/delete tasks in realtime
