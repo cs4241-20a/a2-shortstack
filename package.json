@@ -7,7 +7,10 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "mime": "^2.4.6"
+    "mime": "2.4.6",
+    "resolved": "https://registry.npmjs.org/mime/-/mime-2.4.6.tgz",
+    "integrity": "sha512-RZKhC3EmpBchfTGBVb8fb+RL2cWyw/32lshnsETttkBAyAUXSGHxbEJWWRXc751DrIxG1q04b8QwMbAwkRPpUA=="
+
+
   }
 }

@@ -5,11 +5,11 @@ const http = require('http'),
   // to install the mime library used in the following line of code
   mime = require('mime'),
   dir = 'public/',
-  port = 3000
+  port = 5500
 
 const scoreboard = [
-  { name: "Mr. Insano", cps: 5, clicks: 150 },
-  { name: "Cui2", cps: 2, clicks: 60 }
+  { name: "Mr. Insano", cps: 5, clicks: 150, seconds: 30 },
+  { name: "Cui2", cps: 2, clicks: 60, seconds: 30 }
 ]
 
 const server = http.createServer(function (request, response) {
@@ -40,15 +40,17 @@ const handlePost = function (request, response) {
   })
 
   request.on('end', function () {
+    console.log("Something found!");
     switch (request.url) {
       case '/submit':
-        const userScore = JSON.parse(dataString); //parse passed in data to be read
-        const cps = (parseInt(userScore.clicks) / 30); //get clicks per second by dividing total clicks by 30 seconds.
+        let userScore = JSON.parse(dataString); //parse passed in data to be read
+        let cps = (parseInt(userScore.clicks) / 30); //get clicks per second by dividing total clicks by 30 seconds.
 
-        const newUser = {
+        let newUser = {
           "name": userScore.name,
           "cps": cps,
-          "clicks": userScore.clicks
+          "clicks": userScore.clicks,
+          "seconds": seconds
         }
 
         scoreboard.push(newUser);

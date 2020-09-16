@@ -2,6 +2,7 @@
 console.log("Welcome to assignment 2!")
 
 var clickcount = 0;
+const seconds = 3;
 
 //when start button is clicked swap visibilities and start 30 second timer.
 function startClicked() {
@@ -12,7 +13,7 @@ function startClicked() {
   for (var i = 0; i < classes.length; i++) {
     classes[i].style.display = "block";
   }
-  setTimeout(end, 3000); //after 3 seconds...
+  setTimeout(end, seconds*1000); //after 3 seconds...
 }
 
 
@@ -56,21 +57,19 @@ function end() {
 //   }
 // }
 
-const submit = function (e) {
+const submitName = function (e) {
   //prevent default form action from being carried out
   e.preventDefault();
 
   const userScore = {
     name: document.getElementById('yourname').value,
-    clicks: clickcount
+    clicks: clickcount,
+    seconds: seconds
   }
 
   const body = JSON.stringify(userScore);
   const options = {
     method: 'POST',
-    header: {
-      'Content-Type': 'application/json'
-    },
     body
   }
 
@@ -112,5 +111,5 @@ window.onload = function () {
   document.getElementById('yourname').style.display = "none";
   document.getElementById('submitbtn').style.display = "none";
   const button = document.getElementById('submitbtn')
-  button.onclick = submit
+  button.onclick = submitName
 }
