@@ -24,7 +24,7 @@ const addPlayer = function( e ) {
   })
   .then( function(txt){
       console.log(txt)
-      addRoster(table, JSON.parse(txt))
+      addRoster(JSON.parse(txt))
   })
 
   return false
@@ -92,7 +92,7 @@ const editPlayer = function( e ) {
 
 let numRows = 1
 
-function addRoster = function(data){
+function addRoster(data){
     var table = document.getElementById("resultTable")
     var newRow = table.insertRow(-1);
     var numberCell = newRow.insertCell(0);
