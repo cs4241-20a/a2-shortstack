@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "GroceryManager",
+  "version": "1.0",
+  "description": "A grocery list app",
+  "author": "Madeline Perry",
   "scripts": {
     "start": "node server.improved.js"
   },

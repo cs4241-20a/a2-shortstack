@@ -1,27 +1,36 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="C:\Users\madel\Desktop\a2-madmadeline\a2-madmadeline\public\css\style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css\style.css">
+    <script type="text/javascript" src="js\scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Grandstander&family=Lato&display=swap" rel="stylesheet">
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
 
-  <h1>
-    <section class = "container">
-    <img src = "tomato.png">
-  <span id = "box">- Grocery Manager -</span> 
-   <img src = "snack.png">
-
-  </h1>
+  <div class = "title">
+    <div class = "title_text">
+      <h1>Grocery Manager</h1>
+    </div>
+  </div>
 
 
   <body>
+    <div class = container>
     <h2>
-    <form action="" method = "POST">
-      <input type='text' id='item' value="item name">
-      <input type = 'text' id = 'price' value = 'price'>
-      <select name = 'department'>
+    <form action="">
+      <label for= "item">Item name:</label><br>
+      <input type='text' id='item' value="Bananas"><br>
+      <label for= "amount">Amount:</label><br>
+      <input type='text' id='amount' value="5"><br>
+      <label for= "price">Price:</label><br>
+      <input type = 'text' id = 'price' value = '2.49'>
+      <select id = 'priceType' name = 'priceType'>
+        <option value = "Pound">Per Pound</option>
+        <option value = "Each">Each</option>
+      </select><br>
+      <label for= "department">Type:</label><br>
+      <select id = 'department' name = 'department'>
         <option value = "produce">produce</option>
         <option value = "meat">meat</option>
         <option value = "dairy">dairy</option>
@@ -30,26 +39,70 @@
         <option value = "frozen">frozen</option>
         <option value = "seafood">seafood</option>
         <option value = "deli">deli</option>
+        <option value = "prepared">prepared</option>
         <option value = "other">other</option>
-    </select>
-      <button>add</button>
+    </select><br>
+      <button id = 'addBtn'>add</button>
     </form>
-    <form>
-      
-    </form>
+    <!-- <button id ='calculateTotal'>Calculate Total</button>
+    <div class = 'totalOutput'>$ </div> -->
   </h2>
   <h3>
     Your List:
+    <br><br><br><br>
+    Produce:
+    <ul class = "produceList"><li>
+      1 pound Apples $1.99
+    </li></ul>
+    <br>
+    Meat:
+    <ul class = "meatList"></ul>
+    <br>
+    Dairy:
+    <ul class = "dairyList"></ul>
+    <br>
+    Pantry:
+    <ul class = "pantryList"></ul>
+    <br>
+    Bakery:
+    <ul class = "bakeryList"></ul>
+    <br>
+    Frozen:
+    <ul class = "frozenList"></ul>
+    <br>
+    Seafood:
+    <ul class = "seafoodList"></ul>
+    <br>
+    Deli:
+    <ul class = "deliList"></ul>
+    <br>
+    Prepared Foods:
+    <ul class = "preparedList"></ul>
+    <br>
+    Other:
+    <ul class = "otherList"></ul>
   </h3>
+  </div>
   </body>
-  <script>
 
+
+
+  <script>
+  //let total = 1.99;
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const input1 = document.querySelector( '#item'),
+          input2 = document.querySelector('#price'),
+          input3 = document.querySelector('#department'),
+          input4 = document.querySelector('#priceType'),
+          input5 = document.querySelector('#amount'),
+          json = { item: input1.value,
+                    amount: input5.value,
+                    price: input2.value,
+                    priceType: input4.value,
+                    department: input3.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -58,15 +111,70 @@
     })
     .then( function( response ) {
       // do something with the reponse 
-      console.log( response )
+      return response.json();
+    })
+    .then(function (json){
+      console.log(json);
+
+      //store the total value
+      //total = json.total;
+
+      //add the text to the list
+      var node = document.createElement('li');
+      node.appendChild(document.createTextNode(json.item + ' $' + json.price + ' ' + json.taxed));
+
+      //goes to a different list depending on the department
+      switch(json.department){
+        case "produce":
+          document.querySelector('.produceList').appendChild(node);
+          break;
+        case "meat":
+        document.querySelector('.meatList').appendChild(node);
+          break;
+        case "dairy":
+        document.querySelector('.dairyList').appendChild(node);
+          break;
+        case "pantry":
+        document.querySelector('.pantryList').appendChild(node);
+          break;
+        case "bakery":
+        document.querySelector('.bakeryList').appendChild(node);
+          break;
+        case "frozen":
+        document.querySelector('.frozenList').appendChild(node);
+          break;
+        case "seafood":
+        document.querySelector('.seafoodList').appendChild(node);
+          break;
+        case "deli":
+        document.querySelector('.deliList').appendChild(node);
+          break;
+        case "prepared":
+        document.querySelector('.preparedList').appendChild(node);
+          break;
+        case "other":
+        document.querySelector('.otherList').appendChild(node);
+          break;
+        default:
+          break;
+      }
     })
 
     return false
   }
 
+ // const calcTotal = function(){
+    //prints the total price in the 'totalOutput' box
+ //   var tot = document.createTextNode(total);
+ //   document.querySelector('.totalOutput').appendChild(tot);
+ //   return false;
+ // }
+
   window.onload = function() {
-    const button = document.querySelector( 'button' )
+    const button = document.querySelector( '#addBtn' )
+ //   const calc = document.querySelector('#calculateTotal');
     button.onclick = submit
+ //   calc.onclick = calcTotal;
   }
 
   </script>
