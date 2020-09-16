@@ -65,6 +65,12 @@
 **Test UI with Classmates**:
 (one to two sentences for each question) address the following in your README:
 1. Provide the last name of each student you conduct the evaluation with.
+  - Maria Medina Martinez
 2. What problems did the user have with your design?
+  - She noticed that on minimizing the screen the table does not responsively center itself or implement a scroll bar functionality. The user must pan over the entire screen to see the table.
+  - On minimizing the screen excessively, the first input field is cut off and the user cannot see what they input.
 3. What comments did they make that surprised you?
+  - I was extremely surprised that she liked my color palette given that it stayed the same from project 1.
+  - She liked the overall design of the site and thought it was aesthetically pleasing and intuitive.
 4. What would you change about the interface based on their feedback?
+  - I would add a resizing element to the table so that the user does not have to scroll over with a minimized screen. Additionally I would modify the placement of the first input box so that it is not cut off from the screen.
