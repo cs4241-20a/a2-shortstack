@@ -32,7 +32,7 @@
 
     const color = document.getElementById( 'color' ),
             quantity = document.getElementById('quantity'),
-          json = { color: color.value, quantity: quantity.value},
+          json = {type: "order", color: color.value, quantity: quantity.value},
           body = JSON.stringify( json );
     console.log("Submitting order");
 
@@ -53,7 +53,7 @@
     e.preventDefault()
 
     const orderNum = document.getElementById( 'orderNum' ),
-            json = {orderNum: orderNum.value},
+            json = {type: "fulfill", orderNum: orderNum.value},
             body = JSON.stringify( json );
     console.log("Fulfilling order " + orderNum);
 

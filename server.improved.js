@@ -34,24 +34,22 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = '';
-  console.log("hi");
 
   request.on( 'data', function( data ) {
       dataString += data;
-    console.log("hi")
   });
 
   request.on( 'end', function() {
-    console.log(JSON.parse(dataString));
     const json = JSON.parse(dataString);
     // this request is an order
-    console.log(json.orderNum);
-    if (json.numberOfItems === 2) {
-      const orderNum = appdata.length === 0? 1 : appdata[-1].orderNum + 1;
+    if (json.type === "order") {
+      console.log("obtained order");
+      const orderNum = appdata.length === 0? 1 : appdata[appdata.length - 1].orderNum + 1;
       appdata.push({orderNum: orderNum, color: json.color, quantity: json.quantity})
     }
     // this request is a fulfillment
-    else if (json.numberOfItems === 1) {
+    else if (json.type === "fulfill") {
+      console.log("obtained fulfillment");
       const orderNum = json.orderNum;
       let i;
       for (i = 0; i < appdata.length; i++) {
