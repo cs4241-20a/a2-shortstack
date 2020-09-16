@@ -9,31 +9,31 @@
   </head>
   <body>
     <h1> Lindberg's Package Delivery Service </h1>
-    <div class="input_section">
-      <form id="package_form">
-        <label for="description">Item Description:</label>
-        <input type='text' id='description' placeholder="E.g: Book"><br>
-        <label for="weight">Weight (in lbs):</label>
-        <input type='number' id='weight' placeholder="2"><br>
-        <label for="deliv_date">Delivery Date (number of days from today):</label>
-        <input type='number' id='deliv_date' placeholder='3'><br>
-        <button>submit</button> <br> <br>
-      </form>      
-
+    <div class="grid-container">
+		<div class="input_section item1">
+      		<form id="package_form">
+        		<label for="description">Item Description:</label>
+        		<input type='text' id='description' placeholder="E.g: Book"><br>
+        		<label for="weight">Weight (in lbs):</label>
+        		<input type='number' id='weight' placeholder="2"><br>
+        		<label for="deliv_date">Delivery Date (number of days from today):</label>
+        		<input type='number' id='deliv_date' placeholder='3'><br>
+        		<button>submit</button> <br> <br>
+      		</form>
+      		      
+    	</div>
+    	<div class="results_section item2">
+      		<table id="package_table">
+        		<tr>
+          			<th>Description</th>
+          			<th>Weight (lbs)</th>
+          			<th>Day(s) until delivery</th>
+          			<th>Cost of shipment (USD)</th>
+        		</tr>
+      		</table>
+    	</div>
     </div>
-
-    <div class="table">
-      <table id="package_table">
-        <tr>
-          <th>Descriptions</th>
-          <th>Weight (lbs)</th>
-          <th>Days until delivery</th>
-          <th>Cost of shipment</th>
-        </tr>
-
-      </table>
-
-    </div>
+    
 
 
   </body>

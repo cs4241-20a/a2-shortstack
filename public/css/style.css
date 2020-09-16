@@ -30,6 +30,7 @@ body {
 	background-color: #29897c;	
 }
 
+
 table{
   border: 3px solid black;
 }
@@ -38,3 +39,21 @@ table{
 	font-family: 'Kufam';
 	font-size: 15px;
 }
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-column-gap: 50px;
+	grid-row-gap: 50px;
+	justify-content: space-between;
+	align-content: space-evenly;
+}
+
+.item1{
+	grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.item2 {
+	grid-area: 1 / 2 / span 1 / span 1;
+}
+
