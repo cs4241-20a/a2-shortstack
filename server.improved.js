@@ -74,27 +74,41 @@ const handlePost = function( request, response ) {
 
     request.on( 'end', function() {
         let data = JSON.parse(dataString);
-        console.log(data);
         //Convert everything to a Number now so all operations
         //dont have to keep calling Number()
         convertDataToNum(data);
-        calculateKDandAD(data);//Calculate derived fields
+        console.log(data);
 
         //Call the proper function based on API call, then
         //send the updated table information in response so
         // index.html can display the updated table.
         if(request.url === "/add") {
-            addItem(data);
-            sendTable(response);
+            if(addItem(data)) {
+                sendTable(response)
+            }else{
+                response.writeHead(400, "Add request failed", {'Content-Type': 'text/plain'});
+                response.end();
+            }
+
         }else if(request.url === "/modify"){
-            modifyItem(data);
-            sendTable(response);
+            if(modifyItem(data)) {
+                sendTable(response);
+            }else{
+                response.writeHead(400, "Modify request failed", {'Content-Type': 'text/plain'});
+                response.end();
+            }
+
         }else if(request.url === "/delete"){
-            deleteItem(data);
-            sendTable(response);
+            if(deleteItem(data))
+                sendTable(response);
+            else{
+                response.writeHead(400, "Delete request failed", {'Content-Type': 'text/plain'});
+                response.end();
+            }
+
         }else{
             //Not recognized
-            response.writeHead(400, "Invalid request type", {'Content-Type': 'text/plain'});
+            response.writeHead(401, "Invalid request type", {'Content-Type': 'text/plain'});
             response.end();
         }
     })
@@ -104,10 +118,13 @@ const handlePost = function( request, response ) {
  * Converts the stats given in the HTTP request to Numbers, and stores
  * them back into <b>data</b>.
  *
- * @param data an object containing "kills", "assists", and "deaths" fields
- *     from the HTTP request.
+ * @param data an object containing any of the following fields from the
+ *     the HTTP request: "id", "kills", "assists", and "deaths" fields
  */
 const convertDataToNum = function(data){
+    if(data.hasOwnProperty("id"))
+        data.id = parseInt(data.id, 10);
+
     if(data.hasOwnProperty("kills"))
         data.kills = parseInt(data.kills, 10);
 
@@ -120,15 +137,17 @@ const convertDataToNum = function(data){
 
 /**
  * Calculates the kill/death ratio and assist/death ratio based on the
- * kills, assists and deaths fields in <b>data</b>.
+ * given set of <b>kills</b>, <b>assists</b> and <b>deaths</b>.
  *
- * @param data an object with "kills", "assists", and "deaths" fields for
- *     calculating the kill/death and assist/death ratio. All three fields
- *     are expected to contain Numbers.
+ * @param kills number of kills from the game
+ * @param assists number of assists from the game
+ * @param deaths number of deaths from the game
  */
-const calculateKDandAD = function(data){
-    data.kd_ratio = parseFloat((data.kills / data.deaths).toFixed(DECIMAL_PRECISION));
-    data.ad_ratio = parseFloat((data.assists / data.deaths).toFixed(DECIMAL_PRECISION));
+const calculateKDandAD = function(kills, assists, deaths){
+    return {
+        kd_ratio: parseFloat((kills / deaths).toFixed(DECIMAL_PRECISION)),
+        ad_ratio: parseFloat((assists / deaths).toFixed(DECIMAL_PRECISION))
+    }
 }
 
 /**
@@ -141,17 +160,24 @@ const calculateKDandAD = function(data){
  * @return {boolean} true on successful addition, false otherwise.
  */
 const addItem = function(data){
+    if(Number.isNaN(data.kills) || data.kills < 0 ||
+       Number.isNaN(data.assists) || data.assists < 0 ||
+       Number.isNaN(data.deaths) || data.deaths < 0)
+        return false;
+
+    let ratios = calculateKDandAD(data.kills, data.assists, data.deaths);
     appdata.push({
         "id": id,
         "kills": data.kills,
         "assists": data.assists,
         "deaths": data.deaths,
-        "kd_ratio": data.kd_ratio,
-        "ad_ratio": data.ad_ratio
+        "kd_ratio": ratios.kd_ratio,
+        "ad_ratio": ratios.ad_ratio
     })
     id++;
     numEntries++;
-    updateTotalsAvgs(data);
+    updateTotalsAvgs(data.kills, data.assists, data.deaths);
+    return true;
 }
 
 /**
@@ -165,21 +191,28 @@ const addItem = function(data){
  * @return {boolean} true on successful modification, false otherwise.
  */
 const modifyItem = function(data){
-    let targetID = Number(data.id);
+    let targetID = data.id;
     for(let i = 0; i < numEntries; i++){
         if(appdata[i]["id"] === targetID){
             //Remove old values from running total
             totalKills -= appdata[i]["kills"];
-            totalAssists -= appdata[i]["deaths"];
-            totalDeaths -= appdata[i]["assists"];
+            totalAssists -= appdata[i]["assists"];
+            totalDeaths -= appdata[i]["deaths"];
 
-            appdata[i]["kills"] = data.kills;
-            appdata[i]["assists"] = data.assists;
-            appdata[i]["deaths"] = data.deaths;
-            appdata[i]["kd_ratio"] = data.kd_ratio;
-            appdata[i]["ad_ratio"] = data.ad_ratio;
+            //Modify only the fields that were provided
+            if(!Number.isNaN(data.kills) && data.kills >= 0)
+                appdata[i]["kills"] = data.kills;
+            if(!Number.isNaN(data.assists) && data.assists >= 0)
+                appdata[i]["assists"] = data.assists;
+            if(!Number.isNaN(data.deaths) && data.deaths >= 0)
+                appdata[i]["deaths"] = data.deaths;
 
-            updateTotalsAvgs(data);
+            //Recalculate derived fields
+            let ratios = calculateKDandAD(appdata[i]["kills"], appdata[i]["assists"], appdata[i]["deaths"]);
+            appdata[i]["kd_ratio"] = ratios.kd_ratio;
+            appdata[i]["ad_ratio"] = ratios.ad_ratio;
+
+            updateTotalsAvgs(appdata[i]["kills"], appdata[i]["assists"], appdata[i]["deaths"]);
             return true;
         }
     }
@@ -195,17 +228,18 @@ const modifyItem = function(data){
  * @return {boolean} true on successful deletion, false otherwise.
  */
 const deleteItem = function(data){
+    if(Number.isNaN(data.id) || data.id < 0)
+        return false;
+
     let targetID = data.id;
     for(let i = 0; i < numEntries; i++){
         if(appdata[i]["id"] === targetID){
             numEntries--;
 
             totalKills -= appdata[i]["kills"];
-            avgKills = totalKills / numEntries;
             totalAssists -= appdata[i]["deaths"];
-            avgAssists = totalAssists / numEntries;
             totalDeaths -= appdata[i]["assists"];
-            avgDeaths = totalDeaths / numEntries;
+            updateAvgs();
 
             appdata.splice(i, 1);
             return true;
@@ -215,9 +249,18 @@ const deleteItem = function(data){
     return false;
 }
 
+/**
+ * Wipe all the data stored on the server and reset count variables.
+ * Return an a json indicating an empty table so index.html knows to
+ * display and empty table.
+ *
+ * @param response an HTTP response that will be populate with an
+ *     empty table to indicate that server data has been wiped.
+ */
 const clearStats = function(response){
     appdata = [];
     numEntries = 0;
+    id = 0;
     totalKills = 0;
     totalAssists = 0;
     totalDeaths = 0;
@@ -229,19 +272,33 @@ const clearStats = function(response){
 
 /**
  * Update the total and average kills, assists and deaths by taking into
- * account the new set of kills, assists and death in <b>data</b>.
+ * account the new set of <b>kills</b>, <b>assists</b> and <b>deaths</b>.
  *
- * @param data an object with stats to add to the table. It is expected
- *     to have fields for "kills", "assists", "deaths", "kd_ratio", and
- *     "ad_ratio."
+ * @param kills number of kills from the game
+ * @param assists number of assists from the game
+ * @param deaths number of deaths from the game
  */
-const updateTotalsAvgs = function(data){
-    totalKills += data.kills;
-    avgKills = totalKills / numEntries;
-    totalAssists += data.assists;
-    avgAssists = totalAssists / numEntries;
-    totalDeaths += data.deaths;
-    avgDeaths = totalDeaths / numEntries;
+const updateTotalsAvgs = function(kills, assists, deaths){
+    totalKills += kills;
+    totalAssists += assists;
+    totalDeaths += deaths;
+    updateAvgs();
+}
+
+/**
+ * Update the average kills, assists and deaths based on the current number
+ * of kills, assists and deaths.
+ */
+const updateAvgs = function(){
+    if(numEntries <= 0){
+        numEntries = 0;
+        avgKills = 0;
+        avgAssists = 0;
+        avgDeaths = 0;
+    }
+    avgKills = parseFloat((totalKills / numEntries).toFixed(DECIMAL_PRECISION));
+    avgAssists = parseFloat((totalAssists / numEntries).toFixed(DECIMAL_PRECISION));
+    avgDeaths = parseFloat((totalDeaths / numEntries).toFixed(DECIMAL_PRECISION));
 }
 
 /**

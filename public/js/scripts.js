@@ -180,7 +180,7 @@ function updateResults(response){
     //table, and showed me how to do it:
     //https://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
     let table = document.getElementById("results_list");
-    let newBody = document.createElement('tbody');
+    let newBody = document.createElement("tbody");
     table.replaceChild(newBody, table.lastChild);
 
     //The following source showed me how to extract json from the HTTP
