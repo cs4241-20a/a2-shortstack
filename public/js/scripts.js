@@ -41,6 +41,63 @@ function checkDateForm(str) {
   }
 }
 
+function createDelete() {
+  var deleteButton = document.createElement("input");
+  deleteButton.type = "button";
+  deleteButton.value = "Delete";
+  deleteButton.onclick = function() {
+    deleteRow(this);
+  };
+  return deleteButton;
+}
+
+function deleteRow(row) {
+  var index = row.parentNode.parentNode.rowIndex;
+  document.getElementById("projectTable").deleteRow(index);
+  console.log(row.parentNode.parentNode.innerHTML);
+  var str = row.parentNode.parentNode.innerHTML;
+  var pName, pDesc, pSDate, pEDate, pPrio, pButton;
+  for (var i = 0; i < 6; i++) {
+    if (i == 0) {
+      var pName = str.slice(str.indexOf("<td>"), str.indexOf("</td>"));
+      pName = pName.replace("<td>", "");
+    } else if (i == 1) {
+      var pDesc = str.slice(str.indexOf("<td>"), str.indexOf("</td>"));
+      pDesc = pDesc.replace("<td>", "");
+    } else if (i == 2) {
+      var pSDate = str.slice(str.indexOf("<td>"), str.indexOf("</td>"));
+      pSDate = pSDate.replace("<td>", "");
+    } else if (i == 3) {
+      var pEDate = str.slice(str.indexOf("<td>"), str.indexOf("</td>"));
+      pEDate = pEDate.replace("<td>", "");
+    } else if (i == 4) {
+      var pPrio = str.slice(str.indexOf("<td>"), str.indexOf("</td>"));
+      pPrio = pPrio.replace("<td>", "");
+    } else if (i == 5) {
+      var pButton = str.slice(str.indexOf("<td>"), str.indexOf("</td>"));
+      pButton = pButton.replace("<td>", "");
+    }
+  }
+  console.log(pName);
+  console.log(pDesc);
+
+  const json = {
+      pName: pName,
+      pDesc: pDesc,
+      pSDate: pSDate,
+      pEDate: pEDate,
+      pPrio: pPrio,
+      pButton: pButton
+    },
+    body = JSON.stringify(json);
+  fetch("/delete", {
+    method: "POST",
+    body
+  }).then(function(response) {
+    console.log(response);
+  });
+}
+
 function fillTable() {
   document.getElementById("status").innerHTML = "";
   if (
@@ -51,11 +108,10 @@ function fillTable() {
     console.log("error");
     return false;
   }
-
   var tableRef = document.getElementById("projectTable");
   var newRow = tableRef.insertRow();
   var prio;
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 6; i++) {
     var newCell = newRow.insertCell(i);
     if (i == 0) {
       var newText = document.createTextNode(
@@ -73,11 +129,13 @@ function fillTable() {
       var newText = document.createTextNode(
         document.getElementById("pEDate").value
       );
-    } else {
+    } else if (i == 4) {
       var startDate = parseDate(document.getElementById("pSDate").value);
       var endDate = parseDate(document.getElementById("pEDate").value);
       prio = calcPrio(startDate, endDate);
       var newText = document.createTextNode(prio.toString());
+    } else {
+      var newText = createDelete();
     }
     newCell.appendChild(newText);
   }
@@ -91,28 +149,31 @@ function clearInput() {
   document.getElementById("pEDate").value = "";
 }
 
+function clearTable() {
+  while (document.getElementById("projectTable").rows.length > 1) {
+    document.getElementById("projectTable").deleteRow(1);
+  }
+}
+
 function fillTableGet(contents) {
   var tableRef = document.getElementById("projectTable");
   var newRow = tableRef.insertRow();
-  console.log(contents);
   for (var i = 0; i < Object.keys(contents).length; i++) {
     var newCell = newRow.insertCell(i);
-    if(i==0){
+    if (i == 0) {
       var newText = document.createTextNode(contents.pName);
-    }
-    else if(i==1){
+    } else if (i == 1) {
       var newText = document.createTextNode(contents.pDesc);
-    }
-    else if(i==2){
+    } else if (i == 2) {
       var newText = document.createTextNode(contents.pSDate);
-    }
-    else if(i==3){
+    } else if (i == 3) {
       var newText = document.createTextNode(contents.pEDate);
-    }
-    else if(i==4){
+    } else if (i == 4) {
       var newText = document.createTextNode(contents.pPrio);
+    } else {
+      var newText = createDelete();
     }
-    
+
     newCell.appendChild(newText);
   }
 }
@@ -134,7 +195,8 @@ const submit = function(e) {
       pDesc: projectDesc.value,
       pSDate: projectSDate.value,
       pEDate: projectEDate.value,
-      pPrio: end.toString()
+      pPrio: end.toString(),
+      pButton: createDelete()
     },
     body = JSON.stringify(json);
 
@@ -159,8 +221,9 @@ const get = function(e) {
       return response.json();
     })
     .then(function(data) {
+      clearTable();
       data.forEach(item => {
-      fillTableGet(item);
+        fillTableGet(item);
       });
     });
   return false;
@@ -171,5 +234,4 @@ window.onload = function() {
   subButton.onclick = submit;
   const getButton = document.querySelector("#get");
   getButton.onclick = get;
-  
 };

@@ -39,8 +39,12 @@ const handlePost = function(request, response) {
 
   request.on("end", function() {
     console.log(JSON.parse(dataString));
-
+    if(request.url === '/delete'){
+      var index = appdata.indexOf(JSON.parse(dataString));
+      appdata.splice(index);
+    }else{
     appdata.push(JSON.parse(dataString));
+    }
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
     response.end();
   });
