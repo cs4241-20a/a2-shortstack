@@ -53,7 +53,6 @@ grid-template-areas:
 .box {
     font-size: large;
     text-align: center;
-    background-color: #444;
     color: #fff;
     border-radius: 5px;
     padding: 10px;
@@ -65,6 +64,9 @@ grid-template-areas:
     padding: 75px 0px 25px 0px;
     font-size: xx-large;
     border-radius: 0%;
+}
+.sidebar, .content{
+    color: #342E09;
 }
 .content, .data-form {
     display: flex;
@@ -81,10 +83,16 @@ grid-template-areas:
 #data-table {
     width: 100%;
 }
+tr:hover {
+    color: #FC7307;
+}
+tr:first-child:hover {
+    color: #342E09;
+}
 #form {
     width: 80%;
 }
-input, #submit-btn{
+input, #submit-btn, #del-btn, #save-btn{
     font-family: inherit;
     font-size: inherit;
 }
@@ -97,5 +105,9 @@ input {
 #submit-btn{ 
     margin: 8px 0;
     padding: 5px 20px;
+    width: 50%
+}
+#del-btn, #save-btn{ 
+    margin: 8px 0;
     width: 50%
 }

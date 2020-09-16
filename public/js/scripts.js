@@ -58,12 +58,41 @@ const updateRow = function(dataTable, json) {
   let year = row.insertCell(2)
   let price = row.insertCell(3)
   let priority = row.insertCell(4)
+  let del = row.insertCell(5)
+  let save = row.insertCell(6)
+
+  // make buttons
+  var delBtn = document.createElement("button")
+  delBtn.innerHTML = "Delete"
+  delBtn.addEventListener ("click", deleteItem)
+  delBtn.id = 'del-btn'
+
+  var saveBtn = document.createElement("button")
+  saveBtn.innerHTML = "Save"
+  saveBtn.addEventListener ("click", saveItem)
+  saveBtn.id = 'save-btn'
 
   make.innerHTML = json.make
   model.innerHTML = json.model
   year.innerHTML = json.year
   price.innerHTML = json.price
   priority.innerHTML = json.priority
+  del.appendChild(delBtn)
+  save.appendChild(saveBtn)
+}
+
+const deleteItem = function(temp){
+  alert("Do something")
+  // get row delete btn belongs to
+  // get the id from the row and delete from appdata and table; table should
+  // just be deleteRow
+  //
+}
+
+const saveItem = function(temp){
+  // if no changes made
+  // if changes made
+  alert("Do something")
 }
 
 window.onload = function () {
