@@ -19,6 +19,8 @@ const server = http.createServer( function( request,response ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
+  }else {
+    handleDelete(request, response)
   }
 })
 
@@ -39,18 +41,6 @@ const handlePost = function( request, response ) {
   request.on( 'data', function( data ) {
     let item;
     item = JSON.parse(data);
-
-    // item.orderNumber = 1;
-    //  // if the item is a new item create a unique id and an end time for it
-    //  if (item.orderNumber === null) {
-    //   if(nextId === null){
-    //     item.orderNumber = 1;
-    //     nextId = 2
-    //   } else {
-    //     item.orderNumber = nextId
-    //     nextId++
-    //   }}
-
     dataStorage.push(item); 
   })
 
@@ -93,6 +83,37 @@ const handlePost = function( request, response ) {
         finalCost = parseFloat(lastItem.orderCost) * 1.25;
         lastItem.orderTotalCost = finalCost;
     }
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end(JSON.stringify(dataStorage))
+  })
+}
+
+
+const handleDelete = function( request, response ) {
+
+  request.on( 'data', function( data ) {
+    let item;
+    item = JSON.parse(data);
+    dataStorage.push(item); 
+  })
+
+  request.on( 'end', function() {
+    //get the last item pushed to datastorage
+    let index = dataStorage.length - 1;
+    let lastItem = dataStorage[index];
+
+      // look for the item with the same order number, and delete it
+      let i;
+      for( i = 0; i < index; i++){
+      
+        if(dataStorage[i].orderNumber === parseInt(lastItem.orderNumber)){
+          dataStorage.splice(i, 1);
+        }
+      }
+      // delete the new item used to alter the old one
+      let index2 = dataStorage.length - 1;
+      dataStorage.splice(index2, 1);
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end(JSON.stringify(dataStorage))

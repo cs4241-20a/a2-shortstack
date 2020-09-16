@@ -50,12 +50,18 @@
       <input type="number" id="orderCost" step="0.01" min="0.01" value="0.01" />
       <button class="submitBtn">submit</button>
     </form>
-
+    <br></br>
     <form action="" class="alterOrdersForm">
       <input type="text" id="newOrderNumber" value="Order Number" />
       <input type="text" id="newOrderItem" value="Order Item" />
       <input type="text" id="newOrderDetails" value="Order Details" />
       <button class="changeBtn">change order</button>
+    </form>
+
+    <br></br>
+    <form action="" class="deleteOrdersForm">
+      <input type="text" id="deleteOrderNumber" value="Order Number" />
+      <button class="deleteBtn">delete order</button>
     </form>
 
     <h1>Current Orders</h1>
@@ -64,8 +70,8 @@
         <td>Order Number</td>
         <td>Order Item</td>
         <td>Details</td>
-        <td>Time Started</td>
-        <td>Goal End Time</td>
+        <td>Item Cost</td>
+        <td>Total Cost</td>
       </tr>
     </table>
   </body>
