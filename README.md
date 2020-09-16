@@ -1,5 +1,5 @@
 # Gabe's Coursework TODO List
-- https://a2-gabeaponte.glitch.me/
+- https://a2-gabrielaponte.glitch.me/
 - This website is a nice and simple way for me to keep track of my class assignments and MQP deadlines!
 - To use: Simply state the Course Name, the Assignment/Task, its Due Date, and the Effort to complete it (1=least - 5=most)
 - A priority will be automatically assigned based on the Due Date and the Effort of the assignment.
