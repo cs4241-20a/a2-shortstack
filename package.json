@@ -1,12 +1,12 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-mattheusnascimento",
+  "version": "1.0",
+  "description": "A simple list of people's names and birth years which calculates their age and fills it in",
+  "author": "Mattheus Nascimento",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }
