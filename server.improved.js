@@ -6,10 +6,9 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+// Storage, storing players from highest -> lowest initiative
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'name': 'Drathaniel', 'num': '10'}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,7 +24,15 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if(request.url === '/appData') {
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json'})
+    response.write(JSON.stringify(appdata))
+    response.end()
+  
+  }
+  else{
+    console.log("hi")
     sendFile( response, filename )
   }
 }
@@ -38,13 +45,31 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    //console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
+    json = JSON.parse( dataString)
+    console.log(json)
+    
+    var pos = determineOrder( parseInt(json.num))
 
+    appdata.splice(pos, 0, json)
+
+    //console.log(appdata)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.write(JSON.stringify(appdata))
     response.end()
   })
+}
+
+function determineOrder  ( initiative ) {
+  var i;
+  for(i=0; i<appdata.length; i++) {
+    if(initiative > parseInt(appdata[i].num)) {
+      return i
+    }
+  }
+  return i
+
 }
 
 const sendFile = function( response, filename ) {

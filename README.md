@@ -91,3 +91,17 @@ Include a very brief summary of your project here. Be sure to include the CSS po
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 
+
+TODO
+-Style
+    -Use grid/flex
+    -id selectors
+    -class selectors
+    -element selectors
+    -different font
+-Add delete (and unique identifier)
+-Add modify (move up/down)
+-Writeup
+-Test?
+-Add more fields (need derived field)
+-Make sure it validates
