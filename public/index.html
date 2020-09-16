@@ -3,39 +3,62 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <script src = "js/scripts.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div class= "header">
+      <h1 id = "title">
+        MMO DPS Calculator
+      </h1>
+    </div>
+    
+    <div class = "row">
+        <div class = "column">
+          <p>
+            Welcome! This app is intended to help MMO players keep track of their DPS (damage per second). To start, enter a fight below.
+          </p>
+
+          <form class = "container">
+            <h3>
+              Add New Fight
+            </h3>
+            <div class="break"></div>
+            <input type="text" class = "field" id="fightname" placeholder="fight name">
+            <input type="number" class = "field" id="dmg" min = "0" placeholder="total damage dealt">
+            <input type="number" class = "field" id="min" min = "0" placeholder="fight duration (min)">
+            <input type="number" class = "field" id="sec" min = "0" placeholder="fight duration (sec)">
+            <div class="break"></div>
+            <button id = "submit">submit</button>
+          </form>
+          
+          
+      </div>
+    
+    
+      <div class = "column">
+        <h2>Your Stats</h2>
+        <p>
+          Highest DPS: 
+          <span id="highestDPS" class="stat">0.0</span>
+          <span id="highestFight"></span>
+        </p>
+        <p>
+          Average DPS:
+          <span id="avgDPS" class="stat">0.0</span>
+        </p>
+        
+        <table id = "data">
+          <tr id = "headers">
+            <th>Fight name</th>
+            <th>Duration</th>
+            <th>Total damage</th>
+            <th>Your DPS</th>
+          </tr>
+        </table>
+      </div>
+    </div>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
