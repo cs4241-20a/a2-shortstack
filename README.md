@@ -10,7 +10,7 @@ https://jcybul-a2-shortstack-4.glitch.me/
 - **Design Achievement 1**: Included Input check, when they are empty a pop up window instruct the user to fill the fields,
 and when the weight or line class are not numeric values a pop-up shows up instructing the user to make those numeric.
 - **Design Achievement 2**: A pop window shows the user that their that has been recorded.
-- **Design Achievement 3**:"SOUND UP,When the user submits and confirms on the pop up , I sound saying "FISH ON" plays  
+- **Design Achievement 3**:"SOUND UP,When the user submits and confirms on the pop up , a sound saying "FISH ON" plays  
 - **Design Achievement 4**:  UI Study
 Task: submit your catch 
 
