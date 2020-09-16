@@ -6,12 +6,7 @@ const http = require("http"),
   dir = "public/",
   port = 3000;
 
-var myArray = [
-        { 'foodname': 'broccoli', 'datebought': "2020-09-12", 'enjoy' : 5, 'size': 'small', 'placement': 'top shelf'},
-        { 'foodname': 'spinach', 'datebought': "2020-09-3",   'enjoy' : 2, 'size': 'large', 'placement': 'middle shelf'},
-        { 'foodname': 'cookies', 'datebought': "2020-09-01",  'enjoy' : 5, 'size': 'medium', 'placement': 'bottom shelf'},
-        { 'foodname': 'honey', 'datebought': "2020-09-11",  'enjoy' : 5, 'size': 'small', 'placement': 'middle shelf'},
-]
+var myArray = []
 
 
 const server = http.createServer(function(request, response) {
