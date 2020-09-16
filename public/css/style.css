@@ -1,1 +1,56 @@
 /*Style your own assignment! This is fun! */
+@charset"utf-8";
+
+body{
+  background-color: #7FDBFF;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  font-family: 'PT Serif', serif;
+}
+label{
+  color: chartreuse;
+}
+
+.button{
+  color: magenta;
+  margin-left: 360px;
+  width: 100px;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #ff6f61;
+  width: 500px;
+  height: 300px;
+  text-align: left;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  margin-bottom: 100px;
+  text-align: center;
+  align-items: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+#page-wrap{
+  text-align: left;
+  width: 480px;
+  margin: 0 auto;
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+ p{
+        font-family: 'Homemade Apple', cursive;
+        color: indigo;
+   font-size: 14px;
+      }
