@@ -15,13 +15,13 @@ Created a single page app that both provides a form for the users to submit data
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 
 
-# Student 1
+#### Student 1
 1. Last name of the student: Gilmore
 2. Problems that the user had with my design: Did not have any problem navigating through the application.
 3. Comments that surprised me: She loved the user interface of the application.
 4. Changes I would make based on the feedback: Since I didn't get any feeback from her, I would continue on making the application more user friendly.
 
-# Student 2
+#### Student 2
 1. Last name of the student: Alvarado Blanco Uribe
 2. Problems that the user had with my design: Could not find the calendar button in the date input field.
 3. Comments that surprised me: When she manually input the date instead of using the calendar.
