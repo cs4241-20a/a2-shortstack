@@ -25,9 +25,9 @@ table, th, td {
     align-items: center;
 }
 
-.playbtn {
+.center {
     justify-content: center;
-    align-self: center;
+    display:flex;
 }
 
 .poststart {
@@ -37,4 +37,8 @@ table, th, td {
 #submitbtn {
     color: red;
     background-color: black;
+}
+
+input {
+    margin: 0px;
 }

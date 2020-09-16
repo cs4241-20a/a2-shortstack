@@ -2,7 +2,7 @@
 console.log("Welcome to assignment 2!")
 
 var clickcount = 0;
-const seconds = 3;
+const seconds = 1;
 
 
 //when start button is clicked swap visibilities and start 30 second timer.
@@ -14,7 +14,7 @@ function startClicked() {
   for (var i = 0; i < classes.length; i++) {
     classes[i].style.display = "block";
   }
-  setTimeout(end, seconds*1000); //after 3 seconds...
+  setTimeout(end, seconds * 1000); //after 3 seconds...
 }
 
 
@@ -66,20 +66,22 @@ const submit = function (e) {
   const body = JSON.stringify(userScore);
 
   fetch('/submit', {
-    method:'POST',
+    method: 'POST',
     body
   })
     .then(function (response) {
-      console.log("fetched done. Response now");
-      let newScoreboard = JSON.parse(response);
-      console.log("Should be scoreboard: \n" + newScoreboard);
-      
-      restartGame();
-      //buildTable(newScoreboard);
+      //response
+      response.json().then(function (data) {
+        //data
+        console.log("Submit Response:", response);
+        console.log("Returned data: ", data);
+        let newScoreboard = data;
+        //console.log("Should be Mr. Insano: \n" + newScoreboard[0].name);
+        //console.log("Should be 3" + newScoreboard.length);
+        restartGame();
 
-      return response;
-      //do something with response
-      //restartGame();
+        buildTable(newScoreboard);
+      })
     })
 
   return false;
@@ -99,22 +101,44 @@ function restartGame() {
 }
 
 //generate a table for displaying under score
-function buildTable(name, cps, clicks, seconds) {
+function buildTable(newScoreboard) {
+
+  //sort by clicks per second
+  newScoreboard.sort((a, b) => b.cps - a.cps);
+
   let table = document.getElementById('scoretable');
   //for building the scoreboard header for the table
-  table.innerHTML = 
-  '<tr>\n' +
-  '<th>Placing</th>\n' +
-  '<th>Player Name</th>\n' +
-  '<th>Clicks Per Second</th>\n' +
-  '<th>Total Clicks</th>\n' +
-  '<th>Seconds</th>\n' +
-  '</tr>';
+  let newTable =
+    '<tr>\n' +
+    '<th>Placing</th>\n' +
+    '<th>Player Name</th>\n' +
+    '<th>Clicks Per Second</th>\n' +
+    '<th>Total Clicks</th>\n' +
+    '<th>Seconds</th>\n' +
+    '<th>Time (H:min)</th>\n' +
+    '</tr>\n';
 
   //for populating the scoreboard with scores.
   for (let i = 0; i < newScoreboard.length; i++) {
-    const userScore = newScoreboard[i];
+    let d = new Date(newScoreboard[i].time);
+    let s = d.getMinutes();
+    if ((d.getMinutes() % 10) == 0) {
+      s = d.getMinutes().toString() + "0";
+    }
+    if (d.getMinutes() < 10) {
+      s = "0" + d.getMinutes().toString();
+    }
+    newTable += ('<tr>\n');
+    newTable += (`<td> #${i + 1}</td>\n`);
+    newTable += (`<td> ${newScoreboard[i].name}</td>\n`);
+    newTable += (`<td> ${newScoreboard[i].cps}</td>\n`);
+    newTable += (`<td> ${newScoreboard[i].clicks}</td>\n`);
+    newTable += (`<td> ${newScoreboard[i].seconds}</td>\n`);
+    newTable += (`<td> ${d.getHours()}:${s}</td>\n`);
+    newTable += ('</tr>\n');
   }
+  table.innerHTML = newTable;
+  console.log("Table populated: \n" + table.innerHTML);
 }
 
 

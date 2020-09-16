@@ -12,39 +12,19 @@ Note that there is a very large range of application areas and possibilities tha
 
 Your application is required to implement the following functionalities:
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-- the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `todo` dataset with `task`, `priority`, and `creation_date` may generate a new field `deadline` by looking at `creation_date` and `priority`
+
+
+- a `Form/Entry` functionality which allows a user to modify, or delete data items residing in the server's memory
+
 
 Your application is required to demonstrate the use of the following concepts:
 
 HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-- A results page displaying all data currently available on the server. You will most likely use a `<table>` tag for this, but `<ul>` could also work and might be simpler to work with.
 - All pages should [validate](https://validator.w3.org)
 
-CSS:
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors --Good
-    - ID selectors -- Good
-    - Class selectors --NOT WORKING
-- CSS positioning and styling of the primary visual elements in the application:
-    - Use of either a CSS grid or flexbox for layout --NOT WORKING
-    - Rules defining fonts for all text used; no default fonts! Be sure to use a web safe font or a font from a web service like [Google Fonts](http://fonts.google.com/) --Good
-
-- CSS defined in a maintainable, readable form, in external stylesheets -- Good
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository. -- ???
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository. -- ???
 
 Deliverables
 ---
-
 Do the following to complete this assignment and acheive a base grade of 85%:
 
 1. Fork the starting project code (make sure to fork the 2020 repo!). This repo contains some starter code that may be used or discarded as needed.
@@ -60,7 +40,7 @@ Acheivements
 
 Below are suggested technical and design achievements. You can use these to help boost your grade up to an A and customize the assignment to your personal interests. These are recommended acheivements, but feel free to create/implement your own... just make sure you thoroughly describe what you did in your README and why it was challenging. ALL ACHIEVEMENTS MUST BE DESCRIBED IN YOUR README IN ORDER TO GET CREDIT FOR THEM.
 
-*Technical*
+*Technical* --Completed
 - (10 points) Create a single-page app that both provides a form for users to submit data and always shows the current state of the server-side data. To put it another way, when the user submits data, the server should respond sending back the updated data (including the derived field calculated on the server) and the client should then update its data display.
 
 *Design/UX*

@@ -7,8 +7,8 @@ const http = require('http'),
   port = 3000
 
 const scoreboard = [
-  { name: "Mr. Insano", cps: 5, clicks: 150, seconds: 30 },
-  { name: "Cui2", cps: 2, clicks: 60, seconds: 30 }
+  { name: "Mr. Insano", cps: 5, clicks: 150, seconds: 30, time: 7987989869},
+  { name: "Cui2", cps: 2, clicks: 60, seconds: 30, time: 7987097986986}
 ]
 
 const server = http.createServer(function (request, response) {
@@ -56,15 +56,18 @@ const handlePost = function (request, response) {
           "name": userScore.name,
           "cps": cps,
           "clicks": userScore.clicks,
-          "seconds": userScore.seconds
+          "seconds": userScore.seconds,
+          "time": Date.now()
         }
 
         scoreboard.push(newUser);
+
+
         console.log("New user recorded: \n" + newUser);
         console.log("Sending new scoreboard: \n" + JSON.stringify(scoreboard));
 
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-        response.end(JSON.stringify.scoreboard);
+        response.end(JSON.stringify(scoreboard));
         break;
 
       case '/delete':
