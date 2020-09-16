@@ -46,7 +46,7 @@ const handlePost = function( request, response ) {
     // this request is an order
     if (json.type === "order") {
       const orderNum = appdata.length === 0? 1 : appdata[appdata.length - 1].orderNum + 1;
-      appdata.push({orderNum: orderNum, color: json.color, quantity: json.quantity})
+      appdata.push({orderNum: orderNum, color: json.color, size: json.size, quantity: json.quantity})
     }
     // this request is a fulfillment
     else if (json.type === "fulfill") {

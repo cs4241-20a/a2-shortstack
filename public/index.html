@@ -16,9 +16,19 @@
   <form action="">
     <!-- Order Form -->
     <select id="color">
-      <option value="Blue">Blue</option>
-      <option value = "Red">Red</option>
-      <option value = "Green">Green</option>
+      <option value="blue">Blue</option>
+      <option value = "red">Red</option>
+      <option value = "green">Green</option>
+      <option value = "purple">Purple</option>
+      <option value = "orange">Green</option>
+      <option value = "yellow">Yellow</option>
+      <option value = "white">White</option>
+      <option value = "black">Black</option>
+    </select>
+    <select id="size">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
     </select>
     <input type="number" id="quantity" placeholder="Quantity">
     <button id="order">Buy now</button>
@@ -32,7 +42,8 @@
 
     const color = document.getElementById( 'color' ),
             quantity = document.getElementById('quantity'),
-          json = {type: "order", color: color.value, quantity: quantity.value},
+            size = document.getElementById('size'),
+          json = {type: "order", color: color.value, size: size.value, quantity: quantity.value},
           body = JSON.stringify( json );
     console.log("Submitting order");
 
