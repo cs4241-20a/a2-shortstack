@@ -62,7 +62,7 @@ grid-template-areas:
     font-family: Chivo;
     background-color: #FC7307;
     padding: 75px 0px 25px 0px;
-    font-size: xx-large;
+    font-size: 300%;
     border-radius: 0%;
 }
 .sidebar, .content{

@@ -9,6 +9,11 @@ const submit = function (e) {
   const year = document.querySelector('#Year')
   const price = document.querySelector('#Price')
 
+  if (make.value.toString().trim() === '' || model.value.toString().trim() === '' || year.value.toString().trim() === '' || price.value.toString().trim() === '') {
+    alert("Empty fields.")
+    return false
+  }
+
   const json = {
     make: make.value,
     model: model.value,
@@ -100,10 +105,12 @@ const deleteItem = function () {
 }
 
 const saveItem = function () {
+  // get modified row
   let datatable = document.getElementById("data-table")
   var i = this.parentNode.parentNode.rowIndex;
   var row = datatable.rows[i]
 
+  // get changes
   const json = {
     make: row.cells[0].innerHTML,
     model: row.cells[1].innerHTML,
@@ -111,7 +118,7 @@ const saveItem = function () {
     price: row.cells[3].innerHTML,
     priority: row.cells[4].innerHTML,
     id: this.id
-  }  
+  }
   const body = JSON.stringify(json)
 
   fetch('/put', {
@@ -123,12 +130,13 @@ const saveItem = function () {
     })
 
   // delete selected row from table 
-  document.getElementById("data-table").deleteRow(i); 
+  document.getElementById("data-table").deleteRow(i);
 
   // create a new row at specified position
   createEntry(document.getElementById('data-table'), json, i)
   alert("Saved entry.")
 }
+
 window.onload = function () {
   const button = document.querySelector('button')
   button.onclick = submit
