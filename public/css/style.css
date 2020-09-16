@@ -1,1 +1,70 @@
 /*Style your own assignment! This is fun! */
+h1 {
+  padding: 30px;
+  text-align: center;
+  background-image: url("https://images.pexels.com/photos/82256/pexels-photo-82256.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  font-family: Lobster;
+  font-size: 70px
+  
+}
+
+.studentList {
+  background-color: lightblue;
+  border-style: solid;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30%;
+  padding-right: 30%;
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+table{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-left: 50%;
+  padding-right: 50%;
+  position:relative;
+  font-family: Play
+  
+}
+
+td{
+  padding-left: 40px;
+  padding-right: 40px;
+  border: 1px solid black;
+  position:relative;
+}
+
+#Add{
+
+  background-color: yellow;
+}
+
+#Save{
+  background-color: yellow;
+}
+
+button{
+  
+  font-family: Acme
+}
+
+input{
+  font-family: Play
+  
+}
+
+p{
+  text-align: center;
+  font-family: Lobster;
+  font-size: 20px
+  
+}
+
+#newInput{
+  visibility: hidden;
+}
+

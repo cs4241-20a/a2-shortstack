@@ -1,12 +1,12 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "assignment_2",
+  "version": "V1.0",
+  "description": "This is an assignment for class Webware.",
+  "author": "Yaru Gong",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }
