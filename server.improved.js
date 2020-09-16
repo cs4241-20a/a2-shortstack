@@ -38,14 +38,14 @@ const handlePost = function( request, response ) {
     const rosterAction = json.playerAction
     switch(rosterAction){
       case "add":
-       appData.push(json)
+       appData.push( json )
        break;
       case "delete":
         appData.pop()
         break;
       case "edit":
         for(var i = 0; i < appData.length; i++){
-          if(appData[i].number == json.number && appData[i].firstName == json.firstName && appData[i].lastName == json.lastName){
+          if(appData[i].number == json.number && appData[i].firstName == json.firstName && appData[i].lastName == json.lastName) {
             appData[i].goals += json.goals
             appData[i].assists += json.assists
           }

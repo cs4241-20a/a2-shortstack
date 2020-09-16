@@ -24,7 +24,9 @@ const addPlayer = function( e ) {
   })
   .then( function(txt){
       console.log(txt)
-      addRoster( JSON.parse(txt) )
+      //addRoster( JSON.parse('{ "playerAction": "add", "number": 1, "firstName": "K", "lastName": "Hart", "goals": 0, "assists": 0}') )
+      //txt.forEach( element => addRoster( JSON.parse( element ) ) )
+      addRoster( JSON.parse( txt ) )
   })
 
   return false
@@ -45,7 +47,7 @@ const deletePlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/addPlayer', {
+  fetch( '/deletePlayer', {
     method:'POST',
     body 
   })
@@ -75,7 +77,7 @@ const editPlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/addPlayer', {
+  fetch( '/editPlayer', {
     method:'POST',
     body 
   })
@@ -112,7 +114,7 @@ function addRoster(data){
 function deleteRoster(){
   console.log("Deleting last player")
   if(numRows !== 1){
-    document.getElementById("resultTable").deleteRow(-1);
+    document.getElementById( "resultTable" ).deleteRow(-1);
     numRows--
   }
   return false
@@ -120,13 +122,12 @@ function deleteRoster(){
 
 function editRoster(array){
   for(var r = 0; r < array.length; r++){
-    var table = documenet.getElementById("resultTable")
+    var table = documenet.getElementById( "resultTable" )
     table.rows[r+1].cells[0].innerHTML = array[r].number
     table.rows[r+1].cells[1].innerHTML = array[r].firstName
     table.rows[r+1].cells[2].innerHTML = array[r].lastName
     table.rows[r+1].cells[3].innerHTML = array[r].goals
     table.rows[r+1].cells[4].innerHTML = array[r].assists
-
   }
   return false
 }
