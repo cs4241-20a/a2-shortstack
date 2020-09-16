@@ -1,1 +1,18 @@
 /*Style your own assignment! This is fun! */
+
+h1 {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: bold condensed;
+	font-size: 50px;
+	padding:10px;
+	background-color: #ff512c;
+	text-align: center;
+}
+
+body {
+	background-color: #29897c;	
+}
+
+table, th, td {
+  border: 1px solid black;
+}
