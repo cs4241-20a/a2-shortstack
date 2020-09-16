@@ -6,10 +6,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+var appdata = [
+  { 'name': 'Matt', 'year': 1998, 'age': 22 },
+  { 'name': 'Jared', 'year': 1999, 'age': 21 },
+  { 'name': 'Alec', 'year': 1998, 'age': 14} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -38,12 +38,17 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
+    console.log( JSON.parse( dataString ))
+    const json = JSON.parse(dataString)
+    
+    json.age = (2020-parseInt(json.year))
+    appdata.push(json)
+    
+    console.log(json)
+    console.log(appdata)
     // ... do something with the data here!!!
-
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(json))
   })
 }
 
