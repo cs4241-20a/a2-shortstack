@@ -1,1 +1,56 @@
 /*Style your own assignment! This is fun! */
+.name_div{
+  display:flex;
+  flex-direction:row;
+  background:lightblue
+}
+#yourname,#currentYear,#select{
+  border-radius:6px;
+  height:50px;
+  width:300px;
+}
+.name{
+  margin:auto
+}
+.currentYear{
+  margin:auto
+}
+.gnder{
+  margin:auto
+}
+.btn_f{
+  display:flex;
+  flex-direction:row;
+  background:lightblue
+}
+.btn_s{
+  margin-left:43%;
+  margin-top:50px;
+  margin-bottom:20px
+}
+.input_value,.input_label{
+  margin-top:10px;
+  font-size:24px
+}
+#btn{
+  width:205px;
+  height:50px;
+  border-radius:6px;
+  font-size:24px
+}
+#infoHeader{
+  display:flex;
+  flex-direction:row
+}
+#nHeader,#gHeader,#cHeader,#eHeader{
+  font-size:24px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:20px
+}
+body{
+  background:lightyellow
+}
+.input_label{
+  font-family:'Aclonica'
+}

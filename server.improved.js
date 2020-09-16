@@ -7,9 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -19,13 +17,17 @@ const server = http.createServer( function( request,response ) {
     handlePost( request, response ) 
   }
 })
-
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if (request.url === '/results') {
+    response.setHeader("Content-Type", "application/json")
+    response.end(JSON.stringify(appdata))
+  } 
+  else{
     sendFile( response, filename )
   }
 }
@@ -38,12 +40,28 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    // const appdata=[]
+    const info = JSON.parse( dataString )
+    //info.sum = "kkk"+info.studentId
+    if(info.currentYear === "Freshman"){
+      info.expectedLeaveYear = "2024"
+    }
+    if(info.currentYear === "Sophomore"){
+      info.expectedLeaveYear = "2023"
+    }
+    if(info.currentYear === "Junior"){
+      info.expectedLeaveYear = "2022"
+    }
+    if(info.currentYear === "Senior"){
+      info.expectedLeaveYear = "2021"
+    }
+    appdata.push(info)
+    console.log(appdata)
 
     // ... do something with the data here!!!
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.writeHeader( 200, {'Content-Type': 'text/plain' })
+    response.end( JSON.stringify(appdata) )
   })
 }
 
