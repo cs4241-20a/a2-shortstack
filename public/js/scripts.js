@@ -4,6 +4,7 @@ console.log("Welcome to assignment 2!")
 var clickcount = 0;
 const seconds = 3;
 
+
 //when start button is clicked swap visibilities and start 30 second timer.
 function startClicked() {
   console.log("Game started!");
@@ -70,8 +71,11 @@ const submit = function (e) {
   })
     .then(function (response) {
       console.log("fetched done. Response now");
-      console.log(response);
+      let newScoreboard = JSON.parse(response);
+      console.log("Should be scoreboard: \n" + newScoreboard);
+      
       restartGame();
+      //buildTable(newScoreboard);
 
       return response;
       //do something with response
@@ -95,11 +99,12 @@ function restartGame() {
 }
 
 //generate a table for displaying under score
-function buildTable(name, cps, clicks) {
+function buildTable(name, cps, clicks, seconds) {
   let table = document.getElementById('scoretable');
   //for building the scoreboard header for the table
   table.innerHTML = 
   '<tr>\n' +
+  '<th>Placing</th>\n' +
   '<th>Player Name</th>\n' +
   '<th>Clicks Per Second</th>\n' +
   '<th>Total Clicks</th>\n' +
@@ -107,8 +112,8 @@ function buildTable(name, cps, clicks) {
   '</tr>';
 
   //for populating the scoreboard with scores.
-  for (let i = 0; i < scoreboard.length; i++) {
-    const userScore = scoreboard[i];
+  for (let i = 0; i < newScoreboard.length; i++) {
+    const userScore = newScoreboard[i];
   }
 }
 

@@ -4,7 +4,7 @@ const http = require('http'),
   // to install the mime library used in the following line of code
   mime = require('mime'),
   dir = 'public/',
-  port = 5500
+  port = 3000
 
 const scoreboard = [
   { name: "Mr. Insano", cps: 5, clicks: 150, seconds: 30 },
@@ -61,17 +61,16 @@ const handlePost = function (request, response) {
 
         scoreboard.push(newUser);
         console.log("New user recorded: \n" + newUser);
+        console.log("Sending new scoreboard: \n" + JSON.stringify(scoreboard));
 
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-
-        console.log("Sending new scoreboard: \n" + JSON.stringify(scoreboard));
-        response.end(JSON.stringify(scoreboard));
-
+        response.end(JSON.stringify.scoreboard);
         break;
 
       case '/delete':
         //delete user with name from scoreboard list.
         break;
+
       case '/modify':
         //change clicks
         break;
