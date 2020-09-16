@@ -1,15 +1,35 @@
 /*Style your own assignment! This is fun! */
 /* color scheme: */
-h1, h5 {
+
+/* element selector */
+h1, h2, h3, h4, h5 {
     color:pink;
+    font-family: "Artifika";
+    text-align: center;
 }
 
-.form {
-    flex-direction: column;
+/* id selector */
+.prompt {
+    background-color: pink;
+    font-family: "Lora";
+}
+
+li {
+    font-family: "Lora";
+}
+
+button {
+    font-family: "Lora";
 }
 
 table, th, td {
   border: 1px solid black;
+  font-family: "Lora";
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }
 /* TODO: ID selectors */ 
 

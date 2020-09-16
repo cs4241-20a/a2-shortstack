@@ -4,18 +4,20 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link href='https://fonts.googleapis.com/css?family=Artifika' rel='stylesheet'>
     <script src="js/scripts.js"></script>
   </head>
   <body>
     <h1>WELCOME TO LOCAL ICE CREAM SHOP EMPLOYEE FORM!</h1>
-    <h5>
+    <h3>
       We are happy you are here! please place your order below. If you would
       like to see all the orders we are working on right now, and change your
       order, please select the button at the bottom of the screen.
-    </h5>
+    </h3>
 
     <h1>
-      Our Menu
+      OUR MENU
     </h1>
     <ul>
       <li>
@@ -41,30 +43,42 @@
       </li>
     </ul>
 
-    <h5>
-      Create an order!
-    </h5>
-    <form action="" class="ordersForm">
-      <input type="text" id="orderItem" value="your title here" />
-      <input type="text" id="orderDetails" value="your details here" />
-      <input type="number" id="orderCost" step="0.01" min="0.01" value="0.01" />
+    <h3>
+      Create an Order!
+    </h3>
+    <form class="ordersForm">
+      <input type="text" class="prompt" id="orderItem" value="your title here" />
+      <input type="text" class="prompt" id="orderDetails" value="your details here" />
+      <input type="number" class="prompt" id="orderCost" step="0.01" min="0.01" value="0.01" />
       <button class="submitBtn">submit</button>
     </form>
-    <br></br>
-    <form action="" class="alterOrdersForm">
-      <input type="text" id="newOrderNumber" value="Order Number" />
-      <input type="text" id="newOrderItem" value="Order Item" />
-      <input type="text" id="newOrderDetails" value="Order Details" />
+    <br>
+    <h3>
+      Change an Order
+    </h3>
+    <h5>
+      If the customer would like to change their order, please ask them for their order number and make the necessary changes.
+    </h5>
+    <form class="alterOrdersForm">
+      <input type="text" class="prompt" id="newOrderNumber" value="Order Number" />
+      <input type="text" class="prompt" id="newOrderItem" value="Order Item" />
+      <input type="text" class="prompt" id="newOrderDetails" value="Order Details" />
       <button class="changeBtn">change order</button>
     </form>
 
-    <br></br>
-    <form action="" class="deleteOrdersForm">
-      <input type="text" id="deleteOrderNumber" value="Order Number" />
+    <br>
+    <h3>
+      Complete an Order
+    </h3>
+    <h5>
+      Before giving the customer their order, please enter the order number here to mark the order number as completed. 
+    </h5>
+    <form class="deleteOrdersForm">
+      <input type="text" class="prompt" id="deleteOrderNumber" value="Order Number" />
       <button class="deleteBtn">delete order</button>
     </form>
 
-    <h1>Current Orders</h1>
+    <h1>CURRENT ORDERS</h1>
     <table id="currentTasks">
       <tr>
         <td>Order Number</td>
