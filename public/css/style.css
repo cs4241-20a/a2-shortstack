@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
+    margin-bottom: 2rem;
 }
 
 #loadingMessage {
@@ -21,6 +22,10 @@
 }
 
 #userCatHeading {
+    display: none;
+}
+
+#userCatList {
     display: none;
 }
 

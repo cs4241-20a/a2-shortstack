@@ -21,9 +21,6 @@ const uploadCat = function( e ) {
           catDescription = document.querySelector('#description'),
           catImage = document.querySelector('#picture') 
 
-    console.log(catName.value)
-    console.log(catDescription.value)
-    console.log(catImage.files[0])
     let formData = new FormData()
 
     if(!catImage.files[0]){
@@ -38,7 +35,7 @@ const uploadCat = function( e ) {
             body: formData
         })
         .then(response => response.json())
-        .then(result => console.log(result))
+        .then(cats => loadCats(cats))
         .catch(error => {
             console.log(error)
         })
@@ -66,11 +63,18 @@ window.onload = function() {
 const loadCats = (apiCats) => {
     cats = apiCats
     const default_cats = cats.default_cats
+    while(defaultCatList.firstChild){
+        defaultCatList.removeChild(defaultCatList.firstChild)
+    }
+    while(userCatList.firstChild){
+        userCatList.removeChild(userCatList.firstChild)
+    }
     default_cats.map((cat) => {
         createCatCard(cat, defaultCatList, false)
     })
     const user_cats = apiCats.user_cats
     if(user_cats.length > 0){
+        console.log("Setting up user list")
        createUserCatList(user_cats)
     }
 }
@@ -120,7 +124,8 @@ const createCatCard = (cat, catList, includeButton) => {
 }
 
 const createUserCatList = (cats) => {
-    userCatListHeading.style = "display: visible;"
+    userCatListHeading.style = "display: block;"
+    userCatList.style = "display: flex;"
     cats.map((cat) => {
         createCatCard(cat, userCatList, true)
     })
