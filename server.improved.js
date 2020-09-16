@@ -6,11 +6,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = []
+//to push new user data into array appdata: 
+// appdata.push({'model':'nissan', 'year':2000, 'mpg':2})
+//if already parsed: appdata.push(userdata)
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -39,9 +38,8 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
+    
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })

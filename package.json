@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "cr-4241-short-stack",
+  "version": "0.1.0",
+  "description": "WPI CS 4241 second assignment",
+  "author": "Aditya Malik",
   "scripts": {
     "start": "node server.improved.js"
   },

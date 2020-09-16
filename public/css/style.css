@@ -1,1 +1,240 @@
 /*Style your own assignment! This is fun! */
+
+body {
+    margin: 0em;
+    min-width: 250px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    background-color: cornflowerblue;
+    padding: 10px 30px;
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 42px;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.input .task{
+    padding: 5px;
+    height: 30px;
+    outline: none;
+    width: 350px;
+    font-size: 14px;
+    margin: 0.3rem;
+    border: 3px solid black;
+}
+
+.task {
+    color: rgb(14, 0, 1);
+}
+
+.dueDate {
+    height: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid black;
+    border-color: rgb(228, 208, 33);
+    margin-left: 3px;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#datePara {
+    margin-left: 10px;
+}
+
+p {
+    margin-left: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+#colorRule {
+    margin-left: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.selPriority {
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid rgb(20, 20, 20);
+    margin-left: 5px;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.item_sel {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid rgb(20, 20, 20);
+}
+
+.item_date {
+    margin-right: 10px;
+    height: 27px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid rgb(228, 208, 33);
+}
+
+.low {
+    background: lightgreen;
+}
+
+.medium {
+    background: rgb(241, 241, 146)
+}
+
+.high {
+    background: rgb(238, 114, 114);
+}
+
+.button {
+    text-align: center;
+    font-size: 14px;
+    padding: 5px;
+    height: 46px;
+    width: 70px;
+    margin: 0.3rem;
+    transition-duration: 0.3s;
+}
+
+.submitButton {
+    text-align: center;
+    font-size: 14px;
+    padding: 5px;
+    height: 45px;
+    width: 70px;
+    margin-left: 25px;
+    transition-duration: 0.3s;
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: blue;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 10px;
+}
+
+.user_input {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    height: 26px;
+    width: 200px;
+}
+
+.edit {
+    background-color: white;
+    color: black;
+    border: 3px solid green;
+    height: 33px;
+    width: 60px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.edit:hover {
+    background-color: green;
+    color: white;
+}
+
+.remove {
+    background-color: white;
+    color: black;
+    border: 3px solid crimson;
+    height: 33px;
+    width: 80px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.remove:hover {
+    background-color: crimson;
+    color: white;
+}
+
+.item {
+    padding: 10px;
+    border-bottom: 3px solid cornflowerblue;
+    margin-bottom: 20px;
+}
+
+.item_input {
+    height: 23px;
+    width: 200px;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 3px solid black;
+}
+
+.item_derived {
+    margin-right: 10px;
+    height: 27px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid rgb(63, 63, 248);
+}
+
+.codes {
+    width: 820px; 
+    height: auto; 
+    border: 20px double cornflowerblue; 
+    background: rgb(125, 163, 235); 
+    background-clip: padding-box; 
+    border-radius: 5px; 
+    padding: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white
+}
+
+.item_day {
+    margin-right: 10px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid rgb(211, 63, 248);
+    width: 40px;
+}
