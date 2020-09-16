@@ -8,6 +8,41 @@ body {
 	background-size: cover;
 }
 
+p {
+	font-weight: bold;
+	margin: 0px;
+}
+
+.break {
+	height: 100%;
+	position: fixed;
+	top: 0;
+	padding: 40px;
+	z-index: 1;
+	overflow-x: hidden;
+}
+
+.left {
+	left: 0;
+	width: 55%;
+}
+
+.right {
+	right: 0;
+	width: 45%;
+}
+
+.radiofont {
+	font-size: 15px;
+	margin: 8px;
+}
+
 label {
-	font-size: 30px;
+	font-size: 20px;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 15px;
 }

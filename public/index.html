@@ -5,76 +5,68 @@
   <title>CS4241 Assignment 2</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 <body>
 
-  <div class="leftside">
+  <div class="break right">
     <h1>Current Race Entries:</h1>
     <table id="current"></table>
   </div>
 
-  <div class="rightside">
-    <h1>New Race Entry:</h1>
+  <div class="break left">
+    <h1 id="newentry">New Race Entry:</h1>
 
-    <form>
-      <label for="name">Name:</label>
+    <form action="">
+      <p>Name:</p>
+      <label for="name"></label>
       <input id="name" placeholder="First, Last" type="text">
       <br><br>
 
-      <label for="bikeyear">Bike Year:</label>
-      <input id="name" placeholder="XXXX" type="text">
+      <p>Bike Number:</p>
+      <label for="bikeyear"></label>
+      <input id="name" placeholder="XXX" type="text">
       <br><br>
 
-      <label for="bikebrand">Bike Brand:</label>
-      <select id="brand" name="brand">
-        <option value="honda">Honda</option>
-        <option value="husqvarna">Husqvarna</option>
-        <option value="kawasaki">Kawasaki</option>
-        <option value="ktm">KTM</option>
-        <option value="suzuki">Suzuki</option>
-        <option value="yamaha">Yamaha</option>
-      </select>
+      <p>Bike Brand:</p>
+      <label class="radiofont"><input type="radio" name="bikebrand" value="honda">Honda</label>
+      <label class="radiofont"><input type="radio" name="bikebrand" value="husqvarna">Husqvarna</label>
+      <label class="radiofont"><input type="radio" name="bikebrand" value="kawasaki">Kawasaki</label>
+      <br>
+      <label class="radiofont"><input type="radio" name="bikebrand" value="ktm">KTM</label>
+      <label class="radiofont"><input type="radio" name="bikebrand" value="suzuki">Suzuki</label>
+      <label class="radiofont"><input type="radio" name="bikebrand" value="yamaha">Yamaha</label>
       <br><br>
 
-      <label for="bikecc">Bike CC's:</label>
-      <input id="bikecc" placeholder="XXX" type="text">
+      <p>Class(es):</p>
+      <label class="radiofont"><input type="checkbox" name="class" value="50cc">50 cc</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="65cc">65 cc</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="85cc">85 cc</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="supermini">Supermini</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="youth">Youth A/B/C</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="250pro">250 Pro</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="250">250 A/B/C</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="450pro">450 Pro</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="450">450 A/B/C</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="open">Open A/B/C</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="25">25+ A/B/C</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="30">30+ A/B/C</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="40">40+ A/B/C</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="45">45+ Open</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="50">50+ Open</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="55">55+ Open</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="60">60+ Open</label><br>
+      <label class="radiofont"><input type="checkbox" name="class" value="female">Female</label><br>
       <br><br>
-
-      <label for="class">Class:</label>
-      <select id="class" name="class">
-        <option value="50cc">50 cc</option>
-        <option value="65cc">65 cc</option>
-        <option value="85cc">85 cc</option>
-        <option value="supermini">Supermini</option>
-        <option value="youtha">Youth A</option>
-        <option value="youthb">Youth B</option>
-        <option value="youthc">Youth C</option>
-        <option value="250a">250 A</option>
-        <option value="250b">250 B</option>
-        <option value="250c">250 C</option>
-        <option value="450a">450 A</option>
-        <option value="450b">450 B</option>
-        <option value="450c">450 C</option>
-        <option value="opena">Open A</option>
-        <option value="openb">Open B</option>
-        <option value="openc">Open C</option>
-        <option value="25">25+ A/B/C</option>
-        <option value="30">30+ A/B/C</option>
-        <option value="40">40+ A/B/C</option>
-        <option value="45">45+ Open</option>
-        <option value="50">50+ Open</option>
-        <option value="55">55+ Open</option>
-        <option value="60">60+ Open</option>
-        <option value="Female">Female</option>
-      </select>
     </form>
 
     <button id="add">Submit</button>
-
+    <h3 id="hint"></h3>
+  </div>
 </body>
 
-<script src = "/.js/scripts.js"></script>
+<script src = "./js/scripts.js"></script>
 
 </html>
