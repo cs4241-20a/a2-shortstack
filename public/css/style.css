@@ -8,6 +8,9 @@ h1, h5 {
     flex-direction: column;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
 /* TODO: ID selectors */ 
 
 /* TODO: Element Selectors */

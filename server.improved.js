@@ -1,3 +1,5 @@
+const { stringify } = require('querystring')
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -30,20 +32,59 @@ const handleGet = function( request, response ) {
   }
 }
 
+let dataStorage = [];
+let nextId;
 const handlePost = function( request, response ) {
-  let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+    let item;
+    item = JSON.parse(data);
+
+    // item.orderNumber = 1;
+    //  // if the item is a new item create a unique id and an end time for it
+    //  if (item.orderNumber === null) {
+    //   if(nextId === null){
+    //     item.orderNumber = 1;
+    //     nextId = 2
+    //   } else {
+    //     item.orderNumber = nextId
+    //     nextId++
+    //   }}
+
+    dataStorage.push(item); 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    // console.log( JSON.stringify( dataStorage ) )
 
     // ... do something with the data here!!!
 
+    //get the last item pushed to datastorage
+    let index = dataStorage.length - 1;
+    let lastItem = dataStorage[index];
+
+    // if the item is not a new item (has an order number), alter the fields and delete it
+    if(lastItem.orderNumber !== undefined){
+      console.log("hello sunshine");
+    } else {
+        // give the item a unique order number
+        if(nextId === undefined){
+          lastItem.orderNumber = 1;
+          nextId = 2
+        } else {
+          lastItem.orderNumber = nextId
+          nextId++
+        }
+
+        // give the item an end time after its start time
+        let finalCost;
+        lastItem.orderCost = parseFloat(lastItem.orderCost);
+        finalCost = parseFloat(lastItem.orderCost) * 1.25;
+        lastItem.orderTotalCost = finalCost;
+    }
+
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(dataStorage))
   })
 }
 
