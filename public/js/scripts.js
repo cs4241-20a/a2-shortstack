@@ -15,7 +15,7 @@ const addPlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/addPlayer', {
+  fetch( '/submit', {
     method:'POST',
     body 
   })
@@ -45,7 +45,7 @@ const deletePlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/deletePlayer', {
+  fetch( '/submit', {
     method:'POST',
     body 
   })
@@ -75,7 +75,7 @@ const editPlayer = function( e ) {
         json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
-  fetch( '/editPlayer', {
+  fetch( '/submit', {
     method:'POST',
     body 
   })
