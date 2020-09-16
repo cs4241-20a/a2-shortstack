@@ -3,39 +3,47 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="/js/scripts.js"></script>
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <h1>Gabe's Coursework TODO Tracker</h1>
+    <p>
+      Just a nice and simple way for me to keep track of my class assignments and MQP deadlines!
+    </p>
+    <p>
+      To use: Simply state the Course Name, the Assignment/Task, its Due Date, and the Effort to complete it (1=least - 5=most)
+    </p>
+    <p>
+      A priority will be automatically assigned based on the Due Date and the Effort of the assignment.
+    </p>
+    <form class="inputElements">
+      <input type='text' id='courseName' placeholder="Ex. CS4241 - Webware ">
+      <input type='text' id='task' placeholder="Ex. Assignment 2 - TODO List" size="30">
+      <input type='datetime-local' id='dueDate' size="30" placeholder="Ex. yyyy-mm-dd" >
+      <select id="effort">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+      <button id="addBtn">Add</button>
     </form>
+    <table class="list">
+          <thead>
+            <tr>
+              <th class="course">Course</th>
+              <th class="task">Task</th>
+              <th class="duedate">Due Date</th>
+              <th class="effort">Effort</th>
+              <th class="priority">Priority</th>
+              <th class="delete"></th>
+            </tr>
+          </thead>
+          <tbody id="tasks"></tbody>
+        </table>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
