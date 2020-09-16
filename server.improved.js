@@ -8,10 +8,11 @@ const http = require("http"),
   port = 3000;
 
 const fill_date = "05/25/2019";
-const fill_time = "12:00";
+const fill_time = "12:00:00";
 
 const appdata = [
   {
+    id: "WLM",
     cname: "Mercedes",
     dname: "Lewis Hamilton",
     pname: "W10 EQ Power+",
@@ -19,6 +20,7 @@ const appdata = [
     sdate: fill_date + " @ " + fill_time + " UTC",
   },
   {
+    id: "MVB",
     cname: "Mercedes",
     dname: "Valtteri Bottas",
     pname: "W10 EQ Power+",
@@ -26,6 +28,7 @@ const appdata = [
     sdate: fill_date + " @ " + fill_time + " UTC",
   },
   {
+    id: "RBMV",
     cname: "Red Bull Racing",
     dname: "Max Verstappen",
     pname: "RB15",
@@ -33,6 +36,7 @@ const appdata = [
     sdate: fill_date + " @ " + fill_time + " UTC",
   },
   {
+    id: "FSV",
     cname: "Ferrari",
     dname: "Sebastian Vettel",
     pname: "SF90",
@@ -40,6 +44,7 @@ const appdata = [
     sdate: fill_date + " @ " + fill_time + " UTC",
   },
   {
+    id: "RBPG",
     cname: "Red Bull Racing",
     dname: "Pierre Gasly",
     pname: "RB15",
@@ -102,17 +107,33 @@ const handlePost = function (request, response) {
   });
 
   request.on("end", function () {
-    let vehicleJSON = JSON.parse(dataString);
+    let data = JSON.parse(dataString);
 
-    // Calculate race results
-    fetchWeather().then((weatherBody) => {
-      let weatherJSON = JSON.parse(weatherBody);
-      let result = calculateResult(vehicleJSON, weatherJSON);
+    if (request.url === "/submit") {
+      // Calculate race results
+      fetchWeather().then((weatherBody) => {
+        let weatherJSON = JSON.parse(weatherBody);
+        let result = calculateResult(data, weatherJSON);
 
+        response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+        response.end(JSON.stringify(result));
+      });
+    } else if (request.url === "/remove") {
+      let elementToRemove = appdata.find((element) => {
+        return element.id === data.lapID;
+      });
+      if (elementToRemove) {
+        appdata.splice(appdata.indexOf(elementToRemove), 1);
+        console.log(elementToRemove);
+      }
       response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-      response.end(JSON.stringify(result));
-    });
+      response.end(JSON.stringify(appdata));
+    }
   });
+};
+
+const removeEntry = function (lapID) {
+  return appdata;
 };
 
 const fetchWeather = function () {
@@ -168,20 +189,17 @@ const calculateResult = function (vehicle, weather) {
     2.5 * drs_hurt +
     Math.random(1.0);
 
-  let date = new Date();
+  let date = new Date().toISOString().replace(/T/, ' @ ').replace(/\..+/, '');
 
-  let current_date =
-    date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
-
-  let current_time =
-    date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+  let uniqueID = getUniqueID();
 
   let result = {
+    id: uniqueID,
     cname: vehicle.cname,
     dname: vehicle.dname,
     pname: vehicle.pname,
     ltime: final_time,
-    sdate: current_date + " @ " + current_time + " UTC",
+    sdate: date + " UTC",
   };
 
   appdata.push(result);
@@ -194,6 +212,29 @@ const calculateResult = function (vehicle, weather) {
   };
 
   return sendBack;
+};
+
+const getUniqueID = function () {
+  let ID = makeid(6);
+  while (
+    appdata.find((element) => {
+      return element.id === ID;
+    })
+  ) {
+    ID = makeid(6);
+  }
+
+  return ID;
+};
+
+const makeid = function (length) {
+  var result = "";
+  var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 };
 
 const sendFile = function (response, filename) {

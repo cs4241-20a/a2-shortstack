@@ -1,3 +1,7 @@
 .widget-right {
   box-shadow: none !important;
 }
+
+#openweathermap-widget-15 {
+  z-index: 0;
+}

@@ -29,8 +29,10 @@ I've done a few tricks to make it as realistic as possible:
     - I pre-baked a shadow in Blender to place below the car (as ThreeJS shadows are *slow*)
     - `ACESFilmicToneMapping` is used to give a *filmic* look
 - **Tech Achievement 2**: Upon submitting their simulation settings, the data is sent to the server and the real weather at Monaco is used to calculate a lap time.
-- **Tech Achievement 2**: On the "Leaderboard" page, pre-entered results are provided to give the user some sense of good (and bad) lap times. 
+- **Tech Achievement 3**: On the "Leaderboard" page, pre-entered results are provided to give the user some sense of good (and bad) lap times. 
 They can (of course) also see their lap time and position both when submitting and when viewing the leaderboard.
+- **Tech Achievement 4**: Each lap time is stored with an internal unique ID (I have set the ID of the "Invalidate Lap" button to that ID if you want to see it).
+This ID is used to delete lap times from the table, then update the table with new positions.
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Bulma to style the website in a modern style, with a large hero element and button that smoothly scrolls the user down to a seperate section where they can enter their simulation setup.

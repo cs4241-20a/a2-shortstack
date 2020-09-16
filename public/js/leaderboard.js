@@ -1,3 +1,5 @@
+let table = document.getElementById("data_table");
+
 let xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -11,7 +13,7 @@ xhttp.open("GET", "data", true);
 xhttp.send();
 
 function createTable(dataJSON) {
-  let table = document.getElementById("data_table");
+  table.innerHTML = "";
 
   dataJSON.forEach((element, place) => {
     let entry = document.createElement("TR");
@@ -30,8 +32,45 @@ function createTable(dataJSON) {
     let seconds = time_seconds - minutes * 60;
 
     addEntry(entry, minutes + ":" + seconds.toFixed(3));
+
     addEntry(entry, element.sdate);
+
+    let remove_td = document.createElement("TD");
+    let remove_button = document.createElement("button");
+
+    remove_button.innerText = "Invalidate Lap";
+    remove_button.classList.add(
+      "button",
+      "is-small",
+      "is-rounded",
+      "is-danger"
+    );
+    remove_button.id = element.id;
+
+    remove_button.addEventListener("click", () =>
+      removeEntry(entry, element.id)
+    );
+
+    remove_td.appendChild(remove_button);
+    entry.appendChild(remove_td);
   });
+}
+
+function removeEntry(entry, lapID) {
+  console.log("Request to remove " + lapID);
+
+  fetch("/remove", {
+    method: "POST",
+    body: JSON.stringify({
+      lapID,
+    }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      createTable(data);
+    });
 }
 
 function addEntry(entry, value) {
