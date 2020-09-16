@@ -22,7 +22,6 @@ const calculateFitness = function(record) {
 };
 
 const server = http.createServer(function(request, response) {
-  console.log(request.method);
   if (request.method === "GET") {
     handleGet(request, response);
   } else if (request.method === "POST") {
@@ -53,7 +52,6 @@ const handlePost = function(request, response) {
   request.on("end", function() {
     if (request.url === "/submit") {
       var newRecord = JSON.parse(dataAsString); //get new record json
-      console.log(newRecord);
       appdata.push({
         route: newRecord.route,
         time: newRecord.time,
@@ -63,7 +61,6 @@ const handlePost = function(request, response) {
     }
     sendAppData(response);
   });
-  console.log("appdata\n" + JSON.stringify(appdata));
   return true;
 };
 

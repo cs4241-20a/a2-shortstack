@@ -1,5 +1,4 @@
 const loadTable = function(jsonData) {
-  console.log(jsonData)
   var table = document.getElementById("resultTableBody");
   table.innerHTML = "";
   for (var i = 0; i < jsonData.length; i++) {
