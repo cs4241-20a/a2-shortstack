@@ -72,9 +72,6 @@ const handlePost = function (request, response) {
 
       case '/delete':
         let delName = JSON.parse(dataString).name; //parse passed data for deletion
-        if (delName == "Mr. Insano"){
-          alert("Well well well, looks like someone couldn't beat Mr. Insano like a true pro... tsk tsk");
-        }
         scoreboard = scoreboard.filter(data => data.name !== delName);
 
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'});

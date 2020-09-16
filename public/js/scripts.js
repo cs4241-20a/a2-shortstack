@@ -97,6 +97,9 @@ const deleteName = function (e) {
   const delName = {
     name: document.getElementById('delname').value
   }
+  if (delName.name == "Mr. Insano") {
+    alert("Well well well, looks like someone couldn't beat Mr. Insano like a true pro... tsk tsk");
+  }
 
   const body = JSON.stringify(delName);
 
@@ -124,7 +127,7 @@ function restartGame() {
   console.log("Restarting game...");
   clickcount = 0;
 
-  
+
   document.getElementById('yourname').value = "";
   document.getElementById('currentclicks').style.display = "none";
   document.getElementById('inputname').style.display = "none";
