@@ -6,11 +6,13 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+// const appdata = [
+//   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
+//   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
+//   { 'model': 'ford', 'year': 1987, 'mpg': 14}
+// ]
+
+let appdata = [];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -18,37 +20,59 @@ const server = http.createServer( function( request,response ) {
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
   }
-})
+});
 
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+  const filename = dir + request.url.slice( 1 ) ;
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }else{
     sendFile( response, filename )
   }
-}
+};
 
 const handlePost = function( request, response ) {
-  let dataString = ''
+  let dataString = '';
+  console.log("hi");
 
   request.on( 'data', function( data ) {
-      dataString += data 
-  })
+      dataString += data;
+    console.log("hi")
+  });
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    console.log(JSON.parse(dataString));
+    // const json = JSON.parse(dataString);
+    // this request is an order
+    // console.log(json.orderNum);
+    // if (json.numberOfItems === 2) {
+    //   const orderNum = appdata.length === 0? 1 : appdata[-1].orderNum + 1;
+    //   appdata.push({orderNum: orderNum, color: json.color, quantity: json.quantity})
+    // }
+    // // this request is a fulfillment
+    // else if (json.numberOfItems === 1) {
+    //   const orderNum = json.orderNum;
+    //   let i;
+    //   for (i = 0; i < appdata.length; i++) {
+    //     if (appdata[i].orderNum === orderNum) {
+    //       appdata = appdata.slice(0, i).concat(appdata.slice(i + 1, appdata.length));
+    //     }
+    //   }
+    // }
+    // else {
+    //   // this is an invalid request
+    //   console.log("invalid json");
+    // }
 
     // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
     response.end()
   })
-}
+};
 
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+   const type = mime.getType( filename );
 
    fs.readFile( filename, function( err, content ) {
 
@@ -56,17 +80,17 @@ const sendFile = function( response, filename ) {
      if( err === null ) {
 
        // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+       response.writeHeader( 200, { 'Content-Type': type });
+       response.end( content );
 
      }else{
 
        // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
+       response.writeHeader( 404 );
+       response.end( '404 Error: File Not Found' );
 
      }
    })
-}
+};
 
-server.listen( process.env.PORT || port )
+server.listen( process.env.PORT || port );
