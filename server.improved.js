@@ -54,7 +54,7 @@ const handlePost = function( request, response ) {
       let i;
       for (i = 0; i < appdata.length; i++) {
         if (appdata[i].orderNum.toString() === orderNum) {
-          appdata = appdata.splice(0, i).concat(appdata.splice(i + 1, appdata.length));
+          appdata.splice(i, 1);
         }
       }
     }
