@@ -1,1 +1,27 @@
-/*Style your own assignment! This is fun! */
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+body {
+    font-family: 'Quicksand', normal;
+    display: flex;
+    flex-direction: column;
+    background-color: #C8F7E7;
+    color: #A3695B;
+    padding: 20px;
+}
+
+.header {
+    border-left: 3px solid #26A377;
+    background-color: #79F0C7;
+    padding: 5px;
+}
+
+#todo-list,
+th,
+td {
+    border: 2px solid #A3695B;
+    text-align: center;
+}
+
+form {
+    border: 5px ridge #F2C7BD;
+    padding: 10px;
+}
