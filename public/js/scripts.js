@@ -1,22 +1,23 @@
 
 const submit = function (e) {
+    // prevent default form action from being carried out
     e.preventDefault()
 
-    const workerinput = document.querySelector('#worker'),
-        startinput = document.querySelector('#startTime'),
-        endinput = document.querySelector('#endTime'),
-        table = document.querySelector('#workTable'),
-        json = { worker: workerinput.value,  startTime: startinput.value, endTime: endinput.value, workTime: (parseInt(endinput.value) - parseInt(startinput.value)) },
+    const nameinput = document.querySelector('#workername'),
+        startinput = document.querySelector('#starttime'),
+        endinput = document.querySelector('#endtime'),
+        table = document.querySelector('#resultsTable'),
+        json = { workername: nameinput.value, starttime: startinput.value, endtime: endinput.value, worktime: (endinput.value - startinput.value), payment: (12.75 * (endinput.value - startinput.value) * 0.9) },
         body = JSON.stringify(json);
 
-
-    if (nameinput.value == "" ) {
-        console.log("empty input");
+    //check if inputs are empty
+    if (nameinput.value == "") {
+        console.log("empty input!!!");
         return;
     }
 
-    if (8 > parseInt(startinput.value) || parseInt(endinput.value) > 24) {
-        console.log("invalid time");
+    if (8 > parseInt(startinput.value) || parseInt(endinput.value) > 23) {
+        console.log("invalid year!!");
         return;
     }
 
@@ -37,22 +38,24 @@ const submit = function (e) {
 
 const updateTable = function (table, data) {
     var row = table.insertRow(-1)
-    var worker = row.insertCell(0);
-    var startTime = row.insertCell(1);
-    var endTime = row.insertCell(2);
-    var workTime = row.insertCell(3);
+    var name = row.insertCell(0);
+    var start = row.insertCell(1);
+    var end = row.insertCell(2);
+    var diff = row.insertCell(3);
+    var pay = row.insertCell(4);
 
-    worker.innerHTML = data.worker;
-    startTime.innerHTML = data.startTime;
-    endTime.innerHTML = data.endTime;
-    workTime.innerHTML = data.workTime;
+    name.innerHTML = data.workername;
+    start.innerHTML = data.starttime;
+    end.innerHTML = data.endtime;
+    diff.innerHTML = data.worktime;
+    pay.innerHTML = data.payment;
 }
 
 window.onload = function () {
     const button = document.querySelector('button')
     button.onclick = submit
 
-    const table = document.querySelector('#workTable')
+    const table = document.querySelector('#resultsTable')
     fetch('/appdata')
         .then(function (response) {
             return response.json()

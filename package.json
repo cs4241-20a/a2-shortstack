@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-Seungho Lee",
+  "version": "0.1.0",
+  "description": "WPI CS4241 Assignment 2",
+  "author": "Seungho Lee",
   "scripts": {
     "start": "node server.improved.js"
   },

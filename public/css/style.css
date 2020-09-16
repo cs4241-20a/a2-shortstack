@@ -1,7 +1,7 @@
 body {
-    background-color: lightseagreen;
+    background-color: cornflowerblue;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: white;
+    color: lightyellow;
 }
 
 button {
@@ -10,7 +10,7 @@ button {
 }
 
 input {
-    font-family: 'Times New Roman', Times, serif;
+    font-family:'Times New Roman', Times, serif;
     font-size: 1em;
 }
 
@@ -20,7 +20,7 @@ input {
     align-items: center;
     justify-items: center;
     grid-auto-flow: row;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
     #mainForm > input {
@@ -28,52 +28,52 @@ input {
     }
 
     #mainForm > button:hover {
-        background-color: mediumvioletred;
+        background-color: hotpink;
     }
 
-#workTable {
+#resultsTable {
+    display: flex;
+    flex-direction: column;
     font-size: xx-large;
     width: 100%;
     border-collapse: collapse;
-    border-top: 10px;
-    border-bottom: 5px;
+    border-top: none;
 }
 
-#workTable, th, td {
+#resultsTable, th, td {
     border: 2px solid lightgreen;
     border-top: none;
     padding: 20px;
 }
 
-.main {
+.grid-container {
     display: inline-block;
     text-align: center;
-    background: lightgreen;
+    background: lightgray;
     display: grid;
-    gap: 1px;
-    grid-template-areas: 'header header header header header' 'left content content content content';
+    grid-template-areas: 'header header header header header' 'panel content content content content';
 }
 
 .header {
     grid-area: header;
 }
 
-.left {
-    grid-area: left;
+.panel {
+    grid-area: panel;
 }
 
 .content {
     grid-area: content;
 }
 
-.main > div {
+.grid-container > div {
     text-align: center;
-    background-color: deepskyblue;
+    background-color: mediumvioletred;
     padding: 20px 0;
 }
 
 #mainlogo {
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: auto;
     color: white;
 }
