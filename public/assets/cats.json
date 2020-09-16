@@ -1,0 +1,71 @@
+{
+    "default_cats": [
+        {
+            "name": "Bread",
+            "description": "He does not know that he has become a sandwich, and thus rejects his fate",
+            "imageUrl": "assets/default_cats/bread.png",
+            "id": "1"
+        },
+        {
+            "name": "Dexter",
+            "description": "The world Dexter has seen only continues to petrify him",
+            "imageUrl": "assets/default_cats/dexter.jpg",
+            "id": "2"
+        },
+        {
+            "name": "Dozer",
+            "description": "Note: Do Not Leave Unattended",
+            "imageUrl": "assets/default_cats/dozer.jpg",
+            "id": "3"
+        },
+        {
+            "name": "Jellizabeth",
+            "description": "The power of her sneeze distorts her physical image",
+            "imageUrl": "assets/default_cats/jellizabeth.jpg",
+            "id": "4"
+        },
+        {
+            "name": "Jim",
+            "description": "He'll fix the car eventually, until then let him enjoy his smoke",
+            "imageUrl": "assets/default_cats/jim.jpg",
+            "id": "5"
+        },
+        {
+            "name": "Lanky",
+            "description": "His anger has directly transferred into arm-length",
+            "imageUrl": "assets/default_cats/lanky.jpg",
+            "id": "6"
+        },
+        {
+            "name": "Neville",
+            "description": "Oh sweet boi",
+            "imageUrl": "assets/default_cats/neville.jpg",
+            "id": "7"
+        },
+        {
+            "name": "Prince",
+            "description": "In the absence of chicken, he as assumed rule and become a despot",
+            "imageUrl": "assets/default_cats/prince.jpg",
+            "id": "8"
+        },
+        {
+            "name": "[REDACTED]",
+            "description": "[REDACTED]",
+            "imageUrl": "assets/default_cats/redacted.jpg",
+            "id": "9"
+        },
+        {
+            "name": "Slug",
+            "description": "Only comfort is available to this one",
+            "imageUrl": "assets/default_cats/slug.jpg",
+            "id": "10"
+        },
+        {
+            "name": "Squish",
+            "description": "[Insert Bonk Noise Here]",
+            "imageUrl": "assets/default_cats/squish.jpg",
+            "id": "11"
+        }
+    ],
+    "user_cats": []
+}

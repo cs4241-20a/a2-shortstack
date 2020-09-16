@@ -1,41 +1,85 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>Cursed Cats</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/baseStyles.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utility.css" />
+    <script src="js/index.js"></script>
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <nav class="c_header">
+      <h1 class="u_txt--white u_txt--hdg1">Cursed Cat Wiki</h1>
+    </nav>
+    <main>
+      <h2 class="u_txt--white u_txt--hdg2 c_catInfo">Welcome to the Cursed Cat Wiki, Feel Free to Browse the Cats or Add Your Own</h2>
+      <section id="featuredCats">
+        <h3 class="u_txt--white u_txt--hdg3 c_catList__heading">Our Current Cats</h3>
+        <p id="loadingMessage" class="u_txt--white">The cats are currently loading</p> 
+        <aside class="c_catList" id="catList">
+          <!-- Cats Go Here -->
+        </aside>
+        <h3 class="u_txt--white u_txt--hdg3 c_catList__heading" id="userCatHeading">Other People's Cats!</h3>
+        <aside class="c_catList c_catList--userCatList" id="userCatList">
+          <!-- Cats Go Here -->
+        </aside>
+      </section>
+      <section class="c_newCatFormSection">
+        <header class="c_newCatFormSection__header">
+          <h3 class="u_txt u_txt--hdg3">
+            Add a New Cat to the List
+          </h3>
+        </header>
+        <p class="u_txt">An image is required for a new cat entry to be made</p>
+        <form enctype="multipart/form-data" class="c_newCatFormSection__form">
+          <label 
+            for="name" 
+            class="u_txt c_newCatForm__label"
+          >
+            Cat Name:
+          </label>
+          <input
+            class="c_catForm__catName c_newCatForm__input" 
+            id="name"
+          />
+          <label
+            for="description"
+            class="u_txt c_newCatForm__label"
+          >
+            Description of Your Cat:
+          </label>
+          <textarea
+            class="c_newCatForm__input c_newCatForm__textArea"
+            id="description"
+            placeholder="A smelly cat"
+          ></textarea>
+          <label
+            class="u_txt c_newCatForm__label"
+            for="picture"
+          >
+            Upload Your Cat's Picture:
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            id="picture"
+            class="c_newCatForm__input"
+          />
+          <button
+            class="c_catList__primaryButton"
+            id="formSubmitButton"
+          >
+            Upload the Cat
+          </button>
+        </form>
+      </section>
+    </main>
+    <footer class="c_footer">
+      <section class="c_footer__information">
+          <h3 class="u_txt--white u_txt--hdg3">Author:</h3>
+          <p class="u_txt--white">Christian Tweed</p>
+      </section>
+    </footer>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>

@@ -1,1 +1,159 @@
-/*Style your own assignment! This is fun! */
+.c_header {
+    padding: 0.5rem 1rem;
+    background-color: var(--header-background);
+}
+
+.c_catInfo {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.c_catList {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin-bottom: 2rem;
+}
+
+#loadingMessage {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#userCatHeading {
+    display: none;
+}
+
+#userCatList {
+    display: none;
+}
+
+.c_catCard {
+    background-color: var(--card-background);
+    border-radius: 5px;
+    max-width: 300px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto min-content 150px;
+    box-shadow: -1rem 0 3rem #000;
+
+    transition: 0.3s;
+}
+
+.c_catCard:hover {
+    transform: translateY(-1rem);
+}
+
+.c_catCard:hover~.c_catCard {
+    transform: translateX(140px);
+}
+
+.c_catCard:not(:first-child) {
+    margin-left: -120px;
+}
+
+.c_catCard__catImage {
+    width: 300px;
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.c_catCard__catHeader {
+    margin: 0 1rem 0rem 1rem;
+}
+
+.c_catCard__catInformation {
+    padding: 1rem;
+    overflow-y: scroll;
+    align-self: end;
+}
+
+.c_catCard__description {
+    font-size: 0.9rem;
+}
+
+.c_catList__primaryButton {
+    border: none;
+    padding: 0.25rem 1rem;
+    border-radius: 6px;
+    background-color: var(--primary-accent);
+    color: var(--text-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,.5);
+    font-size: 1.1rem;
+    width: max-content;
+}
+
+.c_catList__secondaryButton {
+    border: 1px solid var(--primary-accent);
+    padding: 0.25rem 1rem;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--primary-accent);
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,.5);
+    font-size: 1.1rem;
+    width: max-content;
+
+}
+
+
+.c_catList__primaryButton:hover, .c_catList__secondaryButton:hover {
+    filter: saturate(200%);
+    cursor: pointer;
+}
+
+.c_newCatFormSection {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.c_newCatFormSection__header {
+    margin-bottom: 1rem;
+}
+
+.c_newCatFormSection__form {
+    display: grid;
+    grid-template-rows: 1fr 1fr min-content;
+    grid-template-columns: 1fr 1fr;
+}
+
+.c_newCatForm__input {
+    font-family: sans-serif;
+    padding: 0.5rem;
+    height: min-content;
+}
+
+.c_footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    background-color: var(--header-background);
+    height: var(--footer-height);
+}
+
+.c_footer__information {
+    padding: 1rem;
+}
+
+@media(max-width: 500px) {
+    .c_newCatFormSection__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+   .c_newCatForm__label {
+        margin-bottom: 0;
+    }
+
+    input {
+        margin-bottom: 1rem;
+    }
+}

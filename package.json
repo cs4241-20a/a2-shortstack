@@ -1,12 +1,13 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-shortstack",
+  "version": "1.0.0",
+  "description": "Cat Battle",
+  "author": "Christian Tweed",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node server.js"
   },
   "dependencies": {
+    "formidable": "^1.2.2",
     "mime": "^2.4.4"
   }
 }
