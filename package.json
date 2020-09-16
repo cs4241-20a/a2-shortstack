@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "cs4241-a2",
+  "version": "0.1.0",
+  "description": "WPI CS 4241 second assignment",
+  "author": "Neville Ingram",
   "scripts": {
     "start": "node server.improved.js"
   },
