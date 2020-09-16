@@ -6,17 +6,15 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+let serverdata = [];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
+  }else if( request.method === 'DELETE' ){
+    handleDelete( request, response )
   }
 })
 
@@ -25,9 +23,13 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }else if ( request.url === '/results' ) {
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' });
+    response.end(JSON.stringify(serverdata));
+  }else {
     sendFile( response, filename )
   }
+  return serverdata;
 }
 
 const handlePost = function( request, response ) {
@@ -38,11 +40,28 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    serverdata.push(JSON.parse(dataString));
 
-    // ... do something with the data here!!!
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
+    console.log(serverdata);
+    response.end()
+  })
+}
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+const handleDelete = function( request, response ) {
+  let dataString = ''
+  
+  request.on( 'data', function( data ) {
+      dataString += data
+  })
+
+  request.on( 'end', function() {
+    const item = JSON.parse(dataString);
+    const index = item.rowid;
+    serverdata.splice(index-2, 1);
+    
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    console.log(serverdata);
     response.end()
   })
 }

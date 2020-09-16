@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-ejreardon-Eric-Reardon",
+  "version": "v0.1.0",
+  "description": "CS4241 - Assignment 2 - shortstack",
+  "author": "Eric Reardon",
   "scripts": {
     "start": "node server.improved.js"
   },
