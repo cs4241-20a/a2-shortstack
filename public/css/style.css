@@ -1,1 +1,112 @@
-/*Style your own assignment! This is fun! */
+@import url('https://fonts.googleapis.com/css?family=Chivo|Overpass|Abel');
+
+body {
+    margin: auto;
+    font-family: Abel;
+    margin: 0 auto;
+    color: #342E09;
+    background-color: #F7E3D4;
+}
+/* Define grid areas */
+.sidebar {
+    grid-area: sidebar;
+}
+
+.content {
+    grid-area: content;
+}
+
+.header {
+    grid-area: header;
+}
+
+.footer {
+    grid-area: footer;
+}
+/* Define grid layouts */
+.wrapper {
+display: grid;
+grid-gap: 1em;
+grid-template-areas:
+    "header"
+    "sidebar"
+    "content"
+    "sidebar2"
+    "footer";
+    width: 100vw;
+    height: 100vh;
+}
+
+@media only screen and (min-width: 600px)   
+{
+    .wrapper {
+        grid-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 20% auto 10%;
+        grid-template-areas:
+            "header  header"
+            "sidebar content"
+            "footer  footer";
+    }
+}
+
+.box {
+    font-size: large;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+/* Grid item styling */
+.header{
+    font-family: Chivo;
+    background-color: #FC7307;
+    padding: 75px 0px 25px 0px;
+    font-size: 300%;
+    border-radius: 0%;
+}
+.sidebar, .content{
+    color: #342E09;
+}
+.content, .data-form {
+    display: flex;
+    justify-content: center;
+}
+.data-form {
+    margin-top: 5%;
+}
+.footer {
+    background-color: #342E09;
+    border-radius: 0%;
+}
+/* Specific styling */
+#data-table {
+    width: 100%;
+}
+tr:hover {
+    color: #FC7307;
+}
+tr:first-child:hover {
+    color: #342E09;
+}
+#form {
+    width: 80%;
+}
+input, #submit-btn, .del-btn, .save-btn{
+    font-family: inherit;
+    font-size: inherit;
+}
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.submit-btn{ 
+    margin: 8px 0;
+    padding: 5px 20px;
+    width: 50%
+}
+.del-btn, .save-btn{ 
+    margin: 8px 0;
+}
