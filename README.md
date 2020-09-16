@@ -29,8 +29,10 @@ Server maintains track of data and performs derivation operation to calculate pr
 - **Design Achievement 1**: Classmate test
     - Name: Gabriel Aponte
     - What problems did the user have with your design?
-        - 
+        - Gabe noticed that the left and right margins on the page were inconsistent. He also didn't like that the Year input field was not resticted to only four characters. Also, the table layout gets warped when you add very large inputs. 
+
     - What comments did they make that surprised you?
-        - 
+        - I was surprised Gabe said really loved my color pallete choices. I was also surprised that he found my alert for not filling in all the field intuative. 
+
     - What would you change about the interface based on their feedback?
-        - 
+        - I would add restrictions to table column width so that long inputs wouldn't mess up the UI. I also would fix the margin diffrences and add more restrictions to the Year input field.
