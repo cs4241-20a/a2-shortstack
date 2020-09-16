@@ -6,7 +6,17 @@ const http = require("http"),
   dir = "public/",
   port = 3000;
 
-const appdata = [];
+const appdata = [
+  {
+    pName: "Example",
+    pDesc: "This is An Example Entry",
+    pSDate: "01-01-2000",
+    pEDate: "02-14-2000",
+    pPrio: "6",
+    pButton:
+      '<input type = "button" value = "Delete" onclick ="function(){deleteRow(this);}">'
+  }
+];
 
 const server = http.createServer(function(request, response) {
   if (request.method === "GET") {
@@ -22,10 +32,9 @@ const handleGet = function(request, response) {
   if (request.url === "/") {
     sendFile(response, "public/index.html");
   } else if (request.url === "/get") {
-    response.writeHead(200, "OK", { 'Content-Type': 'application/json' });
+    response.writeHead(200, "OK", { "Content-Type": "application/json" });
     response.end(JSON.stringify(appdata));
-  } 
-  else {
+  } else {
     sendFile(response, filename);
   }
 };
@@ -39,11 +48,16 @@ const handlePost = function(request, response) {
 
   request.on("end", function() {
     console.log(JSON.parse(dataString));
-    if(request.url === '/delete'){
+    if (request.url === "/delete") {
       var index = appdata.indexOf(JSON.parse(dataString));
       appdata.splice(index);
-    }else{
-    appdata.push(JSON.parse(dataString));
+    } else if (request.url === "/example") {
+      while(appdata.length > 0){
+        appdata.pop();
+      } 
+      appdata.push(JSON.parse(dataString));
+    } else {
+      appdata.push(JSON.parse(dataString));
     }
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
     response.end();

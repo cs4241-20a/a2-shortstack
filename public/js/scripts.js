@@ -222,6 +222,9 @@ const get = function(e) {
     })
     .then(function(data) {
       clearTable();
+      if (data.length === 0) {
+        addExample(e);
+      }
       data.forEach(item => {
         fillTableGet(item);
       });
@@ -229,9 +232,39 @@ const get = function(e) {
   return false;
 };
 
+const addExample = function(e) {
+  const json = {
+      pName: "Example",
+      pDesc: "This is An Example Entry",
+      pSDate: "01-01-2000",
+      pEDate: "02-14-2000",
+      pPrio: "6",
+      pButton: createDelete()
+    },
+    body = JSON.stringify(json);
+  fetch("/example", {
+    method: "POST",
+    body
+  }).then(function(response) {
+    // do something with the reponse
+    console.log(response);
+    clearTable();
+    location.reload();
+    location.reload();
+  });
+
+  return false;
+};
+
+function start(e) {
+  e.preventDefault();
+  submit(e);
+  get(e);
+}
 window.onload = function() {
   const subButton = document.querySelector("#submit");
-  subButton.onclick = submit;
-  const getButton = document.querySelector("#get");
-  getButton.onclick = get;
+  subButton.onclick = start;
+  const resetButton = document.querySelector("#reset");
+  resetButton.onclick = addExample;
+  get(this);
 };
