@@ -1,7 +1,7 @@
 Readme 
 ---
 
-Glitch: https://glitch.com/~a2-orlandopinel
+Glitch: https://a2-orlandopinel.glitch.me
 
 ## Nike Running Club new member sign-up
 This sign up webpage that provides a form for users to input their username, full name and date of birth. This information is collected by a script that sends it to a server running node.js. The server stores the data inputed in the form and derives the age of the user to then return the stored field plus the derived field for them to be displayed on the same frontend webpage. In other words this is a single-page app that always updates the shown data to be in sync with the server. I used CSS layout to organize and position all the elements. The website is User friendly and self explanatory with a welcome message.
