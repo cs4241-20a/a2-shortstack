@@ -24,18 +24,31 @@ My application is able to alter and delete data in the orders table. To alter da
 I asked two students to evaluate my work.
 
 Provide the last name of each student you conduct the evaluation with: St Louis
+
 What problems did the user have with your design? 
-The user was able to complete the task, but mentioned the centering felt off. 
+
+The user was able to complete the task, but mentioned the centering felt off.
+
 What comments did they make that surprised you?
-The user did mention they were unsure about the numbers input and what it was for (at this point it was not clearly prompted)/
+
+The user did mention they were unsure about the numbers input and what it was for (at this point it was not clearly prompted)
+
 What would you change about the interface based on their feedback?
+
 I corrected the number prompting for my create order form. I would also learn more about how to effectively design a website with alignment
 that is not only functional but also pleasing to look at. 
 
+
 Provide the last name of each student you conduct the evaluation with: Hauptfeld
+
 What problems did the user have with your design? 
+
 The user was able to complete the task, but was initially confused about what to enter for some fields. 
+
 What comments did they make that surprised you?
+
 The user's confusion about the fields surprised me.
+
 What would you change about the interface based on their feedback?
+
 I would find ways to improve the prompting and have clear labels above input boxes as well as in them. 
