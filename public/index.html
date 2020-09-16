@@ -3,19 +3,22 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/scripts.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mali&family=Short+Stack&display=swap" rel="stylesheet">
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
   <body>
-    <h1> To-do list</h1>
-    <form action="">
-      <input type='text' id='taskName' value="your task here">
-      <input type='text' id='expected' value="number of hours">
+    <h1 class="title"> ~ To-do list ~</h1>
+    <form id="form">
+      <h3>Task Name:</h3>
+      <input type='text' id='taskName' value="">
+      <h3>Expected Hours:</h3>
+      <input type='text' id='expected' value="" size=3>
       <button>submit</button>
       <button id='delete'>delete last task</button>
     </form>
-    <h2>Current Tasks:</h2>
+    <h2 class="title">Current Tasks:</h2>
       <ul id='tasks'> </ul>
   </body>
 </html>

@@ -2,16 +2,35 @@
 body{
     background-color:#ffebef;
 }
-h1,h2{
+.title{
     display:flex;
     justify-content:center;
-    font-family:'Quicksand';
-    color:blue;
+    font-family:'Short Stack';
 }
-input,button,form{
+form{
+    background-color:#f0defd;
+    margin:20px;
+    padding:20px;
+}
+h3{
+    margin:0px;
+}
+input{
+    font-size:15px;
+}
+#form{
     display:flex;
     justify-content:center;
     font-family:'Patrick Hand';
+    padding-right:10px;
+}
+button{
+    background-color:#fcf7de;
+    border-radius: 10px;
+    font-size:15px;
+}
+button:hover{
+    background-color:#f9eca7;
 }
 li{
     display:flex;
@@ -22,7 +41,9 @@ li{
 p{
     margin-right:10px;
     margin-block-start:0px;
+    font-size:18px;
 }
 b{
     margin-right:5px;
+    font-size:18px;
 }

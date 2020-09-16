@@ -1,16 +1,17 @@
-// Add some Javascript code here, to run on the front end.
+//get request to delete last task and refreshes current displayed tasks
 const deleteData= function(e){
   fetch('/delete',{
     method:'POST'
   })
   .then( function( response ) {
     console.log("deleted successfully")
+    document.getElementById("tasks").innerHTML="";
+    showData()
   })
   return false;
 }
+//get request to show the current data in json file 
 const showData = function( e ){
-   //e.preventDefault()
-
     fetch('/showData',{
       method:'GET'
     })
@@ -57,9 +58,8 @@ const showData = function( e ){
 
     return false
   }
-
+  //post request to submit new task
   const submit = function( e ) {
-    // prevent default form action from being carried out
     e.preventDefault()
 
     const taskName = document.querySelector( '#taskName' ),
@@ -76,8 +76,6 @@ const showData = function( e ){
     })
    .then( response=> response.json())
    .then(json=>{
-      //    response.json().then(json =>{
-      // do something with the reponse 
       jsonUpdated=json
       var list = document.createElement("li")
       var h6 = document.createElement("b");
@@ -113,11 +111,11 @@ const showData = function( e ){
       list.appendChild(h6);
       list.appendChild(li);
       document.getElementById("tasks").appendChild(list);
-      //.then( function( response ) {
 
-   })//);
+   })
     return false
   };
+
   //when everything on your page has loaded 
   window.onload = function() {
     const tasks = document.getElementById( 'tasks' )
