@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Runs Tracker",
+  "version": "1.0.0.",
+  "description": "Handy Dandy Running Tracker",
+  "author": "Ivan Eroshenko",
   "scripts": {
     "start": "node server.improved.js"
   },
