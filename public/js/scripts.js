@@ -11,14 +11,14 @@ const submit = function( e ) {
     const number = document.querySelector('#number')
 
 
-    json = { 
+    var json = { 
       name: name.value, 
       major: major.value,
       collegeyear: year.value,
       number: number.value,
     }
 
-    body = JSON.stringify( json )
+    var body = JSON.stringify( json )
 
     fetch( '/submit', {
       method:'POST',
@@ -28,8 +28,8 @@ const submit = function( e ) {
       // do something with the reponse 
       console.log( response )
       console.log(body)
+      displayTable()
     })
-    displayTable()
     return false
   }
 
@@ -67,8 +67,8 @@ const submit = function( e ) {
     })
     .then(function(response){
       console.log("delete is called on idx: "+ key)
+      displayTable()
     })
-    displayTable()
   }
 
   const modifyData = function(key){
@@ -77,13 +77,13 @@ const submit = function( e ) {
     const year = document.querySelector('#mCollegeyear')
     const number = document.querySelector('#mNumber')
 
-    json = { 
+    var json = { 
       name: name.value, 
       major: major.value,
       collegeyear: year.value,
       number: number.value,
     }
-    body = JSON.stringify( json )
+    var body = JSON.stringify( json )
 
     fetch( '/modify?idx='+key, {
       method:'PUT',
@@ -91,8 +91,8 @@ const submit = function( e ) {
     })
     .then( function( response ) {
       console.log("modify is called on idx: "+key)
+      displayTable()
     })
-    displayTable()
     document.getElementById("modifyForm").style.display = "none";
     return false
   }

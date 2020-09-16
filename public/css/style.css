@@ -26,11 +26,14 @@
 
 }
 
-/*.hiddenForm{
-  width:600px;
-  height:800px;
-  z-index: 9;
-}*/
+.hidden-form{
+  font-family: 'Crimson Text', serif;
+  color: #363b3f;
+}
+
+#intro{
+  text-align: center;
+}
 
 .navbar-dark {
   background-color: #304154;
