@@ -1,1 +1,91 @@
 /*Style your own assignment! This is fun! */
+
+body, button, input{
+    color: #605170;
+    background-color: #CEADF0;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+button {
+    background-color: #7F4BB3;
+    color: #CEADF0;
+    border: black solid 1px;
+    border-radius: 15px;
+    height: 2em;
+    margin: auto;
+    width: 50%;
+    min-width: 200px;
+}
+
+h1, h2 {
+    font-family: 'Raleway', sans-serif;
+    color: #7F4BB3;
+}
+
+input {
+    width: 100%;
+    min-width: 200px;
+    border: black solid 1px;
+    background-color: #AA65F0;
+    color: white;
+}
+
+::placeholder {
+    color: #CCCCCC;
+    /* color: whitesmoke; */
+}
+
+#stats {
+    display: grid;
+    grid-template: 1fr 1fr / 30% 1fr;
+    grid-gap: 12px 12px;
+    padding: 12px;
+}
+
+#stats p {
+    margin: 0px;
+}
+
+#new-run-form {
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 1fr / 30% 1fr;
+    grid-gap: 12px 12px;
+    padding: 12px;
+}
+
+#form-submit {
+    grid-column: 1 / span 2;
+}
+
+#runs-table, #edit-runs-table {
+    width: 100%;
+}
+
+#edit-runs-table input {
+    width: 95%;
+    min-width: 0;
+}
+
+table, th, td {
+    border: black solid 1px;
+    border-collapse: collapse;
+}
+
+.delete-button {
+    width: 100%;
+    min-width: 30px;
+}
+
+#wrapper {
+    padding: 0 2em 0 2em;
+}
+
+.full-width {
+    width: 100%;
+    display: block;
+    padding: 12px;
+}
+
+#submit-edits {
+    margin: auto;
+}
