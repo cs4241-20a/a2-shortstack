@@ -1,1 +1,66 @@
-/*Style your own assignment! This is fun! */
+body {
+  background-color: #A7B2C2;
+  font-family: 'Cinzel', serif;
+}
+
+table {
+  border-collapse: collapse;
+  width: 75%;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+tr:nth-child(even){background-color: #8AB9F7 }
+tr:nth-child(odd){ background-color: #D3E2F5 }
+
+th {
+  background-color: #425875;
+  color: white;
+}
+
+input {
+  width: 85px
+}
+
+.tableInput {
+  text-align: center;
+}
+
+.buttonColumn {
+  background-color: #A7B2C2
+}
+
+#addButton {
+  background-color: #59FF00
+}
+
+.deleteButton {
+  background-color: red
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+#totalcount {
+  background-color: #D3E2F5;
+  display: flex;
+  height: 80px;
+  flex-direction: column;
+  align-items: center;
+}
+
+#totalprice {
+  background-color: #425875;
+  color: white;
+  display: flex;
+  height: 80px;
+  flex-direction: column;
+  align-items: center;
+}
