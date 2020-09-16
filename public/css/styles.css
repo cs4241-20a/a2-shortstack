@@ -47,6 +47,7 @@ label.required:after
 .panel .display video {
 	max-width: 100%;
 	min-height: 30%;
+	max-height: 600px;
 	object-fit: contain;
 	vertical-align: middle;
 }
