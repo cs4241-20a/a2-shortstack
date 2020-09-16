@@ -1,9 +1,13 @@
 Readme
 ---
+## Glitch URL: https://glitch.com/~a2-sammoran
 
 ## Exotic Car Auctions
 My project is a mock auction website for exotic cars. The user can list a car for sale by selecting from a list of makes, entering model, year, mileage, and MPG information. The server then calculates a "fair" (read: mostly-arbitrary)
 price for the listing and displays it as part of the results. The CSS positioning technique I used was flexbox. My `style.css` contains minimal styling, as I used Bootstrap CSS for the majority of this project.
+
+One thing to note: I did validate my HTML, and it came up with a few errors relating to some of the Vue directives on HTML tags (v-if, v-for, v-bind). These attributes are replaced
+with valid HTML by Vue after the page is loaded. I hope that's alright; I asked about it in the Microsoft Teams channel, but didn't hear back before I had to submit.
 
 ## Technical Achievements
 - **Created Single Page App with Vue.js**: I used Vue.js to manage the state for my application
@@ -38,7 +42,6 @@ the changes he suggested.
 the border of each individual vehicle listing and increasing spacing between them - I looked into making
 this change, but as those components are styled with classes from Bootstrap CSS, it seems I would have to
 make changes to Sass variables, which I'm not yet familiar with.
-
 
 ### Image Attribution
 Buggatti image: https://commons.wikimedia.org/wiki/File:Red_Bugatti_Veyron_on_the_road_(7559997596).jpg
