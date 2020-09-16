@@ -19,8 +19,17 @@ Instructions: The first step is to define the amount of seconds you would like t
 
 ## Technical Achievements
 - **Tech Achievement 1**: 
-The webpage is a single-page app which needs no reloading to showcase updates from the server. When a user players, stores, or deletes on the webpage, they will not be taken to a different page. The webpage also is able to add AND delete information. Adding can be done after playing and reaching a score greater than 0. Deleting can be done by typing in the exact name (capital sensitive) of the player that is to be deleted from the leaderboard. The leaderboard is also sorted by clicks per second in case users were registered under differing playtimes (seconds). You can also add a custom number of seconds at the start of the game prior to hitting the start button. It will not run unless a NUMBER greater than 0 is entered. Not only did I have to work the input functionally, but I also had to stylistically position it to not look jarring. The functionallity took about the same time as working the /submit POST as they used similar computation. The hardest techinical achievement (I think) was generating the table and getting it to format correctly. The first table is pre-defined in the server and every modification causes a new generation within the client-side javascript file. This was difficult because it took a lot of careful planning to understand where each data type had to go to appear in the correct column/row. 
+The webpage is a single-page app which needs no reloading to showcase updates from the server. When a user players, stores, or deletes on the webpage, they will not be taken to a different page. The webpage also is able to add AND delete information. Adding can be done after playing and reaching a score greater than 0. Deleting can be done by typing in the exact name (capital sensitive) of the player that is to be deleted from the leaderboard. This is done by updating the server and altering the front-end's visuals in real-time.
+
+- **Tech Achievement 2**: 
+ The leaderboard is sorted by clicks per second in case users were registered under differing playtimes (seconds). This was an achievement because it required understanding of the sort method along with selecting specific parameters (clicks per second) to accurately sort.
+ 
+ - **Tech Achievement 3**: 
+  You can also add a custom number of seconds at the start of the game prior to hitting the start button. It will not run unless a NUMBER greater than 0 is entered. Not only did I have to work the input functionally, but I also had to stylistically position it to not look jarring. The functionallity took about the same time as working the /submit POST as they used similar computation.
+  
+  - **Tech Achievement 4**:  
+  The hardest techinical achievement (I think) was generating the table and getting it to format correctly. The first table is pre-defined in the server and every modification causes a new generation within the client-side javascript file. This was difficult because it took a lot of careful planning to understand where each data type had to go to appear in the correct column/row. 
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: 
-Custom made click button was added as a png to show where to click quickly and easily. Mostly static design to work with most resolution sizes (centered as well). Alerts were made to prevent most strange requests and also alert users of game-related happenings. 
+Custom made click button was added as a png to show where to click quickly and easily. Mostly static design to work with most resolution sizes (centered as well). Alerts were made to prevent most strange requests and also alert users of game-related happenings. It wasn't necessarily hard to implement, but it took careful planning to try and make sure the alerts didn't allow for game breaking bugs. 

@@ -8,7 +8,7 @@ const http = require('http');
 
 let scoreboard = [
   { name: "Mr. Insano", cps: 105.1, clicks: 1051, seconds: 10, time: 7987989869},
-  { name: "Matthew", cps: 2, clicks: 60, seconds: 30, time: 7987097986986}
+  { name: "Matthew", cps: 5.4, clicks: 54, seconds: 10, time: 7987097986986}
 ]
 
 const server = http.createServer(function (request, response) {

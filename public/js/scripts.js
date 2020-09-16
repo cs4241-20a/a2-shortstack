@@ -160,9 +160,9 @@ function buildTable(newScoreboard) {
   for (let i = 0; i < newScoreboard.length; i++) {
     let d = new Date(newScoreboard[i].time);
     let s = d.getMinutes();
-    if ((d.getMinutes() % 10) == 0) {
-      s = d.getMinutes().toString() + "0";
-    }
+    // if ((d.getMinutes() % 10) == 0) {
+    //   s = d.getMinutes().toString() + "0";
+    // }
     if (d.getMinutes() < 10) {
       s = "0" + d.getMinutes().toString();
     }
