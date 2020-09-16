@@ -1,6 +1,10 @@
+let action = "add"
+
 const addPlayer = function( e ) {
   // prevent default form action from being carried out
   e.preventDefault()
+
+  action = "add"
 
   const numberInput = document.querySelector( '#number' ),
         firstNameInput = document.querySelector( '#firstName' ),
@@ -8,8 +12,7 @@ const addPlayer = function( e ) {
         goalsInput = document.querySelector( '#goals' ),
         assistsInput = document.querySelector( '#assists' ),
         
-        table = document.querySelector( '#resultTable'),
-        json = { number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
+        json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
         body = JSON.stringify( json );
 
   fetch( '/addPlayer', {
@@ -17,7 +20,7 @@ const addPlayer = function( e ) {
     body 
   })
   .then( function( response ) {
-    return response.text()
+    return response.json()
   })
   .then( function(txt){
       console.log(txt)
@@ -26,6 +29,68 @@ const addPlayer = function( e ) {
 
   return false
 }
+
+const deletePlayer = function( e ) {
+  // prevent default form action from being carried out
+  e.preventDefault()
+
+  action = "delete"
+
+  const numberInput = document.querySelector( '#number' ),
+        firstNameInput = document.querySelector( '#firstName' ),
+        lastNameInput = document.querySelector( '#lastName' ),
+        goalsInput = document.querySelector( '#goals' ),
+        assistsInput = document.querySelector( '#assists' ),
+        
+        json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
+        body = JSON.stringify( json );
+
+  fetch( '/deletePlayer', {
+    method:'POST',
+    body 
+  })
+  .then( function( response ) {
+    return response.json()
+  })
+  .then( function(txt){
+      console.log(txt)
+      deletePlayer()
+  })
+
+  return false
+}
+
+const editPlayer = function( e ) {
+  // prevent default form action from being carried out
+  e.preventDefault()
+
+  action = "edit"
+
+  const numberInput = document.querySelector( '#number' ),
+        firstNameInput = document.querySelector( '#firstName' ),
+        lastNameInput = document.querySelector( '#lastName' ),
+        goalsInput = document.querySelector( '#goals' ),
+        assistsInput = document.querySelector( '#assists' ),
+        
+        json = { playerAction: action, number: numberInput.value, firstName: firstNameInput.value, lastName: lastNameInput.value, goals: goalsInput.value, assists: assistsInput.value },
+        body = JSON.stringify( json );
+
+  fetch( '/editPlayer', {
+    method:'POST',
+    body 
+  })
+  .then( function( response ) {
+    return response.json()
+  })
+  .then( function(txt){
+      console.log(txt)
+      editPlayer(txt)
+  })
+
+  return false
+}
+
+let numRows = 1
 
 const updateRoster = function(table, data){
     var newRow = table.insertRow(-1);
@@ -40,13 +105,42 @@ const updateRoster = function(table, data){
     lastNameCell.innerHTML = data.lastName;
     goalsCell.innerHTML = data.goals;
     assistsCell.innerHTML = data.assists;
+    numRows++
+}
+
+function deletePlayer(){
+  console.log("Deleting last player")
+  if(numRows !== 1){
+    document.getElementById("resultTable").deleteRow(-1)
+    numRows--
+  }
+  return false
+}
+
+function editPlayer(array){
+  for(var r = 0; r < array.length; r++){
+    var table = documenet.getElementById("resultsTable")
+    table.rows[r+1].cells[0].innerHTML = array[r].number
+    table.rows[r+1].cells[1].innerHTML = array[r].firstName
+    table.rows[r+1].cells[2].innerHTML = array[r].lastName
+    table.rows[r+1].cells[3].innerHTML = array[r].goals
+    table.rows[r+1].cells[4].innerHTML = array[r].assists
+
+  }
+  return false
 }
 
 window.onload = function() {
-  const button = document.querySelector( 'button' )
+  const addButton = document.querySelector( '#add' )
   button.onclick = addPlayer
 
-  const table = document.querySelector( '#resultTable' )
+  const deleteButton = document.querySelector( '#delete' )
+  deleteButton.onclick = deletePlayer
+
+  const editButton = document.querySelector( '#edit' )
+  editButton.onclick = editPlayer
+
+  /* const table = document.querySelector( '#resultTable' )
   fetch( '/appData' )
   .then( function( response ){
       return response.json()
@@ -54,5 +148,5 @@ window.onload = function() {
   .then( function( array ){
       console.log( array );
       array.forEach( element => updateRoster( table, JSON.parse( element ) ) )
-  })
+  }) */
 }

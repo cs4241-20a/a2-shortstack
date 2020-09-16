@@ -37,8 +37,28 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    // console.log( JSON.parse( dataString ) )
-    appData.push(dataString)
+    const json = JSON.parse(dataString)
+    const condition = json.playerAction
+    switch(condition){
+      case "add":
+       appData.push(json)
+       break;
+      case "delete":
+        appData.pop()
+        break;
+      case "edit":
+        for(var i = 0; i < appData.length; i++){
+          if(appData[i].number == json.number){
+            appData[i].firstName = json.firstName
+            appData[i].lastName = json.lastName
+            appData[i].goals += json.goals
+            appData[i].assists += json.assists
+          }
+        }
+        break;
+      default:
+        break;
+    }
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end( dataString )
