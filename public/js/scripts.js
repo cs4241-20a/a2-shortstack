@@ -47,45 +47,61 @@ function end() {
   }
 }
 
+// function submitClicked() {
+//   if (document.getElementById('yourname').value === "") {
+//     alert("Please don't leave the name blank");
+//   } else {
+//     console.log("submitting...");
+//     submitScore;
+//   }
+// }
 
+const submit = function (e) {
+  //prevent default form action from being carried out
+  e.preventDefault();
 
-
- function submitClicked() {
-   if (document.getElementById('yourname').value === "") {
-     alert("Please don't leave the name blank");
-   } else {
-
-    const submit = function(e) {
-      //prevent default form action from being carried out
-      e.preventDefault();
-    
-      let name = document.getElementById('yourname').value;
-      let clicks = clickcount;
-    
-      let json = {
-        name: name,
-        clicks: clicks
-      }
-    
-      let body = JSON.stringify(json);
-    
-      fetch('/submit', {
-        method: 'POST',
-        body
-      })
-      .then(function(response) {
-        response.json().then(function(data) {
-          console.log(data)
-        });
-      })
-    
-      return false;
-    }
-
-   }
+  const userScore = {
+    name: document.getElementById('yourname').value,
+    clicks: clickcount
   }
 
+  const body = JSON.stringify(userScore);
+  const options = {
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/json'
+    },
+    body
+  }
 
+  fetch('/submit', options)
+    .then(function (response) {
+      //do something with response
+      restartGame();
+    })
+
+  return false;
+}
+
+//what to do after name is stored in server
+function restartGame(){
+  console.log("Restarting game...");
+
+}
+
+//generate a table for displaying under score
+function buildTable(name, cps, clicks) {
+  let table = document.getElementById('scoretable');
+  table.innerHTML = 
+  '<tr>\n' +
+  '<th>Player Name</th>\n' +
+  '<th>Clicks Per Second</th>\n' +
+  '<th>Total Clicks</th>\n' +
+  '</tr>';
+  for (let i = 0; i < scoreboard.length; i++) {
+    const userScore = scoreboard[i];
+  }
+}
 
 
 window.onload = function () {
@@ -96,5 +112,5 @@ window.onload = function () {
   document.getElementById('yourname').style.display = "none";
   document.getElementById('submitbtn').style.display = "none";
   const button = document.getElementById('submitbtn')
-  button.onclick = submitClicked
+  button.onclick = submit
 }
