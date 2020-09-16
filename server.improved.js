@@ -38,8 +38,8 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     const json = JSON.parse( dataString )
-    const action = json.action
-    switch(action){
+    const rosterAction = json.playerAction
+    switch(rosterAction){
       case "add":
        appData.push(json)
        break;
