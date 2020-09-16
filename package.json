@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Simple Habit Tracker",
+  "version": "1.00",
+  "description": "A web application that allows the user to track their habits",
+  "author": "Adrianna Staszewska",
   "scripts": {
     "start": "node server.improved.js"
   },
