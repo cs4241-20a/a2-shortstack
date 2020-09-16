@@ -13,7 +13,7 @@ This is a page that keeps track of shifts in WPI recreational center. The page u
 3) Surprising Comment: Change the color palette and probably add the ability to delete and update in future.
 4) Potential Solutions: Change the color palette using photoshop. For delete and update, I have tried it with "real_index.html" file, but had difficulties using eventHandler. Maybe a good idea to go to office hours.
 - **Design Achievement 2**: 
-1) Gold
+1) Last Name: Gold
 2) Problems: No particular problem encountered.
-3) Surprising Wanting error messages to pop up better. Add the ability to delete and update in future. Also the size of the image is a bit too big. 
+3) Surprising Comment: Wants error messages to pop up better. Add the ability to delete and update in future. Also the size of the image is a bit too big. 
 4) Potential Solutions: Change the size of the image, create error messages to pop up whenever wrong fields are entered. 
