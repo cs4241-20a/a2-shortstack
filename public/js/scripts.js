@@ -1,144 +1,203 @@
-// Register HTML Elements
-const addBtn = document.getElementById('add');
-const current = document.getElementById('current');
-const newentry = document.getElementById('newentry');
+var allData = [
+  {
+    name: "Nicole Conill",
+    bikenumber: "13",
+    bikebrand: "KTM",
+    classes: "female",
+    racelaps: "5"
+  },
+  {
+    name: "Chris Lauro",
+    bikenumber: "334",
+    bikebrand: "KTM",
+    classes: "twofiftypro",
+    racelaps: "9"
+  },
+  {
+    name: "Joshua Berchem",
+    bikenumber: "719",
+    bikebrand: "KTM",
+    classes: "fourfiftypro",
+    racelaps: "9"
+  }
+];
 
-let tabularFront;
+const submit = function(e) {
+  let i;
+  // prevent default form action from being carried out
+  e.preventDefault();
 
-const create = function(element) {
-	return document.createElement(element);
-};
+  const name = document.querySelector("#name").value,
+    bikenumber = document.querySelector("#bikenumber").value,
+    bikebrand = document.getElementsByName("brand"),
+    classes = document.getElementsByName("classes");
 
-const append = function(parent, el) {
-	return parent.appendChild(el);
-};
-
-const headings = function() {
-	let th1 = create('th')
-	let th2 = create('th')
-	let th3 = create('th')
-	let th4 = create('th')
-	th1.innerHTML = "Name";
-	th2.innerHTML = "Bike Number";
-	th3.innerHTML = "Bike Brand";
-	th4.innerHTML = "Class"
-
-	let tr = create('tr');
-
-	append(tr, th1);
-	append(tr, th2);
-	append(tr, th3);
-	append(tr, th4);
-	append(current, tr);
-};
-
-const refresh = function() {
-	fetch('/refresh', {
-		method: 'GET'
-	}).then(function (response) {
-		return response.json();
-	}).then(function (data) {
-		tabularFront = data;
-		current.innerHTML = "";
-		headings();
-
-		let rowCount = 1;
-		tabularFront.map(function (row)) {
-			let tr = create('tr');
-			let td1 = create('th');
-			let td2 = create('th');
-			let td3 = create('th');
-			let td4 = create('th');
-			let td5 = create('th');
-		};
-
-		td1.innerHTML = row.name;
-		td2.innerHTML = row.bikenumber;
-		td3.innerHTML = row.bikebrand;
-		td4.innerHTML = row.class;
-
-		append(tr, td1);
-		append(tr, td2);
-		append(tr, td3);
-		append(tr, td4);
-
-		append(current, tr);
-
-		tr.className = rowCount;
-		rowCount++;
-
-	});
-};
-refresh();
-
-
-let input;
-let modifyIndex = 0;
-
-const makeBody = function () {
-	const name = document.querySelector('#name');
-	const bikeyear = document.querySelector('#bikeyear');
-
-	const bikebrandTable = document.getElementById('bikebrand');
-	let bikebrand;
-	for (let i = 0; i < bikebrandTable.length; i++) {
-		if (bikebrandTable[i].checked) {
-			bikebrand = bikebrandTable[i].value;
-			break
-		}
-	}
-
-	const json = {
-		name: name.value,
-		bikeyear: bikeyear.value,
-		bikebrand: bikebrand,
-		modifyIndex
-	};
-
-	return JSON.stringify(json);
-};
-
-const handlePost = function () {
-	let body = makeBody();
-	let checkBody = JSON.parse(body);
-	let hint = document.getElementById('hint');
-
-	if (checkBody['name'] === ""
-		|| checkBody['bikenumber'] === ""
-		|| checkBody['bikebrand'] === "") {
-		hint.innerHTML = "There are missing fields!";
-	} else {
-		hint.innerHTML = "";
-		fetch(`/${input}`, {
-			method: 'POST',
-			body
-		}).then(function (response) {
-			console.log("Post sent to server: " + response);
-			refresh();
-		});
-	}	
-}
-
-const setInput = function (e) {
-    if (addBtn.innerHTML === "Submit") {
-        input = 'add';
-        handlePost();
-    } else {
-        input = 'modify';
-        handlePost();
-        rightHead.innerHTML = "New Race Entry";
-        addBtn.innerHTML = "Submit";
-
-        document.querySelector('#name').value = "";
-        document.querySelector('#bikenumber').value = "";
-
-        let bikebrandS = document.getElementsByName('bikebrand');
-        for (let i = 0; i < bikebrandS.length; i++) {
-            bikebrandS[i].checked = false;
-        }
-
+  let bikebrandValue = null;
+  for (i = 0; i < bikebrand.length; i++) {
+    if (bikebrand[i].checked) {
+      bikebrandValue = bikebrand[i].value;
+      break;
     }
-    e.preventDefault();
-    return false;
+  }
+
+  let classesValue = null;
+  for (i = 0; i < classes.length; i++) {
+    if (classes[i].checked) {
+      classesValue = classes[i].value;
+      break;
+    }
+  }
+
+  if (!name || !bikenumber || !bikebrandValue || !classesValue) {
+    alert("All fields are required to submit a new race entry.");
+  } else {
+    const json = {
+        name: name,
+        bikenumber: bikenumber,
+        bikebrand: bikebrandValue,
+        classes: classesValue
+      },
+      body = JSON.stringify(json);
+    fetch("/submit", {
+      method: "POST",
+      body
+    })
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(text) {
+        allData.push(JSON.parse(text));
+        updateTable();
+        console.log(allData);
+      });
+  }
+  document.querySelector("#name").value = "";
+  document.querySelector("#bikenumber").value = "";
+  document.querySelector("#honda").checked = false;
+  document.querySelector("#husqvarna").checked = false;
+  document.querySelector("#kawasaki").checked = false;
+  document.querySelector("#ktm").checked = false;
+  document.querySelector("#suzuki").checked = false;
+  document.querySelector("#yamaha").checked = false;
+  document.querySelector("#fiftycc").checked = false;
+  document.querySelector("#sixtyfivecc").checked = false;
+  document.querySelector("#eightyfivecc").checked = false;
+  document.querySelector("#supermini").checked = false;
+  document.querySelector("#youth").checked = false;
+  document.querySelector("#twofiftypro").checked = false;
+  document.querySelector("#twofifty").checked = false;
+  document.querySelector("#fourfiftypro").checked = false;
+  document.querySelector("#fourfifty").checked = false;
+  document.querySelector("#open").checked = false;
+  document.querySelector("#twentyfive").checked = false;
+  document.querySelector("#thirty").checked = false;
+  document.querySelector("#forty").checked = false;
+  document.querySelector("#fortyfive").checked = false;
+  document.querySelector("#fifty").checked = false;
+  document.querySelector("#fiftyfive").checked = false;
+  document.querySelector("#sixty").checked = false;
+  document.querySelector("#female").checked = false;
+  return false;
 };
-addBtn.onclick = setInput;
+
+window.onload = function() {
+  const subBut = document.querySelector("#submit");
+  subBut.onclick = submit;
+  updateTable();
+};
+
+const del = function(e) {
+  e.preventDefault();
+  console.log("Delete");
+  allData.splice(Number(e.target.id.substring(1)), 1);
+  updateTable();
+};
+
+const mod = function(e) {
+  e.preventDefault();
+  console.log("Edit");
+
+  let obj = allData[Number(e.target.id.substring(1))];
+  document.querySelector("#name").value = obj.name;
+  document.querySelector("#bikenumber").value = obj.bikenumber;
+
+  document.querySelector("#honda").checked = false;
+  document.querySelector("#husqvarna").checked = false;
+  document.querySelector("#kawasaki").checked = false;
+  document.querySelector("#ktm").checked = false;
+  document.querySelector("#suzuki").checked = false;
+  document.querySelector("#yamaha").checked = false;
+  document.querySelector("#" + obj.bikebrand).checked = true;
+
+  document.querySelector("#fiftycc").checked = false;
+  document.querySelector("#sixtyfivecc").checked = false;
+  document.querySelector("#eightyfivecc").checked = false;
+  document.querySelector("#supermini").checked = false;
+  document.querySelector("#youth").checked = false;
+  document.querySelector("#twofiftypro").checked = false;
+  document.querySelector("#twofifty").checked = false;
+  document.querySelector("#fourfiftypro").checked = false;
+  document.querySelector("#fourfifty").checked = false;
+  document.querySelector("#open").checked = false;
+  document.querySelector("#twentyfive").checked = false;
+  document.querySelector("#thirty").checked = false;
+  document.querySelector("#forty").checked = false;
+  document.querySelector("#fortyfive").checked = false;
+  document.querySelector("#fifty").checked = false;
+  document.querySelector("#fiftyfive").checked = false;
+  document.querySelector("#sixty").checked = false;
+  document.querySelector("#female").checked = false;
+  document.querySelector("#" + obj.classes).checked = true;
+
+  allData.splice(Number(e.target.id.substring(1)), 1);
+  updateTable();
+};
+
+function updateTable() {
+  let tbody = document.querySelector("tbody");
+  tbody.innerHTML = "";
+  for (let i = 0; i < allData.length; i++) {
+    let row = document.createElement("tr");
+    for (let j = 0; j < 7; j++) {
+      let cell = document.createElement("td");
+      let text;
+      switch (j) {
+        case 0:
+          text = document.createTextNode(allData[i].name);
+          break;
+        case 1:
+          text = document.createTextNode(allData[i].bikenumber);
+          break;
+        case 2:
+          text = document.createTextNode(allData[i].bikebrand);
+          break;
+        case 3:
+          text = document.createTextNode(allData[i].classes);
+          break;
+        case 4:
+          text = document.createTextNode(allData[i].racelaps);
+          break;
+        case 5:
+          text = document.createElement("Button");
+          break;
+        case 6:
+          text = document.createElement("Button");
+          break;
+      }
+      if (j === 5) {
+        text.innerHTML = "Edit";
+        text.id = "E" + i.toString();
+        text.onclick = mod;
+      }
+
+      if (j === 6) {
+        text.innerHTML = "Delete";
+        text.id = "D" + i.toString();
+        text.onclick = del;
+      }
+      cell.appendChild(text);
+      row.appendChild(cell);
+    }
+    tbody.appendChild(row);
+  }
+}

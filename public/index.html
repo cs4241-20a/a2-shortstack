@@ -1,72 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/scripts.js"></script>
+  </head>
+  <body>
+    <div class="split left">
+      <h2>NEW RACE ENTRY</h2>
 
-<head>
-  <title>CS4241 Assignment 2</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+      <form>
+        <div class="split left2">
+          <p>
+            Name:
 
+            <label for="name"></label>
+            <input type="text" id="name" placeholder="First, Last" />
+            <br /><br />
+            Bike Number:
+            <label for="bikenumber"></label>
+            <input type="text" id="bikenumber" placeholder="XXX" />
+          </p>
+          <p>
+            Bike Brand:
+          </p>
+          <label for="honda">
+            <input type="radio" id="honda" name="brand" value="Honda" />
+            Honda
+          </label>
+          <label for="husqvarna">
+            <input type="radio" id="husqvarna" name="brand" value="Husqvarna" />
+            Husqvarna
+          </label>
+          <label for="kawasaki">
+            <input type="radio" id="kawasaki" name="brand" value="Kawasaki" />
+            Kawasaki </label
+          ><br />
+          <label for="ktm">
+            <input type="radio" id="ktm" name="brand" value="KTM" />
+            KTM
+          </label>
+          <label for="suzuki">
+            <input type="radio" id="suzuki" name="brand" value="Suzuki" />
+            Suzuki
+          </label>
+          <label for="yamaha">
+            <input type="radio" id="yamaha" name="brand" value="Yamaha" />
+            Yamaha
+          </label>
 
-<body>
+          <br />
 
-  <div class="break right">
-    <h1>Current Race Entries:</h1>
-    <table id="current"></table>
-  </div>
+          <p>
+            Select Your Class:
+          </p>
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="fiftycc"
+              name="classes"
+              value="fiftycc"
+            />50 cc
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fiftycc)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="sixtyfivecc"
+              name="classes"
+              value="sixtyfivecc"
+            />65 cc
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(sixtyfivecc)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="eightyfivecc"
+              name="classes"
+              value="eightyfivecc"
+            />85 cc
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(eightyfivecc)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="supermini"
+              name="classes"
+              value="supermini"
+            />Supermini
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(supermini)</label
+          ><br />
+          <label class="radiofont"
+            ><input type="radio" id="youth" name="classes" value="youth" />Youth
+            A/B/C &nbsp;&nbsp;&nbsp; (youth)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="twofiftypro"
+              name="classes"
+              value="twofiftypro"
+            />250 Pro
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(twofiftypro)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="twofifty"
+              name="classes"
+              value="twofifty"
+            />250 A/B/C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (twofifty)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="fourfiftypro"
+              name="classes"
+              value="fourfiftypro"
+            />450 Pro
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            (fourfiftypro)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="fourfifty"
+              name="classes"
+              value="fourfifty"
+            />450 A/B/C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (fourfifty)</label
+          ><br />
+          <label class="radiofont"
+            ><input type="radio" id="open" name="classes" value="open" />Open
+            A/B/C &nbsp;&nbsp;&nbsp;&nbsp; (open)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="twentyfive"
+              name="classes"
+              value="twentyfive"
+            />25+ A/B/C
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(twentyfive)</label
+          ><br />
+          <label class="radiofont"
+            ><input type="radio" id="thirty" name="classes" value="thirty" />30+
+            A/B/C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(thirty)</label
+          ><br />
+          <label class="radiofont"
+            ><input type="radio" id="forty" name="classes" value="forty" />40+
+            A/B/C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forty)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="fortyfive"
+              name="classes"
+              value="fortyfive"
+            />45+ Open
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fortyfive)</label
+          ><br />
+          <label class="radiofont"
+            ><input type="radio" id="fifty" name="classes" value="fifty" />50+
+            Open
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fifty)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="fiftyfive"
+              name="classes"
+              value="fiftyfive"
+            />55+ Open
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fiftyfive)</label
+          ><br />
+          <label class="radiofont"
+            ><input type="radio" id="sixty" name="classes" value="sixty" />60+
+            Open
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(sixty)</label
+          ><br />
+          <label class="radiofont"
+            ><input
+              type="radio"
+              id="female"
+              name="classes"
+              value="female"
+            />Female
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(female)</label
+          ><br />
 
-  <div class="break left">
-    <h1 id="newentry">New Race Entry:</h1>
+          <p>
+            <button class="button2" type="submit" id="submit">
+              Process Entry
+            </button>
+          </p>
+        </div>
+      </form>
+    </div>
 
-    <form action="">
-      <p>Name:</p>
-      <label for="name"></label>
-      <input id="name" placeholder="First, Last" type="text">
-      <br><br>
-
-      <p>Bike Number:</p>
-      <label for="bikeyear"></label>
-      <input id="name" placeholder="XXX" type="text">
-      <br><br>
-
-      <p>Bike Brand:</p>
-      <label class="radiofont"><input type="radio" name="bikebrand" value="honda">Honda</label>
-      <label class="radiofont"><input type="radio" name="bikebrand" value="husqvarna">Husqvarna</label>
-      <label class="radiofont"><input type="radio" name="bikebrand" value="kawasaki">Kawasaki</label>
-      <br>
-      <label class="radiofont"><input type="radio" name="bikebrand" value="ktm">KTM</label>
-      <label class="radiofont"><input type="radio" name="bikebrand" value="suzuki">Suzuki</label>
-      <label class="radiofont"><input type="radio" name="bikebrand" value="yamaha">Yamaha</label>
-      <br><br>
-
-      <p>Class(es):</p>
-      <label class="radiofont"><input type="checkbox" name="class" value="50cc">50 cc</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="65cc">65 cc</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="85cc">85 cc</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="supermini">Supermini</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="youth">Youth A/B/C</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="250pro">250 Pro</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="250">250 A/B/C</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="450pro">450 Pro</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="450">450 A/B/C</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="open">Open A/B/C</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="25">25+ A/B/C</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="30">30+ A/B/C</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="40">40+ A/B/C</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="45">45+ Open</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="50">50+ Open</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="55">55+ Open</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="60">60+ Open</label><br>
-      <label class="radiofont"><input type="checkbox" name="class" value="female">Female</label><br>
-      <br><br>
-    </form>
-
-    <button id="add">Submit</button>
-    <h3 id="hint"></h3>
-  </div>
-</body>
-
-<script src = "./js/scripts.js"></script>
-
+    <div class="split right">
+      <h2>CURRENT RACE ENTRIES</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Bike Number</th>
+            <th>Bike Brand</th>
+            <th>Class</th>
+            <th>Race Laps</th>
+            <th><i class="fa fa-pencil" style="font-size:30px;"></i></th>
+            <th><i class="fa fa-trash" style="font-size:30px;"></i></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </body>
 </html>
