@@ -4,7 +4,7 @@
 - To use: Simply state the Course Name, the Assignment/Task, its Due Date, and the Effort to complete it (1=least - 5=most)
 - A priority will be automatically assigned based on the Due Date and the Effort of the assignment.
 - I used a combination of row based and column based Flexboxes within my style.css file to position the elements in the UI.
-- **NOTE**: I used the HTML5 input type datetime-local. This input type is not supported on Mac Safari or IE. For the best experience, use a good browser such as Chrome, Firefox or Edge.
+- **NOTE**: I used the HTML5 input type datetime-local. This input type is not supported on Mac Safari or IE. For the best experience, use the latest version of a good browser such as Chrome, Firefox or Edge.
 
 ## Baseline Requirements
 **Server**:
@@ -73,3 +73,15 @@
     - She liked the overall design of the site and thought it was aesthetically pleasing and intuitive.
 4. What would you change about the interface based on their feedback?
     - I would add a resizing element to the table so that the user does not have to scroll over with a minimized screen. Additionally I would modify the placement of the first input box so that it is not cut off from the screen.
+
+1. Provide the last name of each student you conduct the evaluation with.
+    - Matthew StLouis
+2. What problems did the user have with your design?
+    - Had troubles knowing what to input into each box since there are no labels. However, they realized what the placeholder text represented and was able to fill in the fields properly.
+    - Was using an old version of firefox that couldn't handle datetime-local so had to type the date format manually.
+3. What comments did they make that surprised you?
+    - Liked my green and blue colors a lot and thought the combination of hues was neat.
+    - Thought the design of my input boxes was "sleek" since there is only a bottom border and the background matches the page
+4. What would you change about the interface based on their feedback?
+    - I would find a date time picker library that works for all browsers and versions rather than the HTML one which is not widely supported yet.
+    - I would add labels to each text field.
