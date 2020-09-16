@@ -1,1 +1,70 @@
-/*Style your own assignment! This is fun! */
+html * {
+  font-family: "Kufam", cursive;
+  color: #326063;
+  background-color: #B9E5E8;
+}
+
+button {
+  margin: 15px;
+  background-color: #A9ACAF;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+input[type="text"],
+textarea {
+  background-color: white;
+}
+
+select,
+textarea {
+  background-color: white;
+}
+
+input[type="date"],
+textarea {
+  background-color: white;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.container {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.header {
+  grid-column: 1 / span 4;
+  text-align: center;
+}
+
+.priorities {
+  grid-column: 1 / span 4;
+  text-align: center;
+}
+
+.chooseDate {
+  grid-column: 1 / span 4;
+  text-align: center;
+}
