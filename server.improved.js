@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appData = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,7 +21,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else{
     sendFile( response, filename )
   }
 }
@@ -38,12 +34,30 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
+    const json = JSON.parse( dataString )
+    const rosterAction = json.playerAction
+    switch(rosterAction){
+      case "add":
+       appData.push( json )
+       break;
+      case "delete":
+        appData.pop()
+        break;
+      case "edit":
+        for(var i = 0; i < appData.length; i++){
+          if(appData[i].number == json.number && appData[i].firstName == json.firstName && appData[i].lastName == json.lastName) {
+            console.log("editting player's stats")
+            appData[i].goals += json.goals
+            appData[i].assists += json.assists
+          }
+        }
+        break;
+      default:
+        
+    }
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end( JSON.stringify( dataString ) )
   })
 }
 

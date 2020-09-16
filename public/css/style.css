@@ -1,1 +1,41 @@
-/*Style your own assignment! This is fun! */
+body {
+    background-color:#A4D6F5;
+}
+
+.header {
+    background-color: white;
+}
+
+h1 {
+    color: #242F36;
+    position: relative;
+    font-family: 'Patrick Hand SC';
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+input {
+    background-color: lightgray;
+}
+
+#buttons {
+    text-align: center;
+    color: lightslategray;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 3px solid #242F36;
+    color: #242F36;
+  }
+  
+th, td {
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    vertical-align: center;
+    border-bottom: 1px solid #dddddd;
+}
