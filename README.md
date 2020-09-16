@@ -2,7 +2,7 @@ Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and
 ===
 
 Due: September 16th, by 11:59 PM.
-
+Noah Parker, nparker AT wpi.edu
 Link to Glitch project: https://a2-nparker2020-noah-parker.glitch.me/
 
 ## Graphr.js
