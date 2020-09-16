@@ -95,6 +95,7 @@ th {
 th {
   background: $color1; /* Darken header a bit */
   font-weight: bold;
+  color: $color4;
 }
 
 td {
@@ -104,10 +105,12 @@ td {
 
 tr:nth-child(even) td {
   background: $color3;
+  color: $color4;
 }
 
 tr:nth-child(odd) td {
   background: $color5;
+  color: $color4;
 }
 
 tr td:hover {
@@ -123,4 +126,12 @@ table {
 button {
   background-color: $color5;
   color: $color4;
+}
+
+button:hover {
+  color: white;
+}
+
+body {
+  color: white;
 }

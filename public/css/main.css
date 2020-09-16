@@ -79,17 +79,20 @@ th {
 th {
   background: #e09f3e;
   /* Darken header a bit */
-  font-weight: bold; }
+  font-weight: bold;
+  color: #0b132b; }
 
 td {
   background: #e09f3e;
   text-align: center; }
 
 tr:nth-child(even) td {
-  background: #cce3de; }
+  background: #cce3de;
+  color: #0b132b; }
 
 tr:nth-child(odd) td {
-  background: #c2c2c2; }
+  background: #c2c2c2;
+  color: #0b132b; }
 
 tr td:hover {
   background: #666;
@@ -102,3 +105,9 @@ table {
 button {
   background-color: #c2c2c2;
   color: #0b132b; }
+
+button:hover {
+  color: white; }
+
+body {
+  color: white; }
