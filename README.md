@@ -1,4 +1,6 @@
 ## Simple Habit Tracker
+https://a2-adriannastaszewska.glitch.me
+
 My project is a habit tracker. It's a tool that allows to track progress on a habit for a certain amount of weeks. 
 When a grid is created it will be blank (all fields are grey) and the first cell in the grid represent today (highlighted with a grey border).
 User can track their progress on their goal by clicking on a cell. Click on a grey cell will result in the cell turing green (action done today), 
@@ -18,7 +20,4 @@ a click on a yellow block will result the cell to come back to status quo (grey)
 - **Modifying elements**: User can change the fields in grid of the habit tracker, different states are represented by different colors. 
 
 ### Design/Evaluation Achievements
-- **Testing the interface**: I did the evaluation with Ivan Eroshenko. Overall the experience was good. He didn't at first realise that he can go beyond just making the fields green. 
-He said that it would be good to know what options are there from the start. For me the meaning on the colors is clear but for him it wasn't. Additionally, he 
-suggested that the field to enter a habit and the number of weeks could clear after the habit was submitted. 
-Based on his feedback I would create a legend to make it clear that there are 4 different color options and what is the meaning of each color.  
+- **Testing the interface**: I did the evaluation with Ivan Eroshenko. Overall the experience was good. He didn't at first realise that he can go beyond just making the fields green. He said that it would be good to know what options are there from the start. For me the meaning on the colors is clear but for him it wasn't. Additionally, he suggested that the field to enter a habit and the number of weeks could clear after the habit was submitted. Based on his feedback I would create a legend to make it clear that there are 4 different color options and what is the meaning of each color.  
