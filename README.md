@@ -1,4 +1,6 @@
-## Hipster Forum - Matthew Kaminski
+## Hipster Forum
+
+Matthew Kaminski [http://a2-matkam7.glitch.me](http://a2-matkam7.glitch.me)
 
 This project is an experimental forum design (think reddit), but where there is only one 'post' and the most recent comment chain will be on the top (like an rtc). A type of person who would use this website would be a game developer and their community. In this version, creating comments, modifying them, and removing them is implemented, but future updates will include a reply system and an 'upvote' system and filtering.
 
