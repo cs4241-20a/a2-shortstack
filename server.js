@@ -16,10 +16,9 @@ const server = http.createServer( function( request,response ) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else{
     sendFile( response, filename )
   }
 }
@@ -62,5 +61,47 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+//Based off of https://www.freecodecamp.org/news/understanding-memoize-in-javascript-51d07d19430e
+const memoizedFs = (response) => {
+  let cache = {};
+  return (fileName) => {
+    if(fileName in cache) {
+      let fileString = cache[fileName];
+      if(!!response){
+        response.end(fileString);
+      }
+    }
+    fs.readFile(fileName, (err, data) => {
+      if(err){
+        if(!!cache['error.html'] && !!response){
+          response.end(cache['error.html'], 'utf-8');
+        }
+        else if(!!response){
+          //If for some reason fs never loaded the error response
+          response.end( '404 Error: File Not Found' )
+        }
+        else{
+          //Do nothing
+        }
+      }
+      else {
+        cache[fileName] = data;
+        if(!!response) {
+          response.end(data);
+        }
+      }
+    });
+  }
+}
+
+const sendCacheFile = (response, fileName) => {
+  memoizedFs(response)(fileName);
+}
+
+const loadCacheFile = (fileName) => {
+  memoizedFs()(fileName);
+}
+
 
 server.listen( process.env.PORT || port )

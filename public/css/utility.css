@@ -1,0 +1,25 @@
+.u_txt {
+    color: black;
+    margin: 0 0 1rem 0;
+    font-family: sans-serif;
+}
+
+.u_txt--white {
+    color: var(--text-color);
+    font-family: sans-serif;
+    margin: 0 0 1rem 0;
+}
+
+.u_txt--hdg1 {
+    font-family: serif;
+    margin: 0;
+}
+
+.u_txt--hdg2 {
+    font-weight: 400;
+}
+
+.u_txt--hdg3 {
+    margin: 0;
+    font-weight: bold;
+}
