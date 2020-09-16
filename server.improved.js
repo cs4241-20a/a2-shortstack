@@ -12,7 +12,9 @@ const http = require( 'http' ),
 //   { 'model': 'ford', 'year': 1987, 'mpg': 14}
 // ]
 
-let appdata = [];
+let appdata = [
+
+];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {

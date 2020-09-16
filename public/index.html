@@ -5,10 +5,10 @@
     <meta charset="utf-8">
   </head>
   <body>
+    <table id="orders">
+    </table>
     <form action="">
       <!-- Fulfill order menu -->
-      <table id="orders">
-      </table>
       <input type="number" id="orderNum" placeholder="Order number">
       <button id="fulfill">Fulfill</button>
     </form>
@@ -44,7 +44,25 @@
       // do something with the response
       return response.text();
     }).then( function(txt) {
-      console.log(txt);
+      let appdata = JSON.parse(txt);
+      let table = document.getElementById('orders');
+      table.innerHTML = "";
+      let thead = table.createTHead();
+      let row = thead.insertRow();
+      for (let key of Object.keys(appdata[0])) {
+        let th = document.createElement("th");
+        let text = document.createTextNode(key);
+        th.appendChild(text);
+        row.appendChild(th);
+      }
+      for (let element of appdata) {
+        let row = table.insertRow();
+        for (let key in element) {
+          let cell = row.insertCell();
+          let text = document.createTextNode(element[key]);
+          cell.appendChild(text);
+        }
+      }
       return false;
     })
 
@@ -58,7 +76,6 @@
     const orderNum = document.getElementById( 'orderNum' ),
             json = {type: "fulfill", orderNum: orderNum.value},
             body = JSON.stringify( json );
-    console.log("Fulfilling order " + orderNum);
 
     fetch( '/submit', {
       method:'POST',
@@ -68,8 +85,26 @@
               // do something with the response
               return response.text();
             }).then( function(txt) {
-      console.log(txt);
-      return false;
+              let appdata = JSON.parse(txt);
+              let table = document.getElementById('orders');
+              table.innerHTML = "";
+              let thead = table.createTHead();
+              let row = thead.insertRow();
+            for (let key of Object.keys(appdata[0])) {
+              let th = document.createElement("th");
+              let text = document.createTextNode(key);
+              th.appendChild(text);
+              row.appendChild(th);
+            }
+            for (let element of appdata) {
+              let row = table.insertRow();
+              for (let key in element) {
+                let cell = row.insertCell();
+                let text = document.createTextNode(element[key]);
+                cell.appendChild(text);
+              }
+            }
+            return false;
     })
 
     return false
