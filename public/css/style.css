@@ -9,10 +9,32 @@ h1 {
 	text-align: center;
 }
 
+th {
+	font-family: 'Kufam', cursive;	
+	font-weight: bold;
+	font-size: 20px;
+	color: #030507;
+	padding:10px;
+	background-color: #29897c;
+	border: 3px solid black;
+}
+
+td {
+	font-family: 'Kite One', sans-serif;
+	font-size: 18px;
+	color: #000000;
+	border: 1px solid black;
+}
+
 body {
 	background-color: #29897c;	
 }
 
-table, th, td {
-  border: 1px solid black;
+table{
+  border: 3px solid black;
+}
+
+.input_section {
+	font-family: 'Kufam';
+	font-size: 15px;
 }
