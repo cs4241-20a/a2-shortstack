@@ -53,7 +53,7 @@ const handlePost = function( request, response ) {
     let current = dataStorage[dataIndex];
     if (current.department === "other" || current.department === "prepared"){
       current.taxed = "***TAXED***";
-      current.price = current.price * 1.625;
+      current.price = current.price * 1.0625;
       current.price = round(current.price, 2);
     }else{
       current.taxed = " ";
@@ -67,7 +67,7 @@ const handlePost = function( request, response ) {
       current.item = (current.amount + " pounds " + current.item);
     }else{
       //if the item is sold by the each, add the number of items at the beginning of the item's name
-      current.item = (current.amount + current.item);
+      current.item = (current.amount + " " + current.item);
     }
     
     
