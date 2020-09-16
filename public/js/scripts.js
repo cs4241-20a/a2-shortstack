@@ -128,8 +128,11 @@ const fillTable = function (table, data) {
         row.insertCell().innerHTML = data[i].time;
         row.insertCell().innerHTML = data[i].speed;
 
-        // Not sure why it's a string sometimes
-        totalDistance += parseInt(data[i].distance);
+        // Check for valid data before adding
+        if (data[i].distance && parseInt(data[i].distance)){
+            // Not sure why it's a string sometimes
+            totalDistance += parseInt(data[i].distance);
+        }
     }
     document.querySelector('#total-distance').innerHTML = totalDistance;
     document.querySelector('#num-marathons').innerHTML = totalDistance / 26.2;

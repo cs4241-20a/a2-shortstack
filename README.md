@@ -1,52 +1,66 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
-===
+# Matthew St. Louis - Assignment 2:  Short Stack
+Basic Two-tier Web Application using HTML/CSS/JS and Node.js
 
-Due: September 16th, by 11:59 PM.
+App Name: __Tagteam Marathon__
+Site: __[a2-mastouis.glitch.me](https://a2-mastouis.glitch.me/)__
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
+1. [Matthew St. Louis - Assignment 2:  Short Stack](#matthew-st-louis---assignment-2-short-stack)
+   1. [Core Assignment](#core-assignment)
+      1. [App Description](#app-description)
+      2. [Basic Requirements](#basic-requirements)
+      3. [HTML](#html)
+      4. [CSS](#css)
+      5. [JavaScript](#javascript)
+      6. [Node.js](#nodejs)
+   2. [Acheivements](#acheivements)
+      1. [Technical](#technical)
+      2. [Design/UX](#designux)
+         1. [Ann Jicha](#ann-jicha)
+      3. [Gabe Aponte](#gabe-aponte)
 
-Baseline Requirements
----
+## Core Assignment
+### App Description
+The app I built is called Tagteam Marathon. The app is meant for teams of runners to log their runs so they can track their progress as a team. This is especially useful for runners who want to engage with a team without physically running together, which could be helpful with current circumstances. The app has four sections: About, Completed Runs, New Run, and Edit Runs.
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements. Make your application do something useful! A todo list, storing / retrieving high scores for a very simple game, have a little fun with it.
+- The __About__ section explains a bit about the app so that users can complete tasks with less external prompting.
+- The __Completed Runs__ section displays a table of the runs submitted to the system and a few statistics derived from the runs.
+- The __New Run__ section allows a user to submit a new run.
+- The __Edit Runs__ section allows a user to edit information about any submitted run.
 
-Your application is required to implement the following functionalities:
+### Basic Requirements
+The following is a list of how my web app meets the assignment's basic requirements.
+- __`Server`__:  The `[server.improved.js](./server.improved.js)` file contains the server information. This server serves all necessary files for this web app, and maintains a tabular data set with 5 fields (Runner, Location, Distance, Time, and Speed).
+- __`Results`__: The Completed runs section shows all data as it is stored on the server.
+- __`Form/Entry`__: The _New Run Form_ allows users to enter information to create a new run, and the _Edit Runs_ fields let users modify runs. Users may also delete runs using the buttons to the right of the _Edit Runs Table_.
+- __`Server Logic`__: For each record, the server calculates the `speed` of the run based on teh run's `distance` and `time`. This calculation is done on line 80 of `[server.improved.js](./server.improved.js)`.
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-- the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `todo` dataset with `task`, `priority`, and `creation_date` may generate a new field `deadline` by looking at `creation_date` and `priority`
+### HTML
+- The _New Run_ section uses an __[HTML Form]__(https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms) and a combination of text and numeric inputs. The inputs all have appropriate placeholders.
+- The _Completed Runs_ section uses a __table__ to display all data currently available on the server.
+- The page was [validated](https://validator.w3.org).
 
-Your application is required to demonstrate the use of the following concepts:
+### CSS
+- Primary Visual Elements
+  - I used the [Adobe Color Wheel](https://color.adobe.com) to pick out the palette for the site. Every color seen is either a shade of grey or one of the recommended shades of purple from the primary shade I used.
+  - I put a thin black border on the tables to make the rows more distinct.
+  - I restyled the buttons to have rounded edges and a thin black border.
+  - I restyled the inputs to be purple with white text and grey placeholder text.
+- CSS Selector Functionality
+  - I used an __element selector__ to style all buttons on the page to have rounded edges, a thin black border, and to have a dark purple fill with light purple text.
+  - I used an __ID Selector__ to make the `Runs Table` and the `Edit Runs Table` full-width
+  - I used a __class selector__ to make all of the delete buttons on the `Edit Runs Table` take up the full width of the cell with a minimum width of 30px.
+- CSS Positioning and Styling
+  - I used a __CSS Grid__ to style the `New Run Form` into a grid of labels and boxes. I made the submit runs button at the bottom take up the full width of both columns and centered it.
+  - I sourced all of the fonts I used from [Google Fonts](http://fonts.google.com/). I used Raleway for the headings and Lexend Deca for everything else.
+- The CSS is defined in an [external stylesheet](./public/css/style.css) and should be reasonably readable for maintenance.
 
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-- A results page displaying all data currently available on the server. You will most likely use a `<table>` tag for this, but `<ul>` could also work and might be simpler to work with.
-- All pages should [validate](https://validator.w3.org)
+### JavaScript
+- My JavaScript is in its own [scripts.js](./public/js/scripts.js) file.
+- This file fetches data from the server and delivers post requests, as well as clearing and populating the tables to correctly show the server's data.
+- One neat feature is that I manually have the `New Run Form` reset if the data is successfully submitted.
 
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and styling of the primary visual elements in the application:
-    - Use of either a CSS grid or flexbox for layout
-    - Rules defining fonts for all text used; no default fonts! Be sure to use a web safe font or a font from a web service like [Google Fonts](http://fonts.google.com/)
-
-- CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment and acheive a base grade of 85%:
+### Node.js
+- __`Server`__:  The `[server.improved.js](./server.improved.js)` file contains the server information. This server serves all necessary files for this web app, and maintains a tabular data set with 5 fields (Runner, Location, Distance, Time, and Speed).
 
 1. Fork the starting project code (make sure to fork the 2020 repo!). This repo contains some starter code that may be used or discarded as needed.
 2. Implement your project with the above requirements.
@@ -56,38 +70,41 @@ Do the following to complete this assignment and acheive a base grade of 85%:
 6. Modify the README to the specifications below.
 7. Create and submit a Pull Request to the original repo. Label the pull request as follows: a2-gitusername-firstname-lastname
 
-Acheivements
----
+----
 
-Below are suggested technical and design achievements. You can use these to help boost your grade up to an A and customize the assignment to your personal interests. These are recommended acheivements, but feel free to create/implement your own... just make sure you thoroughly describe what you did in your README and why it was challenging. ALL ACHIEVEMENTS MUST BE DESCRIBED IN YOUR README IN ORDER TO GET CREDIT FOR THEM.
+## Acheivements
+### Technical
+- The web app always shows the current state of the server-side data without reloading the page. 
+  - The `loadData()` function in [scripts.js](.public/js/scripts.js) is responsible for making a GET request to the server for all stored data and populating the Completed Runs Table and the Edit Runs Table.
+  - The `loadData()` function is called after any POST request receives a Success response.
+- In the 1pm lecture on Monday, September 14th, Professor Roberts explained that implementing functionality for __adding__, __editing__, and __deleting__ data would constitute an achievement. This app accomplishes all three and has a separate POST request for each.
+  - The New Run Form lets users add a new run, and this uses the `/addRun` POST request.
+  - The Submit Edits Button edits the runs stored on the server with a POST request to `/editRuns`.
+  - The Delete Run Buttons delete a run stored on the server with a POST request to `/deleteRun`.
 
-*Technical*
-- (10 points) Create a single-page app that both provides a form for users to submit data and always shows the current state of the server-side data. To put it another way, when the user submits data, the server should respond sending back the updated data (including the derived field calculated on the server) and the client should then update its data display.
+### Design/UX
+I presented my app to two students and interviewed them using the [think-aloud protocol](https://en.wikipedia.org/wiki/Think_aloud_protocol) to obtain design feedback.
 
-*Design/UX*
-- (5 points per person, with a max of 10 points) Test your user interface with other students in the class. Define a specific task for them to complete (ideally something short that takes <10 minutes), and then use the [think-aloud protocol](https://en.wikipedia.org/wiki/Think_aloud_protocol) to obtain feedback on your design (talk-aloud is also find). Important considerations when designing your study:
+I asked each participant to complete the following set of tasks with no further instruction.
 
-1. Make sure you start the study by clearly stating the task that you expect your user to accomplish.
-2. You shouldn't provide any verbal instructions on how to use your interface / accomplish the task you give them. Make sure that your interface is clear enough that users can figure it out without any instruction, or provide text instructions from within the interface itself. 
-3. If users get stuck to the point where they give up, you can then provde instruction so that the study can continue, but make sure to discuss this in your README. You won't lose any points for this... all feedback is good feedback!
+> 1. Create a new run with arbitrary data.
+> 2. Submit the new run.
+> 3. Edit some information in your new run.
+> 4. Submit the edits.
+> 5. Delete your new run.
 
-You'll need to use sometype of collaborative software that will enable you both to see the test subject's screen and listen to their voice as they describe their thoughts. After completing each study, briefly (one to two sentences for each question) address the following in your README:
+#### Ann Jicha
+1. What problems did the user have with your design?
+   - The user found the "location" column ambiguous. She asked to themselves whether it was the start location, the end location, or the general area where the run takes place.
+2. What comments did they make that surprised you?
+   - The user found the button colors a bit confusing. She assumed that they were disabled because of how dark they were.
+3. What would you change about the interface based on their feedback?
+   - Given this feedback, I would add a small note under the New Run section indicating that the "location" field is the area where the run takes place.
 
-1. Provide the last name of each student you conduct the evaluation with.
-2. What problems did the user have with your design?
-3. What comments did they make that surprised you?
-4. What would you change about the interface based on their feedback?
-
-*You do not need to actually make changes based on their feedback*. This acheivement is designed to help gain experience testing user interfaces. If you run two user studies, you should answer two sets of questions. 
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
-
-## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-
-### Design/Evaluation Achievements
-- **Design Achievement 1**: 
+### Gabe Aponte
+1. What problems did the user have with your design?
+   - The user thought that the submit buttons were a bit awkwardly placed in relation to the fields they submit. He also thought it was a bit of a problem that the site accepts blank runs.
+2. What comments did they make that surprised you?
+   - The user wanted to see what happened when they entered unreasonably long strings into the fields, and they commented that the UI handled this in a "surprisingly bearable" way, which I took as positive.
+3. What would you change about the interface based on their feedback?
+   - Given this user's feedback, I would add some validation to the form so that the user cannot submit a new run with blank fields or submit edited runs with blank fields. I would also try harder to center the Submit Edits button or to right-align both submit buttons. (I tried the former and was unsuccessful.)
