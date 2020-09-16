@@ -1,72 +1,106 @@
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+const http = require('http'),
+    fs = require('fs'),
+    // IMPORTANT: you must run `npm install` in the directory for this assignment
+    // to install the mime library used in the following line of code
+    mime = require('mime'),
+    dir = 'public/',
+    port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+    { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
+    { 'model': 'honda', 'year': 2004, 'mpg': 30 },
+    { 'model': 'ford', 'year': 1987, 'mpg': 14 }
 ]
 
-const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
-  }
+const appdata1 = []
+
+const server = http.createServer(function(request, response) {
+    console.log("hi im in the server")
+    if (request.method === 'GET') {
+        handleGet(request, response)
+    } else if (request.method === 'POST') {
+        handlePost(request, response)
+    }
 })
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+const handleGet = function(request, response) {
+    const filename = dir + request.url.slice(1)
 
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  }else{
-    sendFile( response, filename )
-  }
+    if (request.url === '/') {
+        sendFile(response, 'public/index.html')
+    } else {
+        sendFile(response, filename)
+    }
 }
 
-const handlePost = function( request, response ) {
-  let dataString = ''
+const handlePost = function(request, response) {
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+    console.log("hi this is the start of handlePost function");
+    var task
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    request.on('data', function(data) {
+        task = JSON.parse(data)
+        appdata1.push(task)
+        console.log(appdata1)
 
-    // ... do something with the data here!!!
+    })
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
+    request.on('end', function() {
+        var ds = task
+        const priority = ds.priority;
+        const assigneddate = ds.assigneddate;
+        console.log("priority: " + priority + "   " + "assigned-date: " + assigneddate);
+
+        ds.deadline = ds.assigneddate;
+
+        for (var i = 0; i < appdata1.length; i++) {
+            console.log("This is the assigned date" + ds.assigneddate)
+            console.log(typeof ds.assigneddate);
+
+            var parts = ds.assigneddate.split('-');
+            console.log(typeof parts[2])
+            var mydate = new Date(parts[0], parts[1] - 1, (parseInt(parts[2]) + parseInt(ds.priority)));
+            console.log(mydate.toDateString());
+
+
+            ds.deadline = mydate.toDateString();
+        }
+
+        console.log(ds);
+
+        stringDS = JSON.stringify(ds);
+
+
+        appdata1[appdata1.length] = stringDS;
+        console.log(appdata1);
+
+        response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+        response.end(JSON.stringify(appdata1))
+    })
 }
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+const sendFile = function(response, filename) {
+    const type = mime.getType(filename)
 
-   fs.readFile( filename, function( err, content ) {
+    fs.readFile(filename, function(err, content) {
 
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
+        // if the error = null, then we've loaded the file successfully
+        if (err === null) {
 
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+            // status code: https://httpstatuses.com
+            response.writeHeader(200, { 'Content-Type': type })
+            response.end(content)
 
-     }else{
+        } else {
 
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
+            // file not found, error code 404
+            response.writeHeader(404)
+            response.end('404 Error: File Not Found')
 
-     }
-   })
+        }
+    })
 }
 
-server.listen( process.env.PORT || port )
+server.listen(process.env.PORT || port)
+
+console.log('Node.js web server at port 3000 is running..')
