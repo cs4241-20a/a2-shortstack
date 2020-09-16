@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "Mingxi Liu",
   "version": "",
-  "description": "",
-  "author": "",
+  "description": "CS4241 A2",
+  "author": "Mingxi Liu",
   "scripts": {
     "start": "node server.improved.js"
   },
