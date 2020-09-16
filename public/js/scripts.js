@@ -1,5 +1,3 @@
-// Add some Javascript code here, to run on the front end.
-
 console.log("Welcome to assignment 2!")
 
 const submit = function (e) {
@@ -39,18 +37,13 @@ const submit = function (e) {
 
 const updateTable = function (json) {
   let dataTable = document.getElementById('data-table')
-
-  if (json.length > 1){
-    for(var idx in json){
-      updateRow(dataTable, json[idx])
-    }
-  }
-  else{
-    updateRow(dataTable, json)
+  
+  for (var idx in json) {
+    createEntry(dataTable, json[idx])
   }
 }
 
-const updateRow = function(dataTable, json) {
+const createEntry = function (dataTable, json) {
   let row = dataTable.insertRow()
 
   let make = row.insertCell(0)
@@ -64,13 +57,15 @@ const updateRow = function(dataTable, json) {
   // make buttons
   var delBtn = document.createElement("button")
   delBtn.innerHTML = "Delete"
-  delBtn.addEventListener ("click", deleteItem)
-  delBtn.id = 'del-btn'
+  delBtn.addEventListener("click", deleteItem)
+  delBtn.className = 'del-btn'
+  delBtn.id = json.id
 
   var saveBtn = document.createElement("button")
   saveBtn.innerHTML = "Save"
-  saveBtn.addEventListener ("click", saveItem)
-  saveBtn.id = 'save-btn'
+  saveBtn.addEventListener("click", saveItem)
+  saveBtn.className = 'save-btn'
+  saveBtn.id = json.id
 
   make.innerHTML = json.make
   model.innerHTML = json.model
@@ -81,18 +76,33 @@ const updateRow = function(dataTable, json) {
   save.appendChild(saveBtn)
 }
 
-const deleteItem = function(temp){
-  alert("Do something")
-  // get row delete btn belongs to
+const deleteItem = function () {
   // get the id from the row and delete from appdata and table; table should
   // just be deleteRow
-  //
+  const json =
+  {
+    id: this.id
+  }
+  const body = JSON.stringify(json)
+
+  fetch('/delete', {
+    method: 'DELETE',
+    body
+  }).then(response => response.json())
+    .then(json => {
+      console.log(JSON.stringify(json))
+    })
+
+  // delete selected row from table 
+  var i = this.parentNode.parentNode.rowIndex;
+  document.getElementById("data-table").deleteRow(i);
+
+  alert("Deleted entry.")
 }
 
-const saveItem = function(temp){
-  // if no changes made
+const saveItem = function () {
   // if changes made
-  alert("Do something")
+  alert("Saved entry.")
 }
 
 window.onload = function () {
@@ -100,8 +110,8 @@ window.onload = function () {
   button.onclick = submit
 
   fetch('/data')
-  .then(response => response.json())
-  .then(json => {
-    updateTable(json)
-  })
+    .then(response => response.json())
+    .then(json => {
+      updateTable(json)
+    })
 }

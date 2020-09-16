@@ -92,7 +92,7 @@ tr:first-child:hover {
 #form {
     width: 80%;
 }
-input, #submit-btn, #del-btn, #save-btn{
+input, #submit-btn, .del-btn, .save-btn{
     font-family: inherit;
     font-size: inherit;
 }
@@ -102,12 +102,11 @@ input {
     margin: 8px 0;
     box-sizing: border-box;
 }
-#submit-btn{ 
+.submit-btn{ 
     margin: 8px 0;
     padding: 5px 20px;
     width: 50%
 }
-#del-btn, #save-btn{ 
+.del-btn, .save-btn{ 
     margin: 8px 0;
-    width: 50%
 }

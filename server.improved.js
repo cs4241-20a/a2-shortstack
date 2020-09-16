@@ -18,6 +18,9 @@ const server = http.createServer(function (request, response) {
   } else if (request.method === 'POST') {
     handlePost(request, response)
   }
+  else if (request.method === 'DELETE') {
+    handleDelete(request, response)
+  }
 })
 
 const handleGet = function (request, response) {
@@ -48,8 +51,30 @@ const handlePost = function (request, response) {
   })
 
   request.on('end', function () {
+    let tempdata = []
     appdata.push(dataJson)
-    sendData(response, dataJson)
+    tempdata.push(dataJson)
+    sendData(response, tempdata)
+  })
+}
+
+
+const handleDelete = function (request, response) {
+  let dataJson = null
+
+  request.on('data', function (data) {
+    dataJson = JSON.parse(data)
+  })
+
+  request.on('end', function () {
+    let id = dataJson.id
+    console.log(id)
+
+    const idx = appdata.map(d=>d.id.toString()).indexOf(id.toString())
+
+    const deleted = appdata.splice(idx, 1);
+    console.log(deleted)
+    sendData(response)
   })
 }
 
