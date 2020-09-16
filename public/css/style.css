@@ -1,1 +1,55 @@
-/*Style your own assignment! This is fun! */
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+    padding: 5px;
+    flex-wrap: nowrap;
+}
+
+.child {
+   margin: 5px; 
+}
+
+body {
+    font-family: Quicksand;
+    color:	#343434;
+    font-size: 25px;
+}
+
+table {
+    margin-top: 35px;
+    border-collapse: collapse;
+    border-spacing: 0.5rem;
+    width: 100%;
+}
+
+th, td, tfoot {
+    padding: 0.5rem;
+    border-spacing: 0.5rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+tr.purchased {
+    background-color: lightgray;
+}
+
+button {
+    font-family: inherit;
+    font-size: 1em;
+    color: inherit;
+}
+
+input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
