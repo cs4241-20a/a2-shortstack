@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "mgulbin13-a2-shortstack",
+  "version": "1.0.0",
+  "description": "This assignment involved creating a prototype, two-tiered web application",
+  "author": "@mgulbin13",
   "scripts": {
     "start": "node server.improved.js"
   },

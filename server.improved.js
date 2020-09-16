@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,7 +21,11 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if (request.url === '/load'){
+    response.writeHead( 200, {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(appdata))
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -39,11 +39,26 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
+    const newdata = JSON.parse( dataString )
+    newdata.position = appdata.length + 1
+    appdata.push( newdata )
     // ... do something with the data here!!!
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    function compare(a,b) {
+      if (parseInt(a.score) > parseInt(b.score))
+        return -1;
+      if (parseInt(a.score) < parseInt(b.score))
+        return 1;
+      return 0;
+    }
+    appdata.sort(compare);
+    for (i = 0; i < appdata.length; i++){
+      appdata[i].position = i + 1;
+    }
+    console.log("Current appdata:")
+    console.log(appdata)
+    response.writeHead( 200, {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(appdata))
   })
 }
 
