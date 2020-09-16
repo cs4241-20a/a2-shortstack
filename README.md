@@ -3,7 +3,7 @@ Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and
 Due: September 16th, by 11:59 PM.
 
 Pradnya Mahurkar
-https://pradnyamahurkar-a2-shortstack-1.glitch.me/
+https://a2-pradnyamahurkar.glitch.me
 
 ## Your Work Advisor
 My work advisor is a To-Do List which gives the user advice based on the priority of a certain task. To create this To-Do list I used an HTML form, a JavaScript server, an HTML table, Google Fonts, and flexbox (for my font layout). The application takes your task, the due date, and the priority as input and gives an output with some advice. You can see all the tasks that you have entered in the form of a table in the 2nd half of the page.
