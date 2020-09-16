@@ -16,7 +16,7 @@ Site: __[a2-mastouis.glitch.me](https://a2-mastouis.glitch.me/)__
       1. [Technical](#technical)
       2. [Design/UX](#designux)
          1. [Ann Jicha](#ann-jicha)
-      3. [Gabe Aponte](#gabe-aponte)
+         2. [Gabe Aponte](#gabe-aponte)
 
 ## Core Assignment
 ### App Description
@@ -62,14 +62,6 @@ The following is a list of how my web app meets the assignment's basic requireme
 ### Node.js
 - __`Server`__:  The `[server.improved.js](./server.improved.js)` file contains the server information. This server serves all necessary files for this web app, and maintains a tabular data set with 5 fields (Runner, Location, Distance, Time, and Speed).
 
-1. Fork the starting project code (make sure to fork the 2020 repo!). This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the README to the specifications below.
-7. Create and submit a Pull Request to the original repo. Label the pull request as follows: a2-gitusername-firstname-lastname
-
 ----
 
 ## Acheivements
@@ -101,7 +93,7 @@ I asked each participant to complete the following set of tasks with no further 
 3. What would you change about the interface based on their feedback?
    - Given this feedback, I would add a small note under the New Run section indicating that the "location" field is the area where the run takes place.
 
-### Gabe Aponte
+#### Gabe Aponte
 1. What problems did the user have with your design?
    - The user thought that the submit buttons were a bit awkwardly placed in relation to the fields they submit. He also thought it was a bit of a problem that the site accepts blank runs.
 2. What comments did they make that surprised you?
