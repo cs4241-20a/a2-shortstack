@@ -2,6 +2,7 @@
 Jacob Pelrah https://a2-herschelkrustofsky.glitch.me/
 
 
+
 **Description:** Add your favorite musician to the Musician Database.
 
 Enter artist name, date of birth, birthplace, genre and if deceased add date died. If musician is still alive
@@ -21,3 +22,5 @@ I had difficulty thinking of how to best format my data to send to the server. I
 a json string and read the first key in the converted JSON and routed my the requests based off this key.
 I'd like to improve this. I'd also like to add the ability to
 modify data. I added the ability to delete data based on entry index.
+
+[]
