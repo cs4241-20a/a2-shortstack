@@ -1,1 +1,45 @@
 /*Style your own assignment! This is fun! */
+@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
+
+body {
+  font-family: "Rubik";
+}
+input:placeholder-shown {
+  font-family: "Rubik";
+  font-size: 11pt;
+}
+button {
+  font-size: 11pt;
+}
+
+table {
+  border-collapse: collapse;
+}
+td,
+th {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(odd){
+  background-color: white;
+  border: 5px solid white;
+}
+tr:nth-child(even) {
+  background-color: gray;
+  border: 5px solid gray;
+}
+
+input,
+button {
+  border-radius: 5px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#status {
+  color: red;
+}
