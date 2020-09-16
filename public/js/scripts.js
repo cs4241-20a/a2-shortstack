@@ -44,26 +44,22 @@ function end() {
     //if high score: alert("Congratulations! You've bested the high score!")
 
     //else: alert("You've run out of time!");
-
   }
 }
-
-// function submitClicked() {
-//   if (document.getElementById('yourname').value === "") {
-//     alert("Please don't leave the name blank");
-//   } else {
-//     console.log("submitting...");
-//     submitScore;
-//   }
-// }
 
 const submit = function (e) {
   //prevent default form action from being carried out
   e.preventDefault();
 
+  if (document.getElementById('yourname').value === "") {
+    alert("Please don't leave the name blank");
+    return false;
+  }
+
   const userScore = {
     name: document.getElementById('yourname').value,
-    clicks: clickcount
+    clicks: clickcount,
+    seconds: seconds
   }
 
   const body = JSON.stringify(userScore);
@@ -75,6 +71,9 @@ const submit = function (e) {
     .then(function (response) {
       console.log("fetched done. Response now");
       console.log(response);
+      restartGame();
+
+      return response;
       //do something with response
       //restartGame();
     })
@@ -83,9 +82,16 @@ const submit = function (e) {
 }
 
 //what to do after name is stored in server
-function restartGame(){
+function restartGame() {
   console.log("Restarting game...");
+  clickcount = 0;
 
+  document.getElementById('yourname').innerText = "";
+  document.getElementById('currentclicks').style.display = "none";
+  document.getElementById('inputname').style.display = "none";
+  document.getElementById('yourname').style.display = "none";
+  document.getElementById('submitbtn').style.display = "none";
+  document.getElementById('startbtn').style.display = "block";
 }
 
 //generate a table for displaying under score
@@ -97,6 +103,7 @@ function buildTable(name, cps, clicks) {
   '<th>Player Name</th>\n' +
   '<th>Clicks Per Second</th>\n' +
   '<th>Total Clicks</th>\n' +
+  '<th>Seconds</th>\n' +
   '</tr>';
 
   //for populating the scoreboard with scores.

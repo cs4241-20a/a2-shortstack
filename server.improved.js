@@ -51,17 +51,20 @@ const handlePost = function (request, response) {
     switch (request.url) {
       case '/submit':
         let userScore = JSON.parse(dataString); //parse passed in data to be read
-        let cps = (parseInt(userScore.clicks) / 30); //get clicks per second by dividing total clicks by 30 seconds.
+        let cps = Math.round((parseInt(userScore.clicks) / userScore.seconds) * 10) / 10; //get clicks per second by dividing total clicks by 30 seconds.
         let newUser = {
           "name": userScore.name,
           "cps": cps,
           "clicks": userScore.clicks,
+          "seconds": userScore.seconds
         }
 
         scoreboard.push(newUser);
-        console.log("New user recorded");
+        console.log("New user recorded: \n" + newUser);
 
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+
+        console.log("Sending new scoreboard: \n" + JSON.stringify(scoreboard));
         response.end(JSON.stringify(scoreboard));
 
         break;
