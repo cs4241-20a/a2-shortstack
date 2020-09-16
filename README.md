@@ -14,6 +14,7 @@ This sign up webpage that provides a form for users to input their username, ful
 2. The subject didn't stumble into any obstacles or problems
 3. "I don't have a User name but I will guess"
 4. I would consider clarifying that the username is like a nicname for the runner in the club
+
 -Subject 2:
 1. Morales
 2. The subject found it odd that I had requested a username without a password.
