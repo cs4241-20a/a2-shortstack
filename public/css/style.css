@@ -1,1 +1,70 @@
 /*Style your own assignment! This is fun! */
+#background{
+  background-image: url('../background.jpg');
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image:-webkit-gradient(linear, left top, left bottom,
+      from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+
+  width: 100%;
+  height: 100vh;
+}
+
+.info-container{
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   margin-top:-500px;
+ }
+
+#information{
+  font-family: 'Crimson Text', serif;
+  color: #363b3f;
+
+}
+
+/*.hiddenForm{
+  width:600px;
+  height:800px;
+  z-index: 9;
+}*/
+
+.navbar-dark {
+  background-color: #304154;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image:-webkit-gradient(linear, left top, left bottom,
+      from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+}
+.row{
+  padding-top: 80px;
+}
+
+.col-3{
+    background-color: rgb(107, 118, 130,0.6);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1),
+    0 2px 2px rgba(0,0,0,0.1),
+    0 4px 4px rgba(0,0,0,0.1),
+    0 8px 8px rgba(0,0,0,0.1),
+    0 16px 16px rgba(0,0,0,0.1);
+}
+
+.form-popup {
+  display: none;
+  width:500px;
+  height:500px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 20px 50px 20px;
+  position: fixed;
+  z-index: 9;
+  background-color: rgb(107, 118, 130);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1),
+    0 2px 2px rgba(0,0,0,0.1),
+    0 4px 4px rgba(0,0,0,0.1),
+    0 8px 8px rgba(0,0,0,0.1),
+    0 16px 16px rgba(0,0,0,0.1);
+}
