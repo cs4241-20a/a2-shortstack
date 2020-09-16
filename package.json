@@ -2,11 +2,11 @@
   "name": "a2-nconill13",
   "version": "",
   "description": "",
-  "author": "",
+  "author": "Nicole Conill",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }
