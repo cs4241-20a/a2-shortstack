@@ -58,9 +58,7 @@ const handleDelete = function( request, response ) {
   request.on( 'end', function() {
     const item = JSON.parse(dataString);
     const index = item.rowid;
-    console.log(serverdata);
     serverdata.splice(index-2, 1);
-    console.log(serverdata);
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
     console.log(serverdata);
