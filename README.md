@@ -12,7 +12,7 @@ This project is a page that would allow clients to send packages through a couri
 ### Design/Evaluation Achievements
 - **Student Interview 1**: <br />
 Student Last Name: Owuor <br />
-Problems: The number inputs allow me to enter negative numbers<br />
+Problems: The number inputs allow me to enter negative numbers.<br />
 Surprising Comments: I could see this being a real application or business if you developed it further.<br />
 Changes to be made based on feedback: Implement a checker that displays a popup/error message when a user attempts to enter negative numbers in the number fields.<br /> <br />
 - **Student Interview 2**: <br />
