@@ -3,7 +3,7 @@
 ## Reading List
 
 Brittany Henriques
-https://a2-bhenriques.glitch.me
+https://a2-brittanyhenriques.glitch.me
 
 My project is a simple reading list that takes in a book title and # of pages from a form that the user fills, converts the data into a JSON, creates
 an new variable 'hours' that is the estimated time to read the book based off of the number of pages, and returns the data to the client
