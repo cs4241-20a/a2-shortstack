@@ -8,7 +8,7 @@ To begin, select the map you are playing on and add the player names, their corr
 
 Clicking "start" will bring you to the game page, where you can add notes and mark players as dead. Holding down the spacebar will display the game data.
 
-
+Glitch Link: https://a2-carlypereira-carly-pereira.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: When on the game page, holding spacebar will display the current data on the server. This can be tested by adding new notes under players, and then viewing the server data.
