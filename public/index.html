@@ -13,7 +13,7 @@
     <h1>Raymond's Initiative Tracker</h1>
     <p id="note">Note: up/down arrows are only for resolving ties.</p>
     <div class="appcontainer">
-    <form action="">
+    <form >
       <label>Creature Name</label>
       <input type="text" id="name" value=""><br />
       <label>Max Hit Points</label>
@@ -35,11 +35,13 @@
     </form>
     <table class="list">
       <thead>
-        <th class="id">Id</th>
-        <th class="name">Name</th>
-        <th class="num">Initiative</th>
-        <th class="hp">HP</th>
-        <th class="ac">AC</th>
+        <tr>
+          <th class="id">Id</th>
+          <th class="name">Name</th>
+          <th class="num">Initiative</th>
+          <th class="hp">HP</th>
+          <th class="ac">AC</th>
+        </tr>
       </thead>
       <tbody id="creatures"></tbody>
     </table>
