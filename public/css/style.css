@@ -14,7 +14,10 @@ image {
 
 input {
   display: block;
+  height: 50px;
+  width: 300px;
   margin-bottom: 10px;
+  font-size: 15px;
   font-family: "Goudy Bookletter 1911", serif;
 }
 

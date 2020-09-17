@@ -1,5 +1,5 @@
 {
-  "name": "Reading List",
+  "name": "",
   "version": "1.0",
   "description": "Makes a book list with the reading times of all the books",
   "author": "Brittany Henriques",
@@ -7,6 +7,6 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }
