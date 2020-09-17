@@ -1,12 +1,14 @@
 {
-  "name": "",
+  "name": "Zaiyang Zhong",
   "version": "",
-  "description": "",
-  "author": "",
+  "description": "You will know if or not to buy new games",
+  "author": "Zaiyang Zhong",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node server.improved.js",
+    "build": "npm start;npm run bundle"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6",
+    "pouchdb": "^7.2.2"
   }
 }

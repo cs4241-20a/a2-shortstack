@@ -1,41 +1,124 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
+    <title>CS4241 A2 Zaiyang githubID:anyuwanqing</title>
 
-  const submit = function( e ) {
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <script src="//cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
+    <script>
+      
+    const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+      const input1 = document.querySelector( '#name' ).value;
+      const input2 = document.querySelector( '#favarite_game' ).value;
+      const input3 = document.querySelector( '#game_cost' ).value;
+      const input4 = document.querySelector('#hours_played').value;
+      const input5 = (parseFloat(document.querySelector('#game_cost').value))/(parseFloat(document.querySelector('#hours_played').value));
+      if(input5<1){
+        document.getElementById("suggestion").innerHTML = "Great game! Keep playing :)";
+      }else{
+        document.getElementById("suggestion").innerHTML = "BAD GAME STOP PLAYING IT XD";
+      }
+      // retrieve the html element
+      // the last input calculate for the cost/hour value after converting the string to int
+    const json = {
+            name: input1,
+            favarite_game: input2,
+            game_cost: input3,
+      hours_played:input4,
+      cost_per_hour:input5
+        },
+        body = JSON.stringify( json )
+
+    // every time add a new row, then 5 columns
+    var table, row1, col1, col2, col3, col4,col5, col6;
+    var table = document.getElementById('table');
+    var row = table.insertRow(1);
+    var col1 = row.insertCell(0);
+    var col2 = row.insertCell(1);
+    var col3 = row.insertCell(2);
+    var col4 = row.insertCell(3);
+  var col5 = row.insertCell(4);
+      var col6 = row.insertCell(5)
+
+      // display the new value (either entered or computed)
+    col2.innerHTML = json.name;
+    col3.innerHTML = json.favarite_game;
+    col4.innerHTML = json.game_cost;
+  col5.innerHTML = json.hours_played;
+      col6.innerHTML = json.cost_per_hour;
+
 
     fetch( '/submit', {
-      method:'POST',
-      body 
+        method:'POST',
+        body: body
     })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+        .then( response => response.json())
+        .then( function(response) {
+            col1.innerHTML = response.id;
+        })
 
-    return false
-  }
+    return false;
+}
 
-  window.onload = function() {
+window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit
-  }
-
-  </script>
-</html>
+}
+      
+    </script>
+  </head>
+  
+  <body>
+    
+    <h3>A Suggestion On
+    </h3>
+    <h3>Your GAMEPLAY: </h3>
+    <p id="suggestion"> 
+    </p>
+  
+    <div class="form">
+      <form id="form">
+        <ul class = "form">
+        <input class="font"  type="text" id="name" value="Your Name"/><br />
+          <p></p>
+        <input class="font" 
+          type="text"
+          id="favarite_game"
+          value="Your Favorite Game"
+        /><br />
+          <p></p>
+        <input class="font" type="text" id="game_cost" value="Game Cost ($)" /> <br />
+          <p></p>
+        <input class="font"  type="text" id="hours_played" value="Hours Played (h)" />
+        <br />
+          <p></p>
+          <p></p>
+        <button id="button">  Submit  </button>
+          </ul>
+      </form>
+    </div>
+  <p></p>
+    <p></p>
+    <h3 class="font2" style="color:white;">
+          STATS
+    </h3>
+    <div class="table_div" style="border:2px; border-color:white;">
+      <table id="table" style="border:2px; border-color:white;">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Game Name</th>
+          <th>Game Cost</th>
+          <th>Hours Played</th>
+          <th>Cost/h</th>
+        </tr>
+      </table>
+    </div>
+    
+  </body>
+  </html>

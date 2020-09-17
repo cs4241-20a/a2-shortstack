@@ -1,1 +1,88 @@
 /*Style your own assignment! This is fun! */
+/* chose pink and green for color*/
+
+h3 {
+  color: #F0544F;
+  margin-left: 43px;
+  letter-spacing: 0.5px;
+  line-height: 10px;
+  font-family: "Times New Roman", "Lucida Grande", sans-serif;
+}
+
+body {
+  background-color: #F5ABB8;
+}
+
+
+#suggestion{
+  margin-left:30px;
+  color:white;
+}
+#alarm{
+  display:none
+}
+
+.close::onclick  #alarm{
+  display:none
+}
+
+.font {
+  align-content: center;
+  justify-content: center;
+  background-color: white;
+  border-color: white;
+  border-radius: 10px;
+  text-align: center;
+  color: #F5ABB8;
+  height: 30px;
+}
+
+.font2 {
+  margin-top：20px;
+  margin-left:97px;
+  
+}
+
+
+#button {
+  background-color: #F0544F;
+  border-color: white;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  length: 60px;
+  margin-left: 100px;
+  color: #EEE5E9;
+}
+
+.form {
+  align-items: center;
+  justify-content: center;
+}
+
+.table_div {
+  margin-left: 24px;
+  align-items: center;
+  justify-content: center;
+  border:2px; 
+  border-color:white;
+}
+
+table {
+  align-content: center;
+  justify-content: center;
+  width: 30%;
+  length: 50%;
+  padding-left: 8px;
+  border:2px; 
+  border-color:white;
+}
+
+th,
+td {
+  color: white;
+  border:2px; 
+  border-color:white;
+}
+

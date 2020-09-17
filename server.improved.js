@@ -1,3 +1,14 @@
+let PouchDb = require('pouchdb');
+
+let db = new PouchDb('my_db');
+
+var entry_id = 0
+
+const statusCode = 200
+const errorCode = 404
+
+const appdata = []
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -5,12 +16,6 @@ const http = require( 'http' ),
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
-
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -39,11 +44,20 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    
+       // ... do something with the data here!!!
+    
+    
+    const json = JSON.parse(dataString)
+    entry_id++;
+    let entry = { id : entry_id }
 
-    // ... do something with the data here!!!
+    // parse in the table entries
+    db.put({"_id": JSON.stringify( entry_id), "name": JSON.stringify( json.name ), "favarite_game": JSON.stringify( json.favarite_game ), 
+           "game_cost": JSON.stringify( json.game_cost ), "hours_played":JSON.stringify( json.hours_played ), "cost_per_hour":JSON.stringify( json.cost_per_hour )})
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.writeHead( statusCode, "OK", {'Content-Type': 'text/plain' })
+    response.end(JSON.stringify( entry ))
   })
 }
 
@@ -54,18 +68,15 @@ const sendFile = function( response, filename ) {
 
      // if the error = null, then we've loaded the file successfully
      if( err === null ) {
-
        // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
+       response.writeHeader( statusCode, { 'Content-Type': type })
        response.end( content )
-
      }else{
-
        // file not found, error code 404
-       response.writeHeader( 404 )
+       response.writeHeader( errorCode )
        response.end( '404 Error: File Not Found' )
-
      }
+     
    })
 }
 
