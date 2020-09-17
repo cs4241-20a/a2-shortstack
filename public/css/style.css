@@ -1,1 +1,169 @@
 /*Style your own assignment! This is fun! */
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #C2EDEB;
+  font-family: "Indie Flower", cursive;
+}
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  width: 600px;
+  color: #3B5052;
+  text-align: center;
+  font-family: "Indie Flower", cursive;
+  text-decoration: underline;
+}
+
+h2 {
+  width: 600px;
+  color: #3B5052;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Indie Flower";
+}
+
+.header {
+  width: 600px;
+  height: 200px;
+  background-image: url("https://cdn.glitch.com/868c399e-5c9a-4f4e-9f3a-6c74506d8531%2FbackgroundStock.jpg?v=1599833780301");
+  background-size: 100% 100%;
+  position: relative;
+}
+
+#date {
+  color: #3B5052;
+  font-size: 20px;
+  text-align: center;
+  font-family: "Indie Flower", cursive;
+}
+
+.content {
+  width: 600px;
+  height: 400px;
+  max-height: 350px;
+  background-color: #FFF;
+  overflow: auto;
+}
+
+.item {
+  width: 600px;
+  height: 45px;
+  min-height: 45px;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item i.trashPlacing {
+  position: absolute;
+  font-size: 20px;
+  right: 60px;
+  top: 10px;
+}
+
+.item i:hover {
+  opacity: 0.5;
+}
+
+.item p.text {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  left: 50px;
+  top: 0px;
+  background-color: #FFF;
+  max-width: 300px;
+  font-family: "Indie Flower", cursive;
+}
+
+.item p.priority {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  left: 350px;
+  top: 0px;
+  background-color: #FFF;
+  color: red;
+  width: 200px;
+  font-family: "Indie Flower", cursive;
+}
+
+.check {
+  display: block;
+  padding-left: 0px;
+  top: 40px;
+  zoom: 2;
+}
+
+.add {
+  position: relative;
+  width: 580px;
+  height: 40px;
+  background-color: #FFF;
+  padding: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: #3B5052;
+}
+.add i {
+  position: absolute;
+  font-size: 30px;
+  padding: 0px;
+  color: #3B5052;
+}
+
+.add i:hover {
+  opacity: 0.5;
+}
+
+.priority {
+  position: absolute;
+  left: 260px;
+  height: 40px;
+  width: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  padding-left: 30px;
+  font-family: "Indie Flower", cursive;
+  color: black;
+}
+
+.add input {
+  position: absolute;
+  left: 100px;
+  height: 40px;
+  width: 210px;
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  padding-left: 20px;
+  font-family: "Indie Flower", cursive;
+  color: #3B5052;
+}
+
+.button {
+  border: 3px solid #3B5052;
+  border-radius: 20px;
+  color: #3B5052;
+  background-color: white;
+  padding: 10px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 10px;
+}
+
+.button:hover {
+  border-radius: 50px;
+  background: #3B5052;
+  color: #fff;
+}
