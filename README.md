@@ -63,7 +63,7 @@ I satisfied the requirements for the assignments in the following ways:
 Project can be found on glitch at the following link:
 http://a2-joeswetz.glitch.me
 
-####Important Note
+**Important Note**  
 I added an extra feature where the user can click "Download as CSV" and the 
 contents of both tables will be downloaded to the user's computer as a file 
 called "stats.csv." I know this was not a requirement, but I just wanted to do
