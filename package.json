@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Coronavirus Symptom Tracker 2.0",
+  "version": "1.0",
+  "description": "A site for submitting Covid19 data to WPI",
+  "author": "Margaret Earnest",
   "scripts": {
     "start": "node server.improved.js"
   },
