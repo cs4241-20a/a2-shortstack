@@ -1,6 +1,7 @@
 # Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 
 Malek ElShakhs
+https://glitch.com/~a2-mlshax
 
 For the assignment, I created a simple todo list. I used a <ul> for the tasks although I totally should have just used a table, oh well. I used CSS element, class, and id selectors as well as multiple gridboxes and used the Google Lato font for all text.
 
