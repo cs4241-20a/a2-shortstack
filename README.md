@@ -12,7 +12,7 @@ So I kind of went overboard with this project, because I was bored this week, so
 ## Technical Achievements
 - **Tech Achievement 1**: For the Technical Achievement, the project manipulates the server data in multiple ways. There are a variety of post and get urls on the server that have different purposes in the application. First the Get urls: '/currentWord' returns the scrambled version of the current server word as a response; '/getCurrScore' returns the current score that is being kept track of by the server; '/getScores' returns all the current scores in a JSON array format; and lastly, '/deleteEverything' resets the current word, current score, and list of scores on the server to empty. The Post urls: '/guess' takes in a string as data from the request and compares it to the current word on the server and returns in plaintext true or false whether its correct or not and increments the current score if correct; '/newScore' takes in a json from the request data, adds the derived field of a rating, and adds it to the server's score list; '/hint' takes in a number from the request data field, and then responds with the corresponding character from the server's current word. All of these together complete the achievement of changing the database in the three different ways (Add, Modify, Delete).
 
-### Design/Evaluation Achievements
+## Design/Evaluation Achievements
 - **Design Achievement 1**: 
 
 1. Patel
