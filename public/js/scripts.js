@@ -107,38 +107,6 @@ function deleteTask(event) {
   })
 }
 
-/*const deleteTask = function (e) {
-  console.log('Delete Task')
-  
-  var task = e.target.parentElement
-  
-  var json = { task: task.getElementsByTagName("task") , priority: task.getElementsByTagName("priority"), 
-              date: task.getElementsByTagName("date"), due: task.getElementsByTagName("due")}
-  var body = JSON.stringify(task)
-  
-  fetch( '/delete', {
-    method:'POST',
-    body
-  })
-  .then( function( response ) {
-
-    return (response.json())
-    
-  }).then(function(data) {
-    
-    todos = data;
-    console.log(todos);
-    document.querySelector('#taskList').innerHTML = '';
-    todos.forEach(
-      element => document.querySelector('#taskList').innerHTML += 
-      '<li><task>' + element.task + '</task><priority>' + element.priority + 
-      '</priority><date>' + element.date + '</date><due>' + element.due + '</due>' +
-      '<button onclick=\'deleteTask(event)\' class=\'deleteButton\'>Delete</button</li>'
-    );
-  })
-  
-}*/
-
 window.onload = function() {
   updateData()
   const button = document.querySelector( '#submitButton' )
