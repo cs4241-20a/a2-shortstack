@@ -2,31 +2,73 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/scripts.js" type="text/javascript"></script>
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <h1>Registration</h1>
+    <form action="" method="POST">
+      <label for="yourname">Name</label>
+      <input type='text' id='yourname' placeholder="your name here">
+      <label for="dateofbirth">Date of Birth</label>
+      <input type='text' id='dateofbirth' placeholder="00 00 0000">
+      <label for="gender">Gender</label>
+      <input type='text' id='gender' placeholder="Male, Female">
+      <button>Submit</button>
     </form>
+    <label for="flex-box" id="flex-label">Registered</label>
+    <ul id="flex-box">
+      
+    </ul>
   </body>
   <script>
 
+  let registered = []
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const input = document.querySelector( '#yourname' )
+    const input2 = document.querySelector( '#dateofbirth' )
+    const input3 = document.querySelector( '#gender')
+          json = { yourname: input.value, dateofbirth: input2.value, gender: input3.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
-      method:'POST',
-      body 
+         method:'POST',
+         body
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+      return response.json()
+    })
+    .then( function( json ) {
+      //registered = json
+      console.log( json )
+      // Add the returned values to the Flex-Box
+      //Add most recent value since we're not changing the previous values
+      var item = json[json.length-1]
+      var rlist = document.getElementById("flex-box")
+      var item1 = document.createElement("li")
+      item1.setAttribute('id', item.yourname)
+      item1.setAttribute('class', 'flex-item')
+      item1.appendChild(document.createTextNode(item.yourname))
+      rlist.appendChild(item1)
+      var item2 = document.createElement("li")
+      item2.setAttribute('id', item.dateofbirth)
+      item2.setAttribute('class', 'flex-item')
+      item2.appendChild(document.createTextNode(item.dateofbirth))
+      rlist.appendChild(item2)
+      var item3 = document.createElement("li")
+      item3.setAttribute('id', item.gender)
+      item3.setAttribute('class', 'flex-item')
+      item3.appendChild(document.createTextNode(item.gender))
+      rlist.appendChild(item3)
+      var item4 = document.createElement("li")
+      item4.setAttribute('id', item.age)
+      item4.setAttribute('class', 'flex-item')
+      item4.appendChild(document.createTextNode(item.age))
+      rlist.appendChild(item4)
     })
 
     return false
