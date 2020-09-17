@@ -1,7 +1,7 @@
 ## CS 4241 Webware Assignment A2
 Noah Olson - nvolson@wpi.edu - noahvolson
 
-Glitch URL: 
+Glitch URL: https://a2-noaholson.glitch.me/
 
 For this assignment, I have created an online multiplayer 
 number guessing game. To begin, enter a username and your 
@@ -20,7 +20,7 @@ I used flexbox to position my elements.
  at all times. Additionally, I have added an easy-access 
  button to refresh all tables.
 
-- **Tech Achievement 1**: My application supports adding, updating,
+- **Tech Achievement 2**: My application supports adding, updating,
 and deleting of guesses. 
     - Adding is accomplished by clicking the submit
     button after entering username and guess data. 
@@ -28,3 +28,8 @@ and deleting of guesses.
     an existing username and new guess
     - Deleting is accomplished by clicking the delete button with an
     existing username in its respective field
+    
+## Notes
+- You cannot delete a user once they have won the game
+- Code snippet was used from: https://phoenixnap.com/kb/how-to-get-the-current-date-and-time-javascript
+for the current time and date
