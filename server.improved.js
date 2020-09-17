@@ -72,8 +72,8 @@ const handlePost = function(request, response) {
       appdata.push(data);
       console.log(appdata);
 
-      response.writeHead(200, "OK", { "Content-Type": "application/json" });
-      response.end(JSON.stringify(data));
+      //response.writeHead(200, "OK", { "Content-Type": "application/json" });
+      //response.end(JSON.stringify(data));
       //response.end();
     }
   });
