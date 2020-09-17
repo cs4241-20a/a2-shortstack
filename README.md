@@ -12,9 +12,9 @@ This project is a page that would allow clients to send packages through a couri
 ### Design/Evaluation Achievements
 - **Student Interview 1**: <br />
 Student Last Name: Owuor <br />
-Problems: <br />
-Surprising Comments: <br />
-Changes to be made based on feedback: <br /> <br />
+Problems: The number inputs allow me to enter negative numbers<br />
+Surprising Comments: I could see this being a real application or business if you developed it further.<br />
+Changes to be made based on feedback: Implement a checker that displays a popup/error message when a user attempts to enter negative numbers in the number fields.<br /> <br />
 - **Student Interview 2**: <br />
 Student Last Name: Patel <br />
 Problems: When nothing is input in the description field, the app still creates a new row without a package description. Also, the page itself is very empty. <br />
