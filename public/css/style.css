@@ -1,1 +1,123 @@
-/*Style your own assignment! This is fun! */
+body {
+  background-color: #AC2B37;
+  color: white;
+  font-family: 'PT Sans';
+}
+
+/* This collapsable code is based on the code found here, with changes to colors, padding, and text-align: https://www.w3schools.com/howto/howto_js_collapsible.asp */
+.collapsible {
+  background-color: #d3d3d3;
+  color: #AC2B37;
+  cursor: pointer;
+  padding: 40px 18px 40px 18px;
+  width: 50%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  display:block;
+  margin:auto;
+}
+
+/* This code is also from the above tutorial, with changes to width, color, and padding: https://www.w3schools.com/howto/howto_js_collapsible.asp */
+.content {
+  color: black;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  width: 40%;
+  padding: 0 5% 0 5%;
+  margin: auto;
+}
+
+.active, .collapsible:hover {
+  background-color: #A9B0B7;
+}
+
+.symptom {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: auto;
+  margin: auto;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.rows2, .rows3, .column2 {
+  display: grid;
+  grid-gap: 5%;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-template-rows: 1fr 1fr;
+  text-align: center;
+}
+
+.rows3 {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: row;
+}
+
+.column2 {
+  grid-template-rows: 1fr;
+}
+
+.symptomColumns {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: row;
+  text-align: left;
+}
+
+/* This button is based on the CSS button tutorial here, with changes to color, display, and margin: https://www.w3schools.com/css/css3_buttons.asp */
+button {
+  background-color: #AC2B37;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: auto;
+}
+
+button:hover {
+  background-color: #93121E;
+}
+
+#resetButton {
+  color: #AC2B37;
+  background-color: #d3d3d3;
+}
+
+#resetButton:hover {
+  background-color: #A9B0B7;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+#database {
+  text-align: center;
+}
+
+.largeTitle {
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.smallTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+}
