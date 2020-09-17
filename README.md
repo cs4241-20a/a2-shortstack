@@ -1,6 +1,6 @@
 ## AccuMouse - The Mouse Accuracy Game
 # By Truman Larson
-https://a2-truman-larson.glitch.me/
+https://a2-trumanlarson.glitch.me/
 AccuMouse is a mouse accuracy game that seeks to improve the user's clicking accuracy. A leaderboard is provided so the best of the best can rise to the top. To play, all you need to do is press the start button and start clicking as many circles as you can! Note: sometimes it may feel like the circles are broken and don't actually get click, but I assure you they are not broken! 
 
 For css positioning of the elements I used a flexbox column to center everything in the middle. 
