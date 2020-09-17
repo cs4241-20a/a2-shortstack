@@ -14,11 +14,9 @@ This project is a page that would allow clients to send packages through a couri
 Student Last Name: Owuor <br />
 Problems: <br />
 Surprising Comments: <br />
-Changes to be made based on feedback: <br />
+Changes to be made based on feedback: <br /> <br />
 - **Student Interview 2**: <br />
 Student Last Name: Patel <br />
 Problems: When nothing is input in the description field, the app still creates a new row without a package description. Also, the page itself is very empty. <br />
 Surprising Comments: The color scheme does not look very good. <br />
-Changes to be made based on feedback: Cater to this edge case by implementing a check to ensure all fields are filled before the submit funciton processes the data. <br />
-A popup could be displayed telling the user to ensure the fields are filled before clicking the submit button. <br />
-Also a couple pictures could be added to make the page more appealing.
+Changes to be made based on feedback: Cater to this edge case by implementing a check to ensure all fields are filled before the submit funciton processes the data. Also, a popup could be displayed telling the user to ensure the fields are filled before clicking the submit button and a couple pictures could be added to make the page more appealing.
