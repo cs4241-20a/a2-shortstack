@@ -12,7 +12,7 @@ Additionally, the arrows on the end of creatures are used to resolve ties. If tw
 ## Technical Achievements
 - **Tech Achievement 1**: Created a single-page app that provides a form for users to submit creatures and updates the display with the new data whenever a change is made. 
 
-- **Technical Achievement 2**: This app allows the user to create, remove, and (lightl) edit data. creatures are added using the form. The user can delete any player from the initiative order if there is a mistake or the monster is defeated. The player can update the order to resolve initiative ties using the up and down arrows.
+- **Technical Achievement 2**: This app allows the user to create, remove, and (lightly) edit data. creatures are added using the form. The user can delete any player from the initiative order if there is a mistake or the monster is defeated. The player can update the order to resolve initiative ties using the up and down arrows.
 
 
 ### Design/Evaluation Achievements
