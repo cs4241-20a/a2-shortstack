@@ -1,1 +1,85 @@
 /*Style your own assignment! This is fun! */
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  align-content: space-between;
+  padding: 5px;
+}
+
+body {
+  background-color: #fff7ff;
+  font-family: Quicksand;
+  font-size: 25px;
+}
+
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  margin: 10px;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1em;
+  color: inherit;
+}
+
+table {
+  margin-top: 35px;
+  border-collapse: collapse;
+  border-spacing: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+th,
+td,
+tfoot {
+  padding: 0.5rem;
+  border-spacing: 0.5rem;
+  vertical-align: middle;
+  text-align: center;
+}
+
+th {
+  color: white;
+  background-color: purple;
+}
+
+td {
+  background-color: white;
+  margin: 20px;
+}
+
+.finishButton {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+#add {
+  background-color: #23db60;
+  color: white;
+  font-weight: bold;
+}
+
+form {
+  background-color: purple;
+  padding: 20px;
+}
+
+#due_date {
+  color: white;
+  font-weight: bold;
+}
+
+.buttonColumn {
+  background-color: #fff7ff;
+  
+}
