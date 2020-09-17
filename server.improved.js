@@ -7,21 +7,21 @@ const http = require("http"),
   port = 3000;
 
 const appdata = [
-  { route: "test1", time: 7, distance: 1, fitness: 7 },
-  { route: "test2", time: 14, distance: 2, fitness: 14 },
-  { route: "test3", time: 21, distance: 3, fitness: 21 }
+  { route: "Normal Run", time: 30, distance: 4, fitness: 120 },
+  { route: "Workout", time: 15, distance: 2.5, fitness: 37.5 },
+  { route: "Long Run", time: 60, distance: 9, fitness: 540 },
 ];
 
-const sendAppData = function(response) {
+const sendAppData = function (response) {
   response.writeHead(200, "OK", { "Content-Type": "text/plain" });
   response.end(JSON.stringify(appdata));
 };
 
-const calculateFitness = function(record) {
+const calculateFitness = function (record) {
   return record.time * record.distance;
 };
 
-const server = http.createServer(function(request, response) {
+const server = http.createServer(function (request, response) {
   if (request.method === "GET") {
     handleGet(request, response);
   } else if (request.method === "POST") {
@@ -29,7 +29,7 @@ const server = http.createServer(function(request, response) {
   }
 });
 
-const handleGet = function(request, response) {
+const handleGet = function (request, response) {
   const filename = dir + request.url.slice(1);
 
   if (request.url === "/") {
@@ -39,24 +39,24 @@ const handleGet = function(request, response) {
   }
 };
 
-const handlePost = function(request, response) {
+const handlePost = function (request, response) {
   if (request.url === "/loadData") {
     sendAppData(response);
     return true;
   }
   let dataAsString = "";
-  request.on("data", function(dataBuffer) {
+  request.on("data", function (dataBuffer) {
     dataAsString += dataBuffer;
   });
   //parse data buffer as string
-  request.on("end", function() {
+  request.on("end", function () {
     if (request.url === "/submit") {
       var newRecord = JSON.parse(dataAsString); //get new record json
       appdata.push({
         route: newRecord.route,
         time: newRecord.time,
         distance: newRecord.distance,
-        fitness: calculateFitness(newRecord)
+        fitness: calculateFitness(newRecord),
       }); //put record data into "database"
     }
     sendAppData(response);
@@ -64,10 +64,10 @@ const handlePost = function(request, response) {
   return true;
 };
 
-const sendFile = function(response, filename) {
+const sendFile = function (response, filename) {
   const type = mime.getType(filename);
 
-  fs.readFile(filename, function(err, content) {
+  fs.readFile(filename, function (err, content) {
     // if the error = null, then we've loaded the file successfully
     if (err === null) {
       // status code: https://httpstatuses.com

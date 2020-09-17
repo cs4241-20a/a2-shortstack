@@ -1,4 +1,4 @@
-const loadTable = function(jsonData) {
+const loadTable = function (jsonData) {
   var table = document.getElementById("resultTableBody");
   table.innerHTML = "";
   for (var i = 0; i < jsonData.length; i++) {
@@ -10,7 +10,7 @@ const loadTable = function(jsonData) {
   }
 };
 
-const submit = function(e) {
+const submit = function (e) {
   // prevent default form action from being carried out
   e.preventDefault();
 
@@ -35,7 +35,7 @@ const submit = function(e) {
   const json = {
       route: inputRoute.value,
       time: inputTime.value,
-      distance: inputDistance.value
+      distance: inputDistance.value,
     },
     body = JSON.stringify(json);
 
@@ -43,26 +43,26 @@ const submit = function(e) {
     method: "POST",
     headers: {
       Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body
+    body,
   })
-    .then(response => response.json())
-    .then(jsonData => loadTable(jsonData));
+    .then((response) => response.json())
+    .then((jsonData) => loadTable(jsonData));
 
   return false;
 };
 
-window.onload = function() {
+window.onload = function () {
   fetch("/loadData", {
     method: "POST",
     headers: {
       Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   })
-    .then(response => response.json())
-    .then(jsonData => loadTable(jsonData));
+    .then((response) => response.json())
+    .then((jsonData) => loadTable(jsonData));
   const button = document.querySelector("button");
   button.onclick = submit;
 };
