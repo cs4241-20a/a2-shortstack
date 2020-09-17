@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "a2-ntaurich",
   "version": "",
   "description": "",
-  "author": "",
+  "author": "Nina Taurich",
   "scripts": {
     "start": "node server.improved.js"
   },

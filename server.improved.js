@@ -13,9 +13,6 @@ const appdata = [
 ]
 
 const cards = [ 
-  { 'question': 'first?', 'answer': 'first answer', 'priority': 15},
-  { 'question': '2nd?', 'answer': 'first answer', 'priority': 12},
-  { 'question': 'second?', 'answer': 'second answer', 'priority': 0}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -74,12 +71,14 @@ function insertCard(newCard, priority){
   if(cards.length === 0){
     cards.splice(0,0,newCard)
   }
-  while(i<cards.length){
-    if(cards[i].priority <=priority){
-      cards.splice(i,0,newCard)
-      break
+  else{
+    while(i<cards.length){
+      if(cards[i].priority <=priority){
+        cards.splice(i,0,newCard)
+        break
+      }
+      i++
     }
-    i++
   }
 
 }
