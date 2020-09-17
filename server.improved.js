@@ -16,16 +16,54 @@ const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    if( request.url === '/updateScore' ) {
+      let tempScore
+      request.on( 'data', function( data ) {
+        let TAT = JSON.parse(data)
+        tempScore = TAT["score"]
+      })
+
+      request.on( 'end', function() {
+        if (highScore === "None") {
+          highScore = tempScore
+          highestSubmitted = lastSubmitted
+        } else {
+          if (parseInt(highScore) > parseInt(tempScore)){
+            highScore = tempScore
+            highestSubmitted = lastSubmitted
+          }
+        }
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+      })
+
+    } else {
+      console.log(request.url)
+      handlePost( request, response ) 
+    } 
   }
 })
+
+let answer = "-1";
+let lastSubmitted
+let highestSubmitted = "None";
+let highScore = "None";
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if ( request.url === '/getAns' ){
+    answer = "" + Math.floor(Math.random() * 10);
+    response.writeHeader( 200, "OK", { 'Content-Type': 'text/plain' })
+    response.end( answer )
+  } else if ( request.url === '/getField' ){
+    rsp = [{"answer":answer},{"lastSubmitted":lastSubmitted},{"highestSubmitted":highestSubmitted},{"highScore":highScore}]
+    
+    response.writeHeader( 200, "OK", { 'Content-Type': 'application/json' })
+    response.end( JSON.parse(rsp) )
+  } else{
     sendFile( response, filename )
   }
 }
@@ -38,12 +76,20 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    parsed = JSON.parse( dataString ) 
+    lastSubmitted = parsed["yourname"]
+    console.log(lastSubmitted)
+
+    if (lastSubmitted === answer){
+      dataString = "succeed!"
+    } else {
+      dataString = "failed!"
+    }
 
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(dataString)
   })
 }
 
