@@ -1,4 +1,4 @@
-## Your Web Application Title
+## To Do List
 Server client http web application styled with CSS selectors, flexbox, and usage of Google fonts. Created server, for npm start. 
 
 Code is a little buggy, the data is still being stored from previous entries and can't figure out why it's doing that. 
