@@ -1,8 +1,6 @@
 ## HAHA GAME
 Glitch Link: https://a2-wdandanw.glitch.me/
 
-Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
-
 I created a simple reaction game in which user clicks play, then enters the showed answer, the server will record quickest time
 
 ## References
