@@ -1,7 +1,7 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
-Abhijay Thammana 9/15/20
+Abhijay Thammana 9/16/20
 https://athammana-a2-athammana-1.glitch.me/
 
 --------------------------------------------------------------------------------------------------------------------------
@@ -19,6 +19,8 @@ So I kind of went overboard with this project, because I was bored this week, so
 2. Just didn't notice the leaderboard name right away since it was tucked in the corner, but other than everything was clear
 3. The background could be distracting and said there was a decent amount of whitespace
 4. Make the leaderboard side a bit bigger, and maybe move the background blobs to be smaller and more central
+
+- **Design Achievement 2**:
 
 1. Abouaf
 2. The buttons should be under the text field because they have to do with the text while the delete everything does not, also delete everything should be a different color or pop out more
