@@ -12,6 +12,7 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -30,20 +31,30 @@ const handleGet = function( request, response ) {
   }
 }
 
+let dataStorage = []
 const handlePost = function( request, response ) {
-  let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+    var a = JSON.parse(data)
+    var approaching = false
+    var hard = false
+
+    if (a.Deadline < 5){
+      approaching = true;
+    }
+    if (a.Difficulty >= 5){
+      hard = true;
+    }
+    if (approaching === true && hard === true){
+      a.Priority = "Sooner"
+    }
+    else a.Priority = "Later"
+      dataStorage.push(a) 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(dataStorage))
   })
 }
 
