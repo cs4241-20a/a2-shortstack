@@ -1,1 +1,74 @@
 /*Style your own assignment! This is fun! */
+
+h1 {
+  color: #ccffed;
+  width: 25%;
+  margin-left: 35%;
+}
+
+hr {
+  color: #ccffed;
+}
+body {
+  grid-template-rows: auto;
+  align-content: center;
+  font-size: x-large;
+  text-align: center;
+  font-family: "Kumbh Sans", sans-serif;
+  background-color: #455953;
+}
+
+input[type="text"] {
+  border: none;
+  background-color: #4ea68a;
+  margin: 10px 0;
+  padding: 10px 10px;
+  width: 15%;
+  font-size: x-large;
+  color: #ccffed;
+}
+
+button {
+  background-color: #4ea68a;
+  border: none;
+  color: #ccffed;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  font-size: 16px;
+  border-radius: 50px;
+}
+form {
+  padding: 15px;
+  margin: 10px;
+  color: #ccffed;
+  text-align: center;
+}
+
+table {
+  color: #ccffed;
+  margin-left: 20%;
+  margin-right: 20%;
+
+  align-items: center;
+  justify-content: center;
+  border-collapse: collapse;
+  width: 60%;
+  background-color: #4ea68a;
+}
+
+th,
+td,
+tr {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  border: 2px solid #ccffed;
+}
+
+thead,
+table td:nth-child(1) {
+  /*highlight header row and first column*/
+  background-color: #2a594a;
+}
