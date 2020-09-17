@@ -98,22 +98,17 @@ it very quickly. So I apologize if the tests were not ideal, but I did get some 
 feedback, as well some important bug catches. All bugs that were found from testing were
 fixed before submitting.
 
-###Test Tasks
-These were the tasks given to each user.
-
-1.) Add a few rows of game stats to the table.
-
-2.) Modify one of the rows of stats.
-
-3.) Delete a row of stats.
-
-4.) Download the table data as a CSV file and verify the contents match
+These were the tasks given to each user:  
+1. Add a few rows of game stats to the table.
+2. Modify one of the rows of stats.
+3. Delete a row of stats.
+4. Download the table data as a CSV file and verify the contents match
 the data in the tables.
 
-###Test 1
-1.) **Participant Last Name:** Hunt	
+Test 1  
+1. **Participant Last Name:** Hunt	
 
-2.) **What problems did the user have with your design?**
+2. **What problems did the user have with your design?**
 	An error occurred that result in the values in the table being null.
 	I acknowledged this out loud, not thinking it would interrupt the test. 
 	The user then said they didn't even see the totals and averages table
@@ -121,20 +116,20 @@ the data in the tables.
 	see the table, I consider it a UI problem since the user's view should
 	be immediately drawn to the table.
 	
-3.) **What comments did they make that surprised you?**
+3. **What comments did they make that surprised you?**
 	When modifying a row of stats, they said they were going to leave fields
 	that they didn't want changed empty (so they wanted to modify assists, so they
 	left the "# kills" and "# deaths" fields of the form empty). This was not
 	actually supported.
 	
-4.) **What would you change about the interface based on their feedback?**
+4. **What would you change about the interface based on their feedback?**
 	I would move the table that displays totals and averages somewhere else, probably
 	higher up on the screen so the user sees it when they see the other table.
 
-###Test 2
-1.) **Participant Last Name:**  Desveaux
+Test 2
+1. **Participant Last Name:**  Desveaux
 	
-2.) **What problems did the user have with your design?**
+2. **What problems did the user have with your design?**
 	The user was able to successfully complete the tasks without any struggle. 
 	However, they did try to put 0 for deaths, which didn't work since,	after the 
 	first test, I did some bug fixes. I consider this a design problem since the
@@ -142,15 +137,14 @@ the data in the tables.
 	to the table. They didn't really think-aloud because they just instantly knew what 
 	form to use and added the data.
 	
-3.) **What comments did they make that surprised you?**
+3. **What comments did they make that surprised you?**
 	I was surprised that the user genuinely tried to put 0 deaths for one of the
 	games. I forgot this is an actual valid value and should therefore be put in the table.
 	After the first test, I made it so 0 deaths was not allowed since you can't divide by
 	0. In reality, 0 deaths is a valid value and in FPS games, when there are 0 deaths the 
 	K/D = # kills and the A/D = # assists.
 	
-4.) **What would you change about the interface based on their feedback?**
+4. **What would you change about the interface based on their feedback?**
 	I would some sort of error box that gives the user an informative message explaining
 	why their row of stats was not added to the table (i.e. negative number, unrecognized
 	character, etc.).
-
