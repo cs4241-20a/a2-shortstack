@@ -1,4 +1,4 @@
-Margaret Earnest
+Margaret Earnest<br />
 https://a2-margaretearnest.glitch.me/
 
 ## Coronavirus Symptom Tracker 2.0
