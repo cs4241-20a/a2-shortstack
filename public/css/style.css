@@ -1,1 +1,149 @@
 /*Style your own assignment! This is fun! */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Annie Use Your Telescope', cursive;
+}
+
+header {
+    background-color: maroon;
+    color: white;
+    font-size: 56px;
+    text-align: center;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+[type=radio]:checked + img {
+    filter:grayscale(0%) !important;
+    box-sizing: border-box;
+    border: 5px solid lawngreen;
+}
+
+#mapselect {
+    display:flex;
+    justify-content: space-around;
+    margin-bottom: 2%;
+}
+
+#mapselect > label {
+    display:flex;
+    justify-content: space-around;
+}
+
+[type=radio] + img {
+    width: 95%;
+    height: 95%;
+}
+
+#mapselect > label > img:not(:hover) {
+    filter: grayscale(100%);
+}
+
+/*hide radio*/
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#playername {
+    display: flex;
+    flex-direction: column;
+}
+
+#playercolor {
+    display: flex;
+    flex-direction: column;
+}
+
+#players {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+#start {
+    display: flex;
+    justify-content: center;
+}
+
+#startbutton {
+    color: white;
+    background-color: forestgreen;
+    font-size: 24px;
+    border-radius: 8px;
+    padding: 14px 28px;
+    box-shadow: none;
+}
+
+#startbutton:disabled {
+    background-color: grey;
+}
+
+/*surrounds maparea and playerarea*/
+#main {
+    display: flex;
+    flex-direction: row;
+}
+
+/*dynamic map image*/
+#maparea {
+    display: flex;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+}
+
+/*div around crew photos*/
+#playerarea {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    width: 30%;
+}
+
+/*crew photos*/
+.character {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 50%;
+    height: 20%;
+}
+
+/*img class, resizing*/
+.crew {
+    height: 60%;
+    width: 30%;
+}
+
+#notesarea {
+    width: 70%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: top;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 60%; /* Full width (cover the whole page) */
+    height: 60%; /* Full height (cover the whole page) */
+    background-color: white; /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
