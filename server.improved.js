@@ -45,7 +45,7 @@ const server = http.createServer( function( request,response ) {
 })
 
 let answer = "-1";
-let lastSubmitted
+let lastSubmitted = "";
 let highestSubmitted = "None";
 let highScore = "None";
 
@@ -62,7 +62,7 @@ const handleGet = function( request, response ) {
     rsp = [{"answer":answer},{"lastSubmitted":lastSubmitted},{"highestSubmitted":highestSubmitted},{"highScore":highScore}]
     
     response.writeHeader( 200, "OK", { 'Content-Type': 'application/json' })
-    response.end( JSON.parse(rsp) )
+    response.end( JSON.stringify(rsp) )
   } else{
     sendFile( response, filename )
   }

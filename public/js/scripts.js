@@ -98,7 +98,7 @@ const updateField = function (){
         // do something with the reponse 
         return response.json()
     }).then ( function (json){
-       console.log(json)
+       check_txt.innerHTML = JSON.stringify(json)
     })
 
 }
