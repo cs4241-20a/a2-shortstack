@@ -1,1 +1,59 @@
 /*Style your own assignment! This is fun! */
+
+h1 {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: bold condensed;
+	font-size: 50px;
+	padding:10px;
+	background-color: #ff512c;
+	text-align: center;
+}
+
+th {
+	font-family: 'Kufam', cursive;	
+	font-weight: bold;
+	font-size: 20px;
+	color: #030507;
+	padding:10px;
+	background-color: #29897c;
+	border: 3px solid black;
+}
+
+td {
+	font-family: 'Kite One', sans-serif;
+	font-size: 18px;
+	color: #000000;
+	border: 1px solid black;
+}
+
+body {
+	background-color: #29897c;	
+}
+
+
+table{
+  border: 3px solid black;
+}
+
+.input_section {
+	font-family: 'Kufam';
+	font-size: 15px;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-column-gap: 50px;
+	grid-row-gap: 50px;
+	justify-content: space-between;
+	align-content: space-evenly;
+}
+
+.item1{
+	grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.item2 {
+	grid-area: 1 / 2 / span 1 / span 1;
+}
+
