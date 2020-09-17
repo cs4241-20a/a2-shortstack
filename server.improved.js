@@ -144,9 +144,20 @@ const convertDataToNum = function(data){
  * @param deaths number of deaths from the game
  */
 const calculateKDandAD = function(kills, assists, deaths){
+    let kd, ad;
+    //We want to avoid divide by zero errors, but still allows for 0 deaths.
+    //If there are 0 deaths, FPS games traditionally treat K/D = # kill and
+    //A/D as assists
+    if(deaths === 0) {
+        kd = kills;
+        ad = assists;
+    }else{
+        kd = parseFloat((kills / deaths).toFixed(DECIMAL_PRECISION));
+        ad = parseFloat((assists / deaths).toFixed(DECIMAL_PRECISION));
+    }
     return {
-        kd_ratio: parseFloat((kills / deaths).toFixed(DECIMAL_PRECISION)),
-        ad_ratio: parseFloat((assists / deaths).toFixed(DECIMAL_PRECISION))
+        kd_ratio: kd,
+        ad_ratio: ad
     }
 }
 

@@ -16,19 +16,6 @@ stats down by hand or do a bunch of math. This makes it easy for the user
 to see stats and create graphs for themselves to further improve their
 skills.
 
-**Important Note**: I added an extra feature where the user can click 
-"Download as CSV" and the contents of both tables will be downloaded to the 
-user's computer as a file called "stats.csv." I know this was not a 
-requirement, but I just wanted to do it for fun! However, to learn how to do
-this, I had to do some research, and I ended up using some code from stack
-overflow. Since this was not an actual assignment requirement, Professor Roberts
-said it was OK as long as I cite it and mention this in the readme. This code is 
-in handle_csv() in ./public/js/scripts.js. In that method, I put a comment 
-crediting the source, as well as my own explanation to prove my understanding of 
-it. The comments that start with "OA" are comments from the original post by the
-Original Author, and I took out the => notation and made that part fit my coding 
-style (cause I didn't like the => notation). 
-
 I satisfied the requirements for the assignments in the following ways:
 - **Functionality**:
     - The server in server.improved.js serves the necessary files as well as 
@@ -58,15 +45,15 @@ I satisfied the requirements for the assignments in the following ways:
     assignment description.
 - **CSS**:
     - All the primary visual elements of the application have been styled with
-    CSS. Each elements has style rules in ./public/css/style.css.
+    CSS. Each element has style rules in ./public/css/style.css.
     - In ./public/css/style.css, Element, ID, and Class selectors have all been 
     used (Ex: h1, .app-item, #add).
-    -The three forms and two tables are inside a flex box for formatting. The 
+    - The three forms and two tables are inside a flex box for formatting. The 
     div item with class "appgrid" has "display: flex" to contain these elements.
-    -All text uses the font Inconsolata from Google Fonts. It's linked into 
+    - All text uses the font Inconsolata from Google Fonts. It's linked into 
     index.html at line 7, and set as the font family for all text on line 7 .of 
     public/css/style.css
-    -The CSS is all maintained in the external stylesheet ./public/css/style.css
+    - The CSS is all maintained in the external stylesheet ./public/css/style.css
 - **JS**:
     - Front-end JS is located in ./public/js/scripts.js to fetch data from the
     server.
@@ -75,6 +62,25 @@ I satisfied the requirements for the assignments in the following ways:
 
 Project can be found on glitch at the following link:
 http://a2-joeswetz.glitch.me
+
+####Important Note
+I added an extra feature where the user can click "Download as CSV" and the 
+contents of both tables will be downloaded to the user's computer as a file 
+called "stats.csv." I know this was not a requirement, but I just wanted to do
+it for fun! However, to learn how to do this, I had to do some research, and I 
+ended up using some code from stack overflow. Since this was not an actual 
+assignment requirement, Professor Robertssaid it was OK as long as I cite it and
+mention this in the readme. This code is in handle_csv() in ./public/js/scripts.js.
+In that method, I put a comment crediting the source, as well as my own explanation
+to prove my understanding of it. The comments that start with "OA" are comments
+from the original post by theOriginal Author, and I took out the => notation and
+made that part fit my coding style (cause I didn't like the => notation).
+
+While I believe the process of writing and sending a CSV file server-side and then
+doing research on how to download it on the client was enough of challenge that it
+should be considered a technical achievement, I will of course leave it up to your
+discretion, especially considering that I did have to use some code from stack 
+overflow. The other achievements can be found below.
 
 ## Technical Achievements
 - **Real-Time Update**: The tables in index.html update automatically as the
