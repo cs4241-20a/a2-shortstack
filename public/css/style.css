@@ -22,6 +22,9 @@ priority{
 p{
   margin-right: 36px; 
 }
+button{
+  font-family: 'Lato', sans-serif;
+}
 .deleteButton{
   background-color: #E97451;
 }
