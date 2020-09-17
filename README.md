@@ -2,6 +2,8 @@ Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and
 ===
 
 ## FPS Stat Calculator
+Link to application: https://a2-joeswetz.glitch.me
+
 This application allows the users to enter in their kills, assists, and
 deaths from multiple rounds of an FPS game, and it then calculates and 
 displays all these stats, as well as derived stats, to the user. The data
@@ -81,6 +83,68 @@ delete request, the server returns a list containing the current contents of the
 There is also a request API call that gets the contents of the table when the HTML body
 has loaded.
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+## Design/Evaluation Achievements
+I tested the program with two different students in CS4241 according to the design
+achievement description. You'll find the list of tasks below as well as my answers to the
+questions for each user. I think these tasks were so simple (since the application itself
+is so simple) that there wasn't really a lot of thinking aloud. The users just went and did
+it very quickly. So I apologize if the tests were not ideal, but I did get some useful 
+feedback, as well some important bug catches. All bugs that were found from testing were
+fixed before submitting.
+
+###Test Tasks
+These were the tasks given to each user.
+
+1.) Add a few rows of game stats to the table.
+
+2.) Modify one of the rows of stats.
+
+3.) Delete a row of stats.
+
+4.) Download the table data as a CSV file and verify the contents match
+the data in the tables.
+
+###Test 1
+1.) **Participant Last Name:** Hunt	
+
+2.) **What problems did the user have with your design?**
+	An error occurred that result in the values in the table being null.
+	I acknowledged this out loud, not thinking it would interrupt the test. 
+	The user then said they didn't even see the totals and averages table
+	at the bottom of the UI in the first place. Considering the user didn't
+	see the table, I consider it a UI problem since the user's view should
+	be immediately drawn to the table.
+	
+3.) **What comments did they make that surprised you?**
+	When modifying a row of stats, they said they were going to leave fields
+	that they didn't want changed empty (so they wanted to modify assists, so they
+	left the "# kills" and "# deaths" fields of the form empty). This was not
+	actually supported.
+	
+4.) **What would you change about the interface based on their feedback?**
+	I would move the table that displays totals and averages somewhere else, probably
+	higher up on the screen so the user sees it when they see the other table.
+
+###Test 2
+1.) **Participant Last Name:**  Desveaux
+	
+2.) **What problems did the user have with your design?**
+	The user was able to successfully complete the tasks without any struggle. 
+	However, they did try to put 0 for deaths, which didn't work since,	after the 
+	first test, I did some bug fixes. I consider this a design problem since the
+	design should have informed the user about why the provided stats were not added 
+	to the table. They didn't really think-aloud because they just instantly knew what 
+	form to use and added the data.
+	
+3.) **What comments did they make that surprised you?**
+	I was surprised that the user genuinely tried to put 0 deaths for one of the
+	games. I forgot this is an actual valid value and should therefore be put in the table.
+	After the first test, I made it so 0 deaths was not allowed since you can't divide by
+	0. In reality, 0 deaths is a valid value and in FPS games, when there are 0 deaths the 
+	K/D = # kills and the A/D = # assists.
+	
+4.) **What would you change about the interface based on their feedback?**
+	I would some sort of error box that gives the user an informative message explaining
+	why their row of stats was not added to the table (i.e. negative number, unrecognized
+	character, etc.).
+
