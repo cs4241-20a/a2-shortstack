@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link href="css/style.css" rel="stylesheet" />
     <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
     <div>
 
-    <img src = "https://cdn.glitch.com/cf8354a1-9e9c-4a1f-9b28-8c059d9167bf%2F27a5a3e32e32369486b5daf17687bd3a.jpg?v=1600239938292" width = auto height = "200">
-    <img src = "https://cdn.glitch.com/cf8354a1-9e9c-4a1f-9b28-8c059d9167bf%2FScreen%20Shot%202020-09-16%20at%203.10.03%20AM.png?v=1600240225896" width = auto height = "200">
+    <img src = "https://cdn.glitch.com/cf8354a1-9e9c-4a1f-9b28-8c059d9167bf%2F27a5a3e32e32369486b5daf17687bd3a.jpg?v=1600239938292" alt="clouds" width = "200" height = "200">
+    <img src = "https://cdn.glitch.com/cf8354a1-9e9c-4a1f-9b28-8c059d9167bf%2FScreen%20Shot%202020-09-16%20at%203.10.03%20AM.png?v=1600240225896" alt="Pencil" width = "200" height = "200">
       
       </div>
-  </head>
-  <body>
+<!--   </head>  -->
+  
+<!--   <body> -->
     <div id = "page-wrap">
     <h1>
       iPrioritize
@@ -24,9 +25,9 @@
         Enter a task, a priority, and the date your task was created or assigned and get advice!
       </p>
     <div class = "flex-container">
-    <form action="">
+    <form>
       <div>
-      <label for="task">Task:</label><br />
+      <label>Task:</label><br />
       <input
         style="margin-bottom: 40px;"
         type="text"
@@ -37,21 +38,21 @@
       <div>
         
    
-      <label for="priority">Priority:</label><br />
+      <label>Priority:</label><br />
       <input
         type="radio"
         id="highpriority"
         name="priority"
         value="High Priority"
       />
-      <label for="highpriority">High Priority</label><br />
+      <label>High Priority</label><br />
       <input
         type="radio"
         id="mediumpriority"
         name="priority"
         value="Medium Priority"
       />
-      <label for="mediumpriority">Medium Priority</label><br />
+      <label>Medium Priority</label><br />
       <input
         style="margin-bottom: 40px;"
         type="radio"
@@ -63,13 +64,12 @@
         
            </div>
       <div>
-      <label for="creationdate">Creation Date:</label><br />
+      <label>Creation Date:</label><br />
       <input
         style="margin-bottom: 40px;"
         type="date"
         id="yourcreationdate"
         name="yourcreationdate"
-        value="your creation date here"
       /><br />
         </div>
       <button class="button">submit</button>
@@ -88,7 +88,8 @@
       </tbody>
     </table>
        </div>
-  </body>
+  
+  
   <script>
 
     
@@ -166,4 +167,5 @@ function generateRows(jsonobj) {
       button.onclick = submit;
     };
   </script>
+    </body>
 </html>
