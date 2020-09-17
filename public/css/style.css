@@ -6,8 +6,33 @@ Element selectors
 ID selectors
 Class selectors
  */
-table {
-
+table{
+    display: flex;
+    justify-content: center;
+    align-content: space-evenly;
+    border-collapse: collapse;
+}
+td, th {
+    background-color: white;
+    border: solid #1A6166 3px;
+    padding: 5px;
 }
 
+.admin {
+    display: flex;
+    justify-content: center;
+    align-content: space-evenly;
+    align-items: stretch;
+}
+#client {
+    display: flex;
+    justify-content: center;
+    align-content: space-evenly;
+    align-items: stretch;
+}
+
+body {
+    font-family: 'Kumbh Sans', sans-serif;
+    background-color: #3EACB3;
+}
 

@@ -13,7 +13,7 @@ const http = require( 'http' ),
 // ]
 
 let appdata = [
-
+  {orderNum: 1, color: "blue", size: "small", quantity: 2}
 ];
 
 const server = http.createServer( function( request,response ) {

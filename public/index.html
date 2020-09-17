@@ -3,36 +3,43 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
     <table id="orders">
     </table>
-    <form action="">
-      <!-- Fulfill order menu -->
-      <input type="number" id="orderNum" placeholder="Order number">
-      <button id="fulfill">Fulfill</button>
-    </form>
+    <br>
+    <div class = "admin">
+      <form action="">
+        <!-- Fulfill order menu -->
+        <input type="number" id="orderNum" placeholder="Order number">
+        <button id="fulfill">Fulfill</button>
+      </form>
+    </div>
   <br>
-  <form action="">
-    <!-- Order Form -->
-    <select id="color">
-      <option value="blue">Blue</option>
-      <option value = "red">Red</option>
-      <option value = "green">Green</option>
-      <option value = "purple">Purple</option>
-      <option value = "orange">Orange</option>
-      <option value = "yellow">Yellow</option>
-      <option value = "white">White</option>
-      <option value = "black">Black</option>
-    </select>
-    <select id="size">
-      <option value="small">Small</option>
-      <option value="medium">Medium</option>
-      <option value="large">Large</option>
-    </select>
-    <input type="number" id="quantity" placeholder="Quantity">
-    <button id="order">Buy now</button>
-  </form>
+    <div id="client">
+      <form action="">
+        <!-- Order Form -->
+        <select id="color">
+          <option value="blue">Blue</option>
+          <option value = "red">Red</option>
+          <option value = "green">Green</option>
+          <option value = "purple">Purple</option>
+          <option value = "orange">Orange</option>
+          <option value = "yellow">Yellow</option>
+          <option value = "white">White</option>
+          <option value = "black">Black</option>
+        </select>
+        <select id="size">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+        <input type="number" id="quantity" placeholder="Quantity">
+        <button id="order">Buy now</button>
+      </form>
+    </div>
   </body>
   <script>
 
