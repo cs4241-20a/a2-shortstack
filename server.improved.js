@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -30,20 +26,46 @@ const handleGet = function( request, response ) {
   }
 }
 
+let dataArray = []
+let dobArray = [] 
+var rAge = 0
+const date = [9, 16, 2020] //fixed date for simplification purposes
 const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
+      //let oldData = JSON.parse(data)
+      let ndata = data.slice(0, (data.length - 1))
+      // calculate age
+      let info = JSON.parse(data)
+      let dob = info.dateofbirth
+      let cArray = dob.split(" ")
+      for (var i = 0; i < dob.length; i++) {
+        //console.log(cArray[i])
+        dobArray[i] = parseInt(cArray[i])
+      }
+      console.log(dobArray)
+      var year = date[2] - dobArray[2]
+      var month = date[0] - dobArray[0]
+      if (month < 0) {
+        year = year-1
+      }
+      rAge = year
+      console.log(rAge)
+      let age = ', "age":"'+ parseInt(rAge) + ' years" }'
+      //let age = ', "age":"10" }' 
+      let newData = ndata + age
+      console.log(newData)
+      dataArray.push(JSON.parse(newData))
   })
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
+    //console.log( dataArray )
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end( JSON.stringify(dataArray))
   })
 }
 
