@@ -276,3 +276,11 @@ function displayLeaderboard(appdata){
    
     pullLeaderboard();
   }
+
+  function load(){
+    const button = document.querySelector( '#form' );
+    button.onclick = submit;
+    score = 0;
+   
+    pullLeaderboard();
+  }
