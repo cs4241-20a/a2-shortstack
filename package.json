@@ -1,12 +1,12 @@
 {
-  "name": "",
+  "name": "CS 4241 - Assignment 2",
   "version": "",
   "description": "",
-  "author": "",
+  "author": "Benny Klaiman",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }
