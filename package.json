@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-noahvolson",
+  "version": "0.0.0",
+  "description": "Submission for Webware homework assignment A2",
+  "author": "Noah Olson",
   "scripts": {
     "start": "node server.improved.js"
   },
