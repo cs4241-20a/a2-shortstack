@@ -1,8 +1,35 @@
 /*Style your own assignment! This is fun! */
 
+body {
+    font-family: 'Roboto', serif;
+    font-size: 15px;
+    padding: 5px;
+    display: flex;
+    
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+    background-color: #98DCF5;
+}
+
+body > *{
+    margin: 5px;
+}
+
+
+
 #gameWindow {
-    width:  750px;
+    width:  60%;
     height: 500px;
+    border-left: 1px solid #EB7BB8;
+    border-right: 1px solid #EB7BB8;
+    border-top: 1px solid #EB7BB8;
+    border-bottom: 1px solid #EB7BB8;
+    padding: 5px;
+    position: relative;
+    background-color: #FAF0C5;
+    
 }
 
 .entity {
@@ -11,4 +38,26 @@
     background: green;
     border-radius: 50%;
     position : absolute;
+
 }
+
+table {
+    border-collapse: collapse;
+    width: 75%;
+
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #EB7BB8;
+    
+}
+tr{background-color: #fff;} 
+tr:hover {background-color: #EB7BB8;}
+
+input {
+    font-family: 'Roboto', serif;
+
+}
+

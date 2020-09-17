@@ -7,9 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,6 +23,8 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }else if ( request.url === '/db'){
+    sendAppdata( response )
   }else{
     sendFile( response, filename )
   }
@@ -38,13 +38,39 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    let jsonData = JSON.parse(dataString)
 
+    jsonData.scorePerSecond = ((jsonData.FinalScore) / (jsonData.gameLength/1000)).toPrecision(4)
     // ... do something with the data here!!!
-    
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    appdata.push(jsonData)
+    console.log( appdata )
+   
+    sendAppdata( response )
   })
+}
+
+function sortAppdata() { // sorts the app data by the highest score
+  appdata.sort(function(a, b){
+    console.log(a);
+    if (parseFloat(a['FinalScore'])<parseFloat(b['FinalScore'])){
+      return 1;
+    }
+    if (parseFloat(a['FinalScore'])>parseFloat(b['FinalScore'])){
+      return -1;
+    }
+
+    return 0;
+  })
+  
+
+}
+
+
+const sendAppdata = function(response) {
+  
+  sortAppdata();
+  response.writeHead( 200, "Ok", {'Content-Type': 'application/json' })
+  response.end(JSON.stringify(appdata, null, 3))
 }
 
 const sendFile = function( response, filename ) {

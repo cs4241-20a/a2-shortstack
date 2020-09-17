@@ -5,14 +5,31 @@
     <meta charset="utf-8">
   </head>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <body>
+    <h1>Mouse Accuracy Game</h1>
+    <h2>Try to click on as many circles as possible</h2>
+    <button onclick="playGame()">START</button>
       <div id = "gameWindow"></div>
-      <p id = "score">Score = 0</p>
+      <h3 id = "score">Score = 0</h3>
     <form action="">
       <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <button id="form">submit</button>
     </form>
-    
+    <table  id = "leaderboard">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Date</th>
+          <th>Game Length</th>
+          <th>Score per Second</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
   </body>
   <script src="js/scripts.js"></script>
 </html>

@@ -5,15 +5,15 @@ console.log("Welcome to assignment 2!")
 let gw = document.getElementById("gameWindow"),
         gwStyle = window.getComputedStyle(gw);
     
-    let w = parseInt(gwStyle.width.replace("px", ""));
-    let h = parseInt(gwStyle.height.replace("px", ""));
-
+  
 let gameState = {
     metaData : {
-        width : w,
-        height : h,
+        width : document.querySelector("#gameWindow").clientWidth,
+        height : document.querySelector("#gameWindow").clientHeight,
         score : 0,
         maxID : 2, 
+        startTimeMillis : -1,
+        endTimeMillis : -1,
     },
     isRunning : true,
     entities : [
@@ -30,20 +30,26 @@ const submit = function( e ) {
     e.preventDefault();
 
     const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value, FinalScore : 100, date : (new Date()).toJSON() },
+          json = { yourname: input.value, FinalScore : gameState.metaData.score, 
+            date : (new Date()).toJSON(), 
+            gameLength :  gameState.metaData.endTimeMillis - gameState.metaData.startTimeMillis},
           body = JSON.stringify( json );
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response );
+    .then( async function( response ) {
+        let appdata = await response.json()
+        displayLeaderboard(appdata)
+        console.log( appdata );
     });
 
     return false;
   }
+
+
+
 
 
 function sleep(ms) {
@@ -51,14 +57,17 @@ function sleep(ms) {
 }
 
 const playGame = async function ( ) {
-    
-  
+    score = 0;
+    gameState.metaData.startTimeMillis = (new Date()).getTime();
     console.log(gameState);
     while (stillRunning(gameState)){
         gameState = stepGame(gameState);
         updateDisplay(gameState);
+      
         await sleep(9);
     }
+    document.getElementById("score").innerHTML = "TIMES UP!!! Final Score = "+ gameState.metaData.score;
+    gameState.metaData.endTimeMillis = (new Date()).getTime();
 
 }
 
@@ -138,7 +147,6 @@ function increaseSpeed(velocity, mag){
 
 function updateDisplay(gs){
     let gw = document.getElementById("gameWindow");
-    let currElements = gw.children;
 
     for (i=0; i<gs.entities.length; i++){
         if (gs.entities[i].element != null){
@@ -183,7 +191,7 @@ function updateDisplay(gs){
 
 
             // FOR TESTING
-            newDiv.innerHTML = newDiv.id;
+            //newDiv.innerHTML = newDiv.id;
         }
     }
     
@@ -211,10 +219,60 @@ function remove(el, didScore) {
     }
 }
 
+const pullLeaderboard = function () {
+    fetch( '/db', {
+        method:'GET'
+    })
+    .then( async function( response ) {
+        // do something with the reponse
+        let appdata = await response.json()
+        displayLeaderboard(appdata)
+        console.log( appdata );
+    });
+}
+
+function displayLeaderboard(appdata){
+    // assumes appdata is sorted with max score at the front
+    let table = document.getElementById("leaderboard").getElementsByTagName('tbody')[0];
+    while (table.firstChild){
+        table.removeChild(table.lastChild);
+    }
+    let row = ''
+   
+   
+    for (i=0; i<appdata.length;i++){
+        let nRow = table.insertRow(table.rows.length);
+        let nCell = nRow.insertCell(0);
+        
+      
+        
+        for (let j=Object.keys(appdata[i]).length-1; j>=0; j--){
+            let key = Object.keys(appdata[i])[j];
+            nCell = nRow.insertCell(0);
+            row = appdata[i][key]
+            let nText = document.createTextNode(row);
+            nCell.appendChild(nText);
+        }
+
+       
+        nCell = nRow.insertCell(0);
+        row = (i+1)
+        let nText = document.createTextNode(row);
+        nCell.appendChild(nText);
+     
+    }
+
+   
+    console.log(row);
+   
+}
+
+
 
   window.onload = function() {
-    const button = document.querySelector( 'button' );
+    const button = document.querySelector( '#form' );
     button.onclick = submit;
     score = 0;
-    playGame();
+   
+    pullLeaderboard();
   }
