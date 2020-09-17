@@ -1,7 +1,3 @@
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
 ## Tyler's Task Prioritization Calculator
 
 https://a2-tylersprowl.glitch.me/
