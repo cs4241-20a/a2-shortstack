@@ -1,1 +1,89 @@
 /*Style your own assignment! This is fun! */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Oxygen', serif;
+    font-size: 18px;
+    background-color: #383240;
+    color: white;
+}
+
+h3 {
+    text-align: center;
+}
+
+th {
+    text-align: left;
+    padding-right: 40px;
+}
+
+table {
+    display: table;
+    padding: 10px;
+    border: 1px solid white;
+    border-bottom: none;
+}
+
+#inputForm {
+    align-self: center;
+    margin-bottom: 40px;
+}
+
+#pageTitle {
+text-align: center;
+}
+
+#creditLine {
+    position: absolute;
+    bottom: 0;
+    align-self: center;
+    font-weight: lighter;
+    color: #bcbcbc;
+    opacity: 50%;
+}
+
+#results {
+    display: flex;
+}
+
+#activeUsersTable {
+    width: 775px;
+}
+
+#rankingsTable {
+    width: 590px;
+}
+
+#submit {
+    background-color: #6a11a4;
+}
+#delete {
+    background-color: #5d17b8;
+}
+#refresh {
+    background-color: #3c15b0;
+}
+
+.shiftedLeft {
+    margin-left: 20px;
+}
+
+.standardButton {
+    font-weight: bold;
+    color: white;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.standardButton:hover {
+    opacity: 70%;
+}
+
+.inputLine {
+    font-size: 16px;
+    padding: 4px;
+    border: 1px solid gray;
+}

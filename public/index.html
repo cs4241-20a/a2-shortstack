@@ -4,30 +4,38 @@
     <title>Noah Olson A2</title>
     <meta charset="utf-8">
     <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
   </head>
   <body onload="main()">
-    <form action="">
-      <input type='text' id='username' placeholder="Username">
-      <input type='guess' id='guess' placeholder="Guess a number">
-      <button id="submit">submit</button>
-      <button id="delete">delete</button>
+
+    <form id="inputForm" action="">
+      <h1 id="pageTitle">Guess My Number!</h1>
+      <label for='username'></label><input class="inputLine" type='text' id='username' placeholder="Username">
+      <label for='guess'></label><input class="inputLine" type='text' id='guess' placeholder="Number (1-10000)">
+      <button class="standardButton" id="submit">submit</button>
+      <button class="standardButton" id="delete">delete</button>
+      <button class="standardButton" id="refresh">refresh</button>
     </form>
 
-    <h3>All Players</h3>
-    <table id="activeUsersTable">
-      <thead><tr><th>Username----</th><th>Guess----</th><th>Status----</th><th>Total Attempts----</th><th>Most Recent Submission----</th></tr></thead>
-      <tbody id="activeUsersList"></tbody>
-    </table>
+    <div id="results">
+      <div class="shiftedLeft">
+        <h3>All Players</h3>
+        <table id="activeUsersTable">
+          <thead><tr><th>Username</th><th>Guess</th><th>Status</th><th>Total Attempts</th><th>Most Recent Submission</th></tr></thead>
+          <tbody id="activeUsersList"></tbody>
+        </table>
+      </div>
 
-    <!-- TODO remove these -->
-    <br>
-    <br>
-    <br>
+      <div class="shiftedLeft">
+        <h3>Rankings</h3>
+        <table id="rankingsTable">
+          <thead><tr><th>Rank</th><th>Username</th><th>Total Attempts</th><th>Time of Win</th></tr></thead>
+          <tbody id="rankingsList"></tbody>
+        </table>
+      </div>
+    </div>
 
-    <h3>Rankings</h3>
-    <table id="rankingsTable">
-      <thead><th>Rank----</th><th>Username----</th><th>Total Attempts----</th><th>Time of Win----</th></tr></thead>
-      <tbody id="rankingsList"></tbody>
-    </table>
+    <h6 id="creditLine">Created by Noah Olson for CS 4241 Webware Assignment A2</h6>
   </body>
 </html>
