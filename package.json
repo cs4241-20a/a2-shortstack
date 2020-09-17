@@ -1,12 +1,12 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "TODO",
+  "version": "1.0",
+  "description": "A Simple TODO List Application",
+  "author": "Malek ElShakhs",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }

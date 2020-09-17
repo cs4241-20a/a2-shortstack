@@ -7,9 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  {'task': 'Example Task', 'priority': '2', 'date': '2020-9-16', 'due': '2020-9-18'}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,26 +23,72 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }
+  else if(request.url === '/appData'){
+    console.log('Sending: ' + appdata)
+    response.write(JSON.stringify(appdata));
+    response.end();
   }else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
-  let dataString = ''
+  if(request.url === '/submit') {
+    let dataString = ''
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+    request.on( 'data', function( data ) {
+        dataString += data 
+    })
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    request.on( 'end', function() {
+      console.log('Data in Server: ')
+      console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
+      appdata[appdata.length] = JSON.parse(dataString);
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
+      // ... do something with the data here!!
+
+      var data = JSON.stringify(appdata);
+      console.log('Sending: ' + appdata);
+
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.write(data)
+      console.log(data)
+      response.end()
+    })
+  }
+  else if(request.url === '/delete') {
+    console.log('Delete')
+    let dataString = ''
+
+    request.on( 'data', function( data ) {
+        dataString += data 
+    })
+    
+    request.on( 'end', function() {
+      var data = JSON.parse(dataString)
+
+      var index = -1;
+      for(var i = 0; i < appdata.length; i++) {
+        if(appdata[i].task == data.task && appdata[i].priority == data.priority
+          && appdata[i].date == data.date && appdata[i].due == data.due) {
+          index = i;
+          break;
+        }
+      }
+      appdata.splice(index, 1)
+      
+      var data = JSON.stringify(appdata);
+      console.log('Sending: ' + appdata);
+      
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.write(data)
+      console.log(data)
+      response.end()
+    })
+    
+  }
 }
 
 const sendFile = function( response, filename ) {

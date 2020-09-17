@@ -1,1 +1,37 @@
-/*Style your own assignment! This is fun! */
+body{
+  font-family: 'Lato', sans-serif;
+}
+form{
+  display: flex;
+  justify-content: center;
+}
+input{
+  margin-right: 10px;
+  font-family: 'Lato', sans-serif;
+}
+li{
+  margin: 5px;
+  display: flex;
+}
+task, date, due{
+  width: 25%
+}
+priority{
+  width: 20%
+}
+p{
+  margin-right: 17%;
+}
+button{
+  font-family: 'Lato', sans-serif;
+}
+.deleteButton{
+  background-color: #E97451;
+}
+#submitButton{
+  background-color: #AEB7FD;
+}
+#titles{
+  display: flex;
+  justify-content: left;
+}
