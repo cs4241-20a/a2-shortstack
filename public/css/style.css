@@ -1,1 +1,51 @@
 /*Style your own assignment! This is fun! */
+
+html {
+    /* To make use of full height of page*/
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.play_button_div {
+    grid-row: 4 / 6;
+    grid-column: 5 / 7;
+
+    text-align: center;
+}
+
+#play_btn {
+    
+    height: 80%;
+    width: 80%;
+    border-radius: 20px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#play_text {
+    height: 80%;
+    width: 80%;
+    text-align: center;
+    padding: 15px 32px;
+    font-size: 70px;
+}
+
+
+.input_form {
+    grid-row: 7 / 8;
+    grid-column: 5 / 7;
+    text-align: center;
+    color: red;
+}
