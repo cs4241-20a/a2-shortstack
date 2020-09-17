@@ -1,16 +1,22 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Ray's Initiative Tracker</title>
     <meta charset="utf-8">
       <script src="/js/scripts.js"></script>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Josefin+Sans">
   </head>
   <body>
     <h1>Raymond's Initiative Tracker</h1>
+    <p id="note">Note: up/down arrows are only for resolving ties.</p>
+    <div class="appcontainer">
     <form action="">
-      <label>Creature name</label>
+      <label>Creature Name</label>
       <input type="text" id="name" value=""><br />
-      <label>Hit Points</label>
+      <label>Max Hit Points</label>
       <input type="number" id="hp" value="0"><br />
       <label>Armor Class</label>
       <input type="number" id="ac" value="0"><br />
@@ -25,10 +31,11 @@
         <input type="number" id="initiative" value="0"><br />
       </div>
 
-      <button>submit</button>
+      <button class="button">Add Creature</button>
     </form>
     <table class="list">
       <thead>
+        <th class="id">Id</th>
         <th class="name">Name</th>
         <th class="num">Initiative</th>
         <th class="hp">HP</th>
@@ -36,5 +43,6 @@
       </thead>
       <tbody id="creatures"></tbody>
     </table>
+    </div>
   </body>
 </html>

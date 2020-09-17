@@ -88,7 +88,7 @@ const handlePost = function( request, response ) {
     }
 
     json['id'] = id++
-    console.log(json)
+    //console.log(json)
     
     var pos = determineOrder( parseInt(json.num))
 

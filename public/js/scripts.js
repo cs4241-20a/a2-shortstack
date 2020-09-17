@@ -7,6 +7,9 @@ const processJSON = (json) => {
         creatures.innerHTML += `
         <tr>
             <td>${
+                creature.id
+            }
+            <td>${
                 creature.name}
             </td>
             <td>${
@@ -18,14 +21,11 @@ const processJSON = (json) => {
             <td>${
                 creature.ac}
             </td>
-            <td><button class="moveUp" id="${creature.id}">
-                ^</button>
+            <td><i class="moveUp fa fa-angle-double-up" id="${creature.id}">
             </td>
-            <td><button class="moveDown" id="${creature.id}">
-                v</button>
+            <td><i class="moveDown fa fa-angle-double-down" id="${creature.id}">
             </td>
-            <td><button class="delete" id="${creature.id}">
-                Remove</button>
+            <td><i class="delete fa fa-trash-o" style="font-size:24px" id="${creature.id}"></i>
             </td>
         </tr>`
     })
@@ -35,24 +35,29 @@ const processJSON = (json) => {
     e.preventDefault()
 
     const checkbox = document.getElementById('roll')
-    const initiative = document.querySelector( '#initbonus')
+    const initbonus = document.querySelector( '#initbonus')
+    const initiative = document.querySelector( '#initiative' )
+
+    const name = document.querySelector( '#name' )
+    const hp = document.querySelector( '#hp')
+    const ac = document.querySelector( '#ac')
+    if(name.value === "" || ac.value === "" || 
+    initbonus.value === "" || hp.value === "") {
+        window.alert("Please fill in all of the fields.")
+        return false
+    }
 
     // handle initiative
     var init;
     if(checkbox.checked) {
         // Roll their initiative
 
-        init = parseInt(initiative.value) + getRandomInt(20)
+        init = parseInt(initbonus.value) + getRandomInt(20)
 
     } else {
         // their initiative is what was entered.
-        init = document.querySelector( '#initiative' ).value
+        init = initiative.value
     }
-
-    // get rest of fields
-    const name = document.querySelector( '#name' )
-    const hp = document.querySelector( '#hp')
-    const ac = document.querySelector( '#ac')
 
     const json = {name: name.value, num: init, ac:ac.value, hp:hp.value }
     const body = JSON.stringify( json )
@@ -68,6 +73,7 @@ const processJSON = (json) => {
     // clear inputs
     name.value = ""
     initiative.value = 0
+    initbonus.value = 0
     hp.value = 0
     ac.value = 0
 
