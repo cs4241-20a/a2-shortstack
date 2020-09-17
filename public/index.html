@@ -1,40 +1,149 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>CS4241 Assignment 2 - Hezekiah Owuor</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Gloria+Hallelujah&family=Roboto+Mono:ital@1&display=swap" rel="stylesheet">
   </head>
+
   <body>
+
+    <div class="topBand">
+      <h1>WPI Football</h1>
+    </div>
+
+    <div class="navBar">
+      <!-- <a id="playerLink" href="players.html">View Registered Players</a> -->
+      <a id="homeLink" href="/">Welcome to WPI Football</a>
+      <a id="gameLink" href="game.html">Create Game!</a>
+    </div>
+
+    <h1>Sign Up/Log In</h1>
+
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+
+      <div>
+        <label for="usr">Username: </label>
+        <input id="usr" type="text" name="username" value="Enter Username Here">
+      </div>
+
+      <div>
+        <label for="pwrd">Password: </label>
+        <input id="pwrd" type="password" name="password" value="Enter Password Here">
+      </div>
+
+
+
+    <h1>One More Step! We'd Like to get to know more about <u>YOU!</u></h1>
+
+
+
+      <label for="nick">Nickname: </label>
+      <input id="nick" type="text" name="nickname" value="Enter nickname Here">
+      <br>
+      <label for="foot">Preferred Foot: </label>
+      <select id="foot" name="Preferred Foot">
+        <option value="left">Left Footed</option>
+        <option value="right">Right Footed</option>
+        <option value="ambi">Ambipedal (Two Footed)</option>
+      </select>
+      <br>
+      <label for="pos">Position: </label>
+      <select id="pos" name="Position">
+        <option value="att">Attacker</option>
+        <option value="mid">Midfielder</option>
+        <option value="def">Defender</option>
+        <option value="goal">Goal-Keeper</option>
+      </select>
+
+      <br>
+      <br>
+      <br>
+      <button id="addPlayer">Submit</button>
+
     </form>
+
+    <h1>Registered Players</h1>
+
+    <table id="players">
+      <tr>
+        <th>Nickname</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Pref. Foot</th>
+        <th>Positon</th>
+        <th>Date Joined</th>
+        <th>Delete</th>
+      </tr>
+    </table>
+
+
   </body>
   <script>
 
-  const submit = function( e ) {
+  let playerData = []
+
+  const addPlayer = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const username = document.querySelector('#usr')
+    const password = document.querySelector('#pwrd')
+    const nickname = document.querySelector('#nick')
+    const prefFoot = document.querySelector('#foot')
+    const position = document.querySelector('#pos')
+
+    json = {
+      usr: username.value,
+      pass: password.value,
+      nick: nickname.value,
+      foot: prefFoot.value,
+      pos: position.value,
+    }
+
+    convert = JSON.stringify(json)
+
+    playerData.push(convert)
+
+    console.log(playerData)
+
+    var table = document.getElementById('players');
+	  var new_row = table.insertRow(1);
+	  var new_nick = new_row.insertCell(0);
+	  var new_usr = new_row.insertCell(1);
+	  var new_pass = new_row.insertCell(2);
+	  var new_foot = new_row.insertCell(3);
+    var new_pos = new_row.insertCell(4);
+    var new_date = new_row.insertCell(5);
+    var new_delete = new_row.insertCell(6);
+
+	  new_nick.innerHTML = username.value;
+    new_usr.innerHTML = password.value;
+    new_pass.innerHTML = nickname.value;
+    new_foot.innerHTML = prefFoot.value;
+    new_pos.innerHTML = position.value;
 
     fetch( '/submit', {
       method:'POST',
-      body 
+      body: convert
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+      // do something with the reponse
+      console.log(response)
+      return response.text()
+    })
+    .then( function( success ) {
+      console.log( success )
+      alert("Successfully added player!")
     })
 
     return false
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+    const button = document.querySelector( '#addPlayer' )
+    button.onclick = addPlayer
   }
 
   </script>

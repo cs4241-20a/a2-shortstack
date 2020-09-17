@@ -7,25 +7,37 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+  { id: 0, username: "Hezi", Password: "hello", Foot: "left", Position: "def", dateJoined: "2020-9-21" }
+];
+
+let playerPage = null;
+fs.readFile("public/players.html", function(err, content) {
+  playerPage = content;
+});
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
+    handleGet( request, response )
   }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    handlePost( request, response )
   }
 })
 
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
-
+  const filename = dir + request.url.slice( 1 )
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if( request.url === "/players") {
+    sendFile( response, "public/players.html")
+  }
+  else if( request.url === "/game") {
+    sendFile( response, "public/game.html");
+  }
+  else if(request.url === "/style.css") {
+    sendFile( response, "public/css/style.css");
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -34,7 +46,7 @@ const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
   })
 
   request.on( 'end', function() {
@@ -48,7 +60,7 @@ const handlePost = function( request, response ) {
 }
 
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+   const type = mime.getType( filename )
 
    fs.readFile( filename, function( err, content ) {
 
