@@ -2,26 +2,56 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel="stylesheet" href="\css\style.css">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
     <meta charset="utf-8">
+<style>
+body {
+    font-family: 'Alegreya SC';font-size: 12px;
+}
+</style>
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="">
-      <input type='text' id='yoursex' value="">
-      <input type='text' id='yourgender' value="">
-      <button>submit</button>
-    </form>
+    <div class="container">
+
+      <div class="content-4" id="section">
+        <h1>Welcome to Tyler's Task Priority Calculator</h1></div>
+
+      <div class="sidebar" id="section">
+        <p> This magnificent page allows you to enter a task, it's difficulty on a scale of 1 to 9
+        (with 1 being quite easy and 9 being extraordinarily difficulty), as well as the amount of days you have left
+        until this task needs to be completed.</p>
+
+        <p>Once entered, simply click the submit button to enter the task. You may enter as many as you would like.
+        After you have entered all your tasks, click the Results Page. You will be taken to another page with
+        a table holding all your tasks, as well as a priority label reading 'Sooner' or 'Later'.
+      </p></div>
+
+      <div class="content-1" id="section">    
+        <form action="">
+        <p>Task name<br><input type='text' id='Task' value=""></align-right></p>
+        <p>Difficulty level (1-9)<br><input type='text' id='Difficulty' value=""></p>
+        <p>Days until deadline<br><input type='text' id='Deadline' value=""></p>
+        <button>submit</button>
+      </form></div>
+
+      <div class="content-3" id="section"><h1>
+        <a href="results.html" target="_self">Results Page</a>
+      </h1></div>
+    </div>
   </body>
+
+  
   <script>
 
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          input1 = document.querySelector( '#yoursex' ),
-          input2 = document.querySelector( '#yourgender' ),
-          json = { yourname: input.value, yoursex: input1.value, yourgender:input2.value },
+    const input = document.querySelector( '#Task' ),
+          input1 = document.querySelector( '#Difficulty' ),
+          input2 = document.querySelector( '#Deadline' ),
+          json = { Task: input.value, Difficulty: input1.value, Deadline:input2.value, Priority:null },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -29,13 +59,14 @@
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-      //console.log(response.text())
+
       return ( response.text() )
     })
 
     .then(function(txt){
-      //console.log(txt)
+      sessionStorage.setItem('holding', txt)
+
+      console.log(txt)
     })
 
     return false
