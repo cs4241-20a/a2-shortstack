@@ -1,1 +1,118 @@
 /*Style your own assignment! This is fun! */
+body {
+	background-color: #01DA6A;
+	
+}
+li, label {
+	list-style-type: none;
+	font-family: impact;
+	opacity: 1.0
+}
+option, input, button, select {
+	font-family: impact;
+	width: 100px;
+	right: 0px;
+}
+table, th, td, tbody {
+	font-family: impact;
+	border: 1px solid black;
+}
+table {
+	
+	max-height: 16vh;
+}
+th, td {
+	min-width: 60px;
+}
+select {
+	width: 110px;
+}
+.side {
+	width: 10vw;
+	height: 30vh;
+}
+#sub {
+	background-color: #0BE3B3;
+}
+#0c, #5c, #10c {
+	background-color:#0BE3B3;
+}
+.columns {
+	min-width: 8vw;
+	max-width: 8vw;
+	height: 92vh;
+	display: flex;
+	flex-direction: column;
+}
+.rows {
+	width: 8vw - 8px;
+	height: 8vw;
+	border-style: solid;
+	border-width: 1px;
+}
+div.flexcontainer{
+    display: flex;
+    min-height: 96vh; /* set min container height to viewport height */
+	min-width: 5vh;
+}	
+.flex-form {
+	display: flex;
+	background: transparent;
+	position: relative;
+	top: -80vh;
+	
+	min-width:98vw;
+	justify-content: center;
+}
+.flex-cont {
+	display: flex;
+	opacity: 0.75;
+	width: 20vw;
+	height: 56vh;
+	justify-content: space-between;
+	background-color: #808080;
+	flex-direction: column;
+}
+.lbox {
+	display: flex;
+	flex-direction: row;
+}
+.lbox > div {
+	flex: 1;
+	text-align: center;
+}
+.tbox {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	min-height: 32vh;
+	 overflow-y: scroll;
+}
+.spacer {
+	height: 2vh;
+}
+.flex-cont > div {
+    flex: 1;
+	opacity: 1.0;
+ }
+.flex-grid {
+	display: flex;
+	
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #FF0000;
+  flex-basis: 20%;
+}
+
+.column {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1;
+  }
+}

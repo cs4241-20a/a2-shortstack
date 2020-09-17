@@ -1,13 +1,169 @@
 <!doctype html>
 <html lang="en">
   <head>
+	<link rel="stylesheet" href="css/style.css">
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+  <div class="flexcontainer">
+ 
+    <div class="columns" style="background-color:#0FEBFA">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+		
+	
+	
+	</div>
+    <div class="columns" style="background-color:#0BE3B3" id="0c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+	<div class="columns" style="background-color:#00FA79" id="1c">
+	<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+    <div class="columns" style="background-color:#0BE334" id="2c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+	<div class="columns" style="background-color:#21FF00" id="3c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+	
+    <div class="columns" style="background-color:#0FEBFA" id="4c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+    <div class="columns" style="background-color:#0BE3B3" id="5c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+	<div class="columns" style="background-color:#00FA79" id="6c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+    <div class="columns" style="background-color:#0BE334" id="7c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+	<div class="columns" style="background-color:#21FF00" id="8c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+	
+	<div class="columns" style="background-color:#0FEBFA" id="9c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+	<div class="columns" style="background-color:#0BE3B3" id="10c">
+		<div class="rows" id="0r"></div>
+		<div class="rows" id="1r"></div>
+		<div class="rows" id="2r"></div>
+		<div class="rows" id="3r"></div>
+		<div class="rows" id="4r"></div>
+		<div class="rows" id="5r"></div>
+	</div>
+ 
+</div>
+    <form action="" class="flex-form">
+		<div class="flex-cont">
+			<div class="spacer"></div>
+			<div class="lbox">
+				<div class="subbox">
+					<label for="actionID">ID  </label>
+				</div>
+				<div class="subbox">
+					<input type='text' id='actionID' value=""> 
+				</div>
+			</div>
+			<div class="lbox">
+				<div class="subbox">
+					<label for="movelen">LENGTH</label><br>
+				</div>
+				<div class="subbox">
+					<input type='number' id='movelen' value="0" min="1" max="5"> 
+				</div>
+			</div>
+			<div class="lbox">
+				<div class="subbox">
+					<label for="action">ACTION  </label>
+				</div>
+				<div class="subbox">
+					<select id = "action">
+						<option value = "1">ADD/MODIFY</option>
+						<option value = "2">REMOVE</option>
+					</select>
+				</div>
+			</div>
+			<div class="lbox" style="justify-content: center">
+				<button id="sub">submit</button>
+			</div>
+			
+			<div class="spacer"></div>
+			<div class="tbox"> 
+				<table id="tabAction">
+					<tr>
+						<th> ID </th>
+						<th> LEN </th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+			
+
+		
+		
+	   
+      
+	   </div>
+	  </div>
     </form>
   </body>
   <script>
@@ -15,21 +171,47 @@
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
+    const input1 = document.querySelector( '#actionID' ),
+			input2 = document.querySelector('#movelen'),
+			input3 = document.querySelector('#action'),
+          json = { actionID: input1.value,
+					moveLen: input2.value,
+					action: input3.value};
+          body = JSON.stringify( json );
+    fetch( 'data', {
       method:'POST',
       body 
     })
     .then( function( response ) {
       // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
+      
+	  return response.text();
+    }).then( function(out){
+		console.log(out);
+		var obj = JSON.parse(out);
+		let currentRows = document.getElementById("tabAction").rows; 
+		let found = false;
+		for(let i = 0; i <  currentRows.length; i++) {
+			if(currentRows[i].cells[0].innerHTML == obj.actionID) {
+				found = true;
+				if(obj.action == 1) {
+					currentRows[i].cells[1].innerHTML = obj.moveLen;
+				} else if(obj.action == 2) {
+					currentRows.splice(i);
+				}
+			}
+		}
+		if(!found && obj.action == 1) {
+			var row = document.getElementById("tabAction").insertRow(-1);
+			row.insertCell(0).innerHTML = obj.actionID;
+			row.insertCell(1).innerHTML = obj.moveLen;
+		}
+	})
+	
+	console.log("test");
+	
+	
+    
   }
 
   window.onload = function() {

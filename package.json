@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-graeth",
+  "version": "1.0",
+  "description": "Project intended to change the colors of the displayed grid, not completed",
+  "author": "Garrett Smith",
   "scripts": {
     "start": "node server.improved.js"
   },
