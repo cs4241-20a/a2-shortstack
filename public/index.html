@@ -1,41 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link href='https://fonts.googleapis.com/css?family=Artifika' rel='stylesheet'>
+    <script src="js/scripts.js"></script>
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <h1>WELCOME, EMPLOYEE!</h1>
+    <h2>
+      We are happy to have working at our local ice cream shop! Please use the form below to place orders for our customers.
+    </h2>
+
+    <h3>
+      OUR MENU
+    </h3>
+    <ul>
+      <li>
+        Chocolate
+      </li>
+      <li>
+        Vanilla
+      </li>
+      <li>
+        Strawberry
+      </li>
+      <li>
+        Birthday Cake
+      </li>
+      <li>
+        Mint Chocolate Chip
+      </li>
+      <li>
+        Cookie Dough
+      </li>
+      <li>
+        Or request something else, and we'll do our best!
+      </li>
+    </ul>
+
+    <h3>
+      Create an Order!
+    </h3>
+    <form class="ordersForm">
+      <input type="text" class="prompt" id="orderItem" placeholder="flavor" />
+      <input type="text" class="prompt" id="orderDetails" placeholder="any details (allergies, etc)" />
+      <input type="number" class="prompt" id="orderCost" step="1" min="1" placeholder="number of scoops" />
+      <button class="submitBtn">submit</button>
     </form>
+    <br>
+    <h3>
+      Change an Order
+    </h3>
+    <h5>
+      If the customer would like to change their order, please ask them for their order number and enter in the new flavor and details.
+    </h5>
+    <form class="alterOrdersForm">
+      <input type="text" class="prompt" id="newOrderNumber" placeholder="order number" />
+      <input type="text" class="prompt" id="newOrderItem" placeholder="flavor" />
+      <input type="text" class="prompt" id="newOrderDetails" placeholder="details" />
+      <button class="changeBtn">change order</button>
+    </form>
+
+    <br>
+    <h3>
+      Complete an Order
+    </h3>
+    <h5>
+      Before giving the customer their order, please enter the order number here to mark the order as completed. 
+    </h5>
+    <form class="deleteOrdersForm">
+      <input type="text" class="prompt" id="deleteOrderNumber" placeholder="order number" />
+      <button class="deleteBtn">delete order</button>
+    </form>
+
+    <h1>CURRENT ORDERS</h1>
+    <table class="ordertable" id="currentTasks">
+      <tr>
+        <td>Order Number</td>
+        <td>Order Flavor</td>
+        <td>Details</td>
+        <td>Number of Scoops</td>
+        <td>Total Cost (Dollars)</td>
+      </tr>
+    </table>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>

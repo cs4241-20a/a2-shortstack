@@ -1,3 +1,5 @@
+const { stringify } = require('querystring')
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -17,6 +19,8 @@ const server = http.createServer( function( request,response ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
+  }else {
+    handleDelete(request, response)
   }
 })
 
@@ -30,20 +34,89 @@ const handleGet = function( request, response ) {
   }
 }
 
+let dataStorage = [];
+let nextId;
 const handlePost = function( request, response ) {
-  let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+    let item;
+    item = JSON.parse(data);
+    dataStorage.push(item); 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    // console.log( JSON.stringify( dataStorage ) )
 
     // ... do something with the data here!!!
 
+    //get the last item pushed to datastorage
+    let index = dataStorage.length - 1;
+    let lastItem = dataStorage[index];
+
+    // if the item is not a new item (has an order number), alter the fields and delete it
+    if(lastItem.orderNumber !== undefined){
+      // look for the item with the same order number, and alter the fields
+      let i;
+      for( i = 0; i < index; i++){
+      
+        if(dataStorage[i].orderNumber === parseInt(lastItem.orderNumber)){
+          dataStorage[i].orderItem = lastItem.orderItem;
+          dataStorage[i].orderDetails = lastItem.orderDetails;
+        }
+      }
+      // delete the new item used to alter the old one
+      dataStorage.splice(index, 1);
+
+    } else {
+        // give the item a unique order number
+        if(nextId === undefined){
+          lastItem.orderNumber = 1;
+          nextId = 2
+        } else {
+          lastItem.orderNumber = nextId
+          nextId++
+        }
+
+        // give the item an end time after its start time
+        let finalCost;
+        lastItem.orderCost = parseFloat(lastItem.orderCost);
+        finalCost = parseFloat(lastItem.orderCost) * 1.25;
+        lastItem.orderTotalCost = finalCost;
+    }
+
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(dataStorage))
+  })
+}
+
+
+const handleDelete = function( request, response ) {
+
+  request.on( 'data', function( data ) {
+    let item;
+    item = JSON.parse(data);
+    dataStorage.push(item); 
+  })
+
+  request.on( 'end', function() {
+    //get the last item pushed to datastorage
+    let index = dataStorage.length - 1;
+    let lastItem = dataStorage[index];
+
+      // look for the item with the same order number, and delete it
+      let i;
+      for( i = 0; i < index; i++){
+      
+        if(dataStorage[i].orderNumber === parseInt(lastItem.orderNumber)){
+          dataStorage.splice(i, 1);
+        }
+      }
+      // delete the new item used to alter the old one
+      let index2 = dataStorage.length - 1;
+      dataStorage.splice(index2, 1);
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end(JSON.stringify(dataStorage))
   })
 }
 

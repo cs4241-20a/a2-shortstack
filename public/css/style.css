@@ -1,1 +1,50 @@
 /*Style your own assignment! This is fun! */
+/* color scheme: */
+
+/* element selector */
+h1, p {
+    color:rgb(221, 116, 133);
+    font-family: "Artifika";
+    text-align: center;
+}
+
+/* class selector */
+.ordertable {
+    background-color: pink;
+}
+h2 {
+    color:pink;
+    font-family: "Artifika";
+}
+h3, h4, h5 {
+    color:pink;
+    font-family: "Artifika";
+    text-align: left;
+ }
+/* id selector */
+.prompt {
+    background-color: pink;
+    font-family: "Lora";
+}
+
+li, ul {
+    font-family: "Artifika";
+    justify-content: right;
+    color: rgb(221, 116, 133);
+}
+
+button {
+    font-family: "Lora";
+}
+
+table, th, td {
+  border: 1px solid black;
+  font-family: "Lora";
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: cornsilk;
+}
