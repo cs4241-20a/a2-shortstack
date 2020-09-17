@@ -1,1 +1,47 @@
 /*Style your own assignment! This is fun! */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
+
+.grid-container{
+  display:grid;
+  grid-row-gap:30px;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #7F91F0;
+}
+h2{
+  color: #F0BB05;
+  font-family: Anton;
+  letter-spacing: 2px;
+}
+h4{
+  color: #F0BB05;
+  font-family: Roboto;
+}
+input{
+  background-color: #73C8F0;
+  font-family: Roboto;
+}
+button{
+  background-color: #67F0CE;
+  font-family: Roboto;
+}
+.results{
+  padding-left: -100px;
+}
+#results{
+  border-collapse: collapse;
+  width: 400px;
+  font-family: Roboto;
+}
+th, td{
+  background-color: #73C8F0;
+  border: 3px solid #F06F46;
+  padding: 5px;
+  text-align: center;
+  font-family: Roboto;
+}

@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const dataStorage = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -29,21 +25,26 @@ const handleGet = function( request, response ) {
     sendFile( response, filename )
   }
 }
-
+//let dataStorage= []
 const handlePost = function( request, response ) {
-  let dataString = ''
+  
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      const dataStuff = JSON.parse(data)
+      var canDrink = parseInt(dataStuff.age) >= 21
+      if(canDrink){
+        dataStuff.isLegal = "Yes"
+      }
+      else{
+        dataStuff.isLegal = "No"
+      }
+      dataStorage.push ( dataStuff )
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
     // ... do something with the data here!!!
-
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end( JSON.stringify( dataStorage ))
   })
 }
 
