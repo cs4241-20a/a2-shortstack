@@ -3,38 +3,123 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <table id="orders">
+    </table>
+    <br>
+    <div class = "admin">
+      <form action="">
+        <!-- Fulfill order menu -->
+        <input type="number" id="orderNum" placeholder="Order number">
+        <button id="fulfill">Fulfill</button>
+      </form>
+    </div>
+  <br>
+    <div id="client">
+      <form action="">
+        <!-- Order Form -->
+        <select id="color">
+          <option value="blue">Blue</option>
+          <option value = "red">Red</option>
+          <option value = "green">Green</option>
+          <option value = "purple">Purple</option>
+          <option value = "orange">Orange</option>
+          <option value = "yellow">Yellow</option>
+          <option value = "white">White</option>
+          <option value = "black">Black</option>
+        </select>
+        <select id="size">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+        <input type="number" id="quantity" placeholder="Quantity">
+        <button id="order">Buy now</button>
+      </form>
+    </div>
   </body>
   <script>
 
-  const submit = function( e ) {
+  const submitOrder = function( e ) {
     // prevent default form action from being carried out
-    e.preventDefault()
+    e.preventDefault();
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const color = document.getElementById( 'color' ),
+            quantity = document.getElementById('quantity'),
+            size = document.getElementById('size'),
+          json = {type: "order", color: color.value, size: size.value, quantity: quantity.value},
+          body = JSON.stringify( json );
+    console.log("Submitting order");
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+      // do something with the response
+      return response.text();
+    }).then( function(txt) {
+      let appdata = JSON.parse(txt);
+      generateTable(appdata);
+      return false;
     })
 
     return false
+  };
+
+  const fulfillOrder = function(e) {
+    // prevent default form action from being carried out
+    e.preventDefault();
+
+    const orderNum = document.getElementById( 'orderNum' ),
+            json = {type: "fulfill", orderNum: orderNum.value},
+            body = JSON.stringify( json );
+
+    fetch( '/submit', {
+      method:'POST',
+      body
+    })
+            .then( function( response ) {
+              // do something with the response
+              return response.text();
+            }).then( function(txt) {
+              let appdata = JSON.parse(txt);
+              generateTable(appdata);
+            return false;
+    })
+
+    return false
+  };
+
+  function generateTable(appdata) {
+    let table = document.getElementById('orders');
+    table.innerHTML = "";
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+    for (let key of Object.keys(appdata[0])) {
+      let th = document.createElement("th");
+      let text = document.createTextNode(key);
+      th.appendChild(text);
+      row.appendChild(th);
+    }
+    for (let element of appdata) {
+      let row = table.insertRow();
+      for (let key in element) {
+        let cell = row.insertCell();
+        let text = document.createTextNode(element[key]);
+        cell.appendChild(text);
+      }
+    }
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+    const orderButton = document.getElementById( 'order' );
+            const fulfillButton = document.getElementById('fulfill');
+            fulfillButton.onclick = fulfillOrder;
+            orderButton.onclick = submitOrder;
   }
 
   </script>
