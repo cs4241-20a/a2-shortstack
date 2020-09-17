@@ -1,135 +1,131 @@
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      bodyParser = require('body-parser'),
-      dir  = 'public/',
-      port = 3000
-
-
-const express = require('express')
-var app = express()
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+const http = require("http"),
+  fs = require("fs"),
+  // IMPORTANT: you must run `npm install` in the directory for this assignment
+  // to install the mime library used in the following line of code
+  mime = require("mime"),
+  dir = "public/",
+  port = 3000;
 
 var appdata = [
   {
-    "Name" : "go grocery shopping",
-    "Priority": "medium",
-    "Deadline": "Thursday"
+    Name: "go grocery shopping",
+    Priority: "medium",
+    Deadline: "Thursday"
   },
   {
-    "Name": "finish math homework",
-    "Priority": "high",
-    "Deadline": "Wednesday"
-  }]
+    Name: "finish math homework",
+    Priority: "high",
+    Deadline: "Wednesday"
+  }
+];
 
-  app.get('/', function(req, res) {
-    res.sendFile('public/index.html', {root: '.'})
-  })
-  app.get('/scripts.js', function(req, res) {
-    res.sendFile('public/js/scripts.js', {root: '.'})
-  })
-  app.get('/style.css', function(req, res) {
-    res.sendFile('public/css/style.css', {root: '.'})
-  })
+const server = http.createServer(function(request, response) {
+  if (request.method === "GET") {
+    handleGet(request, response);
+  } else if (request.method === "POST") {
+    handlePost(request, response);
+  }
+});
 
+const handleGet = function(request, response) {
+  const filename = dir + request.url.slice(1);
 
-app.post('/submit', function (req, res) {
-  console.log(req)
-  console.log(req.body)
-  let dataString = ''
+  if (request.url === "/") {
+    sendFile(response, "public/index.html");
+  } else if (request.url === "/scripts.js") {
+    sendFile(response, "public/js/scripts.js");
+  } else if (request.url === "/style.css") {
+    sendFile(response, "public/css/style.css");
+  } else {
+    sendFile(response, filename);
+  }
+};
 
-  res.on( 'data', function( data ) {
-      console.log(data)
-      dataString += data
-  })
+const handlePost = function(request, response) {
+  
+  let dataString = '';
 
-  console.log(dataString)
+  request.on("data", function(data) {
+    dataString += data;
+    
+  
+  });
 
-  res.on( 'end',  function() {
-    console.log("test")
-    var jsonData = JSON.parse( dataString )
+  request.on("end", function() {
+  
+    var jsonData = JSON.parse(dataString);
+    
+    console.log(jsonData)
 
-    console.log("test again")
-    let action = jsonData.action
-    console.log("test again2")
-    if(action.includes('add')) {
-      let name = jsonData.taskname
-      let prior = jsonData.taskpriority
-      let deadline = jsonData.taskdeadline
-      let entries = {}
-      entries["Name"] = name
-      entries["Priority"] = prior
-      entries["Deadline"] = deadline
-      console.log(entries)
-      appdata.insert(entries)
+    
+    let action = jsonData.action;
+    
+    if (action.includes("add")) {
+      let name = jsonData.taskname;
+      let prior = jsonData.taskpriority;
+      let deadline = jsonData.taskdeadline;
+      let entries = {};
+      entries["Name"] = name;
+      entries["Priority"] = prior;
+      entries["Deadline"] = deadline;
+   
+      appdata.push(entries);
     }
 
-    console.log("test3")
-    if(action.includes('edit')) {
-      let name = jsonData.taskname
-      let prior = jsonData.taskpriority
-      let deadline = jsonData.taskdeadline
-      let newEntries = {}
-      entries["Name"] = name
-      entries["Priority"] = prior
-      entries["Deadline"] = deadline
-      console.log(newEntries)
-      appdata(entries).insert(newEntries)
+    
+    if (action.includes("edit")) {
+      let name = jsonData.taskname;
+      let prior = jsonData.taskpriority;
+      let deadline = jsonData.taskdeadline;
+      let newEntries = {};
+      newEntries["Name"] = name;
+      newEntries["Priority"] = prior;
+      newEntries["Deadline"] = deadline;
+    
+      appdata(newEntries).push(newEntries);
     }
 
-    console.log("test3")
-    if(action.includes('delete')) {
-      let name = jsonData.taskname
-      let prior = jsonData.taskpriority
-      let deadline = jsonData.taskdeadline
-      let entries = {}
-      entries["Name"] = name
-      entries["Priority"] = prior
-      entries["Deadline"] = deadline
-      console.log(entries)
-      appdata(entries).remove();
+    
+    if (action.includes("delete")) {
+      let name = jsonData.taskname;
+      let prior = jsonData.taskpriority;
+      let deadline = jsonData.taskdeadline;
+      let entries = {};
+      entries["Name"] = name;
+      entries["Priority"] = prior;
+      entries["Deadline"] = deadline;
+      
+      appdata.splice(entries);
     }
 
-    console.log("test4")
-    var sendingJSON = {}
-    for(let newEntry in appdata) {
-      sendingJSON.push(newEntry)
+    
+    var sendingJSON = [];
+    for (let newEntry in appdata) {
+      sendingJSON.push(appdata[newEntry]);
     }
 
-    console.log(sendingJSON)
+    console.log(sendingJSON);
+  });
 
-    res.status(200)
-    res.json(JSON.stringify({}))
+  response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+  response.end(JSON.stringify(appdata));
+};
 
-})
+const sendFile = function(response, filename) {
+  const type = mime.getType(filename);
 
-})
+  fs.readFile(filename, function(err, content) {
+    // if the error = null, then we've loaded the file successfully
+    if (err === null) {
+      // status code: https://httpstatuses.com
+      response.writeHeader(200, { "Content-Type": type });
+      response.end(content);
+    } else {
+      // file not found, error code 404
+      response.writeHeader(404);
+      response.end("404 Error: File Not Found");
+    }
+  });
+};
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename )
-
-   fs.readFile( filename, function( err, content ) {
-
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
-
-       // status code: https://httpstatuses.com
-       res.writeHeader( 200, { 'Content-Type': type })
-       res.end( content )
-
-     }else{
-
-       // file not found, error code 404
-       res.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
-
-     }
-   })
-}
-
-app.listen( port, () => {
-  console.log("starting server")
-})
+server.listen(process.env.PORT || port);

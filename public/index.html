@@ -12,18 +12,20 @@
           <h1>
             To Do List
           </h1>
-          <form action="" name="form1">
+          <form action="" name="form1" method="POST">
+            
             <div class="form">
               <input class="inputs" type="text" id="taskname" value="Name">
               <input class="inputs" type="text" id="taskpriority" value="Priority">
               <input class="inputs" type="text" id="taskdeadline" value="Task deadline">
+              <div class="buttons" id="action" name="action">
+                <input id="add" value="add" type="submit">
+                <input id="delete" value="delete" type="submit">
+                <input id="edit" value="edit" type="submit">
             </div>
+          </div>
             <br>
-            <div class="buttons" id="action" name="action">
-              <button id="add" value="add">Add Task</button>
-              <button id="delete" value="delete">Delete previous task</button>
-              <button id="edit" value="edit">Edit task</button>
-            </div>
+            
           </form>
 
       <br>
@@ -43,22 +45,38 @@
   var taskDeadlineArr = ["Thursday", "Wednesday"]
 
 
-function addToTable(data) {
+function addToTable(nameTaskArr, taskPriorArr, taskDeadlineArr) {
   //find table
   const table = document.getElementById("tableOne");
+  
+  let length = nameTaskArr.length;
 
-  let row = table.insertRow(-1);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
 
-  cell1.innerHTML = data.taskname;
-  cell2.innerHTML = data.taskpriority;
-  cell3.innerHTML = data.taskdeadline;
 
+  var rows = table.rows;
+  var i = rows.length;
+  while (--i) {
+    rows[i].parentNode.removeChild(rows[i]);
+    // or
+    // table.deleteRow(i);
+  }
+ 
+  for (x = 0; x < length; x++) {
+   
+    let row = table.insertRow(x+1);
+  
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    
+    cell1.innerText = nameTaskArr[x];
+    cell2.innerText = taskPriorArr[x];
+    cell3.innerText = taskDeadlineArr[x];
+      
+  }
+  
 }
-
-
+    
 const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
@@ -66,23 +84,27 @@ const submit = function( e ) {
     const nameInput = document.querySelector('#taskname'),
           priorityInput = document.querySelector('#taskpriority'),
           deadlineInput = document.querySelector('#taskdeadline'),
-          actionInput = document.querySelector('#action')
+          addInput = document.querySelector('#add'),
+          editInput = document.querySelector('#edit'),
+          deleteInput = document.querySelector('#delete')
 
     var json;
     var body;
 
-    if(actionInput.value == "add") {
+    if(addInput) {
       json = {action: "add", taskname: nameInput.value, taskpriority: priorityInput.value, taskdeadline: deadlineInput.value}
       body = JSON.stringify(json)
     }
 
-    else if(actionInput.value == "edit") {
+    else if(editInput) {
       json = {action: "edit", taskname: nameInput.value, taskpriority: priorityInput.value, taskdeadline: deadlineInput.value}
-      console.log(json)
+
+      body = JSON.stringify(json)
     }
 
     else {
       json = {action: "delete", taskname: nameInput.value, taskpriority: priorityInput.value, taskdeadline: deadlineInput.value}
+      body = JSON.stringify(json)
     }
     console.log(JSON.stringify(json))
     fetch('/submit', {
@@ -91,34 +113,43 @@ const submit = function( e ) {
     })
     .then( function( response ) {
       // do something with the reponse
-      var stringResponse = JSON.parse(response)
-      console.log(stringResponse)
+      
+      data = response.json();
 
-      addToTable(stringResponse)
-      return response.json()
+      return data   // Response will come in here if you send it after the post, so this is probably good 
     }).then( function(data){
-
+           
       nameTaskArr = []
       taskPriorArr = []
-      taskDeadlineArr = []
-      // for(let objData in data.objs) {
-      appdata.Name = nameTaskArr
-      appdata.Priority = taskPriorArr
-      appdata.Deadline = taskDeadlineArr
+      taskDeadlineArr = [] 
+      
+      dataLength = data.length
+      
+      for(let i = 0; i < dataLength; i++) {
+       
+        nameTaskArr.push(data[i].Name)
+        taskPriorArr.push(data[i].Priority)
+        taskDeadlineArr.push(data[i].Deadline)
+  
+        
+        addToTable(nameTaskArr, taskPriorArr, taskDeadlineArr)
+        
+      }
+      
 
     })
-
-
+  
     return false
   }
 
+
   window.onload = function() {
     const button = document.querySelector( '#add' )
-    button.onclick = submit
-    // const button2 = document.querySelector( '#delete' )
-    // button2.onclick = delete
-    // const button3 = document.querySelector( '#edit' )
-    // button3.onclick = edit
+      button.onclick = submit
+    const button2 = document.querySelector( '#delete' )
+      button2.onclick = submit
+    const button3 = document.querySelector( '#edit' )
+      button3.onclick = submit
 
   }
 
