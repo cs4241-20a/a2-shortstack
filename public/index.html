@@ -1,41 +1,171 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8"/>
+    <link href="css/style.css" rel="stylesheet" />
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+    <div>
+
+    <img src = "https://cdn.glitch.com/cf8354a1-9e9c-4a1f-9b28-8c059d9167bf%2F27a5a3e32e32369486b5daf17687bd3a.jpg?v=1600239938292" alt="clouds" width = "200" height = "200">
+    <img src = "https://cdn.glitch.com/cf8354a1-9e9c-4a1f-9b28-8c059d9167bf%2FScreen%20Shot%202020-09-16%20at%203.10.03%20AM.png?v=1600240225896" alt="Pencil" width = "200" height = "200">
+      
+      </div>
+<!--   </head>  -->
+  
+<!--   <body> -->
+    <div id = "page-wrap">
+    <h1>
+      iPrioritize
+    </h1>
+      <p>
+        Need to know when you should get started on that homework assignment? Look no further than iPrioritize!
+        Enter a task, a priority, and the date your task was created or assigned and get advice!
+      </p>
+    <div class = "flex-container">
+    <form>
+      <div>
+      <label>Task:</label><br />
+      <input
+        style="margin-bottom: 40px;"
+        type="text"
+        id="yourtask"
+        value="your task here"
+      /><br />
+        </div>
+      <div>
+        
+   
+      <label>Priority:</label><br />
+      <input
+        type="radio"
+        id="highpriority"
+        name="priority"
+        value="High Priority"
+      />
+      <label>High Priority</label><br />
+      <input
+        type="radio"
+        id="mediumpriority"
+        name="priority"
+        value="Medium Priority"
+      />
+      <label>Medium Priority</label><br />
+      <input
+        style="margin-bottom: 40px;"
+        type="radio"
+        id="lowpriority"
+        name="priority"
+        value="Low Priority"
+      />
+      <label for="lowpriority">Low Priority</label><br />
+        
+           </div>
+      <div>
+      <label>Creation Date:</label><br />
+      <input
+        style="margin-bottom: 40px;"
+        type="date"
+        id="yourcreationdate"
+        name="yourcreationdate"
+      /><br />
+        </div>
+      <button class="button">submit</button>
     </form>
-  </body>
+      </div>
+    <table id="data">
+      <thead>
+      <tr id = "myRow">
+        <th>Task</th>
+        <th>Priority</th>
+        <th>Creation Date</th>
+        <th>Due Date</th>
+      </tr>
+        </thead>
+      <tbody id = "tableBody">
+      </tbody>
+    </table>
+       </div>
+  
+  
   <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+    
+function generateRows(jsonobj) {
+    
+    const tableBody = document.getElementById("tableBody");
+   
+    let row = tableBody.insertRow(-1);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    cell1.innerHTML = jsonobj.yourtask;
+    cell2.innerHTML = jsonobj.priority;
+    cell3.innerHTML = jsonobj.creationdate;
+    cell4.innerHTML = jsonobj.message;
+}
+  
+//   //do this in the server
+//   if(cell2.getElementById === "highpriority"){
+//     // cell4.innerHTML =
+//     var today = new Date(jsonobj.creationdate); // Or Date.today()
+//     var tomorrow = today.add(1).day();
+//     jsonobj["duedate"] = tomorrow
+//     cell4.innerHTML = jsonobj.duedate;
+//   }
+// }
+    
+    function displayChoiceVal() {
+      var ele = document.getElementsByName("priority");
+      for (i = 0; i < ele.length; i++) {
+        if (ele[i].checked) return ele[i].value;
+      }
+    }
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+    const submit = function(e) {
+      // prevent default form action from being carried out
+      e.preventDefault();
 
-    return false
-  }
+      const input1 = document.querySelector("#yourtask"),
+        input2 = displayChoiceVal(),
+        input3 = document.querySelector("#yourcreationdate"),
+        json = {
+          yourtask: input1.value,
+          priority: input2,
+          creationdate: input3.value
+        },
+        body = JSON.stringify(json);
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+      //     const input2 = displayChoiceVal(), //set all priority values to unselected at default and if high priority value input.value is selected then use that input for server calculation
+      //           json2 = { highpriority: input.value },
+      //           body2 = JSON.stringify( json1 )
 
+      //     const input1 = document.querySelector( '#yourcreationdate' ),
+      //           json1 = { yourtask: input.value },
+      //           body1 = JSON.stringify( json1 )
+
+      fetch("/submit", {
+        method: "POST",
+        body
+      }).then(response => response.json())
+      
+      .then(function(response) {
+        // do something with the reponse
+        generateRows(response);
+        console.log(response);
+      });
+
+      return false;
+    };
+
+    window.onload = function() {
+      const button = document.querySelector("button");
+      button.onclick = submit;
+    };
   </script>
+    </body>
 </html>
