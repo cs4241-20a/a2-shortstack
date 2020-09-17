@@ -30,11 +30,11 @@ const handleGet = function (request, response) {
     if (request.url === '/') {
         sendFile(response, 'public/index.html')
         playerInfo = []
-    } else if (request.url === '/gamedata'){
+    } else if (request.url === '/gamedata') {
         response.writeHeader(200, {'Content-Type': 'application/json'})
         response.write(JSON.stringify(playerInfo))
         response.end()
-    }else {
+    } else {
         sendFile(response, filename)
     }
 }
@@ -43,7 +43,7 @@ const handlePost = function (request, response) {
     if (request.url == '/notes') {
         request.on('data', function (data) {
             notes = JSON.parse(data)
-            notes.forEach(function(n, i) {
+            notes.forEach(function (n, i) {
                 playerInfo[i].notes = n;
             })
         })
@@ -87,6 +87,7 @@ const buildGame = function () {
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
 </head>
+<div id="overlay"></div>
 <body>
 <header>Among Us Companion</header>
 <div id="main">

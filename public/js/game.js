@@ -1,9 +1,9 @@
 let notes = [];
-$(function() {
-    $("textarea").on("blur", function() {
+$(function () {
+    $("textarea").on("blur", function () {
         console.log($(this).val());
         notes = [];
-        $("textarea").each(function() {
+        $("textarea").each(function () {
             notes.push($(this).val())
         })
 
@@ -15,30 +15,41 @@ $(function() {
             body: JSON.stringify(notes),
         })
     })
-    $('body').on("keydown", function(e){
-        if($(e.target).is('textarea')) return;
+    $('body').on("keydown", function (e) {
+        if (e.repeat) {
+            return
+        }
+        if ($(e.target).is('textarea')) return;
         if (e.keyCode == 32) {
-            console.log("space down")
             fetch("/gamedata")
                 .then(response => response.json())
-                .then(data => console.log)
-            $("overlay").innerHTML = `
+                .then(data => {
+                    $("#overlay").html(`
             <table>
-        <caption>Game Data</caption>
-        <tr>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Notes</th>
-        </tr>
-        <tr>
-        </tr>
-    </table>`
+                <caption>Game Data</caption>
+                <tr>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Notes</th>
+                </tr>
+                ${data.map(function (value) {
+                        return `<tr>
+                        <td>${value.name}</td>
+                        <td>${value.color}</td>
+                        <td>${value.notes}</td>
+                </tr>`
+                    })}
+        })
+            </table>`)
+                    $("#overlay").show()
+                })
         }
+
     });
-    $('body').on("keyup", function(e){
-        if($(e.target).is('textarea')) return;
+    $('body').on("keyup", function (e) {
+        if ($(e.target).is('textarea')) return;
         if (e.keyCode == 32) {
-            console.log("space up")
+            $("#overlay").hide()
         }
     });
 })

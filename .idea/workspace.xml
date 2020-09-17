@@ -20,28 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1f1496c-717c-45ed-aaf3-13517b1766c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/game.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/BLACK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/BLUE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/BROWN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/CYAN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/GREEN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/LIME.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/MIRAHQ_MAP.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/ORANGE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/PINK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/POLUS_MAP.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/PURPLE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/RED.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/SKELD_MAP.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/TAN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/WHITE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/YELLOW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.improved.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.improved.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600184925454</updated>
       <workItem from="1600184928524" duration="668000" />
-      <workItem from="1600188825990" duration="34484000" />
+      <workItem from="1600188825990" duration="36201000" />
     </task>
     <servers />
   </component>
