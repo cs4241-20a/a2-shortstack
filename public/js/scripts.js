@@ -116,6 +116,7 @@ const statusMessages = ["All clear", "Be cautious", "Covid19 risk"]
     const updateButton = document.querySelector( '#updateButton' )
     updateButton.onclick = update
     
+    /* This collapsable code is based on the code found here: https://www.w3schools.com/howto/howto_js_collapsible.asp */
     var coll = document.getElementsByClassName("collapsible");
     for (var i = 0; i < coll.length; i++) {
       coll[i].addEventListener("click", function() {

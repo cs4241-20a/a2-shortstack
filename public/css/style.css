@@ -4,12 +4,12 @@ body {
   font-family: 'PT Sans';
 }
 
-/* Style the button that is used to open and close the collapsible content */
+/* This collapsable code is based on the code found here, with changes to colors, padding, and text-align: https://www.w3schools.com/howto/howto_js_collapsible.asp */
 .collapsible {
   background-color: #d3d3d3;
   color: #AC2B37;
   cursor: pointer;
-  padding: 18px;
+  padding: 40px 18px 40px 18px;
   width: 50%;
   border: none;
   text-align: center;
@@ -19,12 +19,7 @@ body {
   margin:auto;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
-  background-color: #A9B0B7;
-}
-
-/* Style the collapsible content. Note: hidden by default */
+/* This code is also from the above tutorial, with changes to width, color, and padding: https://www.w3schools.com/howto/howto_js_collapsible.asp */
 .content {
   color: black;
   display: none;
@@ -33,6 +28,10 @@ body {
   width: 40%;
   padding: 0 5% 0 5%;
   margin: auto;
+}
+
+.active, .collapsible:hover {
+  background-color: #A9B0B7;
 }
 
 .symptom {
@@ -79,6 +78,7 @@ td, th {
   text-align: left;
 }
 
+/* This button is based on the CSS button tutorial here, with changes to color, display, and margin: https://www.w3schools.com/css/css3_buttons.asp */
 button {
   background-color: #AC2B37;
   border: none;
@@ -110,4 +110,14 @@ h1, h2 {
 
 #database {
   text-align: center;
+}
+
+.largeTitle {
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.smallTitle {
+  font-size: 1.2em;
+  font-weight: bold;
 }
