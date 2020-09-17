@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "Online Grader",
   "version": "1",
-  "description": "",
+  "description": "An online gradebook to rival Canvas",
   "author": "Edward Philippo",
   "scripts": {
     "start": "node server.improved.js"
