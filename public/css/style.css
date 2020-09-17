@@ -1,1 +1,42 @@
-/*Style your own assignment! This is fun! */
+body {
+  background-color: #dbc791;
+}
+
+image {
+  display: block;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+input {
+  display: block;
+  height: 50px;
+  width: 300px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-family: "Goudy Bookletter 1911", serif;
+}
+
+button {
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+th,
+td {
+  padding: 7px 10px 10px 10px;
+}
+
+th {
+  text-transform: uppercase;
+  border-bottom: 2px solid #000000;
+  text-align: left;
+  font-family: "Goudy Bookletter 1911", serif;
+}
+
+tr {
+  font-family: "Kumbh Sans", sans-serif;
+}

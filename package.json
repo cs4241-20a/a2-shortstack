@@ -1,12 +1,12 @@
 {
   "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "version": "1.0",
+  "description": "Makes a book list with the reading times of all the books",
+  "author": "Brittany Henriques",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }
