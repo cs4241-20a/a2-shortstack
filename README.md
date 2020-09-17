@@ -2,11 +2,13 @@
 
 ## Description
 
+[https://a2-afsimoneau.glitch.me/](https://a2-afsimoneau.glitch.me/)
+
 I created this project to be a running log for my daily training. I centered all of the major CSS elements in a grid layout and margin centering. It calculates a relative fitness score using the distance traveled and the time taken to approximate the training effect of a run. The form checks if you submit empty data and raises alerts to avoid blank fields in the application data
 
 ## Technical Achievements
 
-- **Single-page App**: Using POST requests, data is updated from the server on initial page load and on submission. 
+- **Single-page App**: Using POST requests, data is updated from the server on initial page load and on submission.
 
 ## Design/Evaluation Achievements
 
