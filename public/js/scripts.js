@@ -28,15 +28,18 @@ const submit = function(e) {
     return false;
   }
 
-  let json = {};
   //const input = document.forms["inputForm"].getElementsByTagName("input");
-  const input = document.querySelector("#myinput");
+  const input = document.querySelector("myinput");
+  const gettask = document.querySelector("#youtask").value;
+  const getdue = document.querySelector("#duedate").value;
+
+  const json = { gettask, getdue };
 
   //convert input into json
-  for (let index = 0; index < input.length; index++) {
+  /*for (let index = 0; index < input.length; index++) {
     const element = input[index];
     json[element["id"]] = element["value"];
-  }
+  }*/
   const body = JSON.stringify(json);
 
   fetch("/submit", {
@@ -77,9 +80,11 @@ function deleteRows(e) {
 
 //Handles the click action
 const handleButton = function(e) {
+  e.preventDefault();
   console.log("handle button");
+  submit(e);
   //Ignores if you click on anything but a button
-  if (e.target.tagName === "BUTTON") {
+  /*if (e.target.tagName === "BUTTON") {
     //Route the button press to the correct function
     if (e.target.id === "submit") {
       console.log("submit");
@@ -90,13 +95,14 @@ const handleButton = function(e) {
     } else if (e.target.id === "delete") {
       console.log("delite row");
       deleteRows(e);
-    }
-  }
+    } 
+  } */
+  return false;
 };
 
 //Takes a json object and adds it to the table as a row
 function addRows(jsonEntry) {
-  console.log("addrows");
+  console.log("addrows", jsonEntry);
   //Find the table
   const tableBody = document.getElementById("TaskBody");
   //Insert a new cell and row
@@ -107,8 +113,8 @@ function addRows(jsonEntry) {
   let cell4 = row.insertCell(3);
 
   //Fill those cells with server info.
-  cell1.innerHTML = jsonEntry.task;
-  cell2.innerHTML = jsonEntry.dDate;
+  cell1.innerHTML = jsonEntry.Task;
+  cell2.innerHTML = jsonEntry.Date;
   cell3.innerHTML = jsonEntry.mdate;
   cell4.innerHTML = '<button class="checkButton">✗</button>';
 }
@@ -116,11 +122,11 @@ function addRows(jsonEntry) {
 //Validates the input
 function validateInput() {
   console.log("validateInput");
-  const inputTask = document.getElementById("task").value;
+  const inputTask = document.getElementById("youtask").value;
   console.log(inputTask);
   // change.....
 
-  const inputdd = document.getElementById("dDate").value;
+  const inputdd = document.getElementById("duedate").value;
   console.log(inputdd); // confirm if date?
 
   /*const regex = /^[A-Za-z ]+$/;
@@ -129,8 +135,9 @@ function validateInput() {
     return false;
   }*/
   return true;
-
-  window.onload = function() {
-    document.addEventListener("click", handleButton, false);
-  };
 }
+
+window.onload = function() {
+  const submitbutton = document.getElementById("myinput");
+  submitbutton.addEventListener("click", handleButton, false);
+};
