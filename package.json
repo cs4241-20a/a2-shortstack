@@ -1,12 +1,13 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-stephenlucas",
+  "version": "3",
+  "description": "a doto list that tracks due datas and the dates it was made",
+  "author": "Stephen Lucas",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6"
   }
 }
+
