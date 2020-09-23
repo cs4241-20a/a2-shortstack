@@ -20,3 +20,5 @@ User was asked to add two different cars to the list.
 2. Problems: No problems encountered
 3. Surprising Comments: Wanted error messages when invalid year was input.
 4. Potential Changes: Add error messages when invalid entry entered.
+
+* Please note that the package.json was updated after the submission due date.
