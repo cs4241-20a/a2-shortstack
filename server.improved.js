@@ -23,7 +23,6 @@ const handleGet = function( request, response ) {
   }
   if( request.url === '/read' ) {
     send = JSON.stringify(appdata);
-    console.log("THE FUCKING DATA")
     console.log(send);
     sendResponse(response);
     //response.write(send);
