@@ -1,1 +1,62 @@
-/*Style your own assignment! This is fun! */
+body {
+	padding: 32px;
+	margin: auto;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 64px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	justify-items: center;
+	align-items: start;
+}
+
+.left-col {
+	justify-self: end;
+	margin-right: 128px;
+}
+
+.right-col {
+	justify-self: start;
+	margin-left: 128px;
+}
+
+.btn-wrapper {
+	text-align: center;
+}
+
+form-group {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 16px;
+}
+
+table {
+	border-collapse: separate;
+	border: solid 2px #d6dbe0;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+td, th {
+	border-left: solid 2px #d6dbe0;
+}
+
+td:first-child, th:first-child {
+	border-left: none;
+}
+
+tr:first-child td, tr:first-child th {
+	border-top: none;
+}
