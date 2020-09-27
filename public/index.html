@@ -1,41 +1,56 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/scripts.js"></script>
+</head>
+
+<body>
+  <div>
+    <h1>Welcome to Speed Clicker</h1>
+
+    <p id="WelcomeText">
+      This is a webpage for Jordan Stoessel's Assignment 2. After hitting the <strong>start</strong> button you will be
+      timed for some seconds (that you define!) to click as fast as you can. Your results will be displayed within the
+      <strong>leaderboard</strong>. Try to get the high score!
+    </p>
+  </div>
+
+  <div class="center">
+    <input type='text' id='customseconds' name='cusseconds' value="">
+    <input type="button" id='startbtn' onclick="startClicked()" value="Start">
+    <a class="poststart" id="clickbtn" onclick="addClicked()"><img alt="Click Here" src="button.png"></a>
+  </div>
+
+  <div class="center">
+    <p id='currentclicks' class='poststart'>0 Points</p>
+  </div>
+
+  <div class="center">
+    <form>
+      <p id="inputname" class="postgame">
+        Please input your name:
+      </p>
+      <div class="center">
+        <input type='text' id='yourname' name='yourname' class='postgame' value="">
+        <button id='submitbtn' class='postgame'>Submit</button>
+      </div>
     </form>
-  </body>
-  <script>
+  </div>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+  <div class="center">
+    <table id='scoretable' style="width:auto">
+      <!---Table stuff will be generated here-->
+    </table>
+  </div>
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+  <div id="deling" class="center">
+    <input type='text' id='delname' name='delname' value="">
+    <button id='delbtn'>Delete Name</button>
+  </div>
+</body>
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>

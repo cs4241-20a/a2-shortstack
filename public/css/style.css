@@ -1,1 +1,51 @@
 /*Style your own assignment! This is fun! */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+body {
+    font-family: "Lato";
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 1px;
+}
+
+h1 {
+    text-align: center;
+    color: red;
+    border: red;
+    border-radius: 10px;
+    border: double;
+    padding-bottom: 5px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 20px;
+    padding: 5px;
+    align-items: center;
+}
+
+input {
+    margin: 0px;
+}
+
+.center {
+    justify-content: center;
+    display:flex;
+}
+
+.poststart {
+    justify-content: center;
+}
+
+#submitbtn {
+    color: red;
+    background-color: black;
+}
+
+#deling {
+    margin-top: 5px;
+}
+#deling button {
+    color:red;
+}
