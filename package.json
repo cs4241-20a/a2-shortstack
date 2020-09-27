@@ -1,8 +1,12 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "alancuriel-a2-shortstack",
+  "version": "1.0.0",
+  "description": "This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.",
+  "author": "@alancuriel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alancuriel/a2-shortstack"
+  },
   "scripts": {
     "start": "node server.improved.js"
   },

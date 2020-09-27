@@ -1,1 +1,36 @@
-/*Style your own assignment! This is fun! */
+body {
+  font-family: "Nunito";
+  background: #f9eacd;
+}
+.title {
+  text-align: center;
+}
+input {
+  background: #f9eacd;
+  margin-right: 15px;
+  border-radius: 0px;
+  border-width: 1px;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+}
+
+button {
+  background: #f7f7f7;
+  border-style: none;
+  padding: 5px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#main-form {
+  display: flex;
+  justify-content: center;
+}
