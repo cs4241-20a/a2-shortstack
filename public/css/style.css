@@ -1,1 +1,32 @@
-/*Style your own assignment! This is fun! */
+body{
+    background-image: url('../unsplash.jpg');
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: separate;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+}
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+#lbl{
+    font-weight: bold;
+}
+
+.form-group{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}

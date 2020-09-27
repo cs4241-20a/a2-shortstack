@@ -1,41 +1,62 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="js/scripts.js"></script>
+</head>
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+<body>
+  <div class="jumbotron w-50 p-3 center bg-primary text-light">
+  <h1 class="display-4"><b>My TODO List</b></h1>
+  <div class="d-flex justify-content-center">
+    <table class="table table-striped table-dark">
+      <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Priority</th>
+        <th>Creation Date</th>
+        <th>Deadline</th>
+      </tr>
+      </thead>
+    </table>
+    </div>
+  </div>
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+  <div class="jumbotron w-50 p-3 center bg-primary text-white">
+    <div class="d-flex justify-content-center">
+        <p>Simply add a task below and the deadline will be computed by the server, and
+        then returned to the table. <br>
+        <br>
+        The higher priority tasks have shorter 
+        deadlines and the lower priority tasks give you more time to complete them.
+        </p> 
+    </div>
+  </div>
 
-    return false
-  }
+  <div class="jumbotron w-50 p-3 center bg-primary text-white">
+  <form>
+    <div class="d-flex justify-content-center">
+      <div class="form-group">
+        <label for="taskName">Task Name:</label><br>
+        <input type="text" id="taskName" name="taskName"><br>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="form-group">
+        <label id="lbl" for="priority">Priority:</label><br>
+        <input type="text" id="priority" name="priority"><br>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-light">Submit</button>
+    </div>
+  </form>
+  </div>
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
+</body>
 </html>

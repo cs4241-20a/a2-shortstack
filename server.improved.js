@@ -1,16 +1,19 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
       mime = require( 'mime' ),
+      moment = require( 'moment' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+/*
+* The first few tasks are hardcoded in this array and the dueDate is simply calculated by doing 10 - priority to come
+* up with the number of days it should be done by. 
+*/
+let tasks = [
+  {taskName: "dishes", priority: "8", creationDate: "09/11/2020", dueDate: moment().add(2, 'days').format("MM/DD/YYYY")},
+  {taskName: "laundry", priority: "4", creationDate: "09/12/2020", dueDate: moment().add(6, 'days').format("MM/DD/YYYY")},
+  {taskName: "homework", priority: "6", creationDate: "09/13/2020", dueDate: moment().add(4, 'days').format("MM/DD/YYYY")}
+];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,25 +28,40 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if (request.url === '/tasks'){
+    sendFile( response.end(JSON.stringify(tasks)), 'public/tasks.html')
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
   let dataString = ''
-
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
+      data.dueDate = 2;
   })
-
+ 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    tasks.push(JSON.parse(dataString));
+    let prior = JSON.parse(dataString).priority;
+  
+    // This will calculate the current date using moment 
+    let month = moment().get('month') + 1;
+    let day = moment().get('date');
+    let year = moment().get('year');
+    let date = "0" + month + "/" + day + "/" + year;
+    tasks[tasks.length-1].creationDate = date;
 
-    // ... do something with the data here!!!
+    // This will calculate the due date of the task based on the priority and the creation date.
+    if (prior){
+      tasks[tasks.length-1].dueDate = moment().add((10-prior), 'days').format("MM/DD/YYYY");
+    }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(tasks[tasks.length-1]));
   })
 }
 

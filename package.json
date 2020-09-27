@@ -1,12 +1,13 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-tgrahamcodes",
+  "version": "0.1.0",
+  "description": "A website for tracking data.",
+  "author": "Tom Graham",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.4",
+    "moment": "^2.27.0"
   }
 }
