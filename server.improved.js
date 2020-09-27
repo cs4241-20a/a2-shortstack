@@ -6,49 +6,77 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
+      var appdata = []
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
+    handleGet( request, response )
   }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    handlePost( request, response )
   }
 })
 
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+  const filename = dir + request.url.slice( 1 )
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  if( request.url === '/read' ) {
+    send = JSON.stringify(appdata);
+    console.log(send);
+    sendResponse(response);
+    //response.write(send);
+  }
+  else{
     sendFile( response, filename )
   }
 }
+
+
+//estimate the time it took based on fish size and line class
+function time(weight,line){
+  p = weight;
+  l = line;
+  return (p/l)/2;
+}
+
+var curday = function(sp){
+  today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //As January is 0.
+  var yyyy = today.getFullYear();
+
+  if(dd<10) dd='0'+dd;
+  if(mm<10) mm='0'+mm;
+  return (mm+sp+dd+sp+yyyy);
+};
 
 const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
   })
-
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    console.log( JSON.parse( dataString ))
+    let parsedData = JSON.parse(dataString)
+    parsedData['date'] = curday('/');
+    parsedData['time'] = time(parsedData.fishweight,parsedData.lineclass);
+    appdata.push(parsedData);
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(parsedData));
   })
 }
 
+
+const sendResponse = function(response){
+  let s = JSON.stringify(appdata)
+    response.writeHeader(200, { 'Content-Type': 'json' })
+    response.end(s)
+}
+
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+   const type = mime.getType( filename )
 
    fs.readFile( filename, function( err, content ) {
 
@@ -60,7 +88,6 @@ const sendFile = function( response, filename ) {
        response.end( content )
 
      }else{
-
        // file not found, error code 404
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
