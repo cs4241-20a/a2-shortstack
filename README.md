@@ -1,7 +1,7 @@
 ---
 
 ## Flashcard Creator
-link: https://a2-ntaurich.glitch.me/
+link: https://a2-nina-taurich.glitch.me/
 
 This website is used to create a deck of flash cards to study. A card can be added to the deck by inputting a question, a answer, a difficulty, and an importance. The program will calculate the priority of the card based on the difficulty and importance. The card will then be inserted into the deck based on priority with the highest priority cards first. 
 
