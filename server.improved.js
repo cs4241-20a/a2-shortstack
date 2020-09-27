@@ -12,6 +12,9 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+const cards = [ 
+]
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -25,26 +28,81 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
+
 const handlePost = function( request, response ) {
-  let dataString = ''
+  console.log(request.url)
+  if(request.url === '/clear'){
+    console.log("clear") 
+    cards.splice(0, cards.length)
+    let output = JSON.stringify(cards)
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.end(output)
+  } 
+  else{
+    let dataString = ' '
+    request.on( 'data', function( data ) {
+      dataString = JSON.parse(data)
+    })
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+    request.on( 'end', function() {
+      console.log( dataString )
+      let priority = getPriority(dataString)
+      let newCard = '{ "question": "'+ dataString.question+ '", "answer": "'+ dataString.answer+'", "priority": "'+ priority+ '" }'
+      newCard = JSON.parse(newCard)
+      insertCard(newCard, priority)
+      //console.log(cards)
+      let output = JSON.stringify(cards)
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+      response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+      console.log("end")
+      response.end(output)
+    })
+  }
+}
 
-    // ... do something with the data here!!!
+function insertCard(newCard, priority){
+  let i =0
+  if(cards.length === 0){
+    cards.splice(0,0,newCard)
+  }
+  else{
+    while(i<cards.length){
+      if(cards[i].priority <=priority){
+        cards.splice(i,0,newCard)
+        break
+      }
+      i++
+    }
+  }
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
+}
+
+function getPriority(dataString){
+    let diff = dataString.difficulty
+    let imp = dataString.importance
+    
+    switch (diff){
+      case('e'):
+        diff = 0
+        break
+      case('m'):
+        diff = 2
+        break
+      case('h'):
+        diff = 4
+        break
+    }
+  
+  let priority = (imp*5 )+ diff
+  console.log("imp:"+ imp +", diff:"+ diff +", prio:"+ priority)
+  return priority
+  
 }
 
 const sendFile = function( response, filename ) {

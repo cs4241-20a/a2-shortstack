@@ -1,1 +1,84 @@
 /*Style your own assignment! This is fun! */
+body{
+  font-family: 'Quicksand', sans-serif;
+  margin:20px;
+}
+
+form {
+  background-color: grey;
+  display: grid;
+  padding: 15px;
+}
+
+input,select, button{
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+input,select{
+  width: 50%
+}
+
+h1,h3{
+  font-family: 'Bungee', cursive;
+}
+
+h3 {
+  margin: 0px;
+}
+
+.cards {
+	height: 300px;
+	max-height: 600px;
+	display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: lightgrey;
+}
+
+#slides{
+	position: relative;
+  display:flex;
+  width: 600px;
+  justify-content: center;
+  padding:50px;
+
+  }
+
+.flashcard{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* p.words{
+	color: black;
+	min-width:100px;
+	max-width: 400px;
+	margin:10px;
+} */
+
+
+
+
+/* Next & previous buttons */
+
+.prev, .next {
+  align-self:center;
+  justify-content: space-between;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: white;
+  transition: 0.6s ease;
+}
+
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
