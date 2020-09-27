@@ -1,4 +1,4 @@
-## Gompei The Game: High Scores
+## Gompei The Game: High Scores (https://a2-kylemikableh.glitch.me/)
 This page is designed to show user's high scores from a made up game called "Gompei The Game". On page load a user can view a person's name, highscore, and date of the score, which can also be submitted and updated in real time using the submission form. The last field, Generated Name/Score is calculated on the server side, taking upto the first 4 characters in the username (transformed to upper case), with a dash, and then the actual user score.
 
 ## Technical Achievements
