@@ -1,72 +1,131 @@
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+const http = require("http"),
+  fs = require("fs"),
+  // IMPORTANT: you must run `npm install` in the directory for this assignment
+  // to install the mime library used in the following line of code
+  mime = require("mime"),
+  dir = "public/",
+  port = 3000;
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
-const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+var appdata = [
+  {
+    Name: "go grocery shopping",
+    Priority: "medium",
+    Deadline: "Thursday"
+  },
+  {
+    Name: "finish math homework",
+    Priority: "high",
+    Deadline: "Wednesday"
   }
-})
+];
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
-
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  }else{
-    sendFile( response, filename )
+const server = http.createServer(function(request, response) {
+  if (request.method === "GET") {
+    handleGet(request, response);
+  } else if (request.method === "POST") {
+    handlePost(request, response);
   }
-}
+});
 
-const handlePost = function( request, response ) {
-  let dataString = ''
+const handleGet = function(request, response) {
+  const filename = dir + request.url.slice(1);
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+  if (request.url === "/") {
+    sendFile(response, "public/index.html");
+  } else if (request.url === "/scripts.js") {
+    sendFile(response, "public/js/scripts.js");
+  } else if (request.url === "/style.css") {
+    sendFile(response, "public/css/style.css");
+  } else {
+    sendFile(response, filename);
+  }
+};
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+const handlePost = function(request, response) {
+  
+  let dataString = '';
 
-    // ... do something with the data here!!!
+  request.on("data", function(data) {
+    dataString += data;
+    
+  
+  });
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
-}
+  request.on("end", function() {
+  
+    var jsonData = JSON.parse(dataString);
+    
+    console.log(jsonData)
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+    
+    let action = jsonData.action;
+    
+    if (action.includes("add")) {
+      let name = jsonData.taskname;
+      let prior = jsonData.taskpriority;
+      let deadline = jsonData.taskdeadline;
+      let entries = {};
+      entries["Name"] = name;
+      entries["Priority"] = prior;
+      entries["Deadline"] = deadline;
+   
+      appdata.push(entries);
+    }
 
-   fs.readFile( filename, function( err, content ) {
+    
+    if (action.includes("edit")) {
+      let name = jsonData.taskname;
+      let prior = jsonData.taskpriority;
+      let deadline = jsonData.taskdeadline;
+      let newEntries = {};
+      newEntries["Name"] = name;
+      newEntries["Priority"] = prior;
+      newEntries["Deadline"] = deadline;
+    
+      appdata(newEntries).push(newEntries);
+    }
 
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
+    
+    if (action.includes("delete")) {
+      let name = jsonData.taskname;
+      let prior = jsonData.taskpriority;
+      let deadline = jsonData.taskdeadline;
+      let entries = {};
+      entries["Name"] = name;
+      entries["Priority"] = prior;
+      entries["Deadline"] = deadline;
+      
+      appdata.splice(entries);
+    }
 
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+    
+    var sendingJSON = [];
+    for (let newEntry in appdata) {
+      sendingJSON.push(appdata[newEntry]);
+    }
 
-     }else{
+    console.log(sendingJSON);
+  });
 
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
+  response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+  response.end(JSON.stringify(appdata));
+};
 
-     }
-   })
-}
+const sendFile = function(response, filename) {
+  const type = mime.getType(filename);
 
-server.listen( process.env.PORT || port )
+  fs.readFile(filename, function(err, content) {
+    // if the error = null, then we've loaded the file successfully
+    if (err === null) {
+      // status code: https://httpstatuses.com
+      response.writeHeader(200, { "Content-Type": type });
+      response.end(content);
+    } else {
+      // file not found, error code 404
+      response.writeHeader(404);
+      response.end("404 Error: File Not Found");
+    }
+  });
+};
+
+server.listen(process.env.PORT || port);

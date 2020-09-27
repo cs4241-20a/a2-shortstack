@@ -1,12 +1,25 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "a2-danyabaron",
+  "description": "Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js   ===",
   "author": "",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
-  }
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mime": "^2.4.6"
+  },
+  "version": "1.0.0",
+  "main": "server.improved.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danyabaron/a2-shortstack.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danyabaron/a2-shortstack/issues"
+  },
+  "homepage": "https://github.com/danyabaron/a2-shortstack#readme"
 }

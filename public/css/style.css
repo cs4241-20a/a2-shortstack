@@ -1,1 +1,48 @@
-/*Style your own assignment! This is fun! */
+body {
+  background-color: #CABFF5;
+  font-family: "Poppins";
+  /* text-align: center; */
+}
+
+table, td, th {
+  border: 4px solid black;
+  color: black;
+  align-self: center;
+  
+}
+
+h1 
+{
+  text-align: center;
+}
+
+.inputs {
+  font-family: "Poppins";
+  align: center;
+  width: 30%;
+  
+}
+
+button {
+  font-family: "Poppins";
+  display: flex;
+}
+
+.buttons {
+  font-family: "Poppins";
+  display: flex;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
