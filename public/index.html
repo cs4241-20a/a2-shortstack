@@ -1,32 +1,100 @@
 <!doctype html>
+<link rel="stylesheet" href="\css\style.css">
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <hr>
+    <form action="", id = "FORM">
+      <label id = "formFeild">Task</label>
+      <input type='text' id='task' value="">
+      <label id = "formFeild">How many days till due</label>
+      <input type='text' id='DaysToFinish' value="">
+      <button id = "submit">submit</button>
     </form>
+    <hr>
+      <table id = "TODO">
+        <tr>
+        </tr>
+      </table>
+    
   </body>
   <script>
-
+  let matrix = []
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const inputTASK = document.querySelector( '#task' )
+    const inputDAYS = document.querySelector( '#DaysToFinish' )
+
+    const today = new Date().getTime();
+    
+    jsonDATA = {Task: inputTASK.value, DaysTillDue: inputDAYS.value, curDate: today.toString()}
+    let body = JSON.stringify(jsonDATA) 
 
     fetch( '/submit', {
       method:'POST',
-      body 
+      body
     })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+        .then( function( response ) {
+          response.json().then((data)=>{
+            console.log(data)
+            if(data.dataBase === 'Bad Input'){
+              console.log("Bad Inputs")
+              alert("Days till due has to be a number");
+            }else{
+              //clear the TODO list every time
+              var oldTable = document.getElementById("TODO")
+              oldTable.parentNode.removeChild(oldTable)
+
+              //make new table
+              var newTable =document.createElement("table")
+              newTable.setAttribute("id", "TODO")
+              document.body.appendChild(newTable)
+
+              //make a header for the table
+              header = newTable.createTHead()
+              var row = header.insertRow(0)
+              row.insertCell(0).innerHTML = '<b> Task</b>'
+              row.insertCell(1).innerHTML = '<b> Days Till Due</b>'
+              row.insertCell(2).innerHTML = '<b> Priority (Hours Till Due)</b>'
+
+              //checking to see if the task is aleady on the TODO list
+              whatToDo = ["Check", -1]
+              for (i = 0; i < matrix.length; i ++){
+                if (data.Task === matrix[i].Task){
+                  whatToDo[0] = "Update"
+                  whatToDo[1] = i
+                  break
+                }
+              }
+
+              if (whatToDo[0] === "Update"){
+                //update the item in the data base
+                matrix[whatToDo[1]].DaysTillDue = data.DaysTillDue
+                matrix[whatToDo[1]].Priority = data.Priority
+              }else{
+                //add the task to the local database
+                matrix.push(data)
+              }
+
+              //sorts the list of tasks acording to priority low number first
+              matrix.sort(function(a, b){if (a.Priority === b.Priority){return 0} else{return (a.Priority < b.Priority) ? -1:1}})
+
+              //reorginize the TODO list
+              for (i = 0; i < matrix.length; i ++){
+                console.log('Looping')
+                var dataRow = newTable.insertRow(i+1)
+                dataRow.insertCell(0).innerHTML = matrix[i].Task
+                dataRow.insertCell(1).innerHTML = matrix[i].DaysTillDue
+                PRIORITY = Math.floor(matrix[i].Priority/3600000)
+                dataRow.insertCell(2).innerHTML = PRIORITY
+              }
+            }
+          })
     })
 
     return false
