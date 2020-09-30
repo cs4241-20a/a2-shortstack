@@ -1,5 +1,5 @@
 https://glitch.com/~a2-shortstack
-https://glitch.com/edit/#!/a2-shortstack?path=README.md%3A3%3A0
+https://glitch.com/edit/#!/join/5a913488-40d8-4d25-9210-5a42e41fd157
 
 ## A Suggestion On Your Future Gameplay
 Use margin-left on almost everything, and center-align for text; all css selectors are implemented. To run the project, need to type npm install mime and npm install pouchdb. Also make sure you have "enabled npm" when the project doesn't run.

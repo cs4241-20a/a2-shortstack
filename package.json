@@ -1,5 +1,5 @@
 {
-  "name": "Zaiyang Zhong",
+  "name": "",
   "version": "",
   "description": "You will know if or not to buy new games",
   "author": "Zaiyang Zhong",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "mime": "^2.4.6",
-    "pouchdb": "^7.2.2"
+    "pouchdb": "^7.2.2",
+    "node": "^14.11.0"
   }
 }
