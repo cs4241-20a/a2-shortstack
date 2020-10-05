@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { name: 'Kyle\'s Score', date: '2020-08-08', score: '12321', formatted_score: 'KYLE-12321' },
+  { name: 'Joe\'s Score', date: '2020-08-10', score: '34029', formatted_score: 'JOE\'-34029' },
+  { name: 'TJ\'s Score', date: '2020-08-18', score: '66766', formatted_score: 'TJ\'S-66766' }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -32,18 +32,30 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
-
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    let newData = JSON.parse(dataString)
+    console.log(newData)
+    if(newData['name'] === '' || newData['date'] === '' || newData['score'] === '')
+    {
+      //Do nothing
+    }
+    else
+    {
+      var formattedScore = "";
+      formattedScore = newData['name'].substring(0,4).toUpperCase() + "-" + newData['score']; 
+      newData['formatted_score'] = formattedScore; //this is the server logic
+      appdata.push(newData);
+    }
+    console.log(appdata);
+    console.log("Logged...");
 
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.write(JSON.stringify(appdata));
+    response.end();
   })
 }
 
@@ -56,8 +68,8 @@ const sendFile = function( response, filename ) {
      if( err === null ) {
 
        // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+       response.writeHeader( 200, { 'Content-Type': type });
+       response.end( content );
 
      }else{
 

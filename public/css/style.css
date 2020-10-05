@@ -1,1 +1,94 @@
 /*Style your own assignment! This is fun! */
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: auto;
+    text-align: center;
+    /* text-shadow: 1px 1px 8px black; */
+    background: #00cbc2;
+}
+
+h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+h4 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+input {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+button {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.my-buttons {
+    font-family: 'Noto Sans', sans-serif;
+}
+.insert-scores-flex {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    align-content: center;
+    padding-right: 5%;
+}
+
+.title-flex {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-content: center;
+    padding-left: 5%;
+}
+
+#highscores {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.5em;
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 5%;
+  }
+
+#highscores th {
+    text-align: right;
+    background-color: #000000;
+    color: white;
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
+
+#highscores tr:nth-child(even){
+    background-color: #ffffff;
+}
+
+#highscores tr:nth-child(odd){
+    background-color: #9b9b9b;
+}
+
+#highscores tr:hover {
+    background-color: rgb(228, 213, 0);
+}
+
+#highscores td {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 8px;
+}
+
+#highscores th {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 8px;
+}
