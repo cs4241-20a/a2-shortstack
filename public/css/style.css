@@ -1,1 +1,106 @@
-/*Style your own assignment! This is fun! */
+html {
+  background-image: linear-gradient(#9F17EB, #5430F5, #003ADB, #5430F5, #9F17EB);
+}
+
+body, html {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  font-family: 'Arvo';
+  color: #003ADB;
+}
+
+#container {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  background-image: linear-gradient(#9F17EB, #5430F5, #003ADB);
+}
+
+h1, input, .tHeader {
+  font-family: 'Rock Salt'
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 2vh;
+  text-align: left;
+  color: white;
+}
+
+form, fieldset {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+fieldset > div {
+  padding: 1vw;
+}
+
+fieldset {
+  background-color: #003ADB;
+  color: white;
+  border-color: #0CE8C4;
+}
+
+input[type=text] {
+  font-family: 'Caveat';
+  font-size: 4vh;
+}
+
+input[type=button] {
+  color: white;
+  background-color: #3BBFF5;
+  border-color: #0CE8C4;
+}
+
+#buttonDiv {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.formButton {
+  height: 100%;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  font-size: 3.5vh;
+}
+
+#listDiv {
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+#totalsDiv {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  margin-right: 2vw;
+}
+
+table, td {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #003ADB;
+  border-collapse: collapse;
+}
+
+.tHeader {
+  color: #0CE8C4;
+  background-color: #003ADB;
+  padding-left: 1vh;
+  padding-right: 1vh;
+}
+
+/* the hidden class is used to hide the "add" and "save" buttons when applicable */
+.hidden {
+  display: none;
+}
